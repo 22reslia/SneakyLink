@@ -1,3 +1,6 @@
 # Ignore build directories
 bin/
 obj/
+*.user
+*.suo
+*.cache
