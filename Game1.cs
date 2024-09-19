@@ -9,6 +9,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    private IEnemy currentEnemy;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -27,15 +29,15 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        EnemySpriteFactory.Instance.LoadAllTextures(Content);
+
+        currentEnemy = new Stalfos();
+
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-        // TODO: Add your update logic here
+        currentEnemy.Update();
 
         base.Update(gameTime);
     }
@@ -44,7 +46,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        currentEnemy.Draw(_spriteBatch);
 
         base.Draw(gameTime);
     }
