@@ -1,0 +1,79 @@
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SneakyLink
+{
+    public class StalfosStateMachine
+    {
+        private enum StalfosState { LeftNormal, RightNormal, UpNormal, DownNormal };
+        private StalfosState currentState = StalfosState.LeftNormal;
+        private Random randomMove;
+        private int moveCount = 0;
+        // other state machines might make use of a previousState field
+
+        public void ChangeDirection()
+        {
+            randomMove = new Random();
+            int nextDirection = randomMove.Next(0, 4);
+            switch (nextDirection)
+            {
+                case 0:
+                    currentState = StalfosState.LeftNormal;
+                    break;
+                case 1:
+                    currentState = StalfosState.RightNormal;
+                    break;
+                case 2:
+                    currentState = StalfosState.UpNormal;
+                    break;
+                case 3:
+                    currentState = StalfosState.DownNormal;
+                    break;
+            }
+        }
+
+        public void Move(Stalfos stalfos)
+        {
+            if (moveCount == 40)
+            {
+                moveCount = 0;
+                this.ChangeDirection();
+            }
+
+            switch (currentState)
+            {
+                case StalfosState.LeftNormal:
+                    stalfos.x -= 1;
+                    moveCount++;
+                    break;
+                case StalfosState.RightNormal:
+                    stalfos.x += 1;
+                    moveCount++;
+                    break;
+                case StalfosState.DownNormal:
+                    stalfos.y += 1;
+                    moveCount++;
+                    break;
+                case StalfosState.UpNormal:
+                    stalfos.y -= 1;
+                    moveCount++;
+                    break;
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch, ISprite stalfosSprite, int x, int y)
+        {
+            stalfosSprite.Draw(spriteBatch, x, y);
+        }
+        public void Update(Stalfos stalfos)
+        {
+            Move(stalfos);
+        }
+
+    }
+}
