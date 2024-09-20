@@ -1,194 +1,198 @@
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-public class LinkForward : ISprite
+
+namespace SneakyLink
 {
-    public Texture2D linkSprite;
-    private Vector2 position;
-    int currentFrame = 0;
-    int maxFrame = 30;
-
-    public LinkForward(Texture2D texture)
+    public class LinkForward : ISprite
     {
-        linkSprite = texture;
-    }
-    public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
-    {
-        position.X = xPosition;
-        position.Y = yPosition;
+        public Texture2D linkSprite;
+        private Vector2 position;
+        int currentFrame = 0;
+        int maxFrame = 30;
 
-        int width = 16;
-        int height = 16;
-
-        Rectangle destinationRectangle = new Rectangle();
-        Rectangle sourceRectangle = new Rectangle();
-
-        if (currentFrame < maxFrame / 2)
+        public LinkForward(Texture2D texture)
         {
-         sourceRectangle = new Rectangle(1, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            linkSprite = texture;
         }
-        else if (currentFrame >= maxFrame / 2)
+        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
         {
-         sourceRectangle = new Rectangle(18, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
-        }
+            position.X = xPosition;
+            position.Y = yPosition;
 
-        spriteBatch.Begin();
-        spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
-        spriteBatch.End();
-    }
+            int width = 16;
+            int height = 16;
 
-    public void Update()
-    {
-        currentFrame++;
-        if (currentFrame == maxFrame)
-        {
-            currentFrame = 0;
-        }
-    }
-}
+            Rectangle destinationRectangle = new Rectangle();
+            Rectangle sourceRectangle = new Rectangle();
 
-public class LinkRight : ISprite
-{
-    public Texture2D linkSprite;
-    private Vector2 position;
-    int currentFrame = 0;
-    int maxFrame = 30;
+            if (currentFrame < maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(1, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
+            else if (currentFrame >= maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(18, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
 
-    public LinkRight(Texture2D texture)
-    {
-        linkSprite = texture;
-    }
-    public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
-    {
-        position.X = xPosition;
-        position.Y = yPosition;
-
-        int width = 16;
-        int height = 16;
-
-        Rectangle destinationRectangle = new Rectangle();
-        Rectangle sourceRectangle = new Rectangle();
-
-        if (currentFrame < maxFrame / 2)
-        {
-         sourceRectangle = new Rectangle(35, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
-        }
-        else if (currentFrame >= maxFrame / 2)
-        {
-         sourceRectangle = new Rectangle(52, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            spriteBatch.Begin();
+            spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.End();
         }
 
-        spriteBatch.Begin();
-        spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
-        spriteBatch.End();
-    }
-
-    public void Update()
-    {
-        currentFrame++;
-        if (currentFrame == maxFrame)
+        public void Update()
         {
-            currentFrame = 0;
+            currentFrame++;
+            if (currentFrame == maxFrame)
+            {
+                currentFrame = 0;
+            }
         }
     }
-}
 
-public class LinkLeft : ISprite
-{
-    public Texture2D linkSprite;
-    private Vector2 position;
-    int currentFrame = 0;
-    int maxFrame = 30;
-
-    public LinkLeft(Texture2D texture)
+    public class LinkRight : ISprite
     {
-        linkSprite = texture;
-    }
-    public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
-    {
-        position.X = xPosition;
-        position.Y = yPosition;
+        public Texture2D linkSprite;
+        private Vector2 position;
+        int currentFrame = 0;
+        int maxFrame = 30;
 
-        int width = 16;
-        int height = 16;
-
-        Rectangle destinationRectangle = new Rectangle();
-        Rectangle sourceRectangle = new Rectangle();
-
-        if (currentFrame < maxFrame / 2)
+        public LinkRight(Texture2D texture)
         {
-         sourceRectangle = new Rectangle(35, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            linkSprite = texture;
         }
-        else if (currentFrame >= maxFrame / 2)
+        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
         {
-         sourceRectangle = new Rectangle(52, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
-        }
+            position.X = xPosition;
+            position.Y = yPosition;
 
-        spriteBatch.Begin();
-        spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
-        spriteBatch.End();
-    }
+            int width = 16;
+            int height = 16;
 
-    public void Update()
-    {
-        currentFrame++;
-        if (currentFrame == maxFrame)
-        {
-            currentFrame = 0;
-        }
-    }
-}
+            Rectangle destinationRectangle = new Rectangle();
+            Rectangle sourceRectangle = new Rectangle();
 
-public class LinkBack : ISprite
-{
-    public Texture2D linkSprite;
-    private Vector2 position;
-    int currentFrame = 0;
-    int maxFrame = 30;
+            if (currentFrame < maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(35, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
+            else if (currentFrame >= maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(52, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
 
-    public LinkBack(Texture2D texture)
-    {
-        linkSprite = texture;
-    }
-    public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
-    {
-        position.X = xPosition;
-        position.Y = yPosition;
-
-        int width = 16;
-        int height = 16;
-
-        Rectangle destinationRectangle = new Rectangle();
-        Rectangle sourceRectangle = new Rectangle();
-
-        if (currentFrame < maxFrame / 2)
-        {
-         sourceRectangle = new Rectangle(69, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
-        }
-        else if (currentFrame >= maxFrame / 2)
-        {
-         sourceRectangle = new Rectangle(86, 11, width, height);
-         destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            spriteBatch.Begin();
+            spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.End();
         }
 
-        spriteBatch.Begin();
-        spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
-        spriteBatch.End();
+        public void Update()
+        {
+            currentFrame++;
+            if (currentFrame == maxFrame)
+            {
+                currentFrame = 0;
+            }
+        }
     }
 
-    public void Update()
+    public class LinkLeft : ISprite
     {
-        currentFrame++;
-        if (currentFrame == maxFrame)
+        public Texture2D linkSprite;
+        private Vector2 position;
+        int currentFrame = 0;
+        int maxFrame = 30;
+
+        public LinkLeft(Texture2D texture)
         {
-            currentFrame = 0;
+            linkSprite = texture;
+        }
+        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        {
+            position.X = xPosition;
+            position.Y = yPosition;
+
+            int width = 16;
+            int height = 16;
+
+            Rectangle destinationRectangle = new Rectangle();
+            Rectangle sourceRectangle = new Rectangle();
+
+            if (currentFrame < maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(35, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
+            else if (currentFrame >= maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(52, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
+            spriteBatch.End();
+        }
+
+        public void Update()
+        {
+            currentFrame++;
+            if (currentFrame == maxFrame)
+            {
+                currentFrame = 0;
+            }
+        }
+    }
+
+    public class LinkBack : ISprite
+    {
+        public Texture2D linkSprite;
+        private Vector2 position;
+        int currentFrame = 0;
+        int maxFrame = 30;
+
+        public LinkBack(Texture2D texture)
+        {
+            linkSprite = texture;
+        }
+        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        {
+            position.X = xPosition;
+            position.Y = yPosition;
+
+            int width = 16;
+            int height = 16;
+
+            Rectangle destinationRectangle = new Rectangle();
+            Rectangle sourceRectangle = new Rectangle();
+
+            if (currentFrame < maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(69, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
+            else if (currentFrame >= maxFrame / 2)
+            {
+            sourceRectangle = new Rectangle(86, 11, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 15*width, 15*height);
+            }
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.End();
+        }
+
+        public void Update()
+        {
+            currentFrame++;
+            if (currentFrame == maxFrame)
+            {
+                currentFrame = 0;
+            }
         }
     }
 }

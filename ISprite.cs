@@ -1,7 +1,12 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-public interface ISprite
+namespace SneakyLink
 {
-    void Update();
-    void Draw(SpriteBatch spriteBatch, int x, int y);
+    public interface ISprite
+    {
+        void Update();
+        void Draw(SpriteBatch spriteBatch, int x, int y);
+    }
 }

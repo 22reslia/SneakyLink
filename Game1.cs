@@ -21,6 +21,8 @@ public class Game1 : Game
 
     public Vector2 linkPosition;
 
+    private IEnemy currentEnemy;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -50,8 +52,10 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
         Texture2D linkSpriteSheet = Content.Load<Texture2D>("Link Sprite Sheet");
+        EnemySpriteFactory.Instance.LoadAllTextures(Content);
+
+        currentEnemy = new Stalfos();
 
         linkForward = new LinkForward(linkSpriteSheet);
         linkRight = new LinkRight(linkSpriteSheet);
@@ -65,6 +69,11 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+
+        currentEnemy.Update();
+
+
+
         KeyboardController.Update();
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
@@ -90,7 +99,9 @@ public class Game1 : Game
         //linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
         linkRight.Draw(_spriteBatch, (int)linkPosition.X, (int)linkPosition.Y);
 
-        // TODO: Add your drawing code here
+        //linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+        linkRight.Draw(_spriteBatch, (int)linkPosition.X, (int)linkPosition.Y);
+        currentEnemy.Draw(_spriteBatch);
 
         base.Draw(gameTime);
     }
