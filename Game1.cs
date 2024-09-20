@@ -19,7 +19,7 @@ public class Game1 : Game
     LinkWoodenSwordLeft linkWoodenSwordLeft;
     LinkWoodenSwordTop linkWoodenSwordTop;
 
-    Vector2 linkPosition;
+    public Vector2 linkPosition;
 
     public Game1()
     {
@@ -36,6 +36,8 @@ public class Game1 : Game
         ICommand exitCommand = new GameExit(this);
 
         KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
+        KeyboardController.RegisterCommand(Keys.Right, new MoveRight(this));
+        KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(this));
 
 
         linkPosition.X = 100;
@@ -86,7 +88,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         //linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
-        linkWoodenSwordTop.Draw(_spriteBatch, (int)linkPosition.X, (int)linkPosition.Y);
+        linkRight.Draw(_spriteBatch, (int)linkPosition.X, (int)linkPosition.Y);
 
         // TODO: Add your drawing code here
 
