@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,7 +6,7 @@ namespace SneakyLink;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager _graphics;
+    public GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
     private IEnemy currentEnemy;
@@ -37,7 +37,11 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+
         currentEnemy.Update();
+
+
+
 
         base.Update(gameTime);
     }
