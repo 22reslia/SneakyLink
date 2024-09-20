@@ -10,6 +10,10 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
 
     LinkForward linkForward;
+    LinkRight linkRight;
+    LinkLeft linkLeft;
+    LinkBack linkBack;
+    LinkWoodenSwordForward linkWoodenSwordForward;
 
     public Game1()
     {
@@ -33,6 +37,10 @@ public class Game1 : Game
         Texture2D linkSpriteSheet = Content.Load<Texture2D>("Link Sprite Sheet");
 
         linkForward = new LinkForward(linkSpriteSheet);
+        linkRight = new LinkRight(linkSpriteSheet);
+        linkLeft = new LinkLeft(linkSpriteSheet);
+        linkBack = new LinkBack(linkSpriteSheet);
+        linkWoodenSwordForward = new LinkWoodenSwordForward(linkSpriteSheet);
     }
 
     protected override void Update(GameTime gameTime)
@@ -41,6 +49,11 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
+        linkForward.Update();
+        linkRight.Update();
+        linkLeft.Update();
+        linkBack.Update();
+        linkWoodenSwordForward.Update();
 
         base.Update(gameTime);
     }
@@ -49,7 +62,8 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+        //linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+        linkWoodenSwordForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
 
         // TODO: Add your drawing code here
 
