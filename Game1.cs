@@ -14,6 +14,11 @@ public class Game1 : Game
     LinkLeft linkLeft;
     LinkBack linkBack;
     LinkWoodenSwordForward linkWoodenSwordForward;
+    LinkWoodenSwordRight linkWoodenSwordRight;
+    LinkWoodenSwordLeft linkWoodenSwordLeft;
+    LinkWoodenSwordTop linkWoodenSwordTop;
+
+    Vector2 linkPosition;
 
     public Game1()
     {
@@ -25,6 +30,9 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
+
+        linkPosition.X = 100;
+        linkPosition.Y = 100;
 
         base.Initialize();
     }
@@ -41,6 +49,9 @@ public class Game1 : Game
         linkLeft = new LinkLeft(linkSpriteSheet);
         linkBack = new LinkBack(linkSpriteSheet);
         linkWoodenSwordForward = new LinkWoodenSwordForward(linkSpriteSheet);
+        linkWoodenSwordRight = new LinkWoodenSwordRight(linkSpriteSheet);
+        linkWoodenSwordLeft = new LinkWoodenSwordLeft(linkSpriteSheet);
+        linkWoodenSwordTop = new LinkWoodenSwordTop(linkSpriteSheet);
     }
 
     protected override void Update(GameTime gameTime)
@@ -54,6 +65,10 @@ public class Game1 : Game
         linkLeft.Update();
         linkBack.Update();
         linkWoodenSwordForward.Update();
+        linkWoodenSwordRight.Update();
+        linkWoodenSwordLeft.Update();
+        linkWoodenSwordTop.Update();
+
 
         base.Update(gameTime);
     }
@@ -63,7 +78,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         //linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
-        linkWoodenSwordForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+        linkWoodenSwordTop.Draw(_spriteBatch, (int)linkPosition.X, (int)linkPosition.Y);
 
         // TODO: Add your drawing code here
 
