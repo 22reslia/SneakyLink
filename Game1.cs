@@ -8,6 +8,7 @@ public class Game1 : Game
 {
     public GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private IController<Keys> KeyboardController;
 
     LinkForward linkForward;
     LinkRight linkRight;
@@ -30,6 +31,12 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
+        KeyboardController = new KeyboardController();
+
+        ICommand exitCommand = new GameExit(this);
+
+        KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
+
 
         linkPosition.X = 100;
         linkPosition.Y = 100;
@@ -56,6 +63,7 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+        KeyboardController.Update();
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
