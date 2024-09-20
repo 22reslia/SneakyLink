@@ -44,6 +44,19 @@ namespace SneakyLink
             return new StalfosSprite(dungeonEnemySpriteSheet);
         }
 
+        public ISprite CreateAquamentusLeftIdleEnemySprite()
+        {
+            return new AquamentusLeftIdleSprite(bossesSpriteSheet);
+        }
+        public ISprite CreateAquamentusRightIdleEnemySprite()
+        {
+            return new AquamentusRightIdleSprite(bossesSpriteSheet);
+        }
+        public ISprite CreateAquamentusFireBall()
+        {
+            return new AquamentusFireBall(bossesSpriteSheet);
+        }
+
     }
 }
 

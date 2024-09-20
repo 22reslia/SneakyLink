@@ -31,7 +31,7 @@ public class Game1 : Game
 
         EnemySpriteFactory.Instance.LoadAllTextures(Content);
 
-        currentEnemy = new Stalfos();
+        currentEnemy = new Aquamentus();
 
     }
 
