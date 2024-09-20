@@ -6,7 +6,6 @@ using System.Net.Mime;
 
 namespace SneakyLink
 {
-    //class for the moving, non-animated sprite
     public class StalfosSprite : ISprite
     {
         Texture2D image;

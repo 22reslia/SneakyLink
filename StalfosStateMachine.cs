@@ -14,7 +14,6 @@ namespace SneakyLink
         private StalfosState currentState = StalfosState.LeftNormal;
         private Random randomMove;
         private int moveCount = 0;
-        // other state machines might make use of a previousState field
 
         public void ChangeDirection()
         {
