@@ -44,6 +44,16 @@ namespace SneakyLink
             return new StalfosSprite(dungeonEnemySpriteSheet);
         }
 
+        public ISprite CreateGelSprite()
+        {
+            return new GelSprite(dungeonEnemySpriteSheet);
+        }
+
+        public ISprite CreateZolSprite()
+        {
+            return new ZolSprite(dungeonEnemySpriteSheet);
+        }
+
     }
 }
 
