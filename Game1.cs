@@ -9,6 +9,8 @@ public class Game1 : Game
     public GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    LinkForward linkForward;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -28,6 +30,9 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // TODO: use this.Content to load your game content here
+        Texture2D linkSpriteSheet = Content.Load<Texture2D>("Link Sprite Sheet");
+
+        linkForward = new LinkForward(linkSpriteSheet);
     }
 
     protected override void Update(GameTime gameTime)
@@ -43,6 +48,8 @@ public class Game1 : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
 
         // TODO: Add your drawing code here
 
