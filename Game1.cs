@@ -9,7 +9,7 @@ public class Game1 : Game
     public GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private IController<Keys> KeyboardController;
-
+    
     Player.Link link;
     private IEnemy currentEnemy;
 
@@ -27,6 +27,7 @@ public class Game1 : Game
 
         ICommand exitCommand = new GameExit(this);
 
+        //initializes Link contructor
         link = new Player.Link();
 
         //Initilizing Commands to specific keys
@@ -46,8 +47,8 @@ public class Game1 : Game
         Player.PlayerSpriteFactory.Instance.LoadAllTextures(Content);
         Enemies.EnemySpriteFactory.Instance.LoadAllTextures(Content);
 
-        
         currentEnemy = new Enemies.Stalfos();
+        link.SetSprite();
 
     }
 
@@ -61,7 +62,6 @@ public class Game1 : Game
 
         //link (player) update
         link.Update();
-
 
         base.Update(gameTime);
     }

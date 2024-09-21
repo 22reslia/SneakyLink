@@ -9,51 +9,63 @@ public class PlayerStateMachine
     public enum PlayerState {LeftNormal, RightNormal, BackwardNormal, ForwardNormal};
     public PlayerState currentState = PlayerState.ForwardNormal;
     private PlayerState previousState;
+    private ISprite currentSprite;
 
     //Constructor to initialize previousState
     public PlayerStateMachine()
     {
         previousState = currentState;
+
+        //intializes the forward sprite as the default sprite
+        currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
     }
 
     //creates an ISprite object for each different enum
     public ISprite GetCurrentSprite()
     {
-        ISprite currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
-        if(currentState == PlayerState.LeftNormal)
+        switch (currentState)
         {
-            currentSprite = PlayerSpriteFactory.Instance.CreateLinkLeftSprite();
+            case PlayerState.LeftNormal:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkLeftSprite();
+                break;
+            case PlayerState.RightNormal:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkRightSprite();
+                break;
+            case PlayerState.BackwardNormal:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkBackwardSprite();
+                break;
+            case PlayerState.ForwardNormal:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
+                break;
         }
-        else if(currentState == PlayerState.RightNormal)
-        {
-            currentSprite = PlayerSpriteFactory.Instance.CreateLinkRightSprite();
-        }
-        else if(currentState == PlayerState.BackwardNormal)
-        {
-            currentSprite = PlayerSpriteFactory.Instance.CreateLinkBackwardSprite();
-        }
-        else if(currentState == PlayerState.ForwardNormal)
-        {
-            currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
-        }
-
         return currentSprite;
     }
 
     //checks for state change
     public bool PlayerSpriteStateChange()
-    {   
-        bool StateChange = false;
+    {
+        bool stateChange = false;
         if (currentState != previousState)
         {
-            StateChange = true;
+            previousState = currentState;
+            stateChange = true;
         }
-        return StateChange;
+        return stateChange;
     }
+
 
     //draws the sprite
     public void Draw(SpriteBatch spriteBatch, ISprite playerSprite, int x, int y)
         {
             playerSprite.Draw(spriteBatch, x, y);
         }
+
+    public ISprite Update()
+    {
+        if(PlayerSpriteStateChange())
+        {
+            currentSprite = GetCurrentSprite();
+        }
+        return currentSprite;
+    }
 }

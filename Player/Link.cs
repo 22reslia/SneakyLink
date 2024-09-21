@@ -1,5 +1,6 @@
 using System.Diagnostics.Contracts;
 using System.Numerics;
+using System.Threading;
 using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Enemies;
 
@@ -20,21 +21,25 @@ namespace SneakyLink.Player;
 
             //creates a state machine and gets the current sprite based on directional movement
             stateMachine = new PlayerStateMachine();
+        }
+
+        public void SetSprite()
+        {
             playerSprite = stateMachine.GetCurrentSprite();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            stateMachine.Draw(spriteBatch, playerSprite, (int)playerPosition.X, (int)playerPosition.Y);
+            if (playerSprite != null)
+            {
+                stateMachine.Draw(spriteBatch, playerSprite, (int)playerPosition.X, (int)playerPosition.Y);
+            }
         }
 
         public void Update()
         {   
             //calls the ISprite update for given sprite
             playerSprite.Update();
-
-            //updates the current sprite
-            playerSprite = stateMachine.GetCurrentSprite();
+            playerSprite = stateMachine.Update();
         }
-
     }
