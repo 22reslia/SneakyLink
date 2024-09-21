@@ -20,16 +20,17 @@ public class GameExit : ICommand {
     
 }
 
-//Moves Link to the right
+//Moves Link to the right and changes link's sprite directionally
 public class MoveRight : ICommand
 {
     private Game1 _game;
-    private Player link;
-    int velocity = 10;
+    private Link link;
+    int velocity;
 
-    public MoveRight(Game1 game, Player player){
+    public MoveRight(Game1 game, Link player){
         _game = game;
         link = player;
+        velocity = player.velocity;
     }
 
     public void Execute () {
@@ -39,16 +40,17 @@ public class MoveRight : ICommand
     }
 }
 
-//Moves Link to the left
+//Moves Link to the left and changes link's sprite directionally
 public class MoveLeft : ICommand
 {
     private Game1 _game;
-    private Player link;
-    int velocity = 10;
+    private Link link;
+    int velocity;
 
-    public MoveLeft(Game1 game, Player player){
+    public MoveLeft(Game1 game, Link player){
         _game = game;
         link = player;
+        velocity = player.velocity;
     }
 
     public void Execute () {
@@ -58,38 +60,42 @@ public class MoveLeft : ICommand
     }
 }
 
+//Moves link up and changes link's sprite directionally
 public class MoveUp : ICommand
 {
     private Game1 _game;
-    private Player link;
-    int velocity = 10;
+    private Link link;
+    int velocity;
 
-    public MoveUp(Game1 game, Player player){
+    public MoveUp(Game1 game, Link player){
         _game = game;
         link = player;
-    }
-
-    public void Execute () {
-
-        link.playerPosition.Y += velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.BackwardNormal;
-    }
-}
-
-public class MoveDown : ICommand
-{
-    private Game1 _game;
-    private Player link;
-    int velocity = 10;
-
-    public MoveDown(Game1 game, Player player){
-        _game = game;
-        link = player;
+        velocity = player.velocity;
     }
 
     public void Execute () {
 
         link.playerPosition.Y -= velocity;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.BackwardNormal;
+    }
+}
+
+//Moves link down and changes link's sprite directionally
+public class MoveDown : ICommand
+{
+    private Game1 _game;
+    private Link link;
+    int velocity;
+
+    public MoveDown(Game1 game, Link player){
+        _game = game;
+        link = player;
+        velocity = player.velocity;
+    }
+
+    public void Execute () {
+
+        link.playerPosition.Y += velocity;
         link.stateMachine.currentState = PlayerStateMachine.PlayerState.ForwardNormal;
     }
 }
