@@ -37,7 +37,7 @@ namespace SneakyLink.Player
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -85,7 +85,7 @@ namespace SneakyLink.Player
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
@@ -133,7 +133,7 @@ namespace SneakyLink.Player
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
             spriteBatch.End();
         }
@@ -181,7 +181,7 @@ namespace SneakyLink.Player
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
