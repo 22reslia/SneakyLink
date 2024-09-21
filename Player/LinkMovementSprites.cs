@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace SneakyLink
+namespace SneakyLink.Player
 {
     public class LinkForward : ISprite
     {

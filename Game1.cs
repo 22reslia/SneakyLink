@@ -10,14 +10,11 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     private IController<Keys> KeyboardController;
 
-    LinkForward linkForward;
-    LinkRight linkRight;
-    LinkLeft linkLeft;
-    LinkBack linkBack;
-    LinkWoodenSwordForward linkWoodenSwordForward;
-    LinkWoodenSwordRight linkWoodenSwordRight;
-    LinkWoodenSwordLeft linkWoodenSwordLeft;
-    LinkWoodenSwordTop linkWoodenSwordTop;
+    Player.Player link;
+    // Player.LinkWoodenSwordForward linkWoodenSwordForward;
+    // Player.LinkWoodenSwordRight linkWoodenSwordRight;
+    // Player.LinkWoodenSwordLeft linkWoodenSwordLeft;
+    // Player.LinkWoodenSwordTop linkWoodenSwordTop;
 
     public Vector2 linkPosition;
 
@@ -52,19 +49,16 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        Texture2D linkSpriteSheet = Content.Load<Texture2D>("Link Sprite Sheet");
-        EnemySpriteFactory.Instance.LoadAllTextures(Content);
+        Player.PlayerSpriteFactory.Instance.LoadAllTextures(Content);
+        Enemies.EnemySpriteFactory.Instance.LoadAllTextures(Content);
 
-        currentEnemy = new Stalfos();
+        link = new Player.Player();
+        currentEnemy = new Enemies.Stalfos();
 
-        linkForward = new LinkForward(linkSpriteSheet);
-        linkRight = new LinkRight(linkSpriteSheet);
-        linkLeft = new LinkLeft(linkSpriteSheet);
-        linkBack = new LinkBack(linkSpriteSheet);
-        linkWoodenSwordForward = new LinkWoodenSwordForward(linkSpriteSheet);
-        linkWoodenSwordRight = new LinkWoodenSwordRight(linkSpriteSheet);
-        linkWoodenSwordLeft = new LinkWoodenSwordLeft(linkSpriteSheet);
-        linkWoodenSwordTop = new LinkWoodenSwordTop(linkSpriteSheet);
+        // linkWoodenSwordForward = new Player.LinkWoodenSwordForward(linkSpriteSheet);
+        // linkWoodenSwordRight = new Player.LinkWoodenSwordRight(linkSpriteSheet);
+        // linkWoodenSwordLeft = new Player.LinkWoodenSwordLeft(linkSpriteSheet);
+        // linkWoodenSwordTop = new Player.LinkWoodenSwordTop(linkSpriteSheet);
     }
 
     protected override void Update(GameTime gameTime)
@@ -76,14 +70,13 @@ public class Game1 : Game
         currentEnemy.Update();
 
         //link sprites update
-        linkForward.Update();
-        linkRight.Update();
-        linkLeft.Update();
-        linkBack.Update();
-        linkWoodenSwordForward.Update();
-        linkWoodenSwordRight.Update();
-        linkWoodenSwordLeft.Update();
-        linkWoodenSwordTop.Update();
+        // linkWoodenSwordForward.Update();
+        // linkWoodenSwordRight.Update();
+        // linkWoodenSwordLeft.Update();
+        // linkWoodenSwordTop.Update();
+
+        //link (player) update
+        link.Update();
 
 
         base.Update(gameTime);
@@ -93,12 +86,8 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        //linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
-        linkRight.Draw(_spriteBatch, (int)linkPosition.X, (int)linkPosition.Y);
-
-        //linkForward.Draw(_spriteBatch, _graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
-        linkRight.Draw(_spriteBatch, (int)linkPosition.X, (int)linkPosition.Y);
         currentEnemy.Draw(_spriteBatch);
+        link.Draw(_spriteBatch);
 
         base.Draw(gameTime);
     }

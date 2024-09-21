@@ -5,44 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SneakyLink
+namespace SneakyLink.Enemies
 {
-    public class Stalfos : IEnemy
+    public class Keese : IEnemy
     {
-        private StalfosStateMachine stateMachine;
-        public ISprite stalfosSprite;
+        private KeeseStateMachine stateMachine;
+        public ISprite keeseSprite;
         public int x;
         public int y;
 
-        public Stalfos()
+        public Keese()
         {
             x = 400;
             y = 240;
-            stateMachine = new StalfosStateMachine();
-            stalfosSprite = EnemySpriteFactory.Instance.CreateStalfosEnemySprite();
+            stateMachine = new KeeseStateMachine();
+            keeseSprite = EnemySpriteFactory.Instance.CreateKeeseEnemySprite();
         }
 
         public void ChangeDirection()
         {
             stateMachine.ChangeDirection();
         }
-        public void Move()
-        {
-            stateMachine.Move(this);
-        }
         public void Draw(SpriteBatch spriteBatch)
         {
-            stateMachine.Draw(spriteBatch, stalfosSprite, x, y);
+            stateMachine.Draw(spriteBatch, keeseSprite, x, y);
         }
         public void Update()
         {
-            stalfosSprite.Update();
+            keeseSprite.Update();
             stateMachine.Update(this);
-        }
-        public void Attack()
-        {
-
         }
     }
 }
-
