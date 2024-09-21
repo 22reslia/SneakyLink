@@ -6,14 +6,14 @@ using System.Net.Mime;
 
 namespace SneakyLink
 {
-    public class AquamentusRightIdleSprite : ISprite
+    public class AquamentusLeftAttackSprite : ISprite
     {
         Texture2D image;
         Rectangle sourceRectangle;
         private int frame;
         private int frameCounter;
 
-        public AquamentusRightIdleSprite(Texture2D text)
+        public AquamentusLeftAttackSprite(Texture2D text)
         {
             image = text;
             frame = 0;
@@ -45,11 +45,11 @@ namespace SneakyLink
         {
             if (frame == 0)
             {
-                sourceRectangle = new Rectangle(75, 11, -24, 32);
+                sourceRectangle = new Rectangle(1, 11, 24, 32);
             }
             else if (frame == 1)
             {
-                sourceRectangle = new Rectangle(100, 11, -24, 32);
+                sourceRectangle = new Rectangle(26, 11, 24, 32);
             }
             spriteBatch.Begin();
             spriteBatch.Draw(image, new Rectangle(x, y, 72, 96), sourceRectangle, Color.White);

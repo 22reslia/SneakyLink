@@ -58,13 +58,21 @@ namespace SneakyLink
         {
             return new AquamentusLeftIdleSprite(bossesSpriteSheet);
         }
+        public ISprite CreateAquamentusLeftAttackEnemySprite()
+        {
+            return new AquamentusLeftAttackSprite(bossesSpriteSheet);
+        }
         public ISprite CreateAquamentusRightIdleEnemySprite()
         {
             return new AquamentusRightIdleSprite(bossesSpriteSheet);
         }
+        public ISprite CreateAquamentusRightAttackEnemySprite()
+        {
+            return new AquamentusRightAttackSprite(bossesSpriteSheet);
+        }
         public ISprite CreateAquamentusFireBall()
         {
-            return new AquamentusFireBall(bossesSpriteSheet);
+            return new AquamentusFireBallSprite(bossesSpriteSheet);
         }
 
     }

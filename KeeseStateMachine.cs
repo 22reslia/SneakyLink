@@ -10,15 +10,15 @@ namespace SneakyLink
 {
     public class KeeseStateMachine
     {
-        private enum KeeseState { LeftNormal, RightNormal, UpNormal, DownNormal};
-        private KeeseState currentState = KeeseState.LeftNormal;
+        private enum KeeseState { LeftNormal, RightNormal, UpNormal, DownNormal, Idle, LeftUpNormal, LeftDownNormal, RightUpNormal, RightDownNormal};
+        private KeeseState currentState = KeeseState.Idle;
         private Random randomMove;
         private int moveCount = 0;
 
         public void ChangeDirection()
         {
             randomMove = new Random();
-            int nextDirection = randomMove.Next(0,4);
+            int nextDirection = randomMove.Next(0,9);
             switch (nextDirection) 
             { 
                 case 0:
@@ -33,6 +33,22 @@ namespace SneakyLink
                 case 3:
                     currentState = KeeseState.DownNormal;
                     break;
+                case 4:
+                    currentState = KeeseState.Idle;
+                    break;
+                case 5:
+                    currentState = KeeseState.LeftUpNormal;
+                    break;
+                case 6:
+                    currentState = KeeseState.LeftDownNormal;
+                    break;
+                case 7:
+                    currentState = KeeseState.RightUpNormal;
+                    break;
+                case 8:
+                    currentState = KeeseState.RightDownNormal;
+                    break;
+
             }
         }
 
@@ -60,6 +76,29 @@ namespace SneakyLink
                     break;
                 case KeeseState.UpNormal:
                     keese.y -= 1;
+                    moveCount++;
+                    break;
+                case KeeseState.Idle:
+                    moveCount++;
+                    break;
+                case KeeseState.LeftUpNormal:
+                    keese.x -= 1;
+                    keese.y -= 1;
+                    moveCount++;
+                    break;
+                case KeeseState.LeftDownNormal:
+                    keese.x -= 1;
+                    keese.y += 1;
+                    moveCount++;
+                    break;
+                case KeeseState.RightUpNormal:
+                    keese.x -= 1;
+                    keese.y -= 1;
+                    moveCount++;
+                    break;
+                case KeeseState.RightDownNormal:
+                    keese.x -= 1;
+                    keese.y += 1;
                     moveCount++;
                     break;
             }

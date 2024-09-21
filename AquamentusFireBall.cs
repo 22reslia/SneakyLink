@@ -1,31 +1,44 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Net.Mime;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SneakyLink
 {
-    public class AquamentusFireBall : ISprite
+    public class AquamentusFireBall
     {
-        Texture2D image;
-        Rectangle sourceRectangle;
+        public int x;
+        public int y;
+        private ISprite fireBallSprite;
+        private int velocityX;
+        private int velocityY;
 
-        public AquamentusFireBall(Texture2D text)
+        public AquamentusFireBall(int x, int y)
         {
-            image = text;
+            this.x = x;
+            this.y = y;
+            fireBallSprite = EnemySpriteFactory.Instance.CreateAquamentusFireBall();
+            velocityX = 0;
+            velocityY = 0;
         }
-
+        public void Shoot(int velocityX, int velocityY)
+        {
+            this.velocityX = velocityX;
+            this.velocityY = velocityY;
+        }
         public void Update()
         {
+            x += velocityX;
+            y += velocityY;
+            fireBallSprite.Update();
         }
-
-        public void Draw(SpriteBatch spriteBatch, int x, int y)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            sourceRectangle = new Rectangle(119, 11, 8, 16);
-            spriteBatch.Begin();
-            spriteBatch.Draw(image, new Rectangle(x, y, 24, 84), sourceRectangle, Color.White);
-            spriteBatch.End();
+            fireBallSprite.Draw(spriteBatch, x, y);
         }
     }
 }
+

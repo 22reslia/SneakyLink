@@ -11,7 +11,6 @@ namespace SneakyLink
     {
         private AquamentusStateMachine stateMachine;
         public ISprite aquamentusSprite;
-        public ISprite fireBall;
         public int x;
         public int y;
 
