@@ -37,9 +37,12 @@ public class Game1 : Game
 
         ICommand exitCommand = new GameExit(this);
 
+        //Initilizing Commands to specific keys
         KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
         KeyboardController.RegisterCommand(Keys.Right, new MoveRight(this));
         KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(this));
+        KeyboardController.RegisterCommand(Keys.Up, new MoveUp(this));
+        KeyboardController.RegisterCommand(Keys.Down, new MoveDown(this));
 
 
         linkPosition.X = 100;

@@ -50,3 +50,33 @@ public class MoveLeft : ICommand
         _game.linkPosition.X -= velocity;
     }
 }
+
+public class MoveUp : ICommand
+{
+    private Game1 _game;
+    int velocity = 10;
+
+    public MoveUp(Game1 game){
+        _game = game;
+    }
+
+    public void Execute () {
+
+        _game.linkPosition.Y += velocity;
+    }
+}
+
+public class MoveDown : ICommand
+{
+    private Game1 _game;
+    int velocity = 10;
+
+    public MoveDown(Game1 game){
+        _game = game;
+    }
+
+    public void Execute () {
+
+        _game.linkPosition.Y -= velocity;
+    }
+}
