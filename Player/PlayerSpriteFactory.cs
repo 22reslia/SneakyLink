@@ -41,4 +41,21 @@ public class PlayerSpriteFactory
         {
             return new LinkBack(linkSpriteSheet);
         }
+        public ISprite CreateLinkIdleRightSprite()
+        {
+            return new LinkRightIdle(linkSpriteSheet);
+        }
+        public ISprite CreateLinkIdleLeftSprite()
+        {
+            return new LinkLeftIdle(linkSpriteSheet);
+        }
+        public ISprite CreateLinkIdleForwardSprite()
+        {
+            return new LinkForwardIdle(linkSpriteSheet);
+        }
+        public ISprite CreateLinkIdleBackwardSprite()
+        {
+            return new LinkBackIdle(linkSpriteSheet);
+        }
+
     }

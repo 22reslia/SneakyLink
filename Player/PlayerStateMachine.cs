@@ -6,8 +6,8 @@ namespace SneakyLink.Player;
 
 public class PlayerStateMachine
 {
-    public enum PlayerState {LeftNormal, RightNormal, BackwardNormal, ForwardNormal};
-    public PlayerState currentState = PlayerState.ForwardNormal;
+    public enum PlayerState {LeftMoving, RightMoving, BackwardMoving, ForwardMoving, LeftIdle, RightIdle, BackwardIdle, ForwardIdle};
+    public PlayerState currentState = PlayerState.ForwardIdle;
     private PlayerState previousState;
     private ISprite currentSprite;
 
@@ -24,18 +24,33 @@ public class PlayerStateMachine
     public ISprite GetCurrentSprite()
     {
         switch (currentState)
-        {
-            case PlayerState.LeftNormal:
+        {   
+            //cases for animated sprites
+            case PlayerState.LeftMoving:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkLeftSprite();
                 break;
-            case PlayerState.RightNormal:
+            case PlayerState.RightMoving:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkRightSprite();
                 break;
-            case PlayerState.BackwardNormal:
+            case PlayerState.BackwardMoving:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkBackwardSprite();
                 break;
-            case PlayerState.ForwardNormal:
+            case PlayerState.ForwardMoving:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
+                break;
+
+            //cases for idle sprites
+            case PlayerState.LeftIdle:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleLeftSprite();
+                break;
+            case PlayerState.RightIdle:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleRightSprite();
+                break;
+            case PlayerState.BackwardIdle:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleBackwardSprite();
+                break;
+            case PlayerState.ForwardIdle:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
                 break;
         }
         return currentSprite;
