@@ -11,13 +11,6 @@ public class Game1 : Game
     private IController<Keys> KeyboardController;
 
     Player.Player link;
-    // Player.LinkWoodenSwordForward linkWoodenSwordForward;
-    // Player.LinkWoodenSwordRight linkWoodenSwordRight;
-    // Player.LinkWoodenSwordLeft linkWoodenSwordLeft;
-    // Player.LinkWoodenSwordTop linkWoodenSwordTop;
-
-    public Vector2 linkPosition;
-
     private IEnemy currentEnemy;
 
     public Game1()
@@ -36,14 +29,10 @@ public class Game1 : Game
 
         //Initilizing Commands to specific keys
         KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
-        KeyboardController.RegisterCommand(Keys.Right, new MoveRight(this));
-        KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(this));
-        KeyboardController.RegisterCommand(Keys.Up, new MoveUp(this));
-        KeyboardController.RegisterCommand(Keys.Down, new MoveDown(this));
-
-
-        linkPosition.X = 100;
-        linkPosition.Y = 100;
+        KeyboardController.RegisterCommand(Keys.Right, new MoveRight(this, link));
+        KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(this, link));
+        KeyboardController.RegisterCommand(Keys.Up, new MoveUp(this, link));
+        KeyboardController.RegisterCommand(Keys.Down, new MoveDown(this, link));
 
         base.Initialize();
     }
@@ -58,10 +47,6 @@ public class Game1 : Game
         link = new Player.Player();
         currentEnemy = new Enemies.Stalfos();
 
-        // linkWoodenSwordForward = new Player.LinkWoodenSwordForward(linkSpriteSheet);
-        // linkWoodenSwordRight = new Player.LinkWoodenSwordRight(linkSpriteSheet);
-        // linkWoodenSwordLeft = new Player.LinkWoodenSwordLeft(linkSpriteSheet);
-        // linkWoodenSwordTop = new Player.LinkWoodenSwordTop(linkSpriteSheet);
     }
 
     protected override void Update(GameTime gameTime)
@@ -71,12 +56,6 @@ public class Game1 : Game
         
         //current Enemy
         currentEnemy.Update();
-
-        //link sprites update
-        // linkWoodenSwordForward.Update();
-        // linkWoodenSwordRight.Update();
-        // linkWoodenSwordLeft.Update();
-        // linkWoodenSwordTop.Update();
 
         //link (player) update
         link.Update();
@@ -90,6 +69,8 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         currentEnemy.Draw(_spriteBatch);
+
+        //Draw player link
         link.Draw(_spriteBatch);
 
         base.Draw(gameTime);

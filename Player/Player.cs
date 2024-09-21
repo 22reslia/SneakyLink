@@ -6,13 +6,11 @@ using SneakyLink.Enemies;
 namespace SneakyLink.Player;
     public class Player
     {
-        int health;
-        Vector2 playerPosition;
-        private PlayerStateMachine stateMachine;
+        public Vector2 playerPosition;
+        public PlayerStateMachine stateMachine;
         public ISprite playerSprite;
         public Player()
         {
-            health = 10;
             playerPosition.X = 100;
             playerPosition.Y = 100;
             stateMachine = new PlayerStateMachine();
@@ -27,6 +25,7 @@ namespace SneakyLink.Player;
         public void Update()
         {
             playerSprite.Update();
+            playerSprite = stateMachine.GetCurrentSprite();
         }
 
     }

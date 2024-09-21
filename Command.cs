@@ -1,6 +1,7 @@
 
 using Microsoft.Xna.Framework;
 using SneakyLink;
+using SneakyLink.Player;
 
 public class GameExit : ICommand {
 
@@ -23,15 +24,18 @@ public class GameExit : ICommand {
 public class MoveRight : ICommand
 {
     private Game1 _game;
+    private Player link;
     int velocity = 10;
 
-    public MoveRight(Game1 game){
+    public MoveRight(Game1 game, Player player){
         _game = game;
+        link = player;
     }
 
     public void Execute () {
 
-        _game.linkPosition.X += velocity;
+        link.playerPosition.X += velocity;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.RightNormal;
     }
 }
 
@@ -39,44 +43,53 @@ public class MoveRight : ICommand
 public class MoveLeft : ICommand
 {
     private Game1 _game;
+    private Player link;
     int velocity = 10;
 
-    public MoveLeft(Game1 game){
+    public MoveLeft(Game1 game, Player player){
         _game = game;
+        link = player;
     }
 
     public void Execute () {
 
-        _game.linkPosition.X -= velocity;
+        link.playerPosition.X -= velocity;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.LeftNormal;
     }
 }
 
 public class MoveUp : ICommand
 {
     private Game1 _game;
+    private Player link;
     int velocity = 10;
 
-    public MoveUp(Game1 game){
+    public MoveUp(Game1 game, Player player){
         _game = game;
+        link = player;
     }
 
     public void Execute () {
 
-        _game.linkPosition.Y += velocity;
+        link.playerPosition.Y += velocity;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.BackwardNormal;
     }
 }
 
 public class MoveDown : ICommand
 {
     private Game1 _game;
+    private Player link;
     int velocity = 10;
 
-    public MoveDown(Game1 game){
+    public MoveDown(Game1 game, Player player){
         _game = game;
+        link = player;
     }
 
     public void Execute () {
 
-        _game.linkPosition.Y -= velocity;
+        link.playerPosition.Y -= velocity;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.ForwardNormal;
     }
 }
