@@ -32,10 +32,10 @@ public class Game1 : Game
 
         //Initilizing Commands to specific keys
         KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
-        KeyboardController.RegisterCommand(Keys.Right, new MoveRight(this, link));
-        KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(this, link));
-        KeyboardController.RegisterCommand(Keys.Up, new MoveUp(this, link));
-        KeyboardController.RegisterCommand(Keys.Down, new MoveDown(this, link));
+        KeyboardController.RegisterCommand(Keys.Right, new MoveRight(link));
+        KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(link));
+        KeyboardController.RegisterCommand(Keys.Up, new MoveUp(link));
+        KeyboardController.RegisterCommand(Keys.Down, new MoveDown(link));
 
         base.Initialize();
     }
@@ -61,7 +61,7 @@ public class Game1 : Game
         currentEnemy.Update();
 
         //link (player) update
-        link.Update();
+        link.Update(gameTime);
 
         base.Update(gameTime);
     }

@@ -1,15 +1,19 @@
 using System;
 using System.Data;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace SneakyLink.Player;
 
 public class PlayerStateMachine
 {
-    public enum PlayerState {LeftMoving, RightMoving, BackwardMoving, ForwardMoving, LeftIdle, RightIdle, BackwardIdle, ForwardIdle};
-    public PlayerState currentState = PlayerState.ForwardIdle;
+    public enum PlayerState {LeftNormal, RightNormal, BackwardNormal, ForwardNormal};
+    public PlayerState currentState = PlayerState.ForwardNormal;
     private PlayerState previousState;
     private ISprite currentSprite;
+    private float idleTimer = 0f;  // Timer to track inactivity
+    private float idleDelay = 0.1f;  // 0.1 seconds delay before switching to idle
 
     //Constructor to initialize previousState
     public PlayerStateMachine()
@@ -17,39 +21,47 @@ public class PlayerStateMachine
         previousState = currentState;
 
         //intializes the forward sprite as the default sprite
-        currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
+        currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
     }
 
     //creates an ISprite object for each different enum
-    public ISprite GetCurrentSprite()
+    public ISprite GetCurrentMovingSprite()
     {
         switch (currentState)
         {   
             //cases for animated sprites
-            case PlayerState.LeftMoving:
+            case PlayerState.LeftNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkLeftSprite();
                 break;
-            case PlayerState.RightMoving:
+            case PlayerState.RightNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkRightSprite();
                 break;
-            case PlayerState.BackwardMoving:
+            case PlayerState.BackwardNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkBackwardSprite();
                 break;
-            case PlayerState.ForwardMoving:
+            case PlayerState.ForwardNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
                 break;
+        }
+        return currentSprite;
+    }
+
+    public ISprite GetCurrentIdleSprite()
+    {   
+        switch (currentState)
+        {
 
             //cases for idle sprites
-            case PlayerState.LeftIdle:
+            case PlayerState.LeftNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleLeftSprite();
                 break;
-            case PlayerState.RightIdle:
+            case PlayerState.RightNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleRightSprite();
                 break;
-            case PlayerState.BackwardIdle:
+            case PlayerState.BackwardNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleBackwardSprite();
                 break;
-            case PlayerState.ForwardIdle:
+            case PlayerState.ForwardNormal:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
                 break;
         }
@@ -75,11 +87,19 @@ public class PlayerStateMachine
             playerSprite.Draw(spriteBatch, x, y);
         }
 
-    public ISprite Update()
-    {
-        if(PlayerSpriteStateChange())
+    public ISprite Update(GameTime gameTime)
+    {   
+        KeyboardState keyState = Keyboard.GetState();
+        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        
+        if(idleDelay < deltaTime && PlayerSpriteStateChange())
         {
-            currentSprite = GetCurrentSprite();
+            currentSprite = GetCurrentMovingSprite();
+        }
+        else if (idleDelay < deltaTime)
+        {
+            currentSprite = GetCurrentIdleSprite();
+            deltaTime = 0f;
         }
         return currentSprite;
     }

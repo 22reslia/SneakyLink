@@ -32,7 +32,7 @@ public class MoveRight : ICommand
     public void Execute () 
     {
         link.playerPosition.X += link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.RightMoving;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.RightNormal;
     }
 }
 
@@ -49,7 +49,7 @@ public class MoveLeft : ICommand
     public void Execute () 
     {
         link.playerPosition.X -= link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.LeftMoving;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.LeftNormal;
     }
 }
 
@@ -66,7 +66,7 @@ public class MoveUp : ICommand
     public void Execute ()
     {
         link.playerPosition.Y -= link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.BackwardMoving;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.BackwardNormal;
     }
 }
 
@@ -83,6 +83,6 @@ public class MoveDown : ICommand
     public void Execute () 
     {
         link.playerPosition.Y += link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.ForwardMoving;
+        link.stateMachine.currentState = PlayerStateMachine.PlayerState.ForwardNormal;
     }
 }

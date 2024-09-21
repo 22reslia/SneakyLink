@@ -1,6 +1,6 @@
 using System.Diagnostics.Contracts;
-using System.Numerics;
 using System.Threading;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Enemies;
 
@@ -25,7 +25,7 @@ namespace SneakyLink.Player;
 
         public void SetSprite()
         {
-            playerSprite = stateMachine.GetCurrentSprite();
+            playerSprite = stateMachine.GetCurrentMovingSprite();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -36,10 +36,10 @@ namespace SneakyLink.Player;
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {   
             //calls the ISprite update for given sprite
             playerSprite.Update();
-            playerSprite = stateMachine.Update();
+            playerSprite = stateMachine.Update(gameTime);
         }
     }
