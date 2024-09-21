@@ -69,16 +69,13 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-
+        //input update
+        KeyboardController.Update();
+        
+        //current Enemy
         currentEnemy.Update();
 
-
-
-        KeyboardController.Update();
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-        // TODO: Add your update logic here
+        //link sprites update
         linkForward.Update();
         linkRight.Update();
         linkLeft.Update();
