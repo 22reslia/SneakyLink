@@ -31,18 +31,13 @@ public class Game1 : Game
 
         EnemySpriteFactory.Instance.LoadAllTextures(Content);
 
-        currentEnemy = new Aquamentus();
+        currentEnemy = new Goriya();
 
     }
 
     protected override void Update(GameTime gameTime)
     {
-
         currentEnemy.Update();
-
-
-
-
         base.Update(gameTime);
     }
 

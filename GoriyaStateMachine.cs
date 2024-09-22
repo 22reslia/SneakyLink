@@ -105,15 +105,28 @@ namespace SneakyLink
                 isAttacking = true;
             }
             boomerang.Update();
+
             if (boomerang.HasReturned())
             {
                 isAttacking = false;
+                boomerang = null;
+
+                if (currentState == GoriyaState.LeftAttack)
+                {
+                    currentState = GoriyaState.LeftNormal;
+                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaLeftIdleSprite();
+                }
+                else if (currentState == GoriyaState.RightAttack)
+                {
+                    currentState = GoriyaState.RightNormal;
+                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaRightIdleSprite();
+                }
             }
         }
 
         public void Update(Goriya goriya)
         {
-            Move(goriya);
+            if (!isAttacking) Move(goriya);
             if (currentState == GoriyaState.LeftAttack || currentState == GoriyaState.RightAttack) Attack(goriya);
         }
     }

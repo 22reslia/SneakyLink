@@ -10,9 +10,6 @@ namespace SneakyLink
 {
     public class GoriyaBoomerang
     {
-        private enum BoomerangState { Show, Disappear }
-        private BoomerangState currentState = BoomerangState.Show;
-
         public int x, y;
         private int startX, startY;
         private int velocityX;
@@ -21,7 +18,7 @@ namespace SneakyLink
         private bool isReturning = false;
         private ISprite boomerangSprite;
 
-        public GoriyaBoomerang (int startX, int startY)
+        public GoriyaBoomerang(int startX, int startY)
         {
             this.startX = startX;
             this.startY = startY;
@@ -33,53 +30,42 @@ namespace SneakyLink
         public void Shoot(int velocityX)
         {
             this.velocityX = velocityX;
-            flightTime = 0;
-            isReturning = false;
-            currentState = BoomerangState.Show;
         }
 
         public bool HasReturned()
         {
-            return currentState == BoomerangState.Disappear;
+            return !isReturning && flightTime >= maxFlightTime;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (currentState == BoomerangState.Show)
-            {
-                boomerangSprite.Draw(spriteBatch, x, y);
-            }
+            boomerangSprite.Draw(spriteBatch, x, y);
         }
 
         public void Update()
         {
-            if (currentState == BoomerangState.Show)
+            if (!isReturning)
             {
-                if (!isReturning)
-                {
-                    x += velocityX;
-                    flightTime++;
+                x += velocityX;
+                flightTime++;
 
-                    if (flightTime >= maxFlightTime)
-                    {
-                        isReturning = true;
-                    }
-                }
-                else
+                if (flightTime >= maxFlightTime)
                 {
-                    int returnSpeedX = -velocityX;
-                    x += returnSpeedX;
-
-                    if (Math.Abs(x - startX) < 5)
-                    {
-                        x = startX;
-                        y = startY;
-                        isReturning = false;
-                        currentState = BoomerangState.Disappear;
-                    }
+                    isReturning = true;
                 }
-                boomerangSprite.Update();
             }
+            else
+            {
+                int returnSpeedX = -velocityX;
+                x += returnSpeedX;
+
+                if (Math.Abs(x - startX) < 5)
+                {
+                    x = startX;
+                    isReturning = false;
+                }
+            }
+            boomerangSprite.Update();
         }
     }
 }
