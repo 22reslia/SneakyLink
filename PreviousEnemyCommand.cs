@@ -11,22 +11,42 @@ namespace SneakyLink
     public class PreviousEnemyCommand : ICommand
     {
         private Game1 game;
-        private int enemyCount; 
+        private int enemyCount;
+        private bool isTriggred;
+        private int clock;
         public PreviousEnemyCommand(Game1 game)
         {
             this.game = game;
+            isTriggred = false;
+            clock = 0;
         }
         public void Execute()
         {
-            enemyCount = game.enemyList.IndexOf(game.currentEnemy);
-            if (enemyCount > 0)
+            if (isTriggred)
             {
-                game.currentEnemy = game.enemyList[enemyCount - 1];
+                if (clock <= 10)
+                {
+                    clock++;
+                }
+                else
+                {
+                    isTriggred = false;
+                    clock = 0;
+                }
             }
             else
             {
-                game.currentEnemy = game.enemyList[game.enemyList.Count - 1];
-            }            
+                enemyCount = game.enemyList.IndexOf(game.currentEnemy);
+                if (enemyCount > 0)
+                {
+                    game.currentEnemy = game.enemyList[enemyCount - 1];
+                }
+                else
+                {
+                    game.currentEnemy = game.enemyList[game.enemyList.Count - 1];
+                }
+                isTriggred = true;
+            }          
         }
     }
 }
