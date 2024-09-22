@@ -23,7 +23,7 @@ namespace SneakyLink
         public void Draw(SpriteBatch spriteBatch, int x, int y)
         {
             sourceRectangle = new Rectangle(119, 11, 8, 16);
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(image, new Rectangle(x, y, 16, 32), sourceRectangle, Color.White);
             spriteBatch.End();
         }

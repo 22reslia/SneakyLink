@@ -51,7 +51,7 @@ namespace SneakyLink
             {
                 sourceRectangle = new Rectangle(17, 59, -16, 16);
             }
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(image, new Rectangle(x, y, 64, 64), sourceRectangle, Color.White);
             spriteBatch.End();
         }

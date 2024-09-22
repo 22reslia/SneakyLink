@@ -19,11 +19,14 @@ namespace SneakyLink
         private AquamentusFireBall fireBallTwo;
         private AquamentusFireBall fireBallThree;
         private bool isAttacking = false;
-
         public void ChangeDirection(Aquamentus aquamentus)
         {
             randomMove = new Random();
             int nextDirection = randomMove.Next(0, 4);
+            if (isAttacking)
+            {
+                nextDirection = randomMove.Next(0, 2);
+            }
             switch (nextDirection)
             {
                 case 0:
@@ -49,7 +52,7 @@ namespace SneakyLink
 
         public void Move(Aquamentus aquamentus)
         {
-            if (moveCount == 60)
+            if (moveCount == 80)
             {
                 moveCount = 0;
                 ChangeDirection(aquamentus);
@@ -100,15 +103,12 @@ namespace SneakyLink
                         fireBallThree.Shoot(5, 5);
                         break;
                 }
-
                 isAttacking = true;
             }
-
             fireBallOne.Update();
             fireBallTwo.Update();
             fireBallThree.Update();
         }
-
         public void Draw(SpriteBatch spriteBatch, ISprite aquamentusSprite, int x, int y)
         {
             aquamentusSprite.Draw(spriteBatch, x, y);
