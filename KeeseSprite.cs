@@ -6,7 +6,6 @@ using System.Net.Mime;
 
 namespace SneakyLink
 {
-    //class for the moving, non-animated sprite
     public class KeeseSprite : ISprite
     {
         Texture2D image;
@@ -52,7 +51,7 @@ namespace SneakyLink
             {
                 sourceRectangle = new Rectangle(200, 11, 16, 16);
             }
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(image, new Rectangle(x, y, 64, 64), sourceRectangle, Color.White);
             spriteBatch.End();
         }

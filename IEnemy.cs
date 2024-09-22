@@ -9,7 +9,6 @@ namespace SneakyLink
 {
     public interface IEnemy
     {
-        public void ChangeDirection();
         public void Draw(SpriteBatch spriteBatch);
         public void Update();
     }

@@ -10,16 +10,15 @@ namespace SneakyLink
 {
     public class StalfosStateMachine
     {
-        private enum StalfosState { LeftNormal, RightNormal, UpNormal, DownNormal };
-        private StalfosState currentState = StalfosState.LeftNormal;
+        private enum StalfosState { LeftNormal, RightNormal, UpNormal, DownNormal, Idle};
+        private StalfosState currentState = StalfosState.Idle;
         private Random randomMove;
         private int moveCount = 0;
-        // other state machines might make use of a previousState field
 
         public void ChangeDirection()
         {
             randomMove = new Random();
-            int nextDirection = randomMove.Next(0, 4);
+            int nextDirection = randomMove.Next(0, 5);
             switch (nextDirection)
             {
                 case 0:
@@ -33,6 +32,9 @@ namespace SneakyLink
                     break;
                 case 3:
                     currentState = StalfosState.DownNormal;
+                    break;
+                case 4:
+                    currentState = StalfosState.Idle;
                     break;
             }
         }
@@ -61,6 +63,9 @@ namespace SneakyLink
                     break;
                 case StalfosState.UpNormal:
                     stalfos.y -= 1;
+                    moveCount++;
+                    break;
+                case StalfosState.Idle:
                     moveCount++;
                     break;
             }

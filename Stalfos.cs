@@ -21,11 +21,6 @@ namespace SneakyLink
             stateMachine = new StalfosStateMachine();
             stalfosSprite = EnemySpriteFactory.Instance.CreateStalfosEnemySprite();
         }
-
-        public void ChangeDirection()
-        {
-            stateMachine.ChangeDirection();
-        }
         public void Move()
         {
             stateMachine.Move(this);
@@ -38,10 +33,6 @@ namespace SneakyLink
         {
             stalfosSprite.Update();
             stateMachine.Update(this);
-        }
-        public void Attack()
-        {
-
         }
     }
 }

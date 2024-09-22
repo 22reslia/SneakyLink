@@ -7,27 +7,34 @@ using System.Threading.Tasks;
 
 namespace SneakyLink
 {
-    public class Keese : IEnemy
+    public class Zol : IEnemy
     {
-        private KeeseStateMachine stateMachine;
-        public ISprite keeseSprite;
+        private ZolStateMachine stateMachine;
+        public ISprite ZolSprite;
         public int x;
         public int y;
 
-        public Keese()
+        public Zol()
         {
             x = 400;
             y = 240;
-            stateMachine = new KeeseStateMachine();
-            keeseSprite = EnemySpriteFactory.Instance.CreateKeeseEnemySprite();
+            stateMachine = new ZolStateMachine();
+            ZolSprite = EnemySpriteFactory.Instance.CreateZolSprite();
         }
+
+        public void ChangeDirection()
+        {
+            stateMachine.ChangeDirection();
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            stateMachine.Draw(spriteBatch, keeseSprite, x, y);
+            stateMachine.Draw(spriteBatch, ZolSprite, x, y);
         }
+
         public void Update()
         {
-            keeseSprite.Update();
+            ZolSprite.Update();
             stateMachine.Update(this);
         }
     }
