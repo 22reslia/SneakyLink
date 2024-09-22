@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace SneakyLink
 {
-    public class ZolSprite : ISprite
+    public class GoriyaRightAttackSprite : ISprite
     {
         private Rectangle sourceRectangular;
         private Texture2D texture;
         private int currentFrame;
         private int counter;
 
-        public ZolSprite(Texture2D texture)
+        public GoriyaRightAttackSprite(Texture2D texture)
         {
             this.texture = texture;
             this.currentFrame = 0;
@@ -26,11 +26,11 @@ namespace SneakyLink
         {
             if (currentFrame == 0)
             {
-                sourceRectangular = new Rectangle(77, 11, 16, 16);
+                sourceRectangular = new Rectangle(256, 11, 16, 16);
             }
             else if (currentFrame == 1)
             {
-                sourceRectangular = new Rectangle(94, 11, 16, 16);
+                sourceRectangular = new Rectangle(273, 11, 16, 16);
             }
             sb.Begin(samplerState: SamplerState.PointClamp);
             sb.Draw(texture, new Rectangle(x, y, 64, 64), sourceRectangular, Color.White);

@@ -74,7 +74,40 @@ namespace SneakyLink
         {
             return new AquamentusFireBallSprite(bossesSpriteSheet);
         }
+        public ISprite CreateGoriyaRightIdleSprite()
+        {
+            return new GoriyaRightIdleSprite(dungeonEnemySpriteSheet);
+        }
 
+        public ISprite CreateGoriyaLeftIdleSprite()
+        {
+            return new GoriyaLeftIdleSprite(dungeonEnemySpriteSheet);
+        }
+
+        public ISprite CreateGoriyaUpIdleSprite()
+        {
+            return new GoriyaUpIdleSprite(dungeonEnemySpriteSheet);
+        }
+
+        public ISprite CreateGoriyaDownIdleSprite()
+        {
+            return new GoriyaDownIdleSprite(dungeonEnemySpriteSheet);
+        }
+
+        public ISprite CreateGoriyaBoomerangSprite()
+        {
+            return new GoriyaBoomerangSprite(dungeonEnemySpriteSheet);
+        }
+
+        public ISprite CreateGoriyaRightAttackSprite()
+        {
+            return new GoriyaRightAttackSprite(dungeonEnemySpriteSheet);
+        }
+
+        public ISprite CreateGoriyaLeftAttackSprite()
+        {
+            return new GoriyaLeftAttackSprite(dungeonEnemySpriteSheet);
+        }
     }
 }
 

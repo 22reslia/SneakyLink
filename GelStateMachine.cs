@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,11 @@ namespace SneakyLink
 {
     public class GelStateMachine
     {
-        private enum GelState { LeftNormal, RightNormal, UpNormal, DownNormal };
+        private enum GelState { LeftNormal, RightNormal, UpNormal, DownNormal, Idle };
         private GelState currentState = GelState.LeftNormal;
         private Random randomMove;
         private int moveCount = 0;
+        private int counter = 0;
 
         public void ChangeDirection()
         {
@@ -43,10 +45,20 @@ namespace SneakyLink
 
         public void Update (Gel gel)
         {
-            if (moveCount == 40)
+            if (currentState == GelState.Idle)
+            {
+                counter++;
+                if (counter >= 30)
+                {
+                    counter = 0;
+                    this.ChangeDirection();
+                }
+            }
+
+            if (moveCount == 80)
             {
                 moveCount = 0;
-                this.ChangeDirection();
+                currentState = GelState.Idle;
             }
 
             switch (currentState)

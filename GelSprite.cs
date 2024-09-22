@@ -33,7 +33,7 @@ namespace SneakyLink
             {
                 sourceRectangular = new Rectangle(10, 11, 8, 16);
             }
-            sb.Begin();
+            sb.Begin(samplerState: SamplerState.PointClamp);
             sb.Draw(texture, new Rectangle(x, y, 32, 64), sourceRectangular, Color.White);
             sb.End();
         }

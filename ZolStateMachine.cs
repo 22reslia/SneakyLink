@@ -9,10 +9,11 @@ namespace SneakyLink
 {
     public class ZolStateMachine
     {
-        private enum ZolState { LeftNormal, RightNormal, UpNormal, DownNormal };
+        private enum ZolState { LeftNormal, RightNormal, UpNormal, DownNormal, Idle };
         private ZolState currentState = ZolState.LeftNormal;
         private Random randomMove;
         private int moveCount = 0;
+        private int counter = 0;
 
         public void ChangeDirection()
         {
@@ -42,10 +43,20 @@ namespace SneakyLink
 
         public void Update(Zol zol)
         {
-            if (moveCount == 40)
+            if (currentState == ZolState.Idle)
+            {
+                counter++;
+                if (counter >= 30)
+                {
+                    counter = 0;
+                    this.ChangeDirection();
+                }
+            }
+
+            if (moveCount == 80)
             {
                 moveCount = 0;
-                this.ChangeDirection();
+                currentState = ZolState.Idle;
             }
 
             switch (currentState)
