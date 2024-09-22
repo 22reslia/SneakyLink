@@ -40,6 +40,8 @@ namespace SneakyLink.Player;
         {   
             //calls the ISprite update for given sprite
             playerSprite.Update();
+
+            //updates the sprite based off the change of state
             playerSprite = stateMachine.Update(gameTime);
         }
     }

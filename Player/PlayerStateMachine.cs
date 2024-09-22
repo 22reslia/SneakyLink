@@ -12,8 +12,6 @@ public class PlayerStateMachine
     public PlayerState currentState = PlayerState.ForwardNormal;
     private PlayerState previousState;
     private ISprite currentSprite;
-    private float idleTimer = 0f;  // Timer to track inactivity
-    private float idleDelay = 0.1f;  // 0.1 seconds delay before switching to idle
 
     //Constructor to initialize previousState
     public PlayerStateMachine()
@@ -89,17 +87,10 @@ public class PlayerStateMachine
 
     public ISprite Update(GameTime gameTime)
     {   
-        KeyboardState keyState = Keyboard.GetState();
-        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         
-        if(idleDelay < deltaTime && PlayerSpriteStateChange())
+        if(PlayerSpriteStateChange())
         {
             currentSprite = GetCurrentMovingSprite();
-        }
-        else if (idleDelay < deltaTime)
-        {
-            currentSprite = GetCurrentIdleSprite();
-            deltaTime = 0f;
         }
         return currentSprite;
     }
