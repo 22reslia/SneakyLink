@@ -12,14 +12,17 @@ public class PlayerStateMachine
     public PlayerState currentState = PlayerState.ForwardNormal;
     private PlayerState previousState;
     private ISprite currentSprite;
+    private Vector2 previousPosition;
 
     //Constructor to initialize previousState
-    public PlayerStateMachine()
+    public PlayerStateMachine(Vector2 initialPosition)
     {
         previousState = currentState;
 
         //intializes the forward sprite as the default sprite
         currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
+
+        previousPosition = initialPosition;
     }
 
     //creates an ISprite object for each different enum
@@ -78,6 +81,13 @@ public class PlayerStateMachine
         return stateChange;
     }
 
+    //Link Position State
+    public bool LinkPositionIdle(Link link)
+    {   
+        bool isLinkMoving = !previousPosition.Equals(link.playerPosition);
+        previousPosition = link.playerPosition;
+        return isLinkMoving;
+    }
 
     //draws the sprite
     public void Draw(SpriteBatch spriteBatch, ISprite playerSprite, int x, int y)
@@ -85,13 +95,20 @@ public class PlayerStateMachine
             playerSprite.Draw(spriteBatch, x, y);
         }
 
-    public ISprite Update(GameTime gameTime)
+    public ISprite Update(Link link)
     {   
-        
+
+        // if(LinkPositionIdle(link))
+        // {
+        //     currentSprite = GetCurrentIdleSprite(); 
+        // }
+
         if(PlayerSpriteStateChange())
         {
             currentSprite = GetCurrentMovingSprite();
         }
+        
+
         return currentSprite;
     }
 }

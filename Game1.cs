@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SneakyLink.Player;
 
 namespace SneakyLink;
 
@@ -61,7 +62,7 @@ public class Game1 : Game
         currentEnemy.Update();
 
         //link (player) update
-        link.Update(gameTime);
+        link.Update(link);
 
         base.Update(gameTime);
     }

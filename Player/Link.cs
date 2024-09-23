@@ -20,7 +20,7 @@ namespace SneakyLink.Player;
             playerPosition.Y = 100;
 
             //creates a state machine and gets the current sprite based on directional movement
-            stateMachine = new PlayerStateMachine();
+            stateMachine = new PlayerStateMachine(playerPosition);
         }
 
         public void SetSprite()
@@ -36,12 +36,12 @@ namespace SneakyLink.Player;
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(Link link)
         {   
+            //updates the sprite based off the change of state
+            playerSprite = stateMachine.Update(link);
+
             //calls the ISprite update for given sprite
             playerSprite.Update();
-
-            //updates the sprite based off the change of state
-            playerSprite = stateMachine.Update(gameTime);
         }
     }
