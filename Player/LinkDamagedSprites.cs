@@ -6,14 +6,14 @@ namespace SneakyLink.Player
 {
     public class DamagedLinkForward : ISprite
     {
-        public Texture2D linkSprite;
+        public Texture2D linkDamageSpriteSheet;
         private Vector2 position;
         int currentFrame = 0;
         int maxFrame = 30;
 
         public DamagedLinkForward(Texture2D texture)
         {
-            linkSprite = texture;
+            linkDamageSpriteSheet = texture;
         }
         public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
         {
@@ -38,7 +38,7 @@ namespace SneakyLink.Player
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(linkDamageSpriteSheet, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
 

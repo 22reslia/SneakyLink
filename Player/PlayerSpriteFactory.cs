@@ -5,9 +5,7 @@ namespace SneakyLink.Player;
 public class PlayerSpriteFactory
     {
         private Texture2D linkSpriteSheet;
-        private Texture2D linkDamagedSpriteSheetBlue;
-        private Texture2D linkDamagedSpriteSheetBlueandWhite;
-        private Texture2D linkDamagedSpriteSheetRedandBlack;
+        private Texture2D linkDamagedSpriteSheet;
 
 
 
@@ -28,9 +26,7 @@ public class PlayerSpriteFactory
         public void LoadAllTextures(ContentManager content)
         {
             linkSpriteSheet = content.Load<Texture2D>("Link Sprite Sheet");
-            linkDamagedSpriteSheetBlue = content.Load<Texture2D>("Link Sprite Sheet Blue");
-            linkDamagedSpriteSheetBlueandWhite = content.Load<Texture2D>("Link Sprite Sheet Blue and White");
-            linkDamagedSpriteSheetRedandBlack = content.Load<Texture2D>("Link Sprite Sheet Red and Black");
+            linkDamagedSpriteSheet = content.Load<Texture2D>("Link Damage Sprites");
 
         }
 
