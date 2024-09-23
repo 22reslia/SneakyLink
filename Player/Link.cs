@@ -25,7 +25,7 @@ namespace SneakyLink.Player;
 
         public void SetSprite()
         {
-            playerSprite = stateMachine.GetCurrentMovingSprite();
+            playerSprite = stateMachine.GetCurrentIdleSprite();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -36,10 +36,15 @@ namespace SneakyLink.Player;
             }
         }
 
-        public void Update(Link link)
+        public void Update()
         {   
             //updates the sprite based off the change of state
-            playerSprite = stateMachine.Update(link);
+            playerSprite = stateMachine.Update();
+
+            if (!stateMachine.LinkPositionIdle())
+            {
+                stateMachine.currentState = PlayerState.playerIdle;
+            }
 
             //calls the ISprite update for given sprite
             playerSprite.Update();

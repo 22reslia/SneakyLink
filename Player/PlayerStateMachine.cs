@@ -8,39 +8,39 @@ namespace SneakyLink.Player;
 
 public class PlayerStateMachine
 {
-    public enum PlayerState {LeftNormal, RightNormal, BackwardNormal, ForwardNormal};
-    public PlayerState currentState = PlayerState.ForwardNormal;
+    public PlayerState currentState = PlayerState.playerIdle;
+    public PlayerDirection currentDirection = PlayerDirection.playerDown;
     private PlayerState previousState;
+    private PlayerDirection previousDirection;
     private ISprite currentSprite;
-    private Vector2 previousPosition;
+    private bool isMoving = false;
 
     //Constructor to initialize previousState
     public PlayerStateMachine(Vector2 initialPosition)
     {
         previousState = currentState;
+        previousDirection = currentDirection;
 
         //intializes the forward sprite as the default sprite
         currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
-
-        previousPosition = initialPosition;
     }
 
     //creates an ISprite object for each different enum
     public ISprite GetCurrentMovingSprite()
     {
-        switch (currentState)
+        switch (currentDirection)
         {   
             //cases for animated sprites
-            case PlayerState.LeftNormal:
+            case PlayerDirection.playerLeft:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkLeftSprite();
                 break;
-            case PlayerState.RightNormal:
+            case PlayerDirection.playerRight:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkRightSprite();
                 break;
-            case PlayerState.BackwardNormal:
+            case PlayerDirection.playerUp:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkBackwardSprite();
                 break;
-            case PlayerState.ForwardNormal:
+            case PlayerDirection.playerDown:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkForwardSprite();
                 break;
         }
@@ -49,21 +49,43 @@ public class PlayerStateMachine
 
     public ISprite GetCurrentIdleSprite()
     {   
-        switch (currentState)
+        switch (currentDirection)
         {
 
             //cases for idle sprites
-            case PlayerState.LeftNormal:
+            case PlayerDirection.playerLeft:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleLeftSprite();
                 break;
-            case PlayerState.RightNormal:
+            case PlayerDirection.playerRight:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleRightSprite();
                 break;
-            case PlayerState.BackwardNormal:
+            case PlayerDirection.playerUp:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleBackwardSprite();
                 break;
-            case PlayerState.ForwardNormal:
+            case PlayerDirection.playerDown:
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
+                break;
+        }
+        return currentSprite;
+    }
+
+    public ISprite GetCurrentWoodenAttackingSprite()
+    {   
+        switch (currentDirection)
+        {
+
+            //cases for idle sprites
+            case PlayerDirection.playerLeft:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackLeftSprite();
+                break;
+            case PlayerDirection.playerRight:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackRightSprite();
+                break;
+            case PlayerDirection.playerUp:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackBackwardSprite();
+                break;
+            case PlayerDirection.playerDown:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackForwardSprite();
                 break;
         }
         return currentSprite;
@@ -81,12 +103,33 @@ public class PlayerStateMachine
         return stateChange;
     }
 
+    //checks for directional change
+    public bool PlayerSpriteDirectionChange()
+    {
+        bool directionChange = false;
+        if (currentDirection != previousDirection)
+        {
+            previousDirection = currentDirection;
+            directionChange = true;
+        }
+        return directionChange;
+    }
+
     //Link Position State
-    public bool LinkPositionIdle(Link link)
+    public bool LinkPositionIdle()
     {   
-        bool isLinkMoving = !previousPosition.Equals(link.playerPosition);
-        previousPosition = link.playerPosition;
-        return isLinkMoving;
+        KeyboardState keyboardState = Keyboard.GetState();
+
+        if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.Left))
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        return isMoving;
     }
 
     //draws the sprite
@@ -95,19 +138,25 @@ public class PlayerStateMachine
             playerSprite.Draw(spriteBatch, x, y);
         }
 
-    public ISprite Update(Link link)
+    public ISprite Update()
     {   
 
-        // if(LinkPositionIdle(link))
-        // {
-        //     currentSprite = GetCurrentIdleSprite(); 
-        // }
-
-        if(PlayerSpriteStateChange())
-        {
-            currentSprite = GetCurrentMovingSprite();
-        }
         
+         if (PlayerSpriteStateChange() || PlayerSpriteDirectionChange())
+        {
+            switch (currentState)
+            {
+                case PlayerState.playerMoving:
+                    currentSprite = GetCurrentMovingSprite();
+                    break;
+                case PlayerState.playerIdle:
+                    currentSprite = GetCurrentIdleSprite();
+                    break;
+                case PlayerState.playerAttacking:
+                    currentSprite = GetCurrentWoodenAttackingSprite();
+                    break;
+            }
+        }
 
         return currentSprite;
     }

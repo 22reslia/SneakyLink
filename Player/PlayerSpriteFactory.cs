@@ -62,5 +62,21 @@ public class PlayerSpriteFactory
         {
             return new LinkBackIdle(linkSpriteSheet);
         }
+        public ISprite CreateLinkWoodenAttackRightSprite()
+        {
+            return new LinkWoodenSwordRight(linkSpriteSheet);
+        }
+        public ISprite CreateLinkWoodenAttackLeftSprite()
+        {
+            return new LinkWoodenSwordLeft(linkSpriteSheet);
+        }
+        public ISprite CreateLinkWoodenAttackForwardSprite()
+        {
+            return new LinkWoodenSwordForward(linkSpriteSheet);
+        }
+        public ISprite CreateLinkWoodenAttackBackwardSprite()
+        {
+            return new LinkWoodenSwordTop(linkSpriteSheet);
+        }
 
     }

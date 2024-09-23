@@ -1,5 +1,3 @@
-
-using Microsoft.Xna.Framework;
 using SneakyLink;
 using SneakyLink.Player;
 
@@ -31,8 +29,9 @@ public class MoveRight : ICommand
 
     public void Execute () 
     {
+        link.stateMachine.currentDirection = PlayerDirection.playerRight;
+        link.stateMachine.currentState = PlayerState.playerMoving;
         link.playerPosition.X += link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.RightNormal;
     }
 }
 
@@ -48,8 +47,9 @@ public class MoveLeft : ICommand
 
     public void Execute () 
     {
+        link.stateMachine.currentDirection = PlayerDirection.playerLeft;
+        link.stateMachine.currentState = PlayerState.playerMoving;
         link.playerPosition.X -= link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.LeftNormal;
     }
 }
 
@@ -64,9 +64,10 @@ public class MoveUp : ICommand
     }
 
     public void Execute ()
-    {
+    {   
+        link.stateMachine.currentDirection = PlayerDirection.playerUp;
+        link.stateMachine.currentState = PlayerState.playerMoving;
         link.playerPosition.Y -= link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.BackwardNormal;
     }
 }
 
@@ -81,8 +82,25 @@ public class MoveDown : ICommand
     }
 
     public void Execute () 
-    {
+    {   
+        link.stateMachine.currentDirection = PlayerDirection.playerDown;
+        link.stateMachine.currentState = PlayerState.playerMoving;
         link.playerPosition.Y += link.velocity;
-        link.stateMachine.currentState = PlayerStateMachine.PlayerState.ForwardNormal;
+    }
+}
+
+// link wooden sword attack command
+public class WoodenAttack : ICommand
+{
+    private Link link;
+
+    public WoodenAttack(Link player)
+    {
+        link = player;
+    }
+
+    public void Execute () 
+    {   
+        link.stateMachine.currentState = PlayerState.playerAttacking;
     }
 }

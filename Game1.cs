@@ -37,6 +37,8 @@ public class Game1 : Game
         KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(link));
         KeyboardController.RegisterCommand(Keys.Up, new MoveUp(link));
         KeyboardController.RegisterCommand(Keys.Down, new MoveDown(link));
+        KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link));
+        KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link));
 
         base.Initialize();
     }
@@ -62,7 +64,7 @@ public class Game1 : Game
         currentEnemy.Update();
 
         //link (player) update
-        link.Update(link);
+        link.Update();
 
         base.Update(gameTime);
     }
