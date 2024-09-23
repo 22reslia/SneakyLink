@@ -39,6 +39,7 @@ public class Game1 : Game
         KeyboardController.RegisterCommand(Keys.Down, new MoveDown(link));
         KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link));
         KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link));
+        KeyboardController.RegisterCommand(Keys.E, new DamagePlayer(link));
 
         base.Initialize();
     }

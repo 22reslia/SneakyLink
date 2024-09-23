@@ -1,6 +1,7 @@
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System.Runtime.ConstrainedExecution;
 
 namespace SneakyLink.Player
 {
@@ -26,14 +27,19 @@ namespace SneakyLink.Player
             Rectangle destinationRectangle = new Rectangle();
             Rectangle sourceRectangle = new Rectangle();
 
-            if (currentFrame < maxFrame / 2)
+            if (currentFrame < maxFrame / 3)
             {
-            sourceRectangle = new Rectangle(1, 11, width, height);
+            sourceRectangle = new Rectangle(69, 1, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
-            else if (currentFrame >= maxFrame / 2)
+            else if (currentFrame >= maxFrame / 3 && currentFrame <= 2 * (maxFrame / 3))
             {
-            sourceRectangle = new Rectangle(18, 11, width, height);
+            sourceRectangle = new Rectangle(69, 18, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            }
+            else if (currentFrame >= 2 * (maxFrame / 3))
+            {
+            sourceRectangle = new Rectangle(69, 35, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 
@@ -74,14 +80,19 @@ namespace SneakyLink.Player
             Rectangle destinationRectangle = new Rectangle();
             Rectangle sourceRectangle = new Rectangle();
 
-            if (currentFrame < maxFrame / 2)
+            if (currentFrame < maxFrame / 3)
             {
-            sourceRectangle = new Rectangle(35, 11, width, height);
+            sourceRectangle = new Rectangle(1, 1, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
-            else if (currentFrame >= maxFrame / 2)
+            else if (currentFrame >= maxFrame / 3 && currentFrame <= 2 * (maxFrame / 3))
             {
-            sourceRectangle = new Rectangle(52, 11, width, height);
+            sourceRectangle = new Rectangle(1, 18, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            }
+            else if (currentFrame >= 2 * (maxFrame / 3))
+            {
+            sourceRectangle = new Rectangle(1, 35, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 
@@ -122,14 +133,19 @@ namespace SneakyLink.Player
             Rectangle destinationRectangle = new Rectangle();
             Rectangle sourceRectangle = new Rectangle();
 
-            if (currentFrame < maxFrame / 2)
+            if (currentFrame < maxFrame / 3)
             {
-            sourceRectangle = new Rectangle(35, 11, width, height);
+            sourceRectangle = new Rectangle(1, 1, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
-            else if (currentFrame >= maxFrame / 2)
+            else if (currentFrame >= maxFrame / 3 && currentFrame <= 2 * (maxFrame / 3))
             {
-            sourceRectangle = new Rectangle(52, 11, width, height);
+            sourceRectangle = new Rectangle(1, 18, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            }
+            else if (currentFrame >= 2 * (maxFrame / 3))
+            {
+            sourceRectangle = new Rectangle(1, 35, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 
@@ -170,14 +186,19 @@ namespace SneakyLink.Player
             Rectangle destinationRectangle = new Rectangle();
             Rectangle sourceRectangle = new Rectangle();
 
-            if (currentFrame < maxFrame / 2)
+            if (currentFrame < maxFrame / 3)
             {
-            sourceRectangle = new Rectangle(69, 11, width, height);
+            sourceRectangle = new Rectangle(35, 1, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
-            else if (currentFrame >= maxFrame / 2)
+            else if (currentFrame >= maxFrame / 3 && currentFrame <= 2 * (maxFrame / 3))
             {
-            sourceRectangle = new Rectangle(86, 11, width, height);
+            sourceRectangle = new Rectangle(35, 18, width, height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            }
+            else if (currentFrame >= 2 * (maxFrame / 3))
+            {
+            sourceRectangle = new Rectangle(35, 35, width, height);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
             }
 

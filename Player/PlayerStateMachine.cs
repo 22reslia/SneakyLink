@@ -91,6 +91,28 @@ public class PlayerStateMachine
         return currentSprite;
     }
 
+    public ISprite GetCurrentDamagedSprite()
+    {   
+        switch (currentDirection)
+        {
+
+            //cases for idle sprites
+            case PlayerDirection.playerLeft:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedLeftSprite();
+                break;
+            case PlayerDirection.playerRight:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedRightSprite();
+                break;
+            case PlayerDirection.playerUp:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedBackwardSprite();
+                break;
+            case PlayerDirection.playerDown:
+                currentSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedForwardSprite();
+                break;
+        }
+        return currentSprite;
+    }
+
     //checks for state change
     public bool PlayerSpriteStateChange()
     {
@@ -154,6 +176,9 @@ public class PlayerStateMachine
                     break;
                 case PlayerState.playerAttacking:
                     currentSprite = GetCurrentWoodenAttackingSprite();
+                    break;
+                case PlayerState.playerDamaged:
+                    currentSprite = GetCurrentDamagedSprite();
                     break;
             }
         }

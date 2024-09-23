@@ -104,3 +104,18 @@ public class WoodenAttack : ICommand
         link.stateMachine.currentState = PlayerState.playerAttacking;
     }
 }
+
+public class DamagePlayer : ICommand
+{
+    private Link link;
+
+    public DamagePlayer(Link player)
+    {
+        link = player;
+    }
+
+    public void Execute () 
+    {   
+        link.stateMachine.currentState = PlayerState.playerDamaged;
+    }
+}

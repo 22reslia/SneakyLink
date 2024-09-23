@@ -30,6 +30,7 @@ public class PlayerSpriteFactory
 
         }
 
+        //moving sprites
         public ISprite CreateLinkRightSprite()
         {
             return new LinkRight(linkSpriteSheet);
@@ -46,6 +47,8 @@ public class PlayerSpriteFactory
         {
             return new LinkBack(linkSpriteSheet);
         }
+
+        //idle sprites
         public ISprite CreateLinkIdleRightSprite()
         {
             return new LinkRightIdle(linkSpriteSheet);
@@ -62,6 +65,8 @@ public class PlayerSpriteFactory
         {
             return new LinkBackIdle(linkSpriteSheet);
         }
+
+        //wooden sword attacking sprites
         public ISprite CreateLinkWoodenAttackRightSprite()
         {
             return new LinkWoodenSwordRight(linkSpriteSheet);
@@ -77,6 +82,25 @@ public class PlayerSpriteFactory
         public ISprite CreateLinkWoodenAttackBackwardSprite()
         {
             return new LinkWoodenSwordTop(linkSpriteSheet);
+        }
+
+        //taking damage sprites
+        
+        public ISprite CreateLinkDamagedRightSprite()
+        {
+            return new DamagedLinkRight(linkDamagedSpriteSheet);
+        }
+        public ISprite CreateLinkDamagedLeftSprite()
+        {
+            return new DamagedLinkLeft(linkDamagedSpriteSheet);
+        }
+        public ISprite CreateLinkDamagedForwardSprite()
+        {
+            return new DamagedLinkForward(linkDamagedSpriteSheet);
+        }
+        public ISprite CreateLinkDamagedBackwardSprite()
+        {
+            return new DamagedLinkBack(linkDamagedSpriteSheet);
         }
 
     }
