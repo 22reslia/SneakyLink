@@ -1,8 +1,15 @@
-using System.Windows.Input;
-using SneakyLink;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface IController<T>
+namespace SneakyLink
 {
-    void RegisterCommand(T input, ICommand command);
-    void Update();
+    public interface IController<T>
+    {
+        void RegisterCommand(T input, ICommand command);
+        void Update();
+    }
 }
