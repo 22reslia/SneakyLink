@@ -23,10 +23,17 @@ public class KeyboardController : IController<Keys>
         Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
         foreach (Keys key in pressedKeys)
+
         {   
             if (controllerMappings.ContainsKey(key))
             {
             controllerMappings[key].Execute();
+
+        {
+            if (controllerMappings.ContainsKey(key))
+            {
+                controllerMappings[key].Execute();
+
             }
         }
     }

@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SneakyLink.Enemies
+namespace SneakyLink
+
 {
     public class Stalfos : IEnemy
     {
@@ -22,10 +25,12 @@ namespace SneakyLink.Enemies
             stalfosSprite = EnemySpriteFactory.Instance.CreateStalfosEnemySprite();
         }
 
+
         public void ChangeDirection()
         {
             stateMachine.ChangeDirection();
         }
+
         public void Move()
         {
             stateMachine.Move(this);
@@ -39,10 +44,12 @@ namespace SneakyLink.Enemies
             stalfosSprite.Update();
             stateMachine.Update(this);
         }
+
         public void Attack()
         {
 
         }
+
     }
 }
 

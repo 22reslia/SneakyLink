@@ -1,31 +1,26 @@
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace SneakyLink.Enemies
-
 namespace SneakyLink
-
 {
-    public class Keese : IEnemy
+    public class Gel : IEnemy
     {
-        private KeeseStateMachine stateMachine;
-        public ISprite keeseSprite;
+        private GelStateMachine stateMachine;
+        public ISprite GelSprite;
         public int x;
         public int y;
 
-        public Keese()
-        {
+        public Gel() {
             x = 400;
             y = 240;
-            stateMachine = new KeeseStateMachine();
-            keeseSprite = EnemySpriteFactory.Instance.CreateKeeseEnemySprite();
+            stateMachine = new GelStateMachine();
+            GelSprite = EnemySpriteFactory.Instance.CreateGelSprite();
         }
-
 
         public void ChangeDirection()
         {
@@ -34,11 +29,12 @@ namespace SneakyLink
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            stateMachine.Draw(spriteBatch, keeseSprite, x, y);
+            stateMachine.Draw(spriteBatch, GelSprite, x, y);
         }
+
         public void Update()
         {
-            keeseSprite.Update();
+            GelSprite.Update();
             stateMachine.Update(this);
         }
     }

@@ -4,18 +4,16 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Net.Mime;
 
-
-namespace SneakyLink.Enemies
+namespace SneakyLink
 {
- 
-    public class KeeseSprite : ISprite
+    public class AquamentusLeftIdleSprite : ISprite
     {
         Texture2D image;
         Rectangle sourceRectangle;
         private int frame;
         private int frameCounter;
-        
-        public KeeseSprite(Texture2D text)
+
+        public AquamentusLeftIdleSprite(Texture2D text)
         {
             image = text;
             frame = 0;
@@ -47,16 +45,14 @@ namespace SneakyLink.Enemies
         {
             if (frame == 0)
             {
-                sourceRectangle = new Rectangle(183, 11, 16, 16);
+                sourceRectangle = new Rectangle(51, 11, 24, 32);
             }
             else if (frame == 1)
             {
-                sourceRectangle = new Rectangle(200, 11, 16, 16);
+                sourceRectangle = new Rectangle(76, 11, 24, 32);
             }
-
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
-            spriteBatch.Draw(image, new Rectangle(x, y, 64, 64), sourceRectangle, Color.White);
+            spriteBatch.Draw(image, new Rectangle(x, y, 72, 96), sourceRectangle, Color.White);
             spriteBatch.End();
         }
     }
