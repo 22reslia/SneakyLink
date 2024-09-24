@@ -23,14 +23,18 @@ public class KeyboardController : IController<Keys>
         Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
         foreach (Keys key in pressedKeys)
+
         {   
             if (controllerMappings.ContainsKey(key))
             {
             controllerMappings[key].Execute();
-            }
+
+        {
+            
         }
     }
 }
+    }
 public class MouseController : IController<MouseButton>
 {
 
@@ -75,4 +79,5 @@ public class MouseController : IController<MouseButton>
 
         oldState = newState;
     }
+}
 }

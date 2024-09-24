@@ -2,7 +2,6 @@ using System.Diagnostics.Contracts;
 using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SneakyLink.Enemies;
 
 namespace SneakyLink.Player;
     public class Link
