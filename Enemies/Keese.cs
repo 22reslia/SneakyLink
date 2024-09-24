@@ -1,15 +1,11 @@
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace SneakyLink.Enemies
-
-namespace SneakyLink
-
 {
     public class Keese : IEnemy
     {
@@ -26,12 +22,10 @@ namespace SneakyLink
             keeseSprite = EnemySpriteFactory.Instance.CreateKeeseEnemySprite();
         }
 
-
         public void ChangeDirection()
         {
             stateMachine.ChangeDirection();
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             stateMachine.Draw(spriteBatch, keeseSprite, x, y);

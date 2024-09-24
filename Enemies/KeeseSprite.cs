@@ -4,10 +4,9 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Net.Mime;
 
-
 namespace SneakyLink.Enemies
 {
- 
+    //class for the moving, non-animated sprite
     public class KeeseSprite : ISprite
     {
         Texture2D image;
@@ -53,9 +52,7 @@ namespace SneakyLink.Enemies
             {
                 sourceRectangle = new Rectangle(200, 11, 16, 16);
             }
-
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
+            spriteBatch.Begin();
             spriteBatch.Draw(image, new Rectangle(x, y, 64, 64), sourceRectangle, Color.White);
             spriteBatch.End();
         }

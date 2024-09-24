@@ -5,12 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks
+using System.Threading.Tasks;
 
 namespace SneakyLink.Enemies
-
-namespace SneakyLink
-
 {
     public class EnemySpriteFactory
     {
@@ -45,72 +42,6 @@ namespace SneakyLink
         public ISprite CreateStalfosEnemySprite()
         {
             return new StalfosSprite(dungeonEnemySpriteSheet);
-        }
-
-
-        public ISprite CreateGelSprite()
-        {
-            return new GelSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateZolSprite()
-        {
-            return new ZolSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateAquamentusLeftIdleEnemySprite()
-        {
-            return new AquamentusLeftIdleSprite(bossesSpriteSheet);
-        }
-        public ISprite CreateAquamentusLeftAttackEnemySprite()
-        {
-            return new AquamentusLeftAttackSprite(bossesSpriteSheet);
-        }
-        public ISprite CreateAquamentusRightIdleEnemySprite()
-        {
-            return new AquamentusRightIdleSprite(bossesSpriteSheet);
-        }
-        public ISprite CreateAquamentusRightAttackEnemySprite()
-        {
-            return new AquamentusRightAttackSprite(bossesSpriteSheet);
-        }
-        public ISprite CreateAquamentusFireBall()
-        {
-            return new AquamentusFireBallSprite(bossesSpriteSheet);
-        }
-        public ISprite CreateGoriyaRightIdleSprite()
-        {
-            return new GoriyaRightIdleSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateGoriyaLeftIdleSprite()
-        {
-            return new GoriyaLeftIdleSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateGoriyaUpIdleSprite()
-        {
-            return new GoriyaUpIdleSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateGoriyaDownIdleSprite()
-        {
-            return new GoriyaDownIdleSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateGoriyaBoomerangSprite()
-        {
-            return new GoriyaBoomerangSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateGoriyaRightAttackSprite()
-        {
-            return new GoriyaRightAttackSprite(dungeonEnemySpriteSheet);
-        }
-
-        public ISprite CreateGoriyaLeftAttackSprite()
-        {
-            return new GoriyaLeftAttackSprite(dungeonEnemySpriteSheet);
         }
 
     }

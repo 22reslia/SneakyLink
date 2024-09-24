@@ -1,11 +1,10 @@
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 
 namespace SneakyLink.Enemies
 {
@@ -17,24 +16,10 @@ namespace SneakyLink.Enemies
         private int moveCount = 0;
         // other state machines might make use of a previousState field
 
-namespace SneakyLink
-{
-    public class StalfosStateMachine
-    {
-        private enum StalfosState { LeftNormal, RightNormal, UpNormal, DownNormal, Idle};
-        private StalfosState currentState = StalfosState.Idle;
-        private Random randomMove;
-        private int moveCount = 0;
-
-
         public void ChangeDirection()
         {
             randomMove = new Random();
-
             int nextDirection = randomMove.Next(0, 4);
-
-            int nextDirection = randomMove.Next(0, 5);
-
             switch (nextDirection)
             {
                 case 0:
@@ -49,12 +34,6 @@ namespace SneakyLink
                 case 3:
                     currentState = StalfosState.DownNormal;
                     break;
-
-
-                case 4:
-                    currentState = StalfosState.Idle;
-                    break;
-
             }
         }
 
@@ -84,12 +63,6 @@ namespace SneakyLink
                     stalfos.y -= 1;
                     moveCount++;
                     break;
-
-
-                case StalfosState.Idle:
-                    moveCount++;
-                    break;
-
             }
         }
 
