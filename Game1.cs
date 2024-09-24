@@ -75,6 +75,8 @@ public class Game1 : Game
 
         initialize.Execute();
 
+        link.SetSprite();
+
         currentBlock = new Block(blockSheet, blockSourceRectangles);
         currentItem = new Item(itemSheet, 0.2);
 
