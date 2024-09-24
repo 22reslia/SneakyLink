@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SneakyLink
+namespace SneakyLink.Enemies
 {
     public class GelStateMachine
     {

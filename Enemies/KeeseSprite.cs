@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Net.Mime;
 
-namespace SneakyLink
+namespace SneakyLink.Enemies
 {
     public class KeeseSprite : ISprite
     {

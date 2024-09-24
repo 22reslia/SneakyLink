@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SneakyLink
+namespace SneakyLink.Enemies
 {
     public class GoriyaLeftIdleSprite : ISprite
     {

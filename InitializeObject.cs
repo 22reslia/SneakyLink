@@ -16,12 +16,12 @@ namespace SneakyLink
         public void Execute()
         {
             //load enemy part
-            IEnemy Keese = new Keese();
-            IEnemy Zol = new Zol();
-            IEnemy Aquamentus = new Aquamentus();
-            IEnemy Gel = new Gel();
-            IEnemy Goriya = new Goriya();
-            IEnemy Stalfos = new Stalfos();
+            IEnemy Keese = new Enemies.Keese();
+            IEnemy Zol = new Enemies.Zol();
+            IEnemy Aquamentus = new Enemies.Aquamentus();
+            IEnemy Gel = new Enemies.Gel();
+            IEnemy Goriya = new Enemies.Goriya();
+            IEnemy Stalfos = new Enemies.Stalfos();
             game.enemyList = new List<IEnemy>();
             game.enemyList.Add(Keese);
             game.enemyList.Add(Zol);
