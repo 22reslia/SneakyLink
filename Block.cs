@@ -28,8 +28,10 @@ namespace SneakyLink
         }
 
         public void Draw(SpriteBatch spriteBatch, int x, int y)
-        {
+        {   
+            spriteBatch.Begin();
             spriteBatch.Draw(texture, new Rectangle(300, 200, 32, 32), sourceRectangles[currentImageIndex], Color.White);
+            spriteBatch.End();
         }
         public void NextImage()
         {

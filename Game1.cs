@@ -105,13 +105,11 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
         currentBlock.Draw(_spriteBatch, 0 ,0);
         currentItem.Draw(_spriteBatch, 0, 0);
 
         //Draw player link
         link.Draw(_spriteBatch);
-        _spriteBatch.End();
 
         base.Draw(gameTime);
     }

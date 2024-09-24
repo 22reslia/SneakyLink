@@ -89,7 +89,9 @@ namespace SneakyLink
         {
             Rectangle sourceRectangle = sourceRectangles[currentImageFrame];
             Rectangle destinationRectangle = new Rectangle(500, 200, 3*sourceRectangle.Width, 3*sourceRectangle.Height);
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangles[currentImageFrame], Color.White); 
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangles[currentImageFrame], Color.White);
+            spriteBatch.End(); 
         }
         public void NextImage()
         {
