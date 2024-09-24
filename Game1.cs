@@ -28,7 +28,6 @@ public class Game1 : Game
 
     private Block currentBlock;
     private Item currentItem;
-    private KeyboardController keyboardController;
 
     public Game1()
     {
