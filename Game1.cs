@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using SneakyLink.Player;
 using System.ComponentModel;
+using SneakyLink.Enemies;
 
 namespace SneakyLink;
 
@@ -47,9 +48,13 @@ public class Game1 : Game
         //Initilizing Commands to specific keys
         _KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
         _KeyboardController.RegisterCommand(Keys.Right, new MoveRight(link));
+        _KeyboardController.RegisterCommand(Keys.D, new MoveRight(link));
         _KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(link));
+        _KeyboardController.RegisterCommand(Keys.A, new MoveLeft(link));
         _KeyboardController.RegisterCommand(Keys.Up, new MoveUp(link));
+        _KeyboardController.RegisterCommand(Keys.W, new MoveUp(link));
         _KeyboardController.RegisterCommand(Keys.Down, new MoveDown(link));
+        _KeyboardController.RegisterCommand(Keys.S, new MoveDown(link));
         _KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link));
         _KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link));
         _KeyboardController.RegisterCommand(Keys.E, new DamagePlayer(link));
@@ -66,25 +71,24 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        EnemySpriteFactory.Instance.LoadAllTextures(Content);
         Player.PlayerSpriteFactory.Instance.LoadAllTextures(Content);
-        Enemies.EnemySpriteFactory.Instance.LoadAllTextures(Content);
+
+        link.SetSprite();
+
         blockSheet = Content.Load<Texture2D>("Blocks");
         itemSheet = Content.Load<Texture2D>("Items");
 
         blockSourceRectangles = setRectanglesBlock.Instance.LoadBlock();
 
-        initialize.Execute();
-
-        link.SetSprite();
-
         currentBlock = new Block(blockSheet, blockSourceRectangles);
         currentItem = new Item(itemSheet, 0.2);
+        _KeyboardController.RegisterCommand(Keys.Y, new NextBlockCommand(currentBlock));
+        _KeyboardController.RegisterCommand(Keys.T, new PreviousBlockCommand(currentBlock));
+        _KeyboardController.RegisterCommand(Keys.I, new NextItemCommand(currentItem));
+        _KeyboardController.RegisterCommand(Keys.U, new PreviousItemCommand(currentItem));
 
-        keyboardController = new KeyboardController();
-        keyboardController.RegisterCommand(Keys.Y, new NextBlockCommand(currentBlock));
-        keyboardController.RegisterCommand(Keys.T, new PreviousBlockCommand(currentBlock));
-        keyboardController.RegisterCommand(Keys.I, new NextItemCommand(currentItem));
-        keyboardController.RegisterCommand(Keys.U, new PreviousItemCommand(currentItem));
+        initialize.Execute();
     }
 
     protected override void Update(GameTime gameTime)
@@ -109,6 +113,8 @@ public class Game1 : Game
 
         currentBlock.Draw(_spriteBatch, 0 ,0);
         currentItem.Draw(_spriteBatch, 0, 0);
+
+        currentEnemy.Draw(_spriteBatch);
 
         //Draw player link
         link.Draw(_spriteBatch);
