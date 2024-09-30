@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿/*using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -42,4 +42,4 @@ namespace SneakyLink
             currentImageIndex = (currentImageIndex - 1 + sourceRectangles.Length) % sourceRectangles.Length;
         }
     }
-}
+}*/
