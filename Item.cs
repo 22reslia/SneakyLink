@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace SneakyLink
         private Rectangle[] sourceRectangles;
         private int currentImageFrame;
         private int currentImageIndex;
-        private int itemCouont;
+        private int itemCount;
         private double frameTime;
         private double timeSinceLastFrame;
         public Item(Texture2D texture, double frameTime)
@@ -25,7 +25,7 @@ namespace SneakyLink
             currentImageIndex = 0;
             this.frameTime = frameTime;
             timeSinceLastFrame = 0;
-            itemCouont = 13;
+            itemCount = 13;
             
         }
 
@@ -95,11 +95,12 @@ namespace SneakyLink
         }
         public void NextImage()
         {
-            currentImageIndex = (currentImageIndex + 1) % itemCouont;
+            currentImageIndex = (currentImageIndex + 1) % itemCount;
         }
         public void PreviousImage()
         {
-            currentImageIndex = (currentImageIndex - 1 + itemCouont) % itemCouont;
+            currentImageIndex = (currentImageIndex - 1 + itemCount) % itemCount;
         }
     }
 }
+*/
