@@ -10,10 +10,12 @@ namespace SneakyLink.Enemies
     public class Keese : IEnemy
     {
         private KeeseStateMachine stateMachine;
-        public ISprite keeseSprite;
-        public int x;
-        public int y;
+        private ISprite keeseSprite;
+        private int x;
+        private int y;
 
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
         public Keese()
         {
             x = 400;

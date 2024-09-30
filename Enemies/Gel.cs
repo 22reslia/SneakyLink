@@ -11,9 +11,12 @@ namespace SneakyLink.Enemies
     public class Gel : IEnemy
     {
         private GelStateMachine stateMachine;
-        public ISprite GelSprite;
-        public int x;
-        public int y;
+        private ISprite GelSprite;
+        private int x;
+        private int y;
+
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
 
         public Gel() {
             x = 400;

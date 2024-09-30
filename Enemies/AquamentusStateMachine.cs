@@ -31,21 +31,21 @@ namespace SneakyLink.Enemies
             {
                 case 0:
                     currentState = AquamentusState.LeftNormal;
-                    aquamentus.aquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusLeftIdleEnemySprite();
+                    aquamentus.AquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusLeftIdleEnemySprite();
                     isAttacking = false;
                     break;
                 case 1:
                     currentState = AquamentusState.RightNormal;
-                    aquamentus.aquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusRightIdleEnemySprite();
+                    aquamentus.AquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusRightIdleEnemySprite();
                     isAttacking = false;
                     break;
                 case 2:
                     currentState = AquamentusState.LeftAttack;
-                    aquamentus.aquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusLeftAttackEnemySprite();
+                    aquamentus.AquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusLeftAttackEnemySprite();
                     break;
                 case 3:
                     currentState = AquamentusState.RightAttack;
-                    aquamentus.aquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusRightAttackEnemySprite();
+                    aquamentus.AquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusRightAttackEnemySprite();
                     break;
             }
         }
@@ -61,11 +61,11 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case AquamentusState.LeftNormal:
-                    aquamentus.x -= 1;
+                    aquamentus.X -= 1;
                     moveCount++;
                     break;
                 case AquamentusState.RightNormal:
-                    aquamentus.x += 1;
+                    aquamentus.X += 1;
                     moveCount++;
                     break;
                 case AquamentusState.LeftAttack:
@@ -84,9 +84,9 @@ namespace SneakyLink.Enemies
                 switch (currentState)
                 {
                     case AquamentusState.LeftAttack:
-                        fireBallOne = new AquamentusFireBall(aquamentus.x - 20, aquamentus.y);
-                        fireBallTwo = new AquamentusFireBall(aquamentus.x - 20, aquamentus.y + 16);
-                        fireBallThree = new AquamentusFireBall(aquamentus.x - 20, aquamentus.y + 32);
+                        fireBallOne = new AquamentusFireBall(aquamentus.X - 20, aquamentus.Y);
+                        fireBallTwo = new AquamentusFireBall(aquamentus.X - 20, aquamentus.Y + 16);
+                        fireBallThree = new AquamentusFireBall(aquamentus.X - 20, aquamentus.Y + 32);
 
                         fireBallOne.Shoot(-5, -5);
                         fireBallTwo.Shoot(-5, 0);
@@ -94,9 +94,9 @@ namespace SneakyLink.Enemies
                         break;
 
                     case AquamentusState.RightAttack:
-                        fireBallOne = new AquamentusFireBall(aquamentus.x + 92, aquamentus.y);
-                        fireBallTwo = new AquamentusFireBall(aquamentus.x + 92, aquamentus.y + 16);
-                        fireBallThree = new AquamentusFireBall(aquamentus.x + 92, aquamentus.y + 32);
+                        fireBallOne = new AquamentusFireBall(aquamentus.X + 92, aquamentus.Y);
+                        fireBallTwo = new AquamentusFireBall(aquamentus.X + 92, aquamentus.Y + 16);
+                        fireBallThree = new AquamentusFireBall(aquamentus.X + 92, aquamentus.Y + 32);
 
                         fireBallOne.Shoot(5, -5);
                         fireBallTwo.Shoot(5, 0);

@@ -50,19 +50,19 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case StalfosState.LeftNormal:
-                    stalfos.x -= 1;
+                    stalfos.X -= 1;
                     moveCount++;
                     break;
                 case StalfosState.RightNormal:
-                    stalfos.x += 1;
+                    stalfos.X += 1;
                     moveCount++;
                     break;
                 case StalfosState.DownNormal:
-                    stalfos.y += 1;
+                    stalfos.Y += 1;
                     moveCount++;
                     break;
                 case StalfosState.UpNormal:
-                    stalfos.y -= 1;
+                    stalfos.Y -= 1;
                     moveCount++;
                     break;
                 case StalfosState.Idle:

@@ -10,9 +10,13 @@ namespace SneakyLink.Enemies
     public class Goriya : IEnemy
     {
         private GoriyaStateMachine stateMachine;
-        public ISprite GoriyaSprite;
-        public int x;
-        public int y;
+        private ISprite GoriyaSprite;
+        private int x;
+        private int y;
+
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
+        public ISprite goriyaSprite { get => GoriyaSprite; set => GoriyaSprite = value; }
 
         public Goriya()
         {

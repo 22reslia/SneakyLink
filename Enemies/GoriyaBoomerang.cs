@@ -10,7 +10,7 @@ namespace SneakyLink.Enemies
 {
     public class GoriyaBoomerang
     {
-        public int x, y;
+        private int x, y;
         private int startX, startY;
         private int velocityX;
         private int flightTime = 0;

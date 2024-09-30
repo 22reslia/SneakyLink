@@ -63,42 +63,42 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case KeeseState.LeftNormal:
-                    keese.x -= 1;
+                    keese.X -= 1;
                     moveCount++;
                     break;
                 case KeeseState.RightNormal:
-                    keese.x += 1;
+                    keese.X += 1;
                     moveCount++;
                     break;
                 case KeeseState.DownNormal:
-                    keese.y += 1;
+                    keese.Y += 1;
                     moveCount++;
                     break;
                 case KeeseState.UpNormal:
-                    keese.y -= 1;
+                    keese.Y -= 1;
                     moveCount++;
                     break;
                 case KeeseState.Idle:
                     moveCount++;
                     break;
                 case KeeseState.LeftUpNormal:
-                    keese.x -= 1;
-                    keese.y -= 1;
+                    keese.X -= 1;
+                    keese.Y -= 1;
                     moveCount++;
                     break;
                 case KeeseState.LeftDownNormal:
-                    keese.x -= 1;
-                    keese.y += 1;
+                    keese.X -= 1;
+                    keese.Y += 1;
                     moveCount++;
                     break;
                 case KeeseState.RightUpNormal:
-                    keese.x -= 1;
-                    keese.y -= 1;
+                    keese.X -= 1;
+                    keese.Y -= 1;
                     moveCount++;
                     break;
                 case KeeseState.RightDownNormal:
-                    keese.x -= 1;
-                    keese.y += 1;
+                    keese.X -= 1;
+                    keese.Y += 1;
                     moveCount++;
                     break;
             }
