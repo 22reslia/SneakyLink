@@ -64,19 +64,19 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case GelState.LeftNormal:
-                    gel.x -= 1;
+                    gel.X -= 1;
                     moveCount++;
                     break;
                 case GelState.RightNormal:
-                    gel.x += 1;
+                    gel.X += 1;
                     moveCount++;
                     break;
                 case GelState.UpNormal:
-                    gel.y -= 1;
+                    gel.Y -= 1;
                     moveCount++;
                     break;
                 case GelState.DownNormal:
-                    gel.y += 1;
+                    gel.Y += 1;
                     moveCount++;
                     break;
             }

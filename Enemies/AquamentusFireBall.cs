@@ -10,8 +10,8 @@ namespace SneakyLink.Enemies
 {
     public class AquamentusFireBall
     {
-        public int x;
-        public int y;
+        private int x;
+        private int y;
         private ISprite fireBallSprite;
         private int velocityX;
         private int velocityY;

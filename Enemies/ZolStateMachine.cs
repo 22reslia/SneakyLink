@@ -62,19 +62,19 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case ZolState.LeftNormal:
-                    zol.x -= 1;
+                    zol.X -= 1;
                     moveCount++;
                     break;
                 case ZolState.RightNormal:
-                    zol.x += 1;
+                    zol.X += 1;
                     moveCount++;
                     break;
                 case ZolState.UpNormal:
-                    zol.y -= 1;
+                    zol.Y -= 1;
                     moveCount++;
                     break;
                 case ZolState.DownNormal:
-                    zol.y += 1;
+                    zol.Y += 1;
                     moveCount++;
                     break;
             }

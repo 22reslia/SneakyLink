@@ -10,10 +10,13 @@ namespace SneakyLink.Enemies
     public class Aquamentus : IEnemy
     {
         private AquamentusStateMachine stateMachine;
-        public ISprite aquamentusSprite;
-        public int x;
-        public int y;
+        private ISprite aquamentusSprite;
+        private int x;
+        private int y;
 
+        public int X{ get => x; set => x = value; }
+        public int Y{ get => y; set => y = value; }
+        public ISprite AquamentusSprite{ get => aquamentusSprite; set => aquamentusSprite = value; }
         public Aquamentus()
         {
             x = 400;
