@@ -22,12 +22,10 @@ public class Game1 : Game
     public List<IEnemy> enemyList;
     
     Player.Link link;
-    private Texture2D blockSheet;
-    private Texture2D itemSheet;
-    private Rectangle[] blockSourceRectangles = new Rectangle[15];
-
-    private Block currentBlock;
-    private Item currentItem;
+    public List<ISprite> blockList;
+    public List<ISprite> itemList;
+    public ISprite currentBlock;
+    public ISprite currentItem;
 
     public Game1()
     {
@@ -57,11 +55,17 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link));
         _KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link));
         _KeyboardController.RegisterCommand(Keys.E, new DamagePlayer(link));
+        
 
         initialize = new InitializeObject(this);
         _KeyboardController.RegisterCommand(Keys.R, initialize);
         _KeyboardController.RegisterCommand(Keys.O, new PreviousEnemyCommand(this));
         _KeyboardController.RegisterCommand(Keys.P, new NextEnemyCommand(this));
+
+        _KeyboardController.RegisterCommand(Keys.Y, new NextBlockCommand(this));
+        _KeyboardController.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
+        _KeyboardController.RegisterCommand(Keys.I, new NextItemCommand(this));
+        _KeyboardController.RegisterCommand(Keys.U, new PreviousItemCommand(this));
 
         base.Initialize();
     }
@@ -72,27 +76,16 @@ public class Game1 : Game
 
         EnemySpriteFactory.Instance.LoadAllTextures(Content);
         Player.PlayerSpriteFactory.Instance.LoadAllTextures(Content);
+        Blocks.BlockSpriteFactory.Instance.LoadAllTextrues(Content);
+        Items.ItemSpriteFactory.Instance.LoadAllTextrues(Content);
 
         link.SetSprite();
-
-        blockSheet = Content.Load<Texture2D>("Blocks");
-        itemSheet = Content.Load<Texture2D>("Items");
-
-        blockSourceRectangles = setRectanglesBlock.Instance.LoadBlock();
-
-        currentBlock = new Block(blockSheet, blockSourceRectangles);
-        currentItem = new Item(itemSheet, 0.2);
-        _KeyboardController.RegisterCommand(Keys.Y, new NextBlockCommand(currentBlock));
-        _KeyboardController.RegisterCommand(Keys.T, new PreviousBlockCommand(currentBlock));
-        _KeyboardController.RegisterCommand(Keys.I, new NextItemCommand(currentItem));
-        _KeyboardController.RegisterCommand(Keys.U, new PreviousItemCommand(currentItem));
 
         initialize.Execute();
     }
 
     protected override void Update(GameTime gameTime)
     {
-        currentBlock.Update();
         currentItem.Update();
         //input update
         _KeyboardController.Update();
