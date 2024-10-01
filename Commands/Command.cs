@@ -119,3 +119,18 @@ public class DamagePlayer : ICommand
         link.stateMachine.currentState = PlayerState.playerDamaged;
     }
 }
+public class UseItem : ICommand
+{
+    private Link link;
+
+    public UseItem(Link player)
+    {
+        link = player;
+    }
+
+    public void Execute () 
+    {   
+        link.stateMachine.currentState = PlayerState.playerUseItem;
+    }
+    
+}

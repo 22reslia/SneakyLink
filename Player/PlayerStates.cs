@@ -3,6 +3,7 @@ public enum PlayerState {
     playerMoving,
     playerIdle,
     playerAttacking,
-    playerDamaged
+    playerDamaged,
+    playerUseItem
 
     }

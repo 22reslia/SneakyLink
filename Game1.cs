@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using SneakyLink.Player;
 using System.ComponentModel;
 using SneakyLink.Enemies;
+using System.ComponentModel.Design;
 
 namespace SneakyLink;
 
@@ -57,6 +58,9 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link));
         _KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link));
         _KeyboardController.RegisterCommand(Keys.E, new DamagePlayer(link));
+        _KeyboardController.RegisterCommand(Keys.D1, new UseItem(link));
+        _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link));
+        _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link));
 
         initialize = new InitializeObject(this);
         _KeyboardController.RegisterCommand(Keys.R, initialize);

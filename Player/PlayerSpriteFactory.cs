@@ -103,4 +103,21 @@ public class PlayerSpriteFactory
             return new DamagedLinkBack(linkDamagedSpriteSheet);
         }
 
+        public ISprite CreateLinkUseItemRightSprite()
+        {
+            return new LinkUseItemRight(linkSpriteSheet);
+        }
+        public ISprite CreateLinkUseItemLeftSprite()
+        {
+            return new LinkUseItemLeft(linkSpriteSheet);
+        }
+        public ISprite CreateLinkUseItemSouthSprite()
+        {
+            return new LinkUseItemSouth(linkSpriteSheet);
+        }
+        public ISprite CreateLinkUseItemNorthSprite()
+        {
+            return new LinkUseItemNorth(linkSpriteSheet);
+        }
+
     }
