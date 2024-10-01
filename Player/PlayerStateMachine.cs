@@ -185,9 +185,9 @@ public class PlayerStateMachine
 
     public ISprite Update(GameTime gameTime)
     {   
-        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        float timer = 0f;
-        float stopTime = 1f;
+        // float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        // float timer = 0f;
+        // float stopTime = 5f;
         
          if (PlayerSpriteStateChange() || PlayerSpriteDirectionChange())
         {
@@ -203,11 +203,7 @@ public class PlayerStateMachine
                     currentSprite = GetCurrentWoodenAttackingSprite();
                     break;
                 case PlayerState.playerDamaged:
-                    if (timer < stopTime)
-                    {
-                        currentSprite = GetCurrentDamagedSprite();
-                        timer += deltaTime;
-                    }
+                    currentSprite = GetCurrentDamagedSprite();
                     break;
                 case PlayerState.playerUseItem:
                     currentSprite = GetCurrentUseItemSprite();

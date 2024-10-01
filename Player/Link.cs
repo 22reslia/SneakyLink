@@ -11,7 +11,8 @@ namespace SneakyLink.Player;
         public PlayerStateMachine stateMachine;
         public ISprite playerSprite;
         public int velocity;
-
+        float timer = 0f;
+        float stopTime = 1f;
         //creats a player with basic stats
         public Link()
         {
@@ -40,10 +41,15 @@ namespace SneakyLink.Player;
         {   
             //updates the sprite based off the change of state
             playerSprite = stateMachine.Update(gameTime);
-
-            if (!stateMachine.LinkPositionIdle())
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (!stateMachine.LinkPositionIdle() && stateMachine.currentState != PlayerState.playerDamaged || timer >= stopTime)
             {
                 stateMachine.currentState = PlayerState.playerIdle;
+                timer = 0f;
+            }
+            else
+            {
+                timer += deltaTime;
             }
 
             //calls the ISprite update for given sprite
