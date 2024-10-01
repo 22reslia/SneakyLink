@@ -24,27 +24,27 @@ namespace SneakyLink.Enemies
             {
                 case 0:
                     currentState = GoriyaState.LeftNormal;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaLeftIdleSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaLeftIdleSprite();
                     break;
                 case 1:
                     currentState = GoriyaState.RightNormal;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaRightIdleSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaRightIdleSprite();
                     break;
                 case 2:
                     currentState = GoriyaState.UpNormal;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaUpIdleSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaUpIdleSprite();
                     break;
                 case 3:
                     currentState = GoriyaState.DownNormal;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaDownIdleSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaDownIdleSprite();
                     break;
                 case 4:
                     currentState = GoriyaState.LeftAttack;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaLeftAttackSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaLeftAttackSprite();
                     break;
                 case 5:
                     currentState = GoriyaState.RightAttack;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaRightAttackSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaRightAttackSprite();
                     break;
             }
         }
@@ -69,19 +69,19 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case GoriyaState.LeftNormal:
-                    goriya.x -= 1;
+                    goriya.X -= 1;
                     moveCount++;
                     break;
                 case GoriyaState.RightNormal:
-                    goriya.x += 1;
+                    goriya.X += 1;
                     moveCount++;
                     break;
                 case GoriyaState.UpNormal:
-                    goriya.y -= 1;
+                    goriya.Y -= 1;
                     moveCount++;
                     break;
                 case GoriyaState.DownNormal:
-                    goriya.y += 1;
+                    goriya.Y += 1;
                     moveCount++;
                     break;
             }
@@ -94,11 +94,11 @@ namespace SneakyLink.Enemies
                 switch (currentState)
                 {
                     case GoriyaState.LeftAttack:
-                        boomerang = new GoriyaBoomerang(goriya.x - 20, goriya.y);
+                        boomerang = new GoriyaBoomerang(goriya.X - 20, goriya.Y);
                         boomerang.Shoot(-5);
                         break;
                     case GoriyaState.RightAttack:
-                        boomerang = new GoriyaBoomerang(goriya.x + 52, goriya.y);
+                        boomerang = new GoriyaBoomerang(goriya.X + 52, goriya.Y);
                         boomerang.Shoot(5);
                         break;
                 }
@@ -114,12 +114,12 @@ namespace SneakyLink.Enemies
                 if (currentState == GoriyaState.LeftAttack)
                 {
                     currentState = GoriyaState.LeftNormal;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaLeftIdleSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaLeftIdleSprite();
                 }
                 else if (currentState == GoriyaState.RightAttack)
                 {
                     currentState = GoriyaState.RightNormal;
-                    goriya.GoriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaRightIdleSprite();
+                    goriya.goriyaSprite = EnemySpriteFactory.Instance.CreateGoriyaRightIdleSprite();
                 }
             }
         }

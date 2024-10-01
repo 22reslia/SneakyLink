@@ -8,16 +8,45 @@ namespace SneakyLink
 {
     public class NextBlockCommand : ICommand
     {
-        private Block block;
+        private Game1 game;
+        private int blockCount;
+        private bool isTriggred;
+        private int clock;
 
-        public NextBlockCommand(Block block)
+        public NextBlockCommand(Game1 game)
         {
-            this.block = block;
+            this.game = game;
+            isTriggred = false;
+            clock = 0;
         }
 
         public void Execute()
         {
-            block.NextImage();
+            if (isTriggred)
+            {
+                if (clock <= 10)
+                {
+                    clock++;
+                }
+                else
+                {
+                    isTriggred = false;
+                    clock = 0;
+                }
+            }
+            else
+            {
+                blockCount = game.blockList.IndexOf(game.currentBlock);
+                if (blockCount < game.blockList.Count - 1)
+                {
+                    game.currentBlock = game.blockList[blockCount + 1];
+                }
+                else
+                {
+                    game.currentBlock = game.blockList[0];
+                }
+                isTriggred = true;
+            }
         }
     }
 }
