@@ -14,7 +14,11 @@ namespace SneakyLink
             this.game = game;
         }
         public void Execute()
-        {
+        {   
+            game.link.playerPosition.X = 100;
+            game.link.playerPosition.Y = 100;
+            game.link.stateMachine.currentDirection = Player.PlayerDirection.playerDown;
+            game.link.stateMachine.currentState = Player.PlayerState.playerIdle;
             //load enemy part
             IEnemy Keese = new Enemies.Keese();
             IEnemy Zol = new Enemies.Zol();

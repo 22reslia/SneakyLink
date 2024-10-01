@@ -7,8 +7,10 @@ namespace SneakyLink.Player
     {
         public Texture2D linkSprite;
         private Vector2 position;
+        private int frameDelay = 4; 
+        private int frameCounter = 0;
         int currentFrame = 0;
-        int maxFrame = 5;
+        int maxFrame = 10;
         public LinkUseItemSouth(Texture2D texture)
         {
            linkSprite = texture;
@@ -27,17 +29,29 @@ namespace SneakyLink.Player
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
             }
 
+            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            {
+             sourceRectangle = new Rectangle(1, 11, 16, 16);
+             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
+            }
+
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
 
         public void Update()
-        {
+        {   
+            frameCounter++;
+            if (frameCounter >= frameDelay)
+            {
             currentFrame++;
+            
             if (currentFrame == maxFrame)
             {
                 currentFrame = 0;
+            }
+            frameCounter = 0;
             }
         }
     }
@@ -46,8 +60,10 @@ namespace SneakyLink.Player
     {
         public Texture2D linkSprite;
         private Vector2 position;
+        private int frameDelay = 4; 
+        private int frameCounter = 0;
         int currentFrame = 0;
-        int maxFrame = 5;
+        int maxFrame = 10;
 
         public LinkUseItemRight(Texture2D texture)
         {
@@ -66,7 +82,12 @@ namespace SneakyLink.Player
              sourceRectangle = new Rectangle(124, 11, 16, 16);
              destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
             }
-            
+
+            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            {
+             sourceRectangle = new Rectangle(35, 11, 16, 16);
+             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
+            }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
@@ -75,11 +96,16 @@ namespace SneakyLink.Player
 
         public void Update()
         {   
+            frameCounter++;
+            if (frameCounter >= frameDelay)
+            {
             currentFrame++;
-
+            
             if (currentFrame == maxFrame)
             {
                 currentFrame = 0;
+            }
+            frameCounter = 0;
             }
         }
     }
@@ -88,8 +114,10 @@ namespace SneakyLink.Player
     {
         public Texture2D linkSprite;
         private Vector2 position;
+        private int frameDelay = 4; 
+        private int frameCounter = 0;
         int currentFrame = 0;
-        int maxFrame = 5;
+        int maxFrame = 10;
         public LinkUseItemLeft(Texture2D texture)
         {
             linkSprite = texture;
@@ -102,9 +130,15 @@ namespace SneakyLink.Player
             Rectangle destinationRectangle = new Rectangle();
             Rectangle sourceRectangle = new Rectangle();
 
-            if (currentFrame < maxFrame / 5)
+            if (currentFrame < maxFrame / 4)
             {
              sourceRectangle = new Rectangle(124, 11, 16, 16);
+             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
+            }
+
+            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            {
+             sourceRectangle = new Rectangle(35, 11, 16, 16);
              destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
             }
 
@@ -114,13 +148,17 @@ namespace SneakyLink.Player
         }
 
        public void Update()
-        {
-
+        {   
+            frameCounter++;
+            if (frameCounter >= frameDelay)
+            {
             currentFrame++;
-
+            
             if (currentFrame == maxFrame)
             {
                 currentFrame = 0;
+            }
+            frameCounter = 0;
             }
         }
     }
@@ -129,8 +167,10 @@ namespace SneakyLink.Player
     {
         public Texture2D linkSprite;
         private Vector2 position;
+        private int frameDelay = 4; 
+        private int frameCounter = 0;
         int currentFrame = 0;
-        int maxFrame = 5;
+        int maxFrame = 10;
 
         //LinkFacing towards top of the screen
         public LinkUseItemNorth(Texture2D texture)
@@ -151,6 +191,11 @@ namespace SneakyLink.Player
              destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
             }
             
+            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            {
+             sourceRectangle = new Rectangle(69, 11, 16, 16);
+             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*16, 3*16);
+            }
     
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
@@ -158,10 +203,16 @@ namespace SneakyLink.Player
         }
         public void Update()
         {   
+            frameCounter++;
+            if (frameCounter >= frameDelay)
+            {
             currentFrame++;
+            
             if (currentFrame == maxFrame)
             {
                 currentFrame = 0;
+            }
+            frameCounter = 0;
             }
         }
     }

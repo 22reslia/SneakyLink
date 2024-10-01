@@ -22,7 +22,7 @@ public class Game1 : Game
     public IEnemy currentEnemy;
     public List<IEnemy> enemyList;
     
-    Player.Link link;
+    public Player.Link link;
     public List<ISprite> blockList;
     public List<ISprite> itemList;
     public ISprite currentBlock;
@@ -41,7 +41,7 @@ public class Game1 : Game
         _KeyboardController = new KeyboardController();
 
         //initializes Link contructor
-        link = new Player.Link();
+        link = new Link();
 
         //Initilizing Commands to specific keys
         _KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
@@ -97,7 +97,7 @@ public class Game1 : Game
         currentEnemy.Update();
 
         //link (player) update
-        link.Update();
+        link.Update(gameTime);
 
         base.Update(gameTime);
     }
