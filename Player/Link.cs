@@ -36,10 +36,10 @@ namespace SneakyLink.Player;
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {   
             //updates the sprite based off the change of state
-            playerSprite = stateMachine.Update();
+            playerSprite = stateMachine.Update(gameTime);
 
             if (!stateMachine.LinkPositionIdle())
             {

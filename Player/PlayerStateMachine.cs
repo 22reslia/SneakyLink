@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -182,9 +183,11 @@ public class PlayerStateMachine
             playerSprite.Draw(spriteBatch, x, y);
         }
 
-    public ISprite Update()
+    public ISprite Update(GameTime gameTime)
     {   
-
+        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        float timer = 0f;
+        float stopTime = 1f;
         
          if (PlayerSpriteStateChange() || PlayerSpriteDirectionChange())
         {
@@ -200,7 +203,11 @@ public class PlayerStateMachine
                     currentSprite = GetCurrentWoodenAttackingSprite();
                     break;
                 case PlayerState.playerDamaged:
-                    currentSprite = GetCurrentDamagedSprite();
+                    if (timer < stopTime)
+                    {
+                        currentSprite = GetCurrentDamagedSprite();
+                        timer += deltaTime;
+                    }
                     break;
                 case PlayerState.playerUseItem:
                     currentSprite = GetCurrentUseItemSprite();
