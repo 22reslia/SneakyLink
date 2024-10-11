@@ -6,6 +6,7 @@ using SneakyLink.Player;
 using System.ComponentModel;
 using SneakyLink.Enemies;
 using System.ComponentModel.Design;
+using SneakyLink.Scene;
 
 namespace SneakyLink;
 
@@ -28,6 +29,7 @@ public class Game1 : Game
     public ISprite currentBlock;
     public ISprite currentItem;
 
+    public IScene scene;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -70,6 +72,8 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.I, new NextItemCommand(this));
         _KeyboardController.RegisterCommand(Keys.U, new PreviousItemCommand(this));
 
+        _KeyboardController.RegisterCommand(Keys.M, new ChangeSceneCommand(this));
+
         base.Initialize();
     }
 
@@ -85,6 +89,8 @@ public class Game1 : Game
         link.SetSprite();
 
         initialize.Execute();
+
+        scene = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
     protected override void Update(GameTime gameTime)
@@ -104,8 +110,10 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
 
+        GraphicsDevice.Clear(Color.Black);
+
+        scene.Draw(_spriteBatch);
         currentBlock.Draw(_spriteBatch, 0 ,0);
         currentItem.Draw(_spriteBatch, 0, 0);
 

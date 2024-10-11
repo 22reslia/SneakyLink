@@ -26,7 +26,7 @@ namespace SneakyLink.Blocks
         {
             sourceRectangle = new Rectangle(1035, 11, 16, 16);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(image, new Rectangle(300, 200, 32, 32), sourceRectangle, Color.White);
+            spriteBatch.Draw(image, new Rectangle(x, y, 40, 40), sourceRectangle, Color.White);
             spriteBatch.End();
         }
     }
