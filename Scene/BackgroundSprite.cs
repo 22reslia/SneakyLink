@@ -1,21 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Mime;
 
-namespace SneakyLink.Blocks
+namespace SneakyLink.Scene
 {
-    public class VoidSprite : ISprite
+    public class BackgroundSprite : ISprite
     {
         Texture2D image;
         Rectangle sourceRectangle;
 
-        public VoidSprite()
+        public BackgroundSprite(Texture2D text)
         {
-            image = BlockSpriteFactory.Instance.GetSheet();
+            image = text;
         }
 
         public void Update()
@@ -24,9 +22,9 @@ namespace SneakyLink.Blocks
 
         public void Draw(SpriteBatch spriteBatch, int x, int y)
         {
-            sourceRectangle = new Rectangle(984, 28, 16, 16);
+            sourceRectangle = new Rectangle(521, 11, 256, 176);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(image, new Rectangle(x, y, 40, 40), sourceRectangle, Color.White);
+            spriteBatch.Draw(image, new Rectangle(x, y, 640, 440), sourceRectangle, Color.White);
             spriteBatch.End();
         }
     }

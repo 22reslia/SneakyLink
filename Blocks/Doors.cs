@@ -8,13 +8,17 @@ using System.Threading.Tasks;
 
 namespace SneakyLink.Blocks
 {
-    public class BlueFloorSprite : ISprite
+    public class Doors : ISprite
     {
         Texture2D image;
         Rectangle sourceRectangle;
+        private int col;
+        private int row;
 
-        public BlueFloorSprite()
+        public Doors(String doorID)
         {
+            col = doorID[doorID.Length - 2] - '0';
+            row = doorID[doorID.Length - 1] - '0';
             image = BlockSpriteFactory.Instance.GetSheet();
         }
 
@@ -24,9 +28,9 @@ namespace SneakyLink.Blocks
 
         public void Draw(SpriteBatch spriteBatch, int x, int y)
         {
-            sourceRectangle = new Rectangle(984, 11, 16, 16);
+            sourceRectangle = new Rectangle(815 + row*33, 11 + col*33, 32, 32);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(image, new Rectangle(x, y, 40, 40), sourceRectangle, Color.White);
+            spriteBatch.Draw(image, new Rectangle(x, y, 80, 80), sourceRectangle, Color.White);
             spriteBatch.End();
         }
     }
