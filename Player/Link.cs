@@ -5,16 +5,22 @@ using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Enemies;
 
 namespace SneakyLink.Player;
-    public class Link
+    public class Link : ICollision
     {
         public Vector2 playerPosition;
         public PlayerStateMachine stateMachine;
         public ISprite playerSprite;
         public int velocity;
+        public int width = 40, height = 40;
         float timer = 0f;
         float stopTime = 1f;
-        //creats a player with basic stats
-        public Link()
+
+    public Rectangle CollisionBox => new Rectangle((int)playerPosition.X, (int)playerPosition.Y, width, height);
+
+    public CollisionObjectType ObjectType => throw new System.NotImplementedException();
+
+    //creats a player with basic stats
+    public Link()
         {
             velocity = 5;
             playerPosition.X = 100;
@@ -55,4 +61,9 @@ namespace SneakyLink.Player;
             //calls the ISprite update for given sprite
             playerSprite.Update();
         }
+
+    public void OnCollision(ICollision other, CollisionType collisionType)
+    {
+        throw new System.NotImplementedException();
     }
+}
