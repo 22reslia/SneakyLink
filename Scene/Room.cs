@@ -15,7 +15,7 @@ namespace SneakyLink.Scene
         private SceneManage sceneManage;
         private string filePath;
         private string[,] levelData;
-        private ISprite block;
+        private IBlock block;
         private ISprite door;
 
         public Room(Game1 game, string filePath) {
@@ -52,31 +52,33 @@ namespace SneakyLink.Scene
         public void DrawBlock(string blockID, SpriteBatch spriteBatch, int col, int row)
         {
             Boolean isBlock = true;
+            int positionX = 160 + col * 40;
+            int positionY = 100 + (row - 1) * 40;
             switch (blockID)
             {
                 case "ground":
-                    block = new BlueFloorSprite();
+                    block = new Ground(positionX, positionY);
                     break;
                 case "sand":
-                    block = new BlueSandSprite();
+                    block = new Sand(positionX, positionY);
                     break;
                 case "block":
-                    block = new SquareBlockSprite();
+                    block = new Block(positionX, positionY);
                     break;
                 case "statue1":
-                    block = new Statue1Sprite();
+                    block = new Statue1(positionX, positionY);
                     break;
                 case "statue2":
-                    block = new Statue2Sprite();
+                    block = new Statue2(positionX, positionY);
                     break;
                 case "void":
-                    block = new VoidSprite();
+                    block = new VoidSpace(positionX, positionY);
                     break;
                 case "blueGap":
-                    block = new BlueGapSprite();
+                    block = new BlueGap(positionX, positionY);
                     break;
                 case "stair":
-                    block = new StairSprite();
+                    block = new Stair(positionX, positionY);
                     break;
                 default:
                     isBlock = false;
@@ -85,7 +87,7 @@ namespace SneakyLink.Scene
 
             if (isBlock)
             {
-                block.Draw(spriteBatch, 160 + col * 40, 100 + (row-1) * 40);
+                block.Draw(spriteBatch);
             }
         }
 
