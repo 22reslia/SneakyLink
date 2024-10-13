@@ -17,7 +17,7 @@ namespace SneakyLink.Player;
 
     public Rectangle CollisionBox => new Rectangle((int)playerPosition.X, (int)playerPosition.Y, width, height);
 
-    public CollisionObjectType ObjectType => throw new System.NotImplementedException();
+    public CollisionObjectType ObjectType => CollisionObjectType.Player;
 
     //creats a player with basic stats
     public Link()
@@ -64,6 +64,6 @@ namespace SneakyLink.Player;
 
     public void OnCollision(ICollision other, CollisionType collisionType)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

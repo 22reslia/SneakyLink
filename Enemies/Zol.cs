@@ -21,7 +21,7 @@ namespace SneakyLink.Enemies
 
         public Rectangle CollisionBox => new Rectangle(x, y, width, height);
 
-        public CollisionObjectType ObjectType => throw new NotImplementedException();
+        public CollisionObjectType ObjectType => CollisionObjectType.Enemy;
 
         public Zol()
         {
