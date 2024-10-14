@@ -13,9 +13,9 @@ namespace SneakyLink.Collision
     public class PlayerEnemyHandler
     {
         private ISprite currentSprite;
-        public void HandleCollision(Link link, ICollision other, CollisionType collisionType)
+        public void HandleCollision(Link link, IEnemy enemy, CollisionType side)
         {
-            switch (collisionType)
+            switch (side)
             {
                 case CollisionType.None:
                     break;
