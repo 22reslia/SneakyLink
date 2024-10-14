@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SneakyLink.Collision;
 using SneakyLink.Scene;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,12 @@ namespace SneakyLink.Blocks
     {
         private ISprite blueSandSprite;
         private int x, y;
-        private int width = 40, height = 40;
-        public Rectangle CollisionBox => new Rectangle(x, y, width, height);
-        public CollisionObjectType ObjectType => CollisionObjectType.Block;
+        public CollisionBox collisionBox;
         public Sand(int positionX, int positionY) { 
             blueSandSprite = new BlueSandSprite();
             x = positionX;
             y = positionY;
+            collisionBox = new CollisionBox(CollisionObjectType.Block, 40, 40, x, y);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -29,10 +29,6 @@ namespace SneakyLink.Blocks
         public void Update()
         {
             
-        }
-        public void OnCollision(ICollision other, CollisionType collisionType)
-        {
-            throw new NotImplementedException();
         }
     }
 }

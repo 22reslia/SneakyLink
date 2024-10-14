@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SneakyLink.Collision;
 using SneakyLink.Scene;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,13 @@ namespace SneakyLink.Blocks
     {
         private ISprite statue1Sprite;
         private int x, y;
-        private int width = 40, height = 40;
-        public Rectangle CollisionBox => new Rectangle(x, y, width, height);
-        public CollisionObjectType ObjectType => CollisionObjectType.Block;
+        public CollisionBox collisionBox;
         public Statue1(int positionX, int positionY)
         {
             statue1Sprite = new Statue1Sprite();
             x = positionX;
             y = positionY;
+            collisionBox = new CollisionBox(CollisionObjectType.Block, 40, 40, x, y);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

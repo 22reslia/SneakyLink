@@ -2,22 +2,19 @@ using System.Diagnostics.Contracts;
 using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SneakyLink.Collision;
 using SneakyLink.Enemies;
 
 namespace SneakyLink.Player;
-    public class Link : ICollision
+public class Link
     {
         public Vector2 playerPosition;
         public PlayerStateMachine stateMachine;
+        public CollisionBox collisionBox;
         public ISprite playerSprite;
         public int velocity;
-        public int width = 40, height = 40;
         float timer = 0f;
         float stopTime = 1f;
-
-    public Rectangle CollisionBox => new Rectangle((int)playerPosition.X, (int)playerPosition.Y, width, height);
-
-    public CollisionObjectType ObjectType => CollisionObjectType.Player;
 
     //creats a player with basic stats
     public Link()
@@ -28,6 +25,7 @@ namespace SneakyLink.Player;
 
             //creates a state machine and gets the current sprite based on directional movement
             stateMachine = new PlayerStateMachine(playerPosition);
+            collisionBox = new CollisionBox(CollisionObjectType.Player, 40, 40, (int)playerPosition.X, (int)playerPosition.Y);
         }
 
         public void SetSprite()
@@ -58,12 +56,10 @@ namespace SneakyLink.Player;
                 timer += deltaTime;
             }
 
+            collisionBox.x = (int)playerPosition.X;
+            collisionBox.y = (int)playerPosition.Y;
+
             //calls the ISprite update for given sprite
             playerSprite.Update();
         }
-
-    public void OnCollision(ICollision other, CollisionType collisionType)
-    {
-        
-    }
 }

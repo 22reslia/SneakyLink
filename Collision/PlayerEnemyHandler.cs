@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SneakyLink
+namespace SneakyLink.Collision
 {
-    public class PlayerEnemyHandler : ICollisionHandler
+    public class PlayerEnemyHandler
     {
         private ISprite currentSprite;
         public void HandleCollision(Link link, ICollision other, CollisionType collisionType)

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using SneakyLink.Enemies;
 using System.ComponentModel.Design;
 using SneakyLink.Scene;
+using SneakyLink.Collision;
 
 namespace SneakyLink;
 
@@ -14,6 +15,8 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
+    public Gel gel;
 
     //Controllers for input
     private IController<Keys> _KeyboardController;
@@ -90,6 +93,8 @@ public class Game1 : Game
 
         initialize.Execute();
 
+        gel = new Gel();
+
         scene = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
@@ -104,6 +109,7 @@ public class Game1 : Game
 
         //link (player) update
         link.Update(gameTime);
+        CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
 
         base.Update(gameTime);
     }
@@ -118,6 +124,7 @@ public class Game1 : Game
         currentItem.Draw(_spriteBatch, 0, 0);
 
         currentEnemy.Draw(_spriteBatch);
+        gel.Draw(_spriteBatch);
 
         //Draw player link
         link.Draw(_spriteBatch);

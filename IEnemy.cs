@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework.Graphics;
+using SneakyLink.Collision;
 
 namespace SneakyLink
 {
