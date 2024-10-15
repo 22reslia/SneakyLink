@@ -8,6 +8,7 @@ using SneakyLink.Enemies;
 using System.ComponentModel.Design;
 using SneakyLink.Scene;
 using SneakyLink.Collision;
+using SneakyLink.Blocks;
 
 namespace SneakyLink;
 
