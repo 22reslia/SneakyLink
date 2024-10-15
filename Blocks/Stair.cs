@@ -14,7 +14,8 @@ namespace SneakyLink.Blocks
     {
         private ISprite stairSprite;
         private int x, y;
-        public CollisionBox collisionBox;
+        private CollisionBox collisionBox;
+        public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
         public Stair(int positionX, int positionY)
         {
             stairSprite = new StairSprite();

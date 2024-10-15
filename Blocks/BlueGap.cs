@@ -14,7 +14,8 @@ namespace SneakyLink.Blocks
     {
         private ISprite blueGapSprite;
         private int x, y;
-        public CollisionBox collisionBox;
+        private CollisionBox collisionBox;
+        public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
         public BlueGap(int positionX, int positionY)
         {
             blueGapSprite = new BlueGapSprite();

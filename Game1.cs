@@ -16,6 +16,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    //for collision testing
     public Gel gel;
 
     //Controllers for input
@@ -32,7 +33,9 @@ public class Game1 : Game
     public ISprite currentBlock;
     public ISprite currentItem;
 
-    public IScene scene;
+    public Room room;
+    public List<IBlock> blocks = new List<IBlock>();
+    public List<IBlock> doors = new List<IBlock>();
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -93,9 +96,10 @@ public class Game1 : Game
 
         initialize.Execute();
 
+        //for collision testing
         gel = new Gel();
 
-        scene = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
+        room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
     protected override void Update(GameTime gameTime)
@@ -109,8 +113,16 @@ public class Game1 : Game
 
         //link (player) update
         link.Update(gameTime);
-        CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
 
+        //collision detect check
+        CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
+            for (int x = 0; x < room.blockList.Count; x++)
+            {
+                if (blocks[x].CollisionBox != null)
+                {
+                    CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
+                }
+            }
         base.Update(gameTime);
     }
 
@@ -119,11 +131,13 @@ public class Game1 : Game
 
         GraphicsDevice.Clear(Color.Black);
 
-        scene.Draw(_spriteBatch);
+        room.Draw(_spriteBatch);
         currentBlock.Draw(_spriteBatch, 0 ,0);
         currentItem.Draw(_spriteBatch, 0, 0);
 
         currentEnemy.Draw(_spriteBatch);
+
+        //for collision testing
         gel.Draw(_spriteBatch);
 
         //Draw player link

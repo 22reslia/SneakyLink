@@ -56,7 +56,7 @@ namespace SneakyLink
             {
                 if (sceneCount < sceneList.Length)
                 {
-                    game.scene = new Room(game, sceneList[sceneCount]);
+                    game.room = new Room(game, sceneList[sceneCount]);
                     sceneCount++;
                 }
                 else

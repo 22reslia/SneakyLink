@@ -14,7 +14,8 @@ namespace SneakyLink.Blocks
     {
         private ISprite squareBlockSprite;
         private int x, y;
-        public CollisionBox collisionBox;
+        private CollisionBox collisionBox;
+        public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
         public Block(int positionX, int positionY)
         {
             squareBlockSprite = new SquareBlockSprite();

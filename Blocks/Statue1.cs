@@ -14,7 +14,8 @@ namespace SneakyLink.Blocks
     {
         private ISprite statue1Sprite;
         private int x, y;
-        public CollisionBox collisionBox;
+        private CollisionBox collisionBox;
+        public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
         public Statue1(int positionX, int positionY)
         {
             statue1Sprite = new Statue1Sprite();
