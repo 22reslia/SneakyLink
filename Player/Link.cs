@@ -1,4 +1,5 @@
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -68,7 +69,15 @@ public class Link
             collisionBox.x = (int)playerPosition.X;
             collisionBox.y = (int)playerPosition.Y;
 
-            //calls the ISprite update for given sprite
-            playerSprite.Update();
+        if (this.collisionBox.side == CollisionType.None)
+        {
+            isBlockedTop = false;
+            isBlockedBottom = false;
+            isBlockedLeft = false;
+            isBlockedRight = false;
+        }
+
+    //calls the ISprite update for given sprite
+    playerSprite.Update();
         }
 }

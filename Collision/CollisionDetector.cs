@@ -27,12 +27,12 @@ namespace SneakyLink.Collision
                 {
                     if (rect1.Top < rect2.Top)
                     {
-                        Debug.WriteLine("Collision Bottom Detected.");
+                        //Debug.WriteLine("Collision Bottom Detected.");
                         return CollisionType.Bottom;
                     }
                     else
                     {
-                        Debug.WriteLine("Collision Top Detected.");
+                        //Debug.WriteLine("Collision Top Detected.");
                         return CollisionType.Top;
                     }
                 }
@@ -40,12 +40,12 @@ namespace SneakyLink.Collision
                 {
                     if (rect1.Left < rect2.Left)
                     {
-                        Debug.WriteLine("Collision Right Detected.");
+                        //Debug.WriteLine("Collision Right Detected.");
                         return CollisionType.Right;
                     }
                     else
                     {
-                        Debug.WriteLine("Collision Left Detected.");
+                        //Debug.WriteLine("Collision Left Detected.");
                         return CollisionType.Left;
                     }
                 }

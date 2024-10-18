@@ -15,8 +15,8 @@ namespace SneakyLink
         }
         public void Execute()
         {   
-            game.link.playerPosition.X = 100;
-            game.link.playerPosition.Y = 100;
+            game.link.playerPosition.X = 200;
+            game.link.playerPosition.Y = 200;
             game.link.stateMachine.currentDirection = Player.PlayerDirection.playerDown;
             game.link.stateMachine.currentState = Player.PlayerState.playerIdle;
             //load enemy part

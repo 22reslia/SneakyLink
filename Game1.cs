@@ -129,25 +129,15 @@ public class Game1 : Game
                     PlayerBlockHandler.HandleCollision(link, side);
                 }
             }
-            else
-            {
-                PlayerBlockHandler.HandleCollision(link, CollisionType.None);
-            }
         }
         for (int x = 0; x < boundaryCollisionBox.Count; x++)
         {
-            if (boundaryCollisionBox[x] != null)
+            link.collisionBox.side = CollisionDetector.CheckCollision(link.collisionBox, boundaryCollisionBox[x]);
+            if (link.collisionBox.side != CollisionType.None)
             {
-                CollisionType side = CollisionDetector.CheckCollision(link.collisionBox, boundaryCollisionBox[x]);
-                if (side != CollisionType.None)
-                {
-                    PlayerBlockHandler.HandleCollision(link, side);
-                }
+                PlayerBlockHandler.HandleCollision(link, link.collisionBox.side);
             }
-            else
-            {
-                PlayerBlockHandler.HandleCollision(link, CollisionType.None);
-            }
+            
         }
 
         base.Update(gameTime);
