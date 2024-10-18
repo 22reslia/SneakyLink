@@ -16,6 +16,11 @@ public class Link
         float timer = 0f;
         float stopTime = 1f;
 
+    //states for collision
+    public bool isBlockedTop;
+    public bool isBlockedBottom;
+    public bool isBlockedLeft;
+    public bool isBlockedRight;
     //creats a player with basic stats
     public Link()
         {
@@ -23,6 +28,10 @@ public class Link
             playerPosition.X = 100;
             playerPosition.Y = 100;
 
+            isBlockedTop = false;
+            isBlockedBottom = false;
+            isBlockedLeft = false;
+            isBlockedRight = false;
             //creates a state machine and gets the current sprite based on directional movement
             stateMachine = new PlayerStateMachine(playerPosition);
             collisionBox = new CollisionBox(CollisionObjectType.Player, 40, 40, (int)playerPosition.X, (int)playerPosition.Y);

@@ -14,7 +14,7 @@ namespace SneakyLink.Collision
         public CollisionObjectType type;
         public int width, height;
         public int x, y;
-        public CollisionBox (CollisionObjectType type, int width, int height, int x, int y)
+        public CollisionBox(CollisionObjectType type, int width, int height, int x, int y)
         {
             this.type = type;
             this.width = width;

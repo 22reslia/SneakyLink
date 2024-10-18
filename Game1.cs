@@ -3,12 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using SneakyLink.Player;
-using System.ComponentModel;
 using SneakyLink.Enemies;
-using System.ComponentModel.Design;
 using SneakyLink.Scene;
 using SneakyLink.Collision;
 using SneakyLink.Blocks;
+using System.Drawing;
 
 namespace SneakyLink;
 
@@ -35,8 +34,10 @@ public class Game1 : Game
     public ISprite currentItem;
 
     public Room room;
+    //the collision box of elements in the room
     public List<IBlock> blocks = new List<IBlock>();
     public List<IBlock> doors = new List<IBlock>();
+    public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -115,22 +116,47 @@ public class Game1 : Game
         //link (player) update
         link.Update(gameTime);
 
-        //collision detect check
         CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
-            for (int x = 0; x < room.blockList.Count; x++)
+
+        //collision detect check for room element
+        for (int x = 0; x < room.blockList.Count; x++)
+        {
+            if (blocks[x].CollisionBox != null)
             {
-                if (blocks[x].CollisionBox != null)
+                CollisionType side = CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
+                if (side != CollisionType.None)
                 {
-                    CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
+                    PlayerBlockHandler.HandleCollision(link, side);
                 }
             }
+            else
+            {
+                PlayerBlockHandler.HandleCollision(link, CollisionType.None);
+            }
+        }
+        for (int x = 0; x < boundaryCollisionBox.Count; x++)
+        {
+            if (boundaryCollisionBox[x] != null)
+            {
+                CollisionType side = CollisionDetector.CheckCollision(link.collisionBox, boundaryCollisionBox[x]);
+                if (side != CollisionType.None)
+                {
+                    PlayerBlockHandler.HandleCollision(link, side);
+                }
+            }
+            else
+            {
+                PlayerBlockHandler.HandleCollision(link, CollisionType.None);
+            }
+        }
+
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
 
-        GraphicsDevice.Clear(Color.Black);
+        GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 
         room.Draw(_spriteBatch);
         currentBlock.Draw(_spriteBatch, 0 ,0);

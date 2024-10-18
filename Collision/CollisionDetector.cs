@@ -27,26 +27,26 @@ namespace SneakyLink.Collision
                 {
                     if (rect1.Top < rect2.Top)
                     {
-                        Debug.WriteLine("Collision Top Detected.");
-                        return CollisionType.Top;
+                        Debug.WriteLine("Collision Bottom Detected.");
+                        return CollisionType.Bottom;
                     }
                     else
                     {
-                        Debug.WriteLine("Collision Bottom Detected.");
-                        return CollisionType.Bottom;
+                        Debug.WriteLine("Collision Top Detected.");
+                        return CollisionType.Top;
                     }
                 }
                 else
                 {
                     if (rect1.Left < rect2.Left)
                     {
-                        Debug.WriteLine("Collision Left Detected.");
-                        return CollisionType.Left;
+                        Debug.WriteLine("Collision Right Detected.");
+                        return CollisionType.Right;
                     }
                     else
                     {
-                        Debug.WriteLine("Collision Right Detected.");
-                        return CollisionType.Right;
+                        Debug.WriteLine("Collision Left Detected.");
+                        return CollisionType.Left;
                     }
                 }
             }

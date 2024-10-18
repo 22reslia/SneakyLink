@@ -5,6 +5,7 @@ using SneakyLink.Enemies;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using SneakyLink.Collision;
 
 namespace SneakyLink.Scene
 {
@@ -24,6 +25,15 @@ namespace SneakyLink.Scene
             blockList = game.blocks;
             doorList = game.doors;
             LoadLevelTextures(game.Content);
+            //set collision box for the background
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 20));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 445, 20));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 420));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 445, 420));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 80, 100));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 640, 100));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 80, 275));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 640, 275));
         }
 
         public void LoadLevelTextures(ContentManager content)

@@ -56,6 +56,9 @@ namespace SneakyLink
             {
                 if (sceneCount < sceneList.Length)
                 {
+                    //clear the old collision box
+                    game.blocks.Clear();
+                    game.doors.Clear();
                     game.room = new Room(game, sceneList[sceneCount]);
                     sceneCount++;
                 }

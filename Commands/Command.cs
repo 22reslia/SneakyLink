@@ -1,5 +1,6 @@
 using SneakyLink;
 using SneakyLink.Player;
+using System.Diagnostics;
 
 public class GameExit : ICommand {
 
@@ -31,7 +32,10 @@ public class MoveRight : ICommand
     {
         link.stateMachine.currentDirection = PlayerDirection.playerRight;
         link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.X += link.velocity;
+        if (!link.isBlockedRight)
+        {
+            link.playerPosition.X += link.velocity;
+        }
     }
 }
 
@@ -49,7 +53,10 @@ public class MoveLeft : ICommand
     {
         link.stateMachine.currentDirection = PlayerDirection.playerLeft;
         link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.X -= link.velocity;
+        if (!link.isBlockedLeft)
+        {
+            link.playerPosition.X -= link.velocity;
+        }
     }
 }
 
@@ -67,7 +74,10 @@ public class MoveUp : ICommand
     {   
         link.stateMachine.currentDirection = PlayerDirection.playerUp;
         link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.Y -= link.velocity;
+        if (!link.isBlockedTop)
+        {
+            link.playerPosition.Y -= link.velocity;
+        }
     }
 }
 
@@ -85,7 +95,10 @@ public class MoveDown : ICommand
     {   
         link.stateMachine.currentDirection = PlayerDirection.playerDown;
         link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.Y += link.velocity;
+        if (!link.isBlockedBottom)
+        {
+            link.playerPosition.Y += link.velocity;
+        }
     }
 }
 
