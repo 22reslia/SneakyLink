@@ -27,26 +27,14 @@ namespace SneakyLink.Collision
                     break;
                 case CollisionType.Left:
                     link.isBlockedLeft = true;
-                    link.isBlockedRight = false;
-                    link.isBlockedTop = false;
-                    link.isBlockedBottom = false;
                     break;
                 case CollisionType.Right:
-                    link.isBlockedLeft = false;
                     link.isBlockedRight = true;
-                    link.isBlockedTop = false;
-                    link.isBlockedBottom = false;
                     break;
                 case CollisionType.Top:
-                    link.isBlockedLeft = false;
-                    link.isBlockedRight = false;
                     link.isBlockedTop = true;
-                    link.isBlockedBottom = false;
                     break;
                 case CollisionType.Bottom:
-                    link.isBlockedLeft = false;
-                    link.isBlockedRight = false;
-                    link.isBlockedTop = false;
                     link.isBlockedBottom = true;
                     break;
             }

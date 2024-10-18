@@ -28,8 +28,8 @@ namespace SneakyLink.Scene
             //set collision box for the background
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 20));
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 445, 20));
-            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 420));
-            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 445, 420));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 370));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 445, 370));
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 80, 100));
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 640, 100));
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 80, 275));
