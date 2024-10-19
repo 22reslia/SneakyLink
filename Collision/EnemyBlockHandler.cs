@@ -14,28 +14,28 @@ namespace SneakyLink.Collision
 {
     public class EnemyBlockHandler
     {
-        public static void HandleCollision(Gel enemy, CollisionType side)
+        public static void HandleCollision(IEnemy enemy, CollisionType side)
         {
             //Debug.Print(side.ToString());
             switch (side)
             {
                 case CollisionType.None:
-                    enemy.isBlockedLeft = false;
-                    enemy.isBlockedRight = false;
-                    enemy.isBlockedTop = false;
-                    enemy.isBlockedBottom = false;
+                    enemy.isBlockedL = false;
+                    enemy.isBlockedR = false;
+                    enemy.isBlockedT = false;
+                    enemy.isBlockedB = false;
                     break;
                 case CollisionType.Left:
-                    enemy.isBlockedLeft = true;
+                    enemy.isBlockedL = true;
                     break;
                 case CollisionType.Right:
-                    enemy.isBlockedRight = true;
+                    enemy.isBlockedR = true;
                     break;
                 case CollisionType.Top:
-                    enemy.isBlockedTop = true;
+                    enemy.isBlockedT = true;
                     break;
                 case CollisionType.Bottom:
-                    enemy.isBlockedBottom = true;
+                    enemy.isBlockedB = true;
                     break;
             }
         }
