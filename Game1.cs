@@ -113,6 +113,9 @@ public class Game1 : Game
         //current Enemy
         //currentEnemy.Update();
 
+        //for collision test
+        gel.Update();
+
         //link (player) update
         link.Update(gameTime);
 
@@ -124,20 +127,30 @@ public class Game1 : Game
             if (blocks[x].CollisionBox != null)
             {
                 CollisionType side = CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
+                CollisionType side2 = CollisionDetector.CheckCollision(gel.collisionBox, blocks[x].CollisionBox);
                 if (side != CollisionType.None)
                 {
                     PlayerBlockHandler.HandleCollision(link, side);
+                }
+                if (side2 != CollisionType.None)
+                {
+                    EnemyBlockHandler.HandleCollision(gel, side2);
                 }
             }
         }
         for (int x = 0; x < boundaryCollisionBox.Count; x++)
         {
             link.collisionBox.side = CollisionDetector.CheckCollision(link.collisionBox, boundaryCollisionBox[x]);
+            gel.collisionBox.side = CollisionDetector.CheckCollision(gel.collisionBox, boundaryCollisionBox[x]);
             if (link.collisionBox.side != CollisionType.None)
             {
                 PlayerBlockHandler.HandleCollision(link, link.collisionBox.side);
             }
-            
+            if (gel.collisionBox.side != CollisionType.None)
+            {
+                EnemyBlockHandler.HandleCollision(gel, gel.collisionBox.side);
+            }
+
         }
 
         base.Update(gameTime);
