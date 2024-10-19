@@ -17,6 +17,10 @@ namespace SneakyLink.Enemies
         private ISprite GelSprite;
         private int x;
         private int y;
+        public bool isBlockedTop;
+        public bool isBlockedBottom;
+        public bool isBlockedLeft;
+        public bool isBlockedRight;
 
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
@@ -27,6 +31,10 @@ namespace SneakyLink.Enemies
             stateMachine = new GelStateMachine();
             collisionBox = new CollisionBox(CollisionObjectType.Enemy, 40, 40, x, y);
             GelSprite = EnemySpriteFactory.Instance.CreateGelSprite();
+            isBlockedTop = false;
+            isBlockedBottom = false;
+            isBlockedLeft = false;
+            isBlockedRight = false;
         }
 
         public void ChangeDirection()
@@ -43,6 +51,13 @@ namespace SneakyLink.Enemies
         {
             GelSprite.Update();
             stateMachine.Update(this);
+            if (this.collisionBox.side == CollisionType.None)
+            {
+                isBlockedTop = false;
+                isBlockedBottom = false;
+                isBlockedLeft = false;
+                isBlockedRight = false;
+            }
 
             collisionBox.x = x; collisionBox.y = y;
         }

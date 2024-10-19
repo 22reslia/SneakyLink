@@ -64,20 +64,51 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case GelState.LeftNormal:
-                    gel.X -= 1;
-                    moveCount++;
+                    if (!gel.isBlockedLeft)
+                    {
+                        gel.X -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        gel.X += 1;
+                        moveCount++;
+                    }
                     break;
                 case GelState.RightNormal:
-                    gel.X += 1;
-                    moveCount++;
+                    if (!gel.isBlockedRight)
+                    {
+                        gel.X += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        gel.X -= 1;
+                        moveCount++;
+                    }
                     break;
                 case GelState.UpNormal:
-                    gel.Y -= 1;
-                    moveCount++;
+                    if (!gel.isBlockedTop) {
+                        gel.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        gel.Y += 1;
+                        moveCount++;
+                    }
                     break;
                 case GelState.DownNormal:
-                    gel.Y += 1;
-                    moveCount++;
+                    if (!gel.isBlockedBottom)
+                    {
+                        gel.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        gel.Y -= 1;
+                        moveCount++;
+                    }
                     break;
             }
         }
