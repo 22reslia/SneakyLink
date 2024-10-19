@@ -20,20 +20,20 @@ namespace SneakyLink
             game.link.stateMachine.currentDirection = Player.PlayerDirection.playerDown;
             game.link.stateMachine.currentState = Player.PlayerState.playerIdle;
             //load enemy part
-            //IEnemy Keese = new Enemies.Keese();
-            //IEnemy Zol = new Enemies.Zol();
-            //IEnemy Aquamentus = new Enemies.Aquamentus();
-            //IEnemy Gel = new Enemies.Gel();
-            //IEnemy Goriya = new Enemies.Goriya();
-            //IEnemy Stalfos = new Enemies.Stalfos();
-            //game.enemyList = new List<IEnemy>();
-            //game.enemyList.Add(Keese);
-            //game.enemyList.Add(Zol);
-            //game.enemyList.Add(Aquamentus);
-            //game.enemyList.Add(Gel);
-            //game.enemyList.Add(Goriya);
-            //game.enemyList.Add(Stalfos);
-            //game.currentEnemy = game.enemyList[0];
+            IEnemy Keese = new Enemies.Keese();
+            IEnemy Zol = new Enemies.Zol();
+            IEnemy Aquamentus = new Enemies.Aquamentus();
+            IEnemy Gel = new Enemies.Gel();
+            IEnemy Goriya = new Enemies.Goriya();
+            IEnemy Stalfos = new Enemies.Stalfos();
+            game.enemyList = new List<IEnemy>();
+            game.enemyList.Add(Keese);
+            game.enemyList.Add(Zol);
+            game.enemyList.Add(Aquamentus);
+            game.enemyList.Add(Gel);
+            game.enemyList.Add(Goriya);
+            game.enemyList.Add(Stalfos);
+            game.currentEnemy = game.enemyList[0];
 
             //ISprite Statue1 = new Blocks.Statue1Sprite();
             //ISprite Statue2 = new Blocks.Statue2Sprite();
