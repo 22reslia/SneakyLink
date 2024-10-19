@@ -25,6 +25,12 @@ namespace SneakyLink.Enemies
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
 
+        public bool isBlockedL { get => isBlockedLeft; set => isBlockedLeft = value; }
+        public bool isBlockedR { get => isBlockedRight; set => isBlockedRight = value; }
+        public bool isBlockedT { get => isBlockedTop; set => isBlockedTop = value; }
+        public bool isBlockedB { get => isBlockedBottom; set => isBlockedBottom = value; }
+        public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
+
         public Gel() {
             x = 400;
             y = 240;

@@ -69,20 +69,48 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case GoriyaState.LeftNormal:
-                    goriya.X -= 1;
-                    moveCount++;
+                    if (!goriya.isBlockedLeft)
+                    {
+                        goriya.X -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case GoriyaState.RightNormal:
-                    goriya.X += 1;
-                    moveCount++;
+                    if (!goriya.isBlockedRight)
+                    {
+                        goriya.X += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case GoriyaState.UpNormal:
-                    goriya.Y -= 1;
-                    moveCount++;
+                    if (!goriya.isBlockedTop)
+                    {
+                        goriya.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case GoriyaState.DownNormal:
-                    goriya.Y += 1;
-                    moveCount++;
+                    if (!goriya.isBlockedBottom)
+                    {
+                        goriya.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
             }
         }

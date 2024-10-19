@@ -63,43 +63,99 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case KeeseState.LeftNormal:
-                    keese.X -= 1;
-                    moveCount++;
+                    if (!keese.isBlockedLeft)
+                    {
+                        keese.X -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case KeeseState.RightNormal:
-                    keese.X += 1;
-                    moveCount++;
+                    if (!keese.isBlockedRight)
+                    {
+                        keese.X += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case KeeseState.DownNormal:
-                    keese.Y += 1;
-                    moveCount++;
+                    if (!keese.isBlockedBottom)
+                    {
+                        keese.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case KeeseState.UpNormal:
-                    keese.Y -= 1;
-                    moveCount++;
+                    if (keese.isBlockedTop)
+                    {
+                        keese.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case KeeseState.Idle:
                     moveCount++;
                     break;
                 case KeeseState.LeftUpNormal:
-                    keese.X -= 1;
-                    keese.Y -= 1;
-                    moveCount++;
+                    if (!keese.isBlockedLeft && !keese.isBlockedTop)
+                    {
+                        keese.X -= 1;
+                        keese.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case KeeseState.LeftDownNormal:
-                    keese.X -= 1;
-                    keese.Y += 1;
-                    moveCount++;
+                    if (!keese.isBlockedLeft && !keese.isBlockedBottom)
+                    {
+                        keese.X -= 1;
+                        keese.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case KeeseState.RightUpNormal:
-                    keese.X -= 1;
-                    keese.Y -= 1;
-                    moveCount++;
+                    if (!keese.isBlockedRight && !keese.isBlockedTop)
+                    {
+                        keese.X -= 1;
+                        keese.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case KeeseState.RightDownNormal:
-                    keese.X -= 1;
-                    keese.Y += 1;
-                    moveCount++;
+                    if (!keese.isBlockedRight && !keese.isBlockedBottom)
+                    {
+                        keese.X -= 1;
+                        keese.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
             }
         }

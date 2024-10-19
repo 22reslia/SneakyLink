@@ -71,7 +71,7 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        moveCount++;
+                        moveCount = 80;
                     }
                     break;
                 case GelState.RightNormal:
@@ -82,7 +82,7 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        moveCount++;
+                        moveCount = 80;
                     }
                     break;
                 case GelState.UpNormal:
@@ -92,7 +92,7 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        moveCount++;
+                        moveCount = 80;
                     }
                     break;
                 case GelState.DownNormal:
@@ -103,7 +103,7 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        moveCount++;
+                        moveCount = 80;
                     }
                     break;
             }

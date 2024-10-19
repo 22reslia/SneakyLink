@@ -16,10 +16,19 @@ namespace SneakyLink.Enemies
         private ISprite aquamentusSprite;
         private int x;
         private int y;
+        public bool isBlockedTop;
+        public bool isBlockedBottom;
+        public bool isBlockedLeft;
+        public bool isBlockedRight;
 
         public int X{ get => x; set => x = value; }
         public int Y{ get => y; set => y = value; }
         public ISprite AquamentusSprite{ get => aquamentusSprite; set => aquamentusSprite = value; }
+        public bool isBlockedL { get => isBlockedLeft; set => isBlockedLeft = value; }
+        public bool isBlockedR { get => isBlockedRight; set => isBlockedRight = value; }
+        public bool isBlockedT { get => isBlockedTop; set => isBlockedTop = value; }
+        public bool isBlockedB { get => isBlockedBottom; set => isBlockedBottom = value; }
+        public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
 
         public Aquamentus()
         {
@@ -28,6 +37,10 @@ namespace SneakyLink.Enemies
             stateMachine = new AquamentusStateMachine();
             collisionBox = new CollisionBox(CollisionObjectType.Enemy, 40, 40, x, y);
             aquamentusSprite = EnemySpriteFactory.Instance.CreateAquamentusLeftIdleEnemySprite();
+            isBlockedTop = false;
+            isBlockedBottom = false;
+            isBlockedLeft = false;
+            isBlockedRight = false;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -37,6 +50,13 @@ namespace SneakyLink.Enemies
         {
             aquamentusSprite.Update();
             stateMachine.Update(this);
+            if (this.collisionBox.side == CollisionType.None)
+            {
+                isBlockedTop = false;
+                isBlockedBottom = false;
+                isBlockedLeft = false;
+                isBlockedRight = false;
+            }
 
             collisionBox.x = x; collisionBox.y = y;
         }
