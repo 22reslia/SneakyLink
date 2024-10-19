@@ -17,7 +17,7 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
 
     //for collision testing
-    //public Gel gel;
+    public Gel gel;
 
     //Controllers for input
     private IController<Keys> _KeyboardController;
@@ -99,7 +99,7 @@ public class Game1 : Game
         initialize.Execute();
 
         //for collision testing
-        //gel = new Gel();
+        gel = new Gel();
 
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
@@ -111,10 +111,10 @@ public class Game1 : Game
         _KeyboardController.Update();
 
         //current Enemy
-        currentEnemy.Update();
+        //currentEnemy.Update();
 
         //for collision test
-        //gel.Update();
+        gel.Update();
 
         //link (player) update
         link.Update(gameTime);
@@ -127,28 +127,28 @@ public class Game1 : Game
             if (blocks[x].CollisionBox != null)
             {
                 CollisionType side = CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
-                CollisionType side2 = CollisionDetector.CheckCollision(currentEnemy.CollisionBox, blocks[x].CollisionBox);
+                CollisionType side2 = CollisionDetector.CheckCollision(gel.CollisionBox, blocks[x].CollisionBox);
                 if (side != CollisionType.None)
                 {
                     PlayerBlockHandler.HandleCollision(link, side);
                 }
                 if (side2 != CollisionType.None)
                 {
-                    EnemyBlockHandler.HandleCollision(currentEnemy, side2);
+                    EnemyBlockHandler.HandleCollision(gel, side2);
                 }
             }
         }
         for (int x = 0; x < boundaryCollisionBox.Count; x++)
         {
             link.collisionBox.side = CollisionDetector.CheckCollision(link.collisionBox, boundaryCollisionBox[x]);
-            currentEnemy.CollisionBox.side = CollisionDetector.CheckCollision(currentEnemy.CollisionBox, boundaryCollisionBox[x]);
+            gel.CollisionBox.side = CollisionDetector.CheckCollision(gel.CollisionBox, boundaryCollisionBox[x]);
             if (link.collisionBox.side != CollisionType.None)
             {
                 PlayerBlockHandler.HandleCollision(link, link.collisionBox.side);
             }
-            if (currentEnemy.CollisionBox.side != CollisionType.None)
+            if (gel.CollisionBox.side != CollisionType.None)
             {
-                EnemyBlockHandler.HandleCollision(currentEnemy, currentEnemy.CollisionBox.side);
+                EnemyBlockHandler.HandleCollision(gel, gel.CollisionBox.side);
             }
 
         }
@@ -165,10 +165,10 @@ public class Game1 : Game
         //currentBlock.Draw(_spriteBatch, 0, 0);
         //currentItem.Draw(_spriteBatch, 0, 0);
 
-        currentEnemy.Draw(_spriteBatch);
+        //currentEnemy.Draw(_spriteBatch);
 
         //for collision testing
-        //gel.Draw(_spriteBatch);
+        gel.Draw(_spriteBatch);
 
         //Draw player link
         link.Draw(_spriteBatch);
