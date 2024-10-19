@@ -17,15 +17,15 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
 
     //for collision testing
-    public Gel gel;
+    //public Gel gel;
 
     //Controllers for input
     private IController<Keys> _KeyboardController;
     //private IController<MouseButton> _MouseController;
     private ICommand initialize;
 
-    //public IEnemy currentEnemy;
-    //public List<IEnemy> enemyList;
+    public IEnemy currentEnemy;
+    public List<IEnemy> enemyList;
 
     public Player.Link link;
     //public List<ISprite> blockList;
@@ -72,8 +72,8 @@ public class Game1 : Game
 
         initialize = new InitializeObject(this);
         _KeyboardController.RegisterCommand(Keys.R, initialize);
-        //_KeyboardController.RegisterCommand(Keys.O, new PreviousEnemyCommand(this));
-        //_KeyboardController.RegisterCommand(Keys.P, new NextEnemyCommand(this));
+        _KeyboardController.RegisterCommand(Keys.O, new PreviousEnemyCommand(this));
+        _KeyboardController.RegisterCommand(Keys.P, new NextEnemyCommand(this));
 
         //_KeyboardController.RegisterCommand(Keys.Y, new NextBlockCommand(this));
         //_KeyboardController.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
@@ -99,7 +99,7 @@ public class Game1 : Game
         initialize.Execute();
 
         //for collision testing
-        gel = new Gel();
+        //gel = new Gel();
 
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
@@ -111,15 +111,15 @@ public class Game1 : Game
         _KeyboardController.Update();
 
         //current Enemy
-        //currentEnemy.Update();
+        currentEnemy.Update();
 
         //for collision test
-        gel.Update();
+        //gel.Update();
 
         //link (player) update
         link.Update(gameTime);
 
-        CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
+        //CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
 
         //collision detect check for room element
         for (int x = 0; x < room.blockList.Count; x++)
@@ -127,28 +127,28 @@ public class Game1 : Game
             if (blocks[x].CollisionBox != null)
             {
                 CollisionType side = CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
-                CollisionType side2 = CollisionDetector.CheckCollision(gel.collisionBox, blocks[x].CollisionBox);
+                CollisionType side2 = CollisionDetector.CheckCollision(currentEnemy.CollisionBox, blocks[x].CollisionBox);
                 if (side != CollisionType.None)
                 {
                     PlayerBlockHandler.HandleCollision(link, side);
                 }
                 if (side2 != CollisionType.None)
                 {
-                    EnemyBlockHandler.HandleCollision(gel, side2);
+                    EnemyBlockHandler.HandleCollision(currentEnemy, side2);
                 }
             }
         }
         for (int x = 0; x < boundaryCollisionBox.Count; x++)
         {
             link.collisionBox.side = CollisionDetector.CheckCollision(link.collisionBox, boundaryCollisionBox[x]);
-            gel.collisionBox.side = CollisionDetector.CheckCollision(gel.collisionBox, boundaryCollisionBox[x]);
+            currentEnemy.CollisionBox.side = CollisionDetector.CheckCollision(currentEnemy.CollisionBox, boundaryCollisionBox[x]);
             if (link.collisionBox.side != CollisionType.None)
             {
                 PlayerBlockHandler.HandleCollision(link, link.collisionBox.side);
             }
-            if (gel.collisionBox.side != CollisionType.None)
+            if (currentEnemy.CollisionBox.side != CollisionType.None)
             {
-                EnemyBlockHandler.HandleCollision(gel, gel.collisionBox.side);
+                EnemyBlockHandler.HandleCollision(currentEnemy, currentEnemy.CollisionBox.side);
             }
 
         }
@@ -165,10 +165,10 @@ public class Game1 : Game
         //currentBlock.Draw(_spriteBatch, 0, 0);
         //currentItem.Draw(_spriteBatch, 0, 0);
 
-        //currentEnemy.Draw(_spriteBatch);
+        currentEnemy.Draw(_spriteBatch);
 
         //for collision testing
-        gel.Draw(_spriteBatch);
+        //gel.Draw(_spriteBatch);
 
         //Draw player link
         link.Draw(_spriteBatch);
