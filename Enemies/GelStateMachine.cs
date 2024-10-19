@@ -48,7 +48,7 @@ namespace SneakyLink.Enemies
             if (currentState == GelState.Idle)
             {
                 counter++;
-                if (counter >= 30)
+                if (counter >= 40)
                 {
                     counter = 0;
                     this.ChangeDirection();
@@ -71,7 +71,6 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        gel.X += 1;
                         moveCount++;
                     }
                     break;
@@ -83,7 +82,6 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        gel.X -= 1;
                         moveCount++;
                     }
                     break;
@@ -94,7 +92,6 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        gel.Y += 1;
                         moveCount++;
                     }
                     break;
@@ -106,7 +103,6 @@ namespace SneakyLink.Enemies
                     }
                     else
                     {
-                        gel.Y -= 1;
                         moveCount++;
                     }
                     break;
