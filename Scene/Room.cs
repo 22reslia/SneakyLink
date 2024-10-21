@@ -30,10 +30,10 @@ namespace SneakyLink.Scene
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 445, 20));
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 370));
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 445, 370));
-            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 80, 100));
-            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 640, 100));
-            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 80, 275));
-            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 75, 315, 640, 275));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 80, 120, 80, 80));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 80, 120, 640, 80));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 80, 120, 80, 260));
+            game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 80, 120, 640, 260));
         }
 
         public void LoadLevelTextures(ContentManager content)

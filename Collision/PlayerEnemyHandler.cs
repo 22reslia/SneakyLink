@@ -24,19 +24,19 @@ namespace SneakyLink.Collision
                     break;
                 case CollisionType.Left:
                     link.isBlockedLeft = true;
-                    link.playerSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedLeftSprite();
+                    link.stateMachine.currentState = PlayerState.playerDamaged;
                     break;
                 case CollisionType.Right:
                     link.isBlockedRight = true;
-                    link.playerSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedRightSprite();
+                    link.stateMachine.currentState = PlayerState.playerDamaged;
                     break;
                 case CollisionType.Top:
                     link.isBlockedTop = true;
-                    link.playerSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedBackwardSprite();
+                    link.stateMachine.currentState = PlayerState.playerDamaged;
                     break;
                 case CollisionType.Bottom:
                     link.isBlockedBottom = true;
-                    link.playerSprite = PlayerSpriteFactory.Instance.CreateLinkDamagedForwardSprite();
+                    link.stateMachine.currentState = PlayerState.playerDamaged;
                     break;
             }
         }

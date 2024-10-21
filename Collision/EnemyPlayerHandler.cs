@@ -21,19 +21,15 @@ namespace SneakyLink.Collision
                     break;
                 case CollisionType.Left:
                     enemy.isBlockedL = true;
-                    enemy.X += 0;
                     break;
                 case CollisionType.Right:
                     enemy.isBlockedR = true;
-                    enemy.X -= 0;
                     break;
                 case CollisionType.Top:
                     enemy.isBlockedT = true;
-                    enemy.Y += 0;
                     break;
                 case CollisionType.Bottom:
                     enemy.isBlockedB = true;
-                    enemy.Y -= 0;
                     break;
             }
         }

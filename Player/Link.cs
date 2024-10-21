@@ -22,6 +22,7 @@ public class Link
     public bool isBlockedBottom;
     public bool isBlockedLeft;
     public bool isBlockedRight;
+
     //creats a player with basic stats
     public Link()
         {
@@ -77,7 +78,7 @@ public class Link
             isBlockedRight = false;
         }
 
-    //calls the ISprite update for given sprite
-    playerSprite.Update();
+            //calls the ISprite update for given sprite
+            playerSprite.Update();
         }
 }

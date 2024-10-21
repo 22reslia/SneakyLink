@@ -30,12 +30,12 @@ public class MoveRight : ICommand
 
     public void Execute () 
     {
-        link.stateMachine.currentDirection = PlayerDirection.playerRight;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        if (!link.isBlockedRight)
-        {
-            link.playerPosition.X += link.velocity;
-        }
+         link.stateMachine.currentDirection = PlayerDirection.playerRight;
+         link.stateMachine.currentState = PlayerState.playerMoving;
+         if (!link.isBlockedRight)
+         {
+             link.playerPosition.X += link.velocity;
+         }
     }
 }
 
