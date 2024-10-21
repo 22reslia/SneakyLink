@@ -5,6 +5,8 @@ namespace SneakyLink
 {
     public interface IEnemy
     {
+        public int X {  get; set; }
+        public int Y { get; set; }
         public bool isBlockedL { get; set; }
         public bool isBlockedR { get; set; }
         public bool isBlockedT { get; set; }

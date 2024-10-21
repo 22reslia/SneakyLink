@@ -119,22 +119,25 @@ public class Game1 : Game
         //link (player) update
         link.Update(gameTime);
 
-        //CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
+        CollisionType side1 = CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
+        CollisionType side2 = CollisionDetector.CheckCollision(gel.CollisionBox, link.collisionBox);
+        PlayerEnemyHandler.HandleCollision(link, side1);
+        EnemyPlayerHandler.HandleCollision(gel, side2);
 
         //collision detect check for room element
         for (int x = 0; x < room.blockList.Count; x++)
         {
             if (blocks[x].CollisionBox != null)
             {
-                CollisionType side = CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
-                CollisionType side2 = CollisionDetector.CheckCollision(gel.CollisionBox, blocks[x].CollisionBox);
-                if (side != CollisionType.None)
+                CollisionType side3 = CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
+                CollisionType side4 = CollisionDetector.CheckCollision(gel.CollisionBox, blocks[x].CollisionBox);
+                if (side3 != CollisionType.None)
                 {
-                    PlayerBlockHandler.HandleCollision(link, side);
+                    PlayerBlockHandler.HandleCollision(link, side3);
                 }
-                if (side2 != CollisionType.None)
+                if (side4 != CollisionType.None)
                 {
-                    EnemyBlockHandler.HandleCollision(gel, side2);
+                    EnemyBlockHandler.HandleCollision(gel, side4);
                 }
             }
         }
@@ -145,7 +148,6 @@ public class Game1 : Game
             if (link.collisionBox.side != CollisionType.None)
             {
                 PlayerBlockHandler.HandleCollision(link, link.collisionBox.side);
-                PlayerEnemyHandler.HandleCollision(link, link.collisionBox.side);
             }
             if (gel.CollisionBox.side != CollisionType.None)
             {
