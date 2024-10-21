@@ -145,6 +145,7 @@ public class Game1 : Game
             if (link.collisionBox.side != CollisionType.None)
             {
                 PlayerBlockHandler.HandleCollision(link, link.collisionBox.side);
+                PlayerEnemyHandler.HandleCollision(link, link.collisionBox.side);
             }
             if (gel.CollisionBox.side != CollisionType.None)
             {
