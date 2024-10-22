@@ -28,48 +28,37 @@ public class KeyboardController : IController<Keys>
         }
     }
 }
-// public class MouseController : IController<MouseButton>
-// {
+public class MouseController : IController<MouseButton>
+{
 
-//     private Dictionary<MouseButton, ICommand> controllerMappings;
-//     private MouseState oldState;
-//     private Game1 game;
+    private Dictionary<MouseButton, ICommand> controllerMappings;
+    private Game1 game;
+    private MouseState oldMouseState;
 
-//     public MouseController(Game1 game)
-//     {
-//         controllerMappings = new Dictionary<MouseButton, ICommand>();
-//         this.game = game;
-//     }
-//     public void RegisterCommand(MouseButton button, ICommand command)
-//     {
-//         controllerMappings.Add(button, command);
-//     }
+    public MouseController(Game1 game)
+    {
+        controllerMappings = new Dictionary<MouseButton, ICommand>();
+        this.game = game;
+        oldMouseState = Mouse.GetState();
+    }
+    public void RegisterCommand(MouseButton button, ICommand command)
+    {
+        controllerMappings[button] = command;
+    }
 
-//     public void Update()
-//     {
-//         MouseState newState = Mouse.GetState();
+    public void Update()
+    {
+        MouseState newMouseState = Mouse.GetState();
+        if (newMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released && controllerMappings.ContainsKey(MouseButton.Left))
+        {
+            controllerMappings[MouseButton.Left].Execute();
+        }
 
-//         if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released && newState.X <= game._graphics.PreferredBackBufferWidth / 2 && newState.Y <= game._graphics.PreferredBackBufferHeight / 2)
-//         {
-//             controllerMappings[MouseButton.leftButton0].Execute();
-//         }
-//         else if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released && newState.X >= game._graphics.PreferredBackBufferWidth / 2 && newState.Y <= game._graphics.PreferredBackBufferHeight / 2)
-//         {
-//             controllerMappings[MouseButton.leftButton1].Execute();
-//         }
-//         else if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released && newState.X <= game._graphics.PreferredBackBufferWidth / 2 && newState.Y >= game._graphics.PreferredBackBufferHeight / 2)
-//         {
-//             controllerMappings[MouseButton.leftButton2].Execute();
-//         }
-//         else if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released && newState.X >= game._graphics.PreferredBackBufferWidth / 2 && newState.Y >= game._graphics.PreferredBackBufferHeight / 2)
-//         {
-//             controllerMappings[MouseButton.leftButton3].Execute();
-//         }
-//         else if (newState.RightButton == ButtonState.Pressed && oldState.RightButton == ButtonState.Released)
-//         {
-//             controllerMappings[MouseButton.rightButton].Execute();
-//         }
+        if (newMouseState.RightButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released && controllerMappings.ContainsKey(MouseButton.Right))
+        {
+            controllerMappings[MouseButton.Right].Execute();
+        }
 
-//         oldState = newState;
-//     }
-// }
+        oldMouseState = newMouseState;
+    }
+}

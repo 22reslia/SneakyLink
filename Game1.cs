@@ -20,7 +20,7 @@ public class Game1 : Game
 
     //Controllers for input
     private IController<Keys> _KeyboardController;
-    //private IController<MouseButton> _MouseController;
+    private IController<MouseButton> _MouseController;
     //private ICommand initialize;
 
     public IEnemy currentEnemy;
@@ -48,6 +48,7 @@ public class Game1 : Game
     {
         // TODO: Add your initialization logic here
         _KeyboardController = new KeyboardController();
+        _MouseController = new MouseController(this);
 
         //initializes Link contructor
         link = new Link();
@@ -82,7 +83,7 @@ public class Game1 : Game
         //_KeyboardController.RegisterCommand(Keys.I, new NextItemCommand(this));
         //_KeyboardController.RegisterCommand(Keys.U, new PreviousItemCommand(this));
 
-        _KeyboardController.RegisterCommand(Keys.M, new ChangeSceneCommand(this));
+        _MouseController.RegisterCommand(MouseButton.Left, new ChangeSceneCommand(this));
 
         base.Initialize();
     }
@@ -111,6 +112,7 @@ public class Game1 : Game
         //currentItem.Update();
         //input update
         _KeyboardController.Update();
+        _MouseController.Update();
 
         //current Enemy
         //currentEnemy.Update();
