@@ -8,8 +8,11 @@ namespace SneakyLink.Enemies
 {
     public class AquamentusFireBallSprite : ISprite
     {
-        Texture2D image;
-        Rectangle sourceRectangle;
+        private int x;
+        private int y;
+        private ISprite fireBallSprite;
+        private int velocityX;
+        private int velocityY;
 
         public AquamentusFireBallSprite(Texture2D text)
         {

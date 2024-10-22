@@ -3,19 +3,19 @@ using SneakyLink.Items;
 
 namespace SneakyLink.Projectiles
 {
-    public class LinkArrow
+    public class LinkBomb
     {
         private int x;
         private int y;
-        private ISprite arrowSprite;
+        private ISprite bombSprite;
         private int velocityX;
         private int velocityY;
 
-        public LinkArrow(int x, int y)
+        public LinkBomb(int x, int y)
         {
             this.x = x;
             this.y = y;
-            arrowSprite = new ArrowSprite();
+            bombSprite = new BombSprite();
             velocityX = 0;
             velocityY = 0;
         }
@@ -32,13 +32,13 @@ namespace SneakyLink.Projectiles
         {
             x += velocityX;
             y += velocityY;
-            arrowSprite.Update();
+            bombSprite.Update();
         }
 
         // Draw the arrow on the screen
         public void Draw(SpriteBatch spriteBatch)
         {
-            arrowSprite.Draw(spriteBatch, x, y);
+            bombSprite.Draw(spriteBatch, x, y);
         }
     }
 }
