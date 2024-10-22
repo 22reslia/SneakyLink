@@ -6,7 +6,7 @@ namespace SneakyLink
     {
         private Game1 game;
         private int sceneCount;
-        private string[] sceneList = ["..\\..\\..\\Scene\\RoomOne.csv", 
+        private string[] sceneList = [
             "..\\..\\..\\Scene\\RoomTwo.csv", 
             "..\\..\\..\\Scene\\RoomThree.csv",
             "..\\..\\..\\Scene\\RoomFour.csv",
@@ -22,7 +22,8 @@ namespace SneakyLink
             "..\\..\\..\\Scene\\RoomFourteen.csv",
             "..\\..\\..\\Scene\\RoomFifteen.csv",
             "..\\..\\..\\Scene\\RoomSixteen.csv",
-            "..\\..\\..\\Scene\\RoomSeventeen.csv"];
+            "..\\..\\..\\Scene\\RoomSeventeen.csv",
+            "..\\..\\..\\Scene\\RoomOne.csv"];
 
         public ChangeSceneCommand(Game1 game)
         {
