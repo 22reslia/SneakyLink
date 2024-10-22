@@ -21,16 +21,10 @@ public class Game1 : Game
     //Controllers for input
     private IController<Keys> _KeyboardController;
     private IController<MouseButton> _MouseController;
-    //private ICommand initialize;
-
-    public IEnemy currentEnemy;
-    public List<IEnemy> enemyList;
+    //private ICommand initialize;w
 
     public Player.Link link;
-    //public List<ISprite> blockList;
     public List<ISprite> itemList;
-    //public ISprite currentBlock;
-    //public ISprite currentItem;
 
     public Room room;
     //the collision box of elements in the room
@@ -73,16 +67,6 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link));
         _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link));
 
-        //initialize = new InitializeObject(this);
-        //_KeyboardController.RegisterCommand(Keys.R, initialize);
-        _KeyboardController.RegisterCommand(Keys.O, new PreviousEnemyCommand(this));
-        _KeyboardController.RegisterCommand(Keys.P, new NextEnemyCommand(this));
-
-        //_KeyboardController.RegisterCommand(Keys.Y, new NextBlockCommand(this));
-        //_KeyboardController.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
-        //_KeyboardController.RegisterCommand(Keys.I, new NextItemCommand(this));
-        //_KeyboardController.RegisterCommand(Keys.U, new PreviousItemCommand(this));
-
         _MouseController.RegisterCommand(MouseButton.Left, new ChangeSceneCommand(this));
 
         base.Initialize();
@@ -99,8 +83,6 @@ public class Game1 : Game
 
         link.SetSprite();
 
-        //initialize.Execute();
-
         //for collision testing
         gel = new Gel();
 
@@ -109,15 +91,10 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        //currentItem.Update();
         //input update
         _KeyboardController.Update();
         _MouseController.Update();
 
-        //current Enemy
-        //currentEnemy.Update();
-
-        //for collision test
         gel.Update();
 
         //link (player) update
@@ -135,12 +112,6 @@ public class Game1 : Game
         GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 
         room.Draw(_spriteBatch);
-        //currentBlock.Draw(_spriteBatch, 0, 0);
-        //currentItem.Draw(_spriteBatch, 0, 0);
-
-        //currentEnemy.Draw(_spriteBatch);
-
-        //for collision testing
         gel.Draw(_spriteBatch);
 
         //Draw player link
