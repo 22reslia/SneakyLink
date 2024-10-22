@@ -1,5 +1,4 @@
 ﻿using SneakyLink.Blocks;
-using SneakyLink.Collision;
 using SneakyLink.Enemies;
 using SneakyLink.Player;
 using SneakyLink.Scene;
@@ -9,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SneakyLink
+namespace SneakyLink.Collision
 {
     public class CollisionsCheck
     {
