@@ -31,6 +31,8 @@ public class Game1 : Game
     public List<IBlock> blocks = new List<IBlock>();
     public List<IBlock> doors = new List<IBlock>();
     public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
+
+    public int sceneCount;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -67,7 +69,9 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link));
         _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link));
 
-        _MouseController.RegisterCommand(MouseButton.Left, new ChangeSceneCommand(this));
+        _MouseController.RegisterCommand(MouseButton.Left, new PreviousSceneCommand(this));
+        _MouseController.RegisterCommand(MouseButton.Right, new NextSceneCommand(this));
+        sceneCount = 0;
 
         base.Initialize();
     }
@@ -85,6 +89,7 @@ public class Game1 : Game
 
         //for collision testing
         gel = new Gel();
+
 
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }

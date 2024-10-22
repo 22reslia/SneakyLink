@@ -2,12 +2,12 @@
 
 namespace SneakyLink
 {
-    public class ChangeSceneCommand : ICommand
+    public class NextSceneCommand : ICommand
     {
         private Game1 game;
-        private int sceneCount;
         private string[] sceneList = [
-            "..\\..\\..\\Scene\\RoomTwo.csv", 
+            "..\\..\\..\\Scene\\RoomOne.csv",
+            "..\\..\\..\\Scene\\RoomTwo.csv",
             "..\\..\\..\\Scene\\RoomThree.csv",
             "..\\..\\..\\Scene\\RoomFour.csv",
             "..\\..\\..\\Scene\\RoomFive.csv",
@@ -22,27 +22,25 @@ namespace SneakyLink
             "..\\..\\..\\Scene\\RoomFourteen.csv",
             "..\\..\\..\\Scene\\RoomFifteen.csv",
             "..\\..\\..\\Scene\\RoomSixteen.csv",
-            "..\\..\\..\\Scene\\RoomSeventeen.csv",
-            "..\\..\\..\\Scene\\RoomOne.csv"];
+            "..\\..\\..\\Scene\\RoomSeventeen.csv"];
 
-        public ChangeSceneCommand(Game1 game)
+        public NextSceneCommand(Game1 game)
         {
             this.game = game;
-            sceneCount = 0;
         }
         public void Execute()
         {
-                if (sceneCount < sceneList.Length)
+                if (game.sceneCount < sceneList.Length)
                 {
                     //clear the old collision box
                     game.blocks.Clear();
                     game.doors.Clear();
-                    game.room = new Room(game, sceneList[sceneCount]);
-                    sceneCount++;
+                    game.room = new Room(game, sceneList[game.sceneCount]);
+                    game.sceneCount++;
                 }
                 else
                 {
-                    sceneCount = 0;
+                    game.sceneCount = 0;
                 }
         }
     }

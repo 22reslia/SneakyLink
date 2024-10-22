@@ -54,7 +54,7 @@ public class MouseController : IController<MouseButton>
             controllerMappings[MouseButton.Left].Execute();
         }
 
-        if (newMouseState.RightButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released && controllerMappings.ContainsKey(MouseButton.Right))
+        if (newMouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released && controllerMappings.ContainsKey(MouseButton.Right))
         {
             controllerMappings[MouseButton.Right].Execute();
         }
