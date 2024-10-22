@@ -6,7 +6,6 @@ namespace SneakyLink
     {
         private Game1 game;
         private int sceneCount;
-        private int clock;
         private string[] sceneList = ["..\\..\\..\\Scene\\RoomOne.csv", 
             "..\\..\\..\\Scene\\RoomTwo.csv", 
             "..\\..\\..\\Scene\\RoomThree.csv",
@@ -29,7 +28,6 @@ namespace SneakyLink
         {
             this.game = game;
             sceneCount = 0;
-            clock = 0;
         }
         public void Execute()
         {
