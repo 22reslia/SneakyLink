@@ -27,7 +27,7 @@ namespace SneakyLink.Blocks
             this.positionX = positionX;
             this.positionY = positionY;
             image = BlockSpriteFactory.Instance.GetSheet();
-            collisionBox = new CollisionBox(CollisionObjectType.Interactive, 40, 40, positionX, positionY);
+            collisionBox = new CollisionBox(CollisionObjectType.Interactive, 80, 80, positionX, positionY);
         }
 
         public void Update()
