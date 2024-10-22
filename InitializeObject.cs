@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace SneakyLink
 {
-    public class InitializeObject : ICommand
+    public class InitializeObject
     {
-        Game1 game;
-        public InitializeObject(Game1 game)
-        {
-            this.game = game;
-        }
-        public void Execute()
+        public static void initializeObject(Game1 game)
         {   
             game.link.playerPosition.X = 200;
             game.link.playerPosition.Y = 200;

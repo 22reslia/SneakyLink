@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using SneakyLink.Player;
-using SneakyLink.Enemies;
-using SneakyLink.Scene;
-using SneakyLink.Collision;
 using SneakyLink.Blocks;
-using System.Drawing;
+using SneakyLink.Collision;
+using SneakyLink.Enemies;
+using SneakyLink.Player;
+using SneakyLink.Scene;
+using System.Collections.Generic;
 
 namespace SneakyLink;
 
@@ -22,7 +21,7 @@ public class Game1 : Game
     //Controllers for input
     private IController<Keys> _KeyboardController;
     //private IController<MouseButton> _MouseController;
-    private ICommand initialize;
+    //private ICommand initialize;
 
     public IEnemy currentEnemy;
     public List<IEnemy> enemyList;
@@ -53,6 +52,9 @@ public class Game1 : Game
         //initializes Link contructor
         link = new Link();
 
+        //initializes all object
+        InitializeObject.initializeObject(this);
+
         //Initilizing Commands to specific keys
         _KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
         _KeyboardController.RegisterCommand(Keys.Right, new MoveRight(link));
@@ -70,8 +72,8 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link));
         _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link));
 
-        initialize = new InitializeObject(this);
-        _KeyboardController.RegisterCommand(Keys.R, initialize);
+        //initialize = new InitializeObject(this);
+        //_KeyboardController.RegisterCommand(Keys.R, initialize);
         _KeyboardController.RegisterCommand(Keys.O, new PreviousEnemyCommand(this));
         _KeyboardController.RegisterCommand(Keys.P, new NextEnemyCommand(this));
 
@@ -96,7 +98,7 @@ public class Game1 : Game
 
         link.SetSprite();
 
-        initialize.Execute();
+        //initialize.Execute();
 
         //for collision testing
         gel = new Gel();
@@ -119,42 +121,8 @@ public class Game1 : Game
         //link (player) update
         link.Update(gameTime);
 
-        CollisionType side1 = CollisionDetector.CheckCollision(link.collisionBox, gel.collisionBox);
-        CollisionType side2 = CollisionDetector.CheckCollision(gel.CollisionBox, link.collisionBox);
-        PlayerEnemyHandler.HandleCollision(link, side1);
-        EnemyPlayerHandler.HandleCollision(gel, side2);
-
-        //collision detect check for room element
-        for (int x = 0; x < room.blockList.Count; x++)
-        {
-            if (blocks[x].CollisionBox != null)
-            {
-                CollisionType side3 = CollisionDetector.CheckCollision(link.collisionBox, blocks[x].CollisionBox);
-                CollisionType side4 = CollisionDetector.CheckCollision(gel.CollisionBox, blocks[x].CollisionBox);
-                if (side3 != CollisionType.None)
-                {
-                    PlayerBlockHandler.HandleCollision(link, side3);
-                }
-                if (side4 != CollisionType.None)
-                {
-                    EnemyBlockHandler.HandleCollision(gel, side4);
-                }
-            }
-        }
-        for (int x = 0; x < boundaryCollisionBox.Count; x++)
-        {
-            link.collisionBox.side = CollisionDetector.CheckCollision(link.collisionBox, boundaryCollisionBox[x]);
-            gel.CollisionBox.side = CollisionDetector.CheckCollision(gel.CollisionBox, boundaryCollisionBox[x]);
-            if (link.collisionBox.side != CollisionType.None)
-            {
-                PlayerBlockHandler.HandleCollision(link, link.collisionBox.side);
-            }
-            if (gel.CollisionBox.side != CollisionType.None)
-            {
-                EnemyBlockHandler.HandleCollision(gel, gel.CollisionBox.side);
-            }
-
-        }
+        //check collision
+        CollisionsCheck.collisionCheck(this);
 
         base.Update(gameTime);
     }
