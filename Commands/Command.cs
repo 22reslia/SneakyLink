@@ -144,6 +144,7 @@ public class UseItem : ICommand
     public void Execute () 
     {   
         link.stateMachine.currentState = PlayerState.playerUseItem;
+        
     }
     
 }
