@@ -8,6 +8,5 @@ namespace SneakyLink.Collision
     public interface ICollision
     {
         CollisionObjectType ObjectType { get; }
-        void OnCollision(ICollision other, CollisionType collisionType);
     }
 }

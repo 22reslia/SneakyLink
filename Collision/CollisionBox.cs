@@ -1,12 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SneakyLink.Collision
+﻿namespace SneakyLink.Collision
 {
     public class CollisionBox : ICollision
     {
@@ -23,10 +15,5 @@ namespace SneakyLink.Collision
             this.y = y;
         }
         public CollisionObjectType ObjectType => type;
-
-        public void OnCollision(ICollision other, CollisionType collisionType)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

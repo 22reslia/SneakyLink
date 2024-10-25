@@ -30,12 +30,15 @@ public class MoveRight : ICommand
 
     public void Execute () 
     {
-         link.stateMachine.currentDirection = PlayerDirection.playerRight;
-         link.stateMachine.currentState = PlayerState.playerMoving;
-         if (!link.isBlockedRight)
-         {
-             link.playerPosition.X += link.velocity;
-         }
+        link.stateMachine.currentDirection = PlayerDirection.playerRight;
+        if (link.isMovable)
+        {
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedRight)
+            {
+                link.playerPosition.X += link.velocity;
+            }
+        }
     }
 }
 
@@ -52,10 +55,13 @@ public class MoveLeft : ICommand
     public void Execute () 
     {
         link.stateMachine.currentDirection = PlayerDirection.playerLeft;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        if (!link.isBlockedLeft)
+        if (link.isMovable)
         {
-            link.playerPosition.X -= link.velocity;
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedLeft)
+            {
+                link.playerPosition.X -= link.velocity;
+            }
         }
     }
 }
@@ -73,10 +79,13 @@ public class MoveUp : ICommand
     public void Execute ()
     {   
         link.stateMachine.currentDirection = PlayerDirection.playerUp;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        if (!link.isBlockedTop)
+        if (link.isMovable)
         {
-            link.playerPosition.Y -= link.velocity;
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedTop)
+            {
+                link.playerPosition.Y -= link.velocity;
+            }
         }
     }
 }
@@ -94,10 +103,13 @@ public class MoveDown : ICommand
     public void Execute () 
     {   
         link.stateMachine.currentDirection = PlayerDirection.playerDown;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        if (!link.isBlockedBottom)
+        if (link.isMovable)
         {
-            link.playerPosition.Y += link.velocity;
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedBottom)
+            {
+                link.playerPosition.Y += link.velocity;
+            }
         }
     }
 }

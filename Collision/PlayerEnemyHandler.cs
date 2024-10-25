@@ -1,13 +1,4 @@
-﻿using Microsoft.Xna.Framework.Input;
-using SneakyLink.Enemies;
-using SneakyLink.Player;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SneakyLink.Player;
 
 namespace SneakyLink.Collision
 {
@@ -24,7 +15,9 @@ namespace SneakyLink.Collision
                     link.isBlockedBottom = false;
                     break;
                 case CollisionType.Left:
+                    link.playerPosition.X += 20;
                     link.isBlockedLeft = true;
+                    link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
@@ -33,7 +26,9 @@ namespace SneakyLink.Collision
                     }
                     break;
                 case CollisionType.Right:
+                    link.playerPosition.X -= 20;
                     link.isBlockedRight = true;
+                    link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
@@ -42,7 +37,9 @@ namespace SneakyLink.Collision
                     }
                     break;
                 case CollisionType.Top:
+                    link.playerPosition.Y += 20;
                     link.isBlockedTop = true;
+                    link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
@@ -51,7 +48,9 @@ namespace SneakyLink.Collision
                     }
                     break;
                 case CollisionType.Bottom:
+                    link.playerPosition.Y -= 20;
                     link.isBlockedBottom = true;
+                    link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {

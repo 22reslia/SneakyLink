@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -25,8 +26,12 @@ public class Link
 
     //hp
     public bool isV;
+    public bool isMovable;
     public int maxHealth;
     public int currentHealth;
+
+    int vCounter;
+    int mCounter;
 
     //creats a player with basic stats
     public Link()
@@ -34,6 +39,7 @@ public class Link
         maxHealth = 3;
         currentHealth = maxHealth;
         isV = false;
+        isMovable = true;
 
         velocity = 3;
         playerPosition.X = 100;
@@ -43,6 +49,9 @@ public class Link
         isBlockedBottom = false;
         isBlockedLeft = false;
         isBlockedRight = false;
+
+        vCounter = 0;
+        mCounter = 0;
         //creates a state machine and gets the current sprite based on directional movement
         stateMachine = new PlayerStateMachine(playerPosition);
         collisionBox = new CollisionBox(CollisionObjectType.Player, 40, 40, (int)playerPosition.X, (int)playerPosition.Y);
@@ -90,11 +99,22 @@ public class Link
         //update isV
         if (isV)
         {
-            int vCounter = 0;
             vCounter++;
             if (vCounter == 100)
             {
                 isV = false;
+                vCounter = 0;
+            }
+        }
+
+        //update isMovable
+        if (this.collisionBox.side == CollisionType.None)
+        {
+            mCounter++;
+            if (mCounter == 50)
+            {
+                isMovable = true;
+                mCounter = 0;
             }
         }
 
