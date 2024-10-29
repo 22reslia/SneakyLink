@@ -34,9 +34,9 @@ namespace SneakyLink.Enemies
         public bool isBlockedB { get => isBlockedBottom; set => isBlockedBottom = value; }
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
 
-        public Gel() {
-            x = 400;
-            y = 240;
+        public Gel(int x, int y) {
+            this.x = x;
+            this.y = y;
             maxHealth = 3;
             currentHealth = maxHealth;
             stateMachine = new GelStateMachine();

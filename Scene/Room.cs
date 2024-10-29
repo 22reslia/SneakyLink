@@ -18,12 +18,15 @@ namespace SneakyLink.Scene
         private string[,] levelData;
         public List<IBlock> blockList;
         public List<IBlock> doorList;
+        public List<IEnemy> enemyList;
 
-        public Room(Game1 game, string filePath) {
+        public Room(Game1 game, string filePath)
+        {
             this.filePath = filePath;
             sceneManage = new SceneManage(filePath, scene);
             blockList = game.blocks;
             doorList = game.doors;
+            enemyList = game.enemies;
             LoadLevelTextures(game.Content);
             //set collision box for the background
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 20));
@@ -68,7 +71,7 @@ namespace SneakyLink.Scene
                 doorList.Add(new Doors(levelData[0, x], positionX, positionY));
             }
             //store the block information
-            for (int y = 1; y < levelData.GetLength(0); y++)
+            for (int y = 1; y < 8; y++)
             {
                 for (int x = 0; x < levelData.GetLength(1); x++)
                 {
@@ -99,6 +102,24 @@ namespace SneakyLink.Scene
                             break;
                         case "stair":
                             blockList.Add(new Stair(positionX, positionY));
+                            break;
+                    }
+                }
+            }
+
+            //store enemies and items information
+            for (int y = 8; y < 15; y++)
+            {
+                for (int x = 0; x < levelData.GetLength(1); x++)
+                {
+                    int positionX = 160 + x * 40;
+                    int positionY = 100 + (y - 8) * 40;
+                    switch (levelData[y, x])
+                    {
+                        case "gel":
+                            enemyList.Add(new Gel(positionX, positionY));
+                            break;
+                        case "empty":
                             break;
                     }
                 }

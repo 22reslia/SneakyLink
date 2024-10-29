@@ -15,9 +15,6 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    //for collision testing
-    public Gel gel;
-
     //Controllers for input
     private IController<Keys> _KeyboardController;
     private IController<MouseButton> _MouseController;
@@ -25,7 +22,6 @@ public class Game1 : Game
 
     public Player.Link link;
     public List<ISprite> itemList;
-    public List<IEnemy> enemyList;
 
     public Room room;
     //the collision box of elements in the room
@@ -33,7 +29,9 @@ public class Game1 : Game
     public List<IBlock> doors = new List<IBlock>();
     public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
 
-    public int sceneCount;
+    public List<IEnemy> enemies = new List<IEnemy>();
+
+    //public int sceneCount;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -70,9 +68,9 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link));
         _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link));
 
-        _MouseController.RegisterCommand(MouseButton.Left, new PreviousSceneCommand(this));
-        _MouseController.RegisterCommand(MouseButton.Right, new NextSceneCommand(this));
-        sceneCount = 0;
+        //_MouseController.RegisterCommand(MouseButton.Left, new PreviousSceneCommand(this));
+        //_MouseController.RegisterCommand(MouseButton.Right, new NextSceneCommand(this));
+        //sceneCount = 0;
 
         base.Initialize();
     }
@@ -88,8 +86,6 @@ public class Game1 : Game
 
         link.SetSprite();
 
-        //for collision testing
-        gel = new Gel();
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
@@ -99,7 +95,10 @@ public class Game1 : Game
         _KeyboardController.Update();
         _MouseController.Update();
 
-        gel.Update();
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.Update();
+        }
 
         //link (player) update
         link.Update(gameTime);
@@ -116,7 +115,10 @@ public class Game1 : Game
         GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 
         room.Draw(_spriteBatch);
-        gel.Draw(_spriteBatch);
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.Draw(_spriteBatch);
+        }
 
         //Draw player link
         link.Draw(_spriteBatch);
