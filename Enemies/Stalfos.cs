@@ -33,10 +33,10 @@ namespace SneakyLink.Enemies
         public bool isBlockedB { get => isBlockedBottom; set => isBlockedBottom = value; }
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
 
-        public Stalfos()
+        public Stalfos(int x, int y)
         {
-            x = 400;
-            y = 240;
+            this.x = x;
+            this.y = y;
             maxHealth = 3;
             currentHealth = maxHealth;
             stateMachine = new StalfosStateMachine();

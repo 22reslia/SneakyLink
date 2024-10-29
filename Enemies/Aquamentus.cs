@@ -34,10 +34,10 @@ namespace SneakyLink.Enemies
         public bool isBlockedB { get => isBlockedBottom; set => isBlockedBottom = value; }
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
 
-        public Aquamentus()
+        public Aquamentus(int x, int y)
         {
-            x = 400;
-            y = 240;
+            this.x = x;
+            this.y = y;
             maxHealth = 5;
             currentHealth = maxHealth;
             stateMachine = new AquamentusStateMachine();
