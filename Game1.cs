@@ -25,6 +25,7 @@ public class Game1 : Game
 
     public Player.Link link;
     public List<ISprite> itemList;
+    public List<IEnemy> enemyList;
 
     public Room room;
     //the collision box of elements in the room
@@ -89,8 +90,6 @@ public class Game1 : Game
 
         //for collision testing
         gel = new Gel();
-
-
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 

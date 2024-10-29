@@ -7,6 +7,8 @@ namespace SneakyLink.Enemies
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public int mHealth { get; set; }
+        public int cHealth { get; set; }
         public bool isBlockedL { get; set; }
         public bool isBlockedR { get; set; }
         public bool isBlockedT { get; set; }

@@ -16,6 +16,8 @@ namespace SneakyLink.Enemies
         private ISprite ZolSprite;
         private int x;
         private int y;
+        private int maxHealth;
+        private int currentHealth;
         public bool isBlockedTop;
         public bool isBlockedBottom;
         public bool isBlockedLeft;
@@ -23,6 +25,8 @@ namespace SneakyLink.Enemies
 
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
+        public int mHealth { get => maxHealth; set => maxHealth = value; }
+        public int cHealth { get => currentHealth; set => currentHealth = value; }
         public bool isBlockedL { get => isBlockedLeft; set => isBlockedLeft = value; }
         public bool isBlockedR { get => isBlockedRight; set => isBlockedRight = value; }
         public bool isBlockedT { get => isBlockedTop; set => isBlockedTop = value; }
@@ -33,6 +37,8 @@ namespace SneakyLink.Enemies
         {
             x = 400;
             y = 240;
+            maxHealth = 3;
+            currentHealth = maxHealth;
             stateMachine = new ZolStateMachine();
             collisionBox = new CollisionBox(CollisionObjectType.Enemy, 40, 40, x, y);
             ZolSprite = EnemySpriteFactory.Instance.CreateZolSprite();

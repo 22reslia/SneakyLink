@@ -14,8 +14,8 @@ namespace SneakyLink.Collision
     {
         public static void collisionCheck(Game1 game)
         {
-            CollisionType side1 = CollisionDetector.CheckCollision(game.link.collisionBox, game.gel.collisionBox);
-            CollisionType side2 = CollisionDetector.CheckCollision(game.gel.CollisionBox, game.link.collisionBox);
+            CollisionType side1 = CollisionDetector.CheckCollision(game.link.linkCB, game.gel.collisionBox);
+            CollisionType side2 = CollisionDetector.CheckCollision(game.gel.CollisionBox, game.link.linkCB);
             PlayerEnemyHandler.HandleCollision(game.link, side1);
             EnemyPlayerHandler.HandleCollision(game.gel, side2);
 
@@ -24,7 +24,7 @@ namespace SneakyLink.Collision
             {
                 if (game.blocks[x].CollisionBox != null)
                 {
-                    CollisionType side3 = CollisionDetector.CheckCollision(game.link.collisionBox, game.blocks[x].CollisionBox);
+                    CollisionType side3 = CollisionDetector.CheckCollision(game.link.linkCB, game.blocks[x].CollisionBox);
                     CollisionType side4 = CollisionDetector.CheckCollision(game.gel.CollisionBox, game.blocks[x].CollisionBox);
                     if (side3 != CollisionType.None)
                     {
@@ -38,11 +38,11 @@ namespace SneakyLink.Collision
             }
             for (int x = 0; x < game.boundaryCollisionBox.Count; x++)
             {
-                game.link.collisionBox.side = CollisionDetector.CheckCollision(game.link.collisionBox, game.boundaryCollisionBox[x]);
+                game.link.linkCB.side = CollisionDetector.CheckCollision(game.link.linkCB, game.boundaryCollisionBox[x]);
                 game.gel.CollisionBox.side = CollisionDetector.CheckCollision(game.gel.CollisionBox, game.boundaryCollisionBox[x]);
-                if (game.link.collisionBox.side != CollisionType.None)
+                if (game.link.linkCB.side != CollisionType.None)
                 {
-                    PlayerBlockHandler.HandleCollision(game.link, game.link.collisionBox.side);
+                    PlayerBlockHandler.HandleCollision(game.link, game.link.linkCB.side);
                 }
                 if (game.gel.CollisionBox.side != CollisionType.None)
                 {
@@ -51,11 +51,11 @@ namespace SneakyLink.Collision
             }
             for (int x = 0; x < game.doors.Count; x++)
             {
-                game.link.collisionBox.side = CollisionDetector.CheckCollision(game.link.collisionBox, game.doors[x].CollisionBox);
+                game.link.linkCB.side = CollisionDetector.CheckCollision(game.link.linkCB, game.doors[x].CollisionBox);
                 game.gel.CollisionBox.side = CollisionDetector.CheckCollision(game.gel.CollisionBox, game.doors[x].CollisionBox);
-                if (game.link.collisionBox.side != CollisionType.None)
+                if (game.link.linkCB.side != CollisionType.None)
                 {
-                    PlayerBlockHandler.HandleCollision(game.link, game.link.collisionBox.side);
+                    PlayerBlockHandler.HandleCollision(game.link, game.link.linkCB.side);
                 }
                 if (game.gel.CollisionBox.side != CollisionType.None)
                 {
