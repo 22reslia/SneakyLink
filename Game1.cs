@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using SneakyLink.Blocks;
 using SneakyLink.Collision;
+using SneakyLink.Commands;
 using SneakyLink.Enemies;
 using SneakyLink.Player;
 using SneakyLink.Scene;
@@ -15,6 +17,11 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    //bool to choose which scene is showing
+    public bool isTitleScene;
+    public bool isDungeonScene;
+    public bool isInventoryScene;
+
     //Controllers for input
     private IController<Keys> _KeyboardController;
     private IController<MouseButton> _MouseController;
@@ -23,6 +30,10 @@ public class Game1 : Game
     public Player.Link link;
     public List<ISprite> itemList;
 
+    //title scene info
+    private IScene titleScene;
+
+    //dungeon scene info
     public Room room;
     //the collision box of elements in the room
     public List<IBlock> blocks = new List<IBlock>();
@@ -41,9 +52,14 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
         _KeyboardController = new KeyboardController();
         _MouseController = new MouseController(this);
+
+        //the first showing scene should be title
+        isTitleScene = true;
+        isDungeonScene = false;
+        isInventoryScene = false;
+        MediaPlayer.Volume = 0.5f;
 
         //initializes Link contructor
         link = new Link();
@@ -68,9 +84,8 @@ public class Game1 : Game
         _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link));
         _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link));
 
-        //_MouseController.RegisterCommand(MouseButton.Left, new PreviousSceneCommand(this));
-        //_MouseController.RegisterCommand(MouseButton.Right, new NextSceneCommand(this));
-        //sceneCount = 0;
+        //command for start game and change scene
+        _MouseController.RegisterCommand(MouseButton.Left, new StartGameCommand(this));
 
         base.Initialize();
     }
@@ -85,7 +100,7 @@ public class Game1 : Game
         Items.ItemSpriteFactory.Instance.LoadAllTextrues(Content);
 
         link.SetSprite();
-
+        titleScene = new TitleScene(this);
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
@@ -95,17 +110,19 @@ public class Game1 : Game
         _KeyboardController.Update();
         _MouseController.Update();
 
-        foreach (IEnemy enemy in enemies)
+        if (isDungeonScene)
         {
-            enemy.Update();
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Update();
+            }
+
+            //link (player) update
+            link.Update(gameTime);
+
+            //check collision
+            CollisionsCheck.collisionCheck(this);
         }
-
-        //link (player) update
-        link.Update(gameTime);
-
-        //check collision
-        CollisionsCheck.collisionCheck(this);
-
         base.Update(gameTime);
     }
 
@@ -114,14 +131,21 @@ public class Game1 : Game
 
         GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 
-        room.Draw(_spriteBatch);
-        foreach (IEnemy enemy in enemies)
+        //check which scene is it
+        if (isTitleScene)
         {
-            enemy.Draw(_spriteBatch);
+            titleScene.Draw(_spriteBatch);
         }
-
-        //Draw player link
-        link.Draw(_spriteBatch);
+        if (isDungeonScene)
+        {
+            room.Draw(_spriteBatch);
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Draw(_spriteBatch);
+            }
+            //Draw player link
+            link.Draw(_spriteBatch);
+        }
 
         base.Draw(gameTime);
     }
