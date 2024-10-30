@@ -33,6 +33,9 @@ public class Game1 : Game
     //title scene info
     private IScene titleScene;
 
+    //inventory scene info
+    private InventoryScene inventoryScene;
+
     //dungeon scene info
     public Room room;
     //the collision box of elements in the room
@@ -68,24 +71,25 @@ public class Game1 : Game
         InitializeObject.initializeObject(this);
 
         //Initilizing Commands to specific keys
-        _KeyboardController.RegisterCommand(Keys.Q, new GameExit(this));
-        _KeyboardController.RegisterCommand(Keys.Right, new MoveRight(link));
-        _KeyboardController.RegisterCommand(Keys.D, new MoveRight(link));
-        _KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(link));
-        _KeyboardController.RegisterCommand(Keys.A, new MoveLeft(link));
-        _KeyboardController.RegisterCommand(Keys.Up, new MoveUp(link));
-        _KeyboardController.RegisterCommand(Keys.W, new MoveUp(link));
-        _KeyboardController.RegisterCommand(Keys.Down, new MoveDown(link));
-        _KeyboardController.RegisterCommand(Keys.S, new MoveDown(link));
-        _KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link));
-        _KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link));
-        _KeyboardController.RegisterCommand(Keys.E, new DamagePlayer(link));
-        _KeyboardController.RegisterCommand(Keys.D1, new UseItem(link));
-        _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link));
-        _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link));
+        _KeyboardController.RegisterCommand(Keys.Q, new GameExit(this), false);
+        _KeyboardController.RegisterCommand(Keys.Right, new MoveRight(link), false);
+        _KeyboardController.RegisterCommand(Keys.D, new MoveRight(link), false);
+        _KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(link), false);
+        _KeyboardController.RegisterCommand(Keys.A, new MoveLeft(link), false);
+        _KeyboardController.RegisterCommand(Keys.Up, new MoveUp(link), false);
+        _KeyboardController.RegisterCommand(Keys.W, new MoveUp(link), false);
+        _KeyboardController.RegisterCommand(Keys.Down, new MoveDown(link), false);
+        _KeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
+        _KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link), false);
+        _KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link), false);
+        _KeyboardController.RegisterCommand(Keys.E, new DamagePlayer(link), false);
+        _KeyboardController.RegisterCommand(Keys.D1, new UseItem(link), false);
+        _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link), false);
+        _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link), false);
 
         //command for start game and change scene
-        _MouseController.RegisterCommand(MouseButton.Left, new StartGameCommand(this));
+        _MouseController.RegisterCommand(MouseButton.Left, new StartGameCommand(this), true);
+        _KeyboardController.RegisterCommand(Keys.Tab, new SwitchInventoryCommand(this), true);
 
         base.Initialize();
     }
@@ -101,13 +105,17 @@ public class Game1 : Game
 
         link.SetSprite();
         titleScene = new TitleScene(this);
+        inventoryScene = new InventoryScene(this);
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
     protected override void Update(GameTime gameTime)
     {
         //input update
-        _KeyboardController.Update();
+        //if (!isTitleScene)
+        //{
+            _KeyboardController.Update();
+        //}
         _MouseController.Update();
 
         if (isDungeonScene)
@@ -146,7 +154,10 @@ public class Game1 : Game
             //Draw player link
             link.Draw(_spriteBatch);
         }
+        if (isInventoryScene)
+        {
 
+        }
         base.Draw(gameTime);
     }
 }
