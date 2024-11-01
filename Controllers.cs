@@ -51,7 +51,7 @@ public class KeyboardController : IController<Keys>
             }  
         }
 
-        //remove key from the last pressed list
+        //remove key from the last pressed list 
         lastPressedKeys.RemoveAll(key => !pressedKeys.Contains(key));
     }
 }

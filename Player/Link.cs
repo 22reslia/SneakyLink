@@ -36,7 +36,7 @@ public class Link
     //creats a player with basic stats
     public Link()
     {
-        maxHealth = 3;
+        maxHealth = 16;
         currentHealth = maxHealth;
         isV = false;
         isMovable = true;
@@ -100,7 +100,7 @@ public class Link
         if (isV)
         {
             vCounter++;
-            if (vCounter == 100)
+            if (vCounter == 60)
             {
                 isV = false;
                 vCounter = 0;

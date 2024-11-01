@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
@@ -12,20 +13,29 @@ namespace SneakyLink.Scene
     public class TitleScene : IScene
     {
         private Texture2D scene;
+        private SoundEffect titleMusic;
         private ISprite background;
-        private Song titleMusic;
+        private SoundEffectInstance menuSound;
         public TitleScene(Game1 game) 
         {
+            //load the source
             scene = game.Content.Load<Texture2D>("TitleBackground");
-            titleMusic = game.Content.Load<Song>("TitleMusic");
-            background = new TitleBackgroundSprite(scene);
+            titleMusic = game.Content.Load<SoundEffect>("RoomMusic");
 
-            MediaPlayer.Play(titleMusic);
-            MediaPlayer.IsRepeating = true;
+            background = new TitleBackgroundSprite(scene);
+            menuSound = titleMusic.CreateInstance();
+            menuSound.Volume = 0.5f;
+            menuSound.IsLooped = true;
+            menuSound.Play();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             background.Draw(spriteBatch, 0, 0);
+        }
+
+        public void Unload()
+        {
+            menuSound.Stop();
         }
     }
 }

@@ -6,9 +6,11 @@ using SneakyLink.Blocks;
 using SneakyLink.Collision;
 using SneakyLink.Commands;
 using SneakyLink.Enemies;
+using SneakyLink.Inventory;
 using SneakyLink.Player;
 using SneakyLink.Scene;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace SneakyLink;
 
@@ -23,15 +25,17 @@ public class Game1 : Game
     public bool isInventoryScene;
 
     //Controllers for input
-    private IController<Keys> _KeyboardController;
-    private IController<MouseButton> _MouseController;
+    private IController<Keys> playerKeyboardController;
+    private IController<Keys> menuKeyboardController;
+    private IController<MouseButton> playerMouseController;
+    private IController<MouseButton> menuMouseController;
     //private ICommand initialize;w
 
     public Player.Link link;
     public List<ISprite> itemList;
 
     //title scene info
-    private IScene titleScene;
+    private TitleScene titleScene;
 
     //inventory scene info
     private InventoryScene inventoryScene;
@@ -55,14 +59,15 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        _KeyboardController = new KeyboardController();
-        _MouseController = new MouseController(this);
+        playerKeyboardController = new KeyboardController();
+        playerMouseController = new MouseController(this);
+        menuKeyboardController = new KeyboardController();
+        menuMouseController = new MouseController(this);
 
         //the first showing scene should be title
         isTitleScene = true;
         isDungeonScene = false;
         isInventoryScene = false;
-        MediaPlayer.Volume = 0.5f;
 
         //initializes Link contructor
         link = new Link();
@@ -70,26 +75,25 @@ public class Game1 : Game
         //initializes all object
         InitializeObject.initializeObject(this);
 
-        //Initilizing Commands to specific keys
-        _KeyboardController.RegisterCommand(Keys.Q, new GameExit(this), false);
-        _KeyboardController.RegisterCommand(Keys.Right, new MoveRight(link), false);
-        _KeyboardController.RegisterCommand(Keys.D, new MoveRight(link), false);
-        _KeyboardController.RegisterCommand(Keys.Left, new MoveLeft(link), false);
-        _KeyboardController.RegisterCommand(Keys.A, new MoveLeft(link), false);
-        _KeyboardController.RegisterCommand(Keys.Up, new MoveUp(link), false);
-        _KeyboardController.RegisterCommand(Keys.W, new MoveUp(link), false);
-        _KeyboardController.RegisterCommand(Keys.Down, new MoveDown(link), false);
-        _KeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
-        _KeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link), false);
-        _KeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link), false);
-        _KeyboardController.RegisterCommand(Keys.E, new DamagePlayer(link), false);
-        _KeyboardController.RegisterCommand(Keys.D1, new UseItem(link), false);
-        _KeyboardController.RegisterCommand(Keys.D2, new UseItem(link), false);
-        _KeyboardController.RegisterCommand(Keys.D3, new UseItem(link), false);
+        //Initilizing player related Commands
+        playerKeyboardController.RegisterCommand(Keys.Right, new MoveRight(link), false);
+        playerKeyboardController.RegisterCommand(Keys.D, new MoveRight(link), false);
+        playerKeyboardController.RegisterCommand(Keys.Left, new MoveLeft(link), false);
+        playerKeyboardController.RegisterCommand(Keys.A, new MoveLeft(link), false);
+        playerKeyboardController.RegisterCommand(Keys.Up, new MoveUp(link), false);
+        playerKeyboardController.RegisterCommand(Keys.W, new MoveUp(link), false);
+        playerKeyboardController.RegisterCommand(Keys.Down, new MoveDown(link), false);
+        playerKeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
+        playerKeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link), false);
+        playerKeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link), false);
+        playerKeyboardController.RegisterCommand(Keys.D1, new UseItem(link), false);
+        playerKeyboardController.RegisterCommand(Keys.D2, new UseItem(link), false);
+        playerKeyboardController.RegisterCommand(Keys.D3, new UseItem(link), false);
 
-        //command for start game and change scene
-        _MouseController.RegisterCommand(MouseButton.Left, new StartGameCommand(this), true);
-        _KeyboardController.RegisterCommand(Keys.Tab, new SwitchInventoryCommand(this), true);
+        //Initilizing menu related Commands to specific keys
+        menuMouseController.RegisterCommand(MouseButton.Left, new StartGameCommand(this), true);
+        menuKeyboardController.RegisterCommand(Keys.Tab, new SwitchInventoryCommand(this), true);
+        menuKeyboardController.RegisterCommand(Keys.Q, new GameExit(this), true);
 
         base.Initialize();
     }
@@ -112,14 +116,15 @@ public class Game1 : Game
     protected override void Update(GameTime gameTime)
     {
         //input update
-        //if (!isTitleScene)
-        //{
-            _KeyboardController.Update();
-        //}
-        _MouseController.Update();
-
+        if (!isTitleScene)
+        {
+            menuKeyboardController.Update();
+        }
+        menuMouseController.Update();
         if (isDungeonScene)
         {
+            playerKeyboardController.Update();
+            playerMouseController.Update();
             foreach (IEnemy enemy in enemies)
             {
                 enemy.Update();
@@ -130,6 +135,10 @@ public class Game1 : Game
 
             //check collision
             CollisionsCheck.collisionCheck(this);
+        }
+        if (isInventoryScene)
+        {
+            inventoryScene.Update();
         }
         base.Update(gameTime);
     }
@@ -156,7 +165,7 @@ public class Game1 : Game
         }
         if (isInventoryScene)
         {
-
+            inventoryScene.Draw(_spriteBatch);
         }
         base.Draw(gameTime);
     }
