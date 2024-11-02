@@ -40,7 +40,7 @@ namespace SneakyLink.Enemies
             maxHealth = 3;
             currentHealth = maxHealth;
             stateMachine = new ZolStateMachine();
-            collisionBox = new CollisionBox(CollisionObjectType.Enemy, 40, 40, x, y);
+            collisionBox = new CollisionBox(CollisionObjectType.Enemy, 48, 48, x, y);
             ZolSprite = EnemySpriteFactory.Instance.CreateZolSprite();
             isBlockedTop = false;
             isBlockedBottom = false;

@@ -40,7 +40,7 @@ namespace SneakyLink.Enemies
             maxHealth = 3;
             currentHealth = maxHealth;
             stateMachine = new GelStateMachine();
-            collisionBox = new CollisionBox(CollisionObjectType.Enemy, 40, 40, x, y);
+            collisionBox = new CollisionBox(CollisionObjectType.Enemy, 24, 48, x, y);
             GelSprite = EnemySpriteFactory.Instance.CreateGelSprite();
             isBlockedTop = false;
             isBlockedBottom = false;

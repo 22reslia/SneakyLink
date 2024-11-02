@@ -119,6 +119,18 @@ namespace SneakyLink.Scene
                         case "gel":
                             enemyList.Add(new Gel(positionX, positionY));
                             break;
+                        case "zol":
+                            enemyList.Add(new Zol(positionX, positionY));
+                            break;
+                        case "goriya":
+                            enemyList.Add(new Goriya(positionX, positionY));
+                            break;
+                        case "keese":
+                            enemyList.Add(new Keese(positionX, positionY));
+                            break;
+                        case "stalfos":
+                            enemyList.Add(new Stalfos(positionX, positionY));
+                            break;
                         case "empty":
                             break;
                     }
