@@ -54,7 +54,7 @@ public class Link
         mCounter = 0;
         //creates a state machine and gets the current sprite based on directional movement
         stateMachine = new PlayerStateMachine(playerPosition);
-        linkCB = new CollisionBox(CollisionObjectType.Player, 40, 40, (int)playerPosition.X, (int)playerPosition.Y);
+        linkCB = new CollisionBox(CollisionObjectType.Player, 38, 38, (int)playerPosition.X, (int)playerPosition.Y);
     }
 
     public void SetSprite()

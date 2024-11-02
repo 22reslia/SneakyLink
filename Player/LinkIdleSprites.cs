@@ -22,7 +22,7 @@ namespace SneakyLink.Player
             int height = 16;
 
             Rectangle sourceRectangle = new Rectangle(1, 11, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
@@ -53,7 +53,7 @@ namespace SneakyLink.Player
             int height = 16;
 
             Rectangle sourceRectangle = new Rectangle(35, 11, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
@@ -84,7 +84,7 @@ namespace SneakyLink.Player
             int height = 16;
 
             Rectangle sourceRectangle = new Rectangle(35, 11, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
     
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -116,7 +116,7 @@ namespace SneakyLink.Player
             int height = 16;
 
             Rectangle sourceRectangle = new Rectangle(69, 11, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
 
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);

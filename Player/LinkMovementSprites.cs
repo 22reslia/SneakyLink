@@ -29,12 +29,12 @@ namespace SneakyLink.Player
             if (currentFrame < maxFrame / 2)
             {
             sourceRectangle = new Rectangle(1, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
             else if (currentFrame >= maxFrame / 2)
             {
             sourceRectangle = new Rectangle(18, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -77,12 +77,12 @@ namespace SneakyLink.Player
             if (currentFrame < maxFrame / 2)
             {
             sourceRectangle = new Rectangle(35, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
             else if (currentFrame >= maxFrame / 2)
             {
             sourceRectangle = new Rectangle(52, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -125,12 +125,12 @@ namespace SneakyLink.Player
             if (currentFrame < maxFrame / 2)
             {
             sourceRectangle = new Rectangle(35, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
             else if (currentFrame >= maxFrame / 2)
             {
             sourceRectangle = new Rectangle(52, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -173,12 +173,12 @@ namespace SneakyLink.Player
             if (currentFrame < maxFrame / 2)
             {
             sourceRectangle = new Rectangle(69, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
             else if (currentFrame >= maxFrame / 2)
             {
             sourceRectangle = new Rectangle(86, 11, width, height);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 3*width, 3*height);
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
