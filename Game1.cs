@@ -59,6 +59,11 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
+        //set the window size
+        _graphics.PreferredBackBufferWidth = 800;
+        _graphics.PreferredBackBufferHeight = 580;
+        _graphics.ApplyChanges();
+
         playerKeyboardController = new KeyboardController();
         playerMouseController = new MouseController(this);
         menuKeyboardController = new KeyboardController();
@@ -136,10 +141,9 @@ public class Game1 : Game
             //check collision
             CollisionsCheck.collisionCheck(this);
         }
-        if (isInventoryScene)
-        {
-            inventoryScene.Update();
-        }
+
+        inventoryScene.Update();
+        
         base.Update(gameTime);
     }
 
@@ -166,6 +170,10 @@ public class Game1 : Game
         if (isInventoryScene)
         {
             inventoryScene.Draw(_spriteBatch);
+        }
+        else if (!isInventoryScene && !isTitleScene)
+        {
+            inventoryScene.DrawHealth(_spriteBatch);
         }
         base.Draw(gameTime);
     }

@@ -28,8 +28,12 @@ namespace SneakyLink.Inventory
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            infoSprite.Draw(spriteBatch, 0, 0);
-            health.Draw(spriteBatch);
+            infoSprite.Draw(spriteBatch, 0,0);
+            health.Draw(spriteBatch, true);
+        }
+        public void DrawHealth(SpriteBatch spriteBatch)
+        {
+            health.Draw(spriteBatch, false);
         }
     }
 }

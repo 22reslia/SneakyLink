@@ -30,12 +30,16 @@ namespace SneakyLink.Inventory
             maxHealth = link.maxHealth;
             health = link.currentHealth;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, bool isInInventory)
         {
             int heartSize = 24;
             int heartPerRow = 8;
             int x = 282;
             int y = 99;
+            if (!isInInventory)
+            {
+                y += 400;
+            }
             for (int i = 0; i < maxHealth; i ++)
             {
                 //draw the hearts based on current health
