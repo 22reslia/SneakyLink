@@ -17,7 +17,7 @@ namespace SneakyLink.Scene
         private string filePath;
         private string[,] levelData;
         public List<IBlock> blockList;
-        public List<IBlock> doorList;
+        public List<Doors> doorList;
         public List<IEnemy> enemyList;
 
         public Room(Game1 game, string filePath)

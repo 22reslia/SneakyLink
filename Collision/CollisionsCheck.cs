@@ -4,6 +4,7 @@ using SneakyLink.Player;
 using SneakyLink.Scene;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +64,16 @@ namespace SneakyLink.Collision
                 game.link.linkCB.side = CollisionDetector.CheckCollision(game.link.linkCB, game.doors[x].CollisionBox);
                 if (game.link.linkCB.side != CollisionType.None)
                 {
-                    PlayerBlockHandler.HandleCollision(game.link, game.link.linkCB.side);
+                    if (game.doors[x].NextRoomFilePath != "")
+                    {
+                        //Debug.Print(game.link.playerPosition.ToString());
+                        PlayerDoorHandler.HandleCollision(game.link, game.link.linkCB.side, game.doors[x].NextRoomFilePath, game.doors[x].NextLinkPosition, game);
+                    }
+                    else
+                    {
+                        //Debug.Print(game.link.playerPosition.ToString());
+                        PlayerBlockHandler.HandleCollision(game.link, game.link.linkCB.side);
+                    }
                 }
                 foreach (IEnemy enemy in game.enemies)
                 {

@@ -1,4 +1,4 @@
-door00,door11,door20,door31
+door00,,door11,..\\..\\..\\Scene\\RoomSixteen.csv,door20,,door31,..\\..\\..\\Scene\\RoomThirteen.csv
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 ground,blueGap,blueGap,blueGap,ground,ground,ground,ground,blueGap,blueGap,blueGap,ground
 ground,blueGap,ground,ground,ground,ground,ground,ground,ground,ground,blueGap,ground
@@ -6,3 +6,10 @@ ground,blueGap,ground,blueGap,blueGap,blueGap,blueGap,blueGap,blueGap,ground,blu
 ground,blueGap,ground,ground,ground,ground,ground,ground,ground,ground,blueGap,ground
 ground,blueGap,blueGap,blueGap,ground,ground,ground,ground,blueGap,blueGap,blueGap,ground
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty

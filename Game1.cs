@@ -44,7 +44,7 @@ public class Game1 : Game
     public Room room;
     //the collision box of elements in the room
     public List<IBlock> blocks = new List<IBlock>();
-    public List<IBlock> doors = new List<IBlock>();
+    public List<Doors> doors = new List<Doors>();
     public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
 
     public List<IEnemy> enemies = new List<IEnemy>();
