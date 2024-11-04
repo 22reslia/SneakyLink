@@ -45,7 +45,7 @@ namespace SneakyLink.Scene
             background = new BackgroundSprite(scene);
             levelData = sceneManage.LoadLevel(filePath);
             //store the door information
-            for (int x = 0; x < 4; x++)
+            for (int x = 0; x < 8; x+=2)
             {
                 int positionX = 0;
                 int positionY = 0;
@@ -55,20 +55,20 @@ namespace SneakyLink.Scene
                         positionX = 360;
                         positionY = 20;
                         break;
-                    case 1:
+                    case 2:
                         positionX = 80;
                         positionY = 200;
                         break;
-                    case 2:
+                    case 4:
                         positionX = 640;
                         positionY = 200;
                         break;
-                    case 3:
+                    case 6:
                         positionX = 360;
                         positionY = 380;
                         break;
                 }
-                doorList.Add(new Doors(levelData[0, x], positionX, positionY));
+                doorList.Add(new Doors(levelData[0, x], positionX, positionY, levelData[0, x+1]));
             }
             //store the block information
             for (int y = 1; y < 8; y++)

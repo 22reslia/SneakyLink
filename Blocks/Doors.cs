@@ -4,6 +4,7 @@ using SneakyLink.Collision;
 using SneakyLink.Scene;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,9 @@ namespace SneakyLink.Blocks
         private int positionY;
         private CollisionBox collisionBox;
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
-        public Doors(String doorID, int positionX, int positionY)
+        public Doors(String doorID, int positionX, int positionY, string nextRoomFilePath)
         {
+            Debug.Print(nextRoomFilePath);
             col = doorID[doorID.Length - 2] - '0';
             row = doorID[doorID.Length - 1] - '0';
             this.positionX = positionX;
