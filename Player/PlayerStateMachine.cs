@@ -14,16 +14,19 @@ public class PlayerStateMachine
     private PlayerState previousState;
     private PlayerDirection previousDirection;
     private ISprite currentSprite;
+    public Sword sword;
+    private Link link;
     private bool isMoving = false;
 
     //Constructor to initialize previousState
-    public PlayerStateMachine(Vector2 initialPosition)
+    public PlayerStateMachine(Vector2 initialPosition, Link link)
     {
         previousState = currentState;
         previousDirection = currentDirection;
 
         //intializes the forward sprite as the default sprite
         currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
+        this.link = link;
     }
 
     //creates an ISprite object for each different enum
@@ -77,15 +80,19 @@ public class PlayerStateMachine
 
             //cases for idle sprites
             case PlayerDirection.playerLeft:
+                sword = new Sword((int)link.playerPosition.X - 22, (int)link.playerPosition.Y);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackLeftSprite();
                 break;
             case PlayerDirection.playerRight:
+                sword = new Sword((int)link.playerPosition.X + 60, (int)link.playerPosition.Y);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackRightSprite();
                 break;
             case PlayerDirection.playerUp:
+                sword = new Sword((int)link.playerPosition.X, (int)link.playerPosition.Y - 22);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackBackwardSprite();
                 break;
             case PlayerDirection.playerDown:
+                sword = new Sword((int)link.playerPosition.X, (int)link.playerPosition.Y + 60);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackForwardSprite();
                 break;
         }

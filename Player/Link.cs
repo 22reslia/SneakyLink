@@ -12,7 +12,7 @@ public class Link
 {
     public Vector2 playerPosition;
     public PlayerStateMachine stateMachine;
-    public CollisionBox linkCB;
+    public CollisionBox collisionBox;
     public ISprite playerSprite;
     public int velocity;
     float timer = 0f;
@@ -53,8 +53,8 @@ public class Link
         vCounter = 0;
         mCounter = 0;
         //creates a state machine and gets the current sprite based on directional movement
-        stateMachine = new PlayerStateMachine(playerPosition);
-        linkCB = new CollisionBox(CollisionObjectType.Player, 38, 38, (int)playerPosition.X, (int)playerPosition.Y);
+        stateMachine = new PlayerStateMachine(playerPosition, this);
+        collisionBox = new CollisionBox(CollisionObjectType.Player, 38, 38, (int)playerPosition.X, (int)playerPosition.Y);
     }
 
     public void SetSprite()
@@ -85,10 +85,10 @@ public class Link
             timer += deltaTime;
         }
 
-        linkCB.x = (int)playerPosition.X;
-        linkCB.y = (int)playerPosition.Y;
+        collisionBox.x = (int)playerPosition.X;
+        collisionBox.y = (int)playerPosition.Y;
 
-        if (this.linkCB.side == CollisionType.None)
+        if (this.collisionBox.side == CollisionType.None)
         {
             isBlockedTop = false;
             isBlockedBottom = false;
@@ -108,7 +108,7 @@ public class Link
         }
 
         //update isMovable
-        if (this.linkCB.side == CollisionType.None)
+        if (this.collisionBox.side == CollisionType.None)
         {
             mCounter++;
             if (mCounter == 50)

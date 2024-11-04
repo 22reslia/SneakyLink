@@ -17,10 +17,16 @@ namespace SneakyLink.Collision
         {
             foreach (IEnemy enemy in game.enemies)
             {
-                CollisionType side1 = CollisionDetector.CheckCollision(game.link.linkCB, enemy.CollisionBox);
-                CollisionType side2 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.link.linkCB);
-                PlayerEnemyHandler.HandleCollision(game.link, side1);
-                EnemyPlayerHandler.HandleCollision(enemy, side2);
+                if (enemy.CollisionBox.width != 0)
+                {
+                    CollisionType side1 = CollisionDetector.CheckCollision(game.link.collisionBox, enemy.CollisionBox);
+                    if (game.link.stateMachine.sword != null)
+                    {
+                        CollisionType side2 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.link.stateMachine.sword.collisionBox);
+                        EnemyPlayerHandler.HandleCollision(enemy, side2);
+                    }
+                    PlayerEnemyHandler.HandleCollision(game.link, side1);
+                }
             }
 
             //collision detect check for room element
@@ -28,59 +34,68 @@ namespace SneakyLink.Collision
             {
                 if (game.blocks[x].CollisionBox != null)
                 {
-                    CollisionType side3 = CollisionDetector.CheckCollision(game.link.linkCB, game.blocks[x].CollisionBox);
+                    CollisionType side3 = CollisionDetector.CheckCollision(game.link.collisionBox, game.blocks[x].CollisionBox);
                     if (side3 != CollisionType.None)
                     {
                         PlayerBlockHandler.HandleCollision(game.link, side3);
                     }
                     foreach (IEnemy enemy in game.enemies)
                     {
-                        CollisionType side4 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.blocks[x].CollisionBox);
-                        if (side4 != CollisionType.None)
+                        if (enemy.CollisionBox.width != 0)
                         {
-                            EnemyBlockHandler.HandleCollision(enemy, side4);
+                            CollisionType side4 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.blocks[x].CollisionBox);
+                            if (side4 != CollisionType.None)
+                            {
+                                EnemyBlockHandler.HandleCollision(enemy, side4);
+                            }
                         }
                     }
                 }
             }
             for (int x = 0; x < game.boundaryCollisionBox.Count; x++)
             {
-                game.link.linkCB.side = CollisionDetector.CheckCollision(game.link.linkCB, game.boundaryCollisionBox[x]);
-                if (game.link.linkCB.side != CollisionType.None)
+                game.link.collisionBox.side = CollisionDetector.CheckCollision(game.link.collisionBox, game.boundaryCollisionBox[x]);
+                if (game.link.collisionBox.side != CollisionType.None)
                 {
-                    PlayerBlockHandler.HandleCollision(game.link, game.link.linkCB.side);
+                    PlayerBlockHandler.HandleCollision(game.link, game.link.collisionBox.side);
                 }
                 foreach (IEnemy enemy in game.enemies)
                 {
-                    enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.boundaryCollisionBox[x]);
-                    if (enemy.CollisionBox.side != CollisionType.None)
+                    if (enemy.CollisionBox.width != 0)
                     {
-                        EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side);
+                        enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.boundaryCollisionBox[x]);
+                        if (enemy.CollisionBox.side != CollisionType.None)
+                        {
+                            EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side);
+                        }
                     }
                 }
             }
             for (int x = 0; x < game.doors.Count; x++)
             {
-                game.link.linkCB.side = CollisionDetector.CheckCollision(game.link.linkCB, game.doors[x].CollisionBox);
-                if (game.link.linkCB.side != CollisionType.None)
+                game.link.collisionBox.side = CollisionDetector.CheckCollision(game.link.collisionBox, game.doors[x].CollisionBox);
+                if (game.link.collisionBox.side != CollisionType.None)
                 {
                     if (game.doors[x].NextRoomFilePath != "")
                     {
                         //Debug.Print(game.link.playerPosition.ToString());
-                        PlayerDoorHandler.HandleCollision(game.link, game.link.linkCB.side, game.doors[x].NextRoomFilePath, game.doors[x].NextLinkPosition, game);
+                        PlayerDoorHandler.HandleCollision(game.link, game.link.collisionBox.side, game.doors[x].NextRoomFilePath, game.doors[x].NextLinkPosition, game);
                     }
                     else
                     {
                         //Debug.Print(game.link.playerPosition.ToString());
-                        PlayerBlockHandler.HandleCollision(game.link, game.link.linkCB.side);
+                        PlayerBlockHandler.HandleCollision(game.link, game.link.collisionBox.side);
                     }
                 }
                 foreach (IEnemy enemy in game.enemies)
                 {
-                    enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.doors[x].CollisionBox);
-                    if (enemy.CollisionBox.side != CollisionType.None)
+                    if (enemy.CollisionBox.width != 0)
                     {
-                        EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side);
+                        enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.doors[x].CollisionBox);
+                        if (enemy.CollisionBox.side != CollisionType.None)
+                        {
+                            EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side);
+                        }
                     }
                 }
             }

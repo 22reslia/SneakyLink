@@ -7,69 +7,15 @@ namespace SneakyLink.Player
     {
         public Texture2D linkSprite;
         private Vector2 position;
-        private int frameDelay = 4; 
+        private int frameDelay = 4;
         private int frameCounter = 0;
         int currentFrame = 0;
         int maxFrame = 10;
         public LinkUseItemSouth(Texture2D texture)
         {
-           linkSprite = texture;
-        }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
-        {
-           position.X = xPosition;
-           position.Y = yPosition;
-
-            Rectangle destinationRectangle = new Rectangle();
-            Rectangle sourceRectangle = new Rectangle();
-
-            if (currentFrame < maxFrame / 5)
-            {
-            sourceRectangle = new Rectangle(1, 47, 16, 16);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
-            }
-
-            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
-            {
-             sourceRectangle = new Rectangle(1, 11, 16, 16);
-             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
-            }
-
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.End();
-        }
-
-        public void Update()
-        {   
-            frameCounter++;
-            if (frameCounter >= frameDelay)
-            {
-            currentFrame++;
-            
-            if (currentFrame == maxFrame)
-            {
-                currentFrame = 0;
-            }
-            frameCounter = 0;
-            }
-        }
-    }
-
-    public class LinkUseItemRight : ISprite
-    {
-        public Texture2D linkSprite;
-        private Vector2 position;
-        private int frameDelay = 4; 
-        private int frameCounter = 0;
-        int currentFrame = 0;
-        int maxFrame = 10;
-
-        public LinkUseItemRight(Texture2D texture)
-        {
             linkSprite = texture;
         }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
         {
             position.X = xPosition;
             position.Y = yPosition;
@@ -79,33 +25,87 @@ namespace SneakyLink.Player
 
             if (currentFrame < maxFrame / 5)
             {
-             sourceRectangle = new Rectangle(124, 11, 16, 16);
-             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+                sourceRectangle = new Rectangle(1, 47, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
             {
-             sourceRectangle = new Rectangle(35, 11, 16, 16);
-             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+                sourceRectangle = new Rectangle(1, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
-        }   
+        }
 
         public void Update()
-        {   
+        {
             frameCounter++;
             if (frameCounter >= frameDelay)
             {
-            currentFrame++;
-            
-            if (currentFrame == maxFrame)
-            {
-                currentFrame = 0;
+                currentFrame++;
+
+                if (currentFrame == maxFrame)
+                {
+                    currentFrame = 0;
+                }
+                frameCounter = 0;
             }
-            frameCounter = 0;
+        }
+    }
+
+    public class LinkUseItemRight : ISprite
+    {
+        public Texture2D linkSprite;
+        private Vector2 position;
+        private int frameDelay = 4;
+        private int frameCounter = 0;
+        int currentFrame = 0;
+        int maxFrame = 10;
+
+        public LinkUseItemRight(Texture2D texture)
+        {
+            linkSprite = texture;
+        }
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
+        {
+            position.X = xPosition;
+            position.Y = yPosition;
+
+            Rectangle destinationRectangle = new Rectangle();
+            Rectangle sourceRectangle = new Rectangle();
+
+            if (currentFrame < maxFrame / 5)
+            {
+                sourceRectangle = new Rectangle(124, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+            }
+
+            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            {
+                sourceRectangle = new Rectangle(35, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+            }
+
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.End();
+        }
+
+        public void Update()
+        {
+            frameCounter++;
+            if (frameCounter >= frameDelay)
+            {
+                currentFrame++;
+
+                if (currentFrame == maxFrame)
+                {
+                    currentFrame = 0;
+                }
+                frameCounter = 0;
             }
         }
     }
@@ -114,7 +114,7 @@ namespace SneakyLink.Player
     {
         public Texture2D linkSprite;
         private Vector2 position;
-        private int frameDelay = 4; 
+        private int frameDelay = 4;
         private int frameCounter = 0;
         int currentFrame = 0;
         int maxFrame = 10;
@@ -122,7 +122,7 @@ namespace SneakyLink.Player
         {
             linkSprite = texture;
         }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
         {
             position.X = xPosition;
             position.Y = yPosition;
@@ -132,14 +132,14 @@ namespace SneakyLink.Player
 
             if (currentFrame < maxFrame / 4)
             {
-             sourceRectangle = new Rectangle(124, 11, 16, 16);
-             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+                sourceRectangle = new Rectangle(124, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
             {
-             sourceRectangle = new Rectangle(35, 11, 16, 16);
-             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+                sourceRectangle = new Rectangle(35, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -147,18 +147,18 @@ namespace SneakyLink.Player
             spriteBatch.End();
         }
 
-       public void Update()
-        {   
+        public void Update()
+        {
             frameCounter++;
             if (frameCounter >= frameDelay)
             {
-            currentFrame++;
-            
-            if (currentFrame == maxFrame)
-            {
-                currentFrame = 0;
-            }
-            frameCounter = 0;
+                currentFrame++;
+
+                if (currentFrame == maxFrame)
+                {
+                    currentFrame = 0;
+                }
+                frameCounter = 0;
             }
         }
     }
@@ -167,7 +167,7 @@ namespace SneakyLink.Player
     {
         public Texture2D linkSprite;
         private Vector2 position;
-        private int frameDelay = 4; 
+        private int frameDelay = 4;
         private int frameCounter = 0;
         int currentFrame = 0;
         int maxFrame = 10;
@@ -177,7 +177,7 @@ namespace SneakyLink.Player
         {
             linkSprite = texture;
         }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
         {
             position.X = xPosition;
             position.Y = yPosition;
@@ -187,32 +187,32 @@ namespace SneakyLink.Player
 
             if (currentFrame < maxFrame / 5)
             {
-             sourceRectangle = new Rectangle(141, 11, 16, 16);
-             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+                sourceRectangle = new Rectangle(141, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
-            
+
             else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
             {
-             sourceRectangle = new Rectangle(69, 11, 16, 16);
-             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+                sourceRectangle = new Rectangle(69, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
-    
+
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
         }
         public void Update()
-        {   
+        {
             frameCounter++;
             if (frameCounter >= frameDelay)
             {
-            currentFrame++;
-            
-            if (currentFrame == maxFrame)
-            {
-                currentFrame = 0;
-            }
-            frameCounter = 0;
+                currentFrame++;
+
+                if (currentFrame == maxFrame)
+                {
+                    currentFrame = 0;
+                }
+                frameCounter = 0;
             }
         }
     }

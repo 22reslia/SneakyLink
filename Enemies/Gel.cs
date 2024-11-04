@@ -19,6 +19,7 @@ namespace SneakyLink.Enemies
         private int y;
         private int maxHealth;
         private int currentHealth;
+        private bool isAlive;
         public bool isBlockedTop;
         public bool isBlockedBottom;
         public bool isBlockedLeft;
@@ -37,6 +38,7 @@ namespace SneakyLink.Enemies
         public Gel(int x, int y) {
             this.x = x;
             this.y = y;
+            isAlive = true;
             maxHealth = 3;
             currentHealth = maxHealth;
             stateMachine = new GelStateMachine();
@@ -55,14 +57,23 @@ namespace SneakyLink.Enemies
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            stateMachine.Draw(spriteBatch, GelSprite, x, y);
+            if (isAlive)
+            {
+                stateMachine.Draw(spriteBatch, GelSprite, x, y);
+            }
         }
 
         public void Update()
         {
             GelSprite.Update();
             stateMachine.Update(this);
-            if (this.collisionBox.side == CollisionType.None)
+            if (cHealth <= 0)
+            {
+                isAlive = false;
+                collisionBox.width = 0;
+                collisionBox.height = 0;
+            }
+            if (collisionBox.side == CollisionType.None)
             {
                 isBlockedTop = false;
                 isBlockedBottom = false;
