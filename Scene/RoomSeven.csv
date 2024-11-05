@@ -6,10 +6,10 @@ ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,gro
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 ground,ground,block,ground,ground,ground,ground,ground,ground,block,ground,ground
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
+stalfos,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
-empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
-empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,stalfos
