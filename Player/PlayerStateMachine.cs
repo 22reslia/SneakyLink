@@ -80,19 +80,19 @@ public class PlayerStateMachine
 
             //cases for idle sprites
             case PlayerDirection.playerLeft:
-                sword = new Sword((int)link.playerPosition.X - 22, (int)link.playerPosition.Y);
+                sword = new Sword((int)link.playerPosition.X - 24, (int)link.playerPosition.Y + (38 - 32) / 2);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackLeftSprite();
                 break;
             case PlayerDirection.playerRight:
-                sword = new Sword((int)link.playerPosition.X + 60, (int)link.playerPosition.Y);
+                sword = new Sword((int)link.playerPosition.X + 64, (int)link.playerPosition.Y + (38 - 32) / 2);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackRightSprite();
                 break;
             case PlayerDirection.playerUp:
-                sword = new Sword((int)link.playerPosition.X, (int)link.playerPosition.Y - 22);
+                sword = new Sword((int)link.playerPosition.X + (38 - 24) / 2, (int)link.playerPosition.Y - 32);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackBackwardSprite();
                 break;
             case PlayerDirection.playerDown:
-                sword = new Sword((int)link.playerPosition.X, (int)link.playerPosition.Y + 60);
+                sword = new Sword((int)link.playerPosition.X + (38 - 24) / 2, (int)link.playerPosition.Y + 64);
                 currentSprite = PlayerSpriteFactory.Instance.CreateLinkWoodenAttackForwardSprite();
                 break;
         }

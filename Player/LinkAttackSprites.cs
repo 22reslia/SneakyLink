@@ -84,17 +84,17 @@ namespace SneakyLink.Player
             else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
             {
                 sourceRectangle = new Rectangle(18, 77, 27, 17);
-                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 64, 40);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 64, 38);
             }
             else if (currentFrame >= maxFrame / 2 && currentFrame < 3 * (maxFrame / 4))
             {
                 sourceRectangle = new Rectangle(46, 77, 23, 17);
-                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 54, 40);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 54, 38);
             }
             else if (currentFrame >= 3 * (maxFrame / 4))
             {
                 sourceRectangle = new Rectangle(70, 77, 19, 17);
-                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 45, 40);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 45, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -139,17 +139,17 @@ namespace SneakyLink.Player
             else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
             {
                 sourceRectangle = new Rectangle(44, 77, -27, 17);
-                destinationRectangle = new Rectangle((int)position.X - 26, (int)position.Y, 64, 40);
+                destinationRectangle = new Rectangle((int)position.X - 26, (int)position.Y, 64, 38);
             }
             else if (currentFrame >= maxFrame / 2 && currentFrame < 3 * (maxFrame / 4))
             {
                 sourceRectangle = new Rectangle(68, 77, -23, 17);
-                destinationRectangle = new Rectangle((int)position.X - 16, (int)position.Y, 54, 40);
+                destinationRectangle = new Rectangle((int)position.X - 16, (int)position.Y, 54, 38);
             }
             else if (currentFrame >= 3 * (maxFrame / 4))
             {
                 sourceRectangle = new Rectangle(88, 77, -19, 17);
-                destinationRectangle = new Rectangle((int)position.X - 7, (int)position.Y, 45, 40);
+                destinationRectangle = new Rectangle((int)position.X - 7, (int)position.Y, 45, 38);
             }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
