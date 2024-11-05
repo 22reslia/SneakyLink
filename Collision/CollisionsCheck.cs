@@ -17,16 +17,14 @@ namespace SneakyLink.Collision
         {
             foreach (IEnemy enemy in game.enemies)
             {
-                if (enemy.CollisionBox.width != 0)
-                {
                     CollisionType side1 = CollisionDetector.CheckCollision(game.link.collisionBox, enemy.CollisionBox);
-                    if (game.link.stateMachine.sword != null)
+                Debug.Print(game.link.stateMachine.currentState.ToString());
+                    if (game.link.stateMachine.currentState == PlayerState.playerAttacking)
                     {
                         CollisionType side2 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.link.stateMachine.sword.collisionBox);
                         EnemyPlayerHandler.HandleCollision(enemy, side2);
                     }
                     PlayerEnemyHandler.HandleCollision(game.link, side1);
-                }
             }
 
             //collision detect check for room element
@@ -41,14 +39,11 @@ namespace SneakyLink.Collision
                     }
                     foreach (IEnemy enemy in game.enemies)
                     {
-                        if (enemy.CollisionBox.width != 0)
-                        {
                             CollisionType side4 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.blocks[x].CollisionBox);
                             if (side4 != CollisionType.None)
                             {
                                 EnemyBlockHandler.HandleCollision(enemy, side4);
                             }
-                        }
                     }
                 }
             }
@@ -61,14 +56,11 @@ namespace SneakyLink.Collision
                 }
                 foreach (IEnemy enemy in game.enemies)
                 {
-                    if (enemy.CollisionBox.width != 0)
-                    {
                         enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.boundaryCollisionBox[x]);
                         if (enemy.CollisionBox.side != CollisionType.None)
                         {
                             EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side);
                         }
-                    }
                 }
             }
             for (int x = 0; x < game.doors.Count; x++)
@@ -89,14 +81,11 @@ namespace SneakyLink.Collision
                 }
                 foreach (IEnemy enemy in game.enemies)
                 {
-                    if (enemy.CollisionBox.width != 0)
-                    {
                         enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.doors[x].CollisionBox);
                         if (enemy.CollisionBox.side != CollisionType.None)
                         {
                             EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side);
                         }
-                    }
                 }
             }
         }

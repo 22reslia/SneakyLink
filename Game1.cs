@@ -143,6 +143,9 @@ public class Game1 : Game
         }
 
         inventoryScene.Update();
+
+        //Check player, enemy and item state
+        ObjectUnload.objectUnload(this);
         
         base.Update(gameTime);
     }

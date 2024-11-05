@@ -57,10 +57,7 @@ namespace SneakyLink.Enemies
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (isAlive) 
-            { 
             stateMachine.Draw(spriteBatch, ZolSprite, x, y);
-            }
         }
 
         public void Update()
@@ -70,8 +67,6 @@ namespace SneakyLink.Enemies
             if (cHealth <= 0)
             {
                 isAlive = false;
-                collisionBox.width = 0;
-                collisionBox.height = 0;
             }
             if (collisionBox.side == CollisionType.None)
             {

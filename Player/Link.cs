@@ -75,7 +75,8 @@ public class Link
         //updates the sprite based off the change of state
         playerSprite = stateMachine.Update(gameTime);
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (!stateMachine.LinkPositionIdle() && stateMachine.currentState != PlayerState.playerDamaged || timer >= stopTime)
+        //!stateMachine.LinkPositionIdle() && stateMachine.currentState != PlayerState.playerDamaged ||
+        if (timer >= stopTime)
         {
             stateMachine.currentState = PlayerState.playerIdle;
             timer = 0f;
