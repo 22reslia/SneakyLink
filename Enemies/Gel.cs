@@ -67,6 +67,7 @@ namespace SneakyLink.Enemies
             if (cHealth <= 0)
             {
                 isAlive = false;
+
             }
             if (collisionBox.side == CollisionType.None)
             {

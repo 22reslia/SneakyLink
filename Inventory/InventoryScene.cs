@@ -31,8 +31,9 @@ namespace SneakyLink.Inventory
             infoSprite.Draw(spriteBatch, 0,0);
             health.Draw(spriteBatch, true);
         }
-        public void DrawHealth(SpriteBatch spriteBatch)
+        public void DrawOnScene(SpriteBatch spriteBatch)
         {
+            infoSprite.Draw(spriteBatch, 0, 460);
             health.Draw(spriteBatch, false);
         }
     }
