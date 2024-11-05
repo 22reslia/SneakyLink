@@ -6,13 +6,14 @@ using System.Net.Mime;
 
 namespace SneakyLink.Scene
 {
-    public class TitleBackgroundSprite : ISprite
+    public class TitleWordSprite : ISprite
     {
         Texture2D image;
         Rectangle sourceRectangle;
 
-        public TitleBackgroundSprite(Texture2D text)
+        public TitleWordSprite(Texture2D text)
         {
+            sourceRectangle = new Rectangle(1, 11, 256, 224);
             image = text;
         }
 
@@ -22,9 +23,8 @@ namespace SneakyLink.Scene
 
         public void Draw(SpriteBatch spriteBatch, int x, int y)
         {
-            sourceRectangle = new Rectangle(0, 0, 798, 480);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(image, new Rectangle(x, y, 1120, 800), sourceRectangle, Color.White);
+            spriteBatch.Draw(image, new Rectangle(x, y, 800, 640), sourceRectangle, Color.White);
             spriteBatch.End();
         }
     }

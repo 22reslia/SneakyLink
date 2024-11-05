@@ -18,7 +18,7 @@ namespace SneakyLink.Collision
             foreach (IEnemy enemy in game.enemies)
             {
                 CollisionType side1 = CollisionDetector.CheckCollision(game.link.collisionBox, enemy.CollisionBox);
-                Debug.Print(game.link.stateMachine.currentState.ToString());
+                //Debug.Print(game.link.stateMachine.currentState.ToString());
                 if (game.link.stateMachine.currentState == PlayerState.playerAttacking)
                 {
                     CollisionType side2 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.link.stateMachine.sword.collisionBox);

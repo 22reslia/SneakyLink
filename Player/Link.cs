@@ -30,8 +30,13 @@ public class Link
     public int maxHealth;
     public int currentHealth;
 
-    int vCounter;
-    int mCounter;
+    private int vCounter;
+    private int mCounter;
+
+    //link collective items info
+    public int coinNum;
+    public int keyNum;
+    public int bombNum;
 
     //creats a player with basic stats
     public Link()
@@ -55,6 +60,10 @@ public class Link
         //creates a state machine and gets the current sprite based on directional movement
         stateMachine = new PlayerStateMachine(playerPosition, this);
         collisionBox = new CollisionBox(CollisionObjectType.Player, 38, 38, (int)playerPosition.X, (int)playerPosition.Y);
+
+        coinNum = 0;
+        keyNum = 0;
+        bombNum = 1;
     }
 
     public void SetSprite()

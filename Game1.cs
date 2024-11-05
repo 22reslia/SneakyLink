@@ -25,6 +25,7 @@ public class Game1 : Game
     public bool isInventoryScene;
 
     //Controllers for input
+    private IController<Keys> titleKeyboardController;
     private IController<Keys> playerKeyboardController;
     private IController<Keys> menuKeyboardController;
     private IController<MouseButton> playerMouseController;
@@ -64,6 +65,7 @@ public class Game1 : Game
         _graphics.PreferredBackBufferHeight = 640;
         _graphics.ApplyChanges();
 
+        titleKeyboardController = new KeyboardController();
         playerKeyboardController = new KeyboardController();
         playerMouseController = new MouseController(this);
         menuKeyboardController = new KeyboardController();
@@ -96,7 +98,7 @@ public class Game1 : Game
         playerKeyboardController.RegisterCommand(Keys.D3, new UseItem(link), false);
 
         //Initilizing menu related Commands to specific keys
-        menuMouseController.RegisterCommand(MouseButton.Left, new StartGameCommand(this), true);
+        titleKeyboardController.RegisterCommand(Keys.Enter, new StartGameCommand(this), true);
         menuKeyboardController.RegisterCommand(Keys.Tab, new SwitchInventoryCommand(this), true);
         menuKeyboardController.RegisterCommand(Keys.Q, new GameExit(this), true);
 
@@ -124,6 +126,10 @@ public class Game1 : Game
         if (!isTitleScene)
         {
             menuKeyboardController.Update();
+        }
+        else
+        {
+            titleKeyboardController.Update();
         }
         menuMouseController.Update();
         if (isDungeonScene)
