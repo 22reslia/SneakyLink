@@ -38,7 +38,7 @@ namespace SneakyLink.Inventory
             int y = 99;
             if (!isInInventory)
             {
-                y += 400;
+                y += 460;
             }
             for (int i = 0; i < maxHealth; i ++)
             {

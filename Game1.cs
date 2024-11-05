@@ -61,7 +61,7 @@ public class Game1 : Game
     {
         //set the window size
         _graphics.PreferredBackBufferWidth = 800;
-        _graphics.PreferredBackBufferHeight = 580;
+        _graphics.PreferredBackBufferHeight = 640;
         _graphics.ApplyChanges();
 
         playerKeyboardController = new KeyboardController();
@@ -173,7 +173,7 @@ public class Game1 : Game
         }
         else if (!isInventoryScene && !isTitleScene)
         {
-            inventoryScene.DrawHealth(_spriteBatch);
+            inventoryScene.DrawOnScene(_spriteBatch);
         }
         base.Draw(gameTime);
     }
