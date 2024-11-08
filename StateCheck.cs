@@ -20,6 +20,7 @@ namespace SneakyLink
                 if (enemy.cHealth <= 0)
                 {
                     enemyDie.Add(enemy);
+                    game.link.coinNum++;
                 }
             }
             foreach(IEnemy enemy in enemyDie)

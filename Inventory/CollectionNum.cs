@@ -2,6 +2,7 @@
 using SneakyLink.Player;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +29,7 @@ namespace SneakyLink.Inventory
 
         public void Update()
         {
-            coinNum = link.coinNum;
-            keyNum = link.keyNum;
-            bombNum = link.bombNum;
+            numSprite.UpdateNum(link.coinNum, link.keyNum, link.bombNum);
         }
         public void Draw(SpriteBatch spriteBatch, bool isInInventory)
         {

@@ -49,9 +49,15 @@ namespace SneakyLink.Inventory
             spriteBatch.Draw(image, new Rectangle(x + 48, y, 24, 24), sourceRectangle, Color.White);
         }
 
+        public void UpdateNum(int coinNum, int keyNum, int bombNum)
+        {
+            this.coinNum = coinNum;
+            this.keyNum = keyNum;
+            this.bombNum = bombNum;
+        }
+
         public void Update()
         {
-         
         }
     }
 }
