@@ -3,7 +3,7 @@
 namespace SneakyLink.Collision
 {
     public enum CollisionType { None, Left, Right, Top, Bottom, Item }
-    public enum CollisionObjectType { Player, Enemy, Block, Interactive };
+    public enum CollisionObjectType { Player, Enemy, Block, Sand, Interactive };
 
     public interface ICollision
     {

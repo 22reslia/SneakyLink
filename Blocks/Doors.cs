@@ -32,7 +32,7 @@ namespace SneakyLink.Blocks
             this.positionX = positionX;
             this.positionY = positionY;
             image = BlockSpriteFactory.Instance.GetSheet();
-            collisionBox = new CollisionBox(CollisionObjectType.Interactive, 80, 80, positionX, positionY);
+            collisionBox = new CollisionBox(CollisionObjectType.Block, 80, 80, positionX, positionY);
 
             //set the room transmission info
             Debug.Print(doorID + nextRoomFilePath);
