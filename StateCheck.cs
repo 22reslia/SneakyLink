@@ -31,12 +31,12 @@ namespace SneakyLink
             //check if player is dead, if so game over
             if (game.link.currentHealth <= 0)
             {
-                game.isGameOver = true;
+                game.gameState = GameState.GameOver;
             }
 
             if (game.link.coinNum == 10)
             {
-                game.isGameWin = true;
+                game.gameState = GameState.GameWin;
             }
         }
     }

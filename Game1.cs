@@ -19,13 +19,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    //bool to choose which scene is showing
-    public bool isTitleScene;
-    public bool isDungeonScene;
-    public bool isInventoryScene;
-    //bool of game state
-    public bool isGameOver;
-    public bool isGameWin;
+    //the game state
+    public GameState gameState;
 
     //Controllers for input
     private IController<Keys> titleKeyboardController;
@@ -76,12 +71,7 @@ public class Game1 : Game
         gameOverKeyboardController = new KeyboardController();
 
         //the first showing scene should be title
-        isTitleScene = true;
-        isDungeonScene = false;
-        isInventoryScene = false;
-
-        isGameWin = false;
-        isGameOver = false;
+        gameState = GameState.Title;
 
         //initializes Link contructor
         link = new Link();
@@ -132,46 +122,38 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (isGameWin)
+        switch (gameState)
         {
-
-        }else if (isGameOver)
-        {
-            gameOverKeyboardController.Update();
-        }
-        else
-        {
-            //input update
-            if (!isTitleScene)
-            {
-                menuKeyboardController.Update();
-            }
-            else
-            {
+            case GameState.Title:
                 titleKeyboardController.Update();
-            }
-            menuMouseController.Update();
-            if (isDungeonScene)
-            {
+                break;
+            case GameState.Inventory:
+                menuKeyboardController.Update();
+                inventoryScene.Update();
+                break;
+            case GameState.RoomTransmission:
+
+                break;
+            case GameState.GamePlay:
                 playerKeyboardController.Update();
                 playerMouseController.Update();
+                menuKeyboardController.Update();
                 foreach (IEnemy enemy in enemies)
                 {
                     enemy.Update();
                 }
-
                 //link (player) update
                 link.Update(gameTime);
-
                 //check collision
                 CollisionsCheck.collisionCheck(this);
-            }
-
-            inventoryScene.Update();
-
-            //Check player, enemy and item state
-            StateCheck.stateCheck(this);
-
+                inventoryScene.Update();
+                StateCheck.stateCheck(this);
+                break;
+            case GameState.GameOver:
+                gameOverKeyboardController.Update();
+                break;
+            case GameState.GameWin:
+                break;
         }
         base.Update(gameTime);
     }
@@ -180,25 +162,17 @@ public class Game1 : Game
     {
 
         GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
-
-        //check if game is win or over
-        if (isGameWin)
+        switch (gameState)
         {
-            //draw game win page
-        }
-        else if (isGameOver)
-        {
-            //draw game over page
-        }
-        else
-        {
-            //check which scene is it
-            if (isTitleScene)
-            {
+            case GameState.Title:
                 titleScene.Draw(_spriteBatch);
-            }
-            if (isDungeonScene)
-            {
+                break;
+            case GameState.Inventory:
+                inventoryScene.Draw(_spriteBatch);
+                break;
+            case GameState.RoomTransmission:
+                break;
+            case GameState.GamePlay:
                 room.Draw(_spriteBatch);
                 foreach (IEnemy enemy in enemies)
                 {
@@ -206,15 +180,12 @@ public class Game1 : Game
                 }
                 //Draw player link
                 link.Draw(_spriteBatch);
-            }
-            if (isInventoryScene)
-            {
-                inventoryScene.Draw(_spriteBatch);
-            }
-            else if (!isInventoryScene && !isTitleScene)
-            {
                 inventoryScene.DrawOnScene(_spriteBatch);
-            }
+                break;
+            case GameState.GameOver:
+                break;
+            case GameState.GameWin:
+                break;
         }
         base.Draw(gameTime);
     }

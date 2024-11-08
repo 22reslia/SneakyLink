@@ -17,12 +17,12 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            Debug.Print(game.isTitleScene.ToString());
-            if(game.isTitleScene)
-            {
-                game.isTitleScene = false;
-                game.isDungeonScene = true;
-            }
+            //if(game.isTitleScene)
+            //{
+            //    game.isTitleScene = false;
+            //    game.isDungeonScene = true;
+            //}
+            game.gameState = GameState.GamePlay;
         }
     }
 }
