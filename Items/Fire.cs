@@ -3,9 +3,9 @@ using SneakyLink.Collision;
 using SneakyLink.Items;
 using SneakyLink.Player;
 
-namespace SneakyLink.Projectiles
+namespace SneakyLink.Items
 {
-    public class LinkFire
+    public class LinkFire : Projectiles
     {
         private int x;
         private int y;
