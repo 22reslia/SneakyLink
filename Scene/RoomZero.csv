@@ -1,11 +1,11 @@
 door01,..\\..\\..\\Scene\\RoomTwo.csv,door10,,door20,,door30,
+ground,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,ground
+ground,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,ground
 sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand
 sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand
 sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand
-sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand
-sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand
-sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand
-sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand,sand
+sand,sand,sand,sand,ground,ground,sand,sand,sand,sand,sand,sand
+sand,sand,sand,sand,ground,ground,sand,sand,sand,sand,sand,sand
 empty,empty,empty,empty,empty,empty,gel,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty

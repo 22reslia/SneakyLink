@@ -21,10 +21,14 @@ namespace SneakyLink.Collision
             if (targetBlock.type == CollisionObjectType.Sand)
             {
                 link.velocity = 1;
+                if (!link.isV)
+                {
+                    link.currentHealth--;
+                    link.isV = true;
+                }
             }
             else
             {
-                link.velocity = 3;
                 switch (side)
                 {
                     case CollisionType.None:

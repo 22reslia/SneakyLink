@@ -128,6 +128,9 @@ public class Link
             }
         }
 
+        //update link's speed
+        velocity = 3;
+
         //calls the ISprite update for given sprite
         playerSprite.Update();
     }

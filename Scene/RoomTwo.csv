@@ -2,9 +2,9 @@ door01,..\\..\\..\\Scene\\RoomFour.csv,door11,..\\..\\..\\Scene\\RoomOne.csv,doo
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 ground,statue1,ground,ground,statue1,ground,ground,statue2,ground,ground,statue2,ground
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
-ground,statue1,ground,ground,statue1,ground,ground,statue2,ground,ground,statue2,ground
+ground,statue1,ground,ground,ground,ground,ground,statue2,ground,ground,statue2,ground
 ground,ground,ground,ground,ground,sand,sand,ground,ground,ground,ground,ground
-ground,statue1,ground,sand,statue1,sand,sand,statue2,sand,ground,statue2,ground
+ground,statue1,ground,sand,sand,sand,sand,sand,sand,ground,statue2,ground
 ground,ground,ground,sand,sand,sand,sand,sand,sand,ground,ground,ground
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
