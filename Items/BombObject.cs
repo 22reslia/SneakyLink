@@ -20,7 +20,7 @@ namespace SneakyLink.Items
             BombSprite = new MapSprite();
             x = positionX;
             y = positionY;
-            collisionBox = new CollisionBox(CollisionObjectType.Interactive, 24, 48, x, y);
+            collisionBox = new CollisionBox(CollisionObjectType.Interactive, 24, 42, x, y);
         }
 
         public void Draw(SpriteBatch spriteBatch)
