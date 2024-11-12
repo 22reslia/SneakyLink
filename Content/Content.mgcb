@@ -49,6 +49,13 @@
 /processorParam:TextureFormat=Color
 /build:DungeonEnemies.png
 
+#begin GameOverFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:GameOverFont.spritefont
+
 #begin InventoryBasicInfo.png
 /importer:TextureImporter
 /processor:TextureProcessor

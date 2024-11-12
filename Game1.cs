@@ -39,6 +39,9 @@ public class Game1 : Game
     //inventory scene info
     private InventoryScene inventoryScene;
 
+    //game over scene info
+    private GameOverScene gameOverScene;
+
     //dungeon scene info
     public Room room;
     public Room oldRoom;
@@ -100,10 +103,11 @@ public class Game1 : Game
         titleKeyboardController.RegisterCommand(Keys.Enter, new StartGameCommand(this), true);
         menuKeyboardController.RegisterCommand(Keys.Tab, new SwitchInventoryCommand(this), true);
         menuKeyboardController.RegisterCommand(Keys.Q, new GameExit(this), true);
+        menuKeyboardController.RegisterCommand(Keys.R, new ResetCommand(this), true);
 
         //Initilizing game win and over related Commands to specific keys
         gameOverKeyboardController.RegisterCommand(Keys.Q, new GameExit(this), true);
-
+        gameOverKeyboardController.RegisterCommand(Keys.R, new ResetCommand(this), true);
         base.Initialize();
     }
 
@@ -119,6 +123,7 @@ public class Game1 : Game
         link.SetSprite();
         titleScene = new TitleScene(this);
         inventoryScene = new InventoryScene(this);
+        gameOverScene = new GameOverScene(this);
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
@@ -159,6 +164,7 @@ public class Game1 : Game
                 gameOverKeyboardController.Update();
                 break;
             case GameState.GameWin:
+                gameOverKeyboardController.Update();
                 break;
         }
         base.Update(gameTime);
@@ -195,8 +201,10 @@ public class Game1 : Game
                 inventoryScene.DrawOnScene(_spriteBatch);
                 break;
             case GameState.GameOver:
+                gameOverScene.Draw(_spriteBatch, false);
                 break;
             case GameState.GameWin:
+                gameOverScene.Draw(_spriteBatch, true);
                 break;
         }
         base.Draw(gameTime);
