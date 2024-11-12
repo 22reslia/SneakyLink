@@ -17,11 +17,6 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            //if(game.isTitleScene)
-            //{
-            //    game.isTitleScene = false;
-            //    game.isDungeonScene = true;
-            //}
             game.gameState = GameState.GamePlay;
         }
     }

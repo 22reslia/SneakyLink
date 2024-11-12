@@ -7,6 +7,7 @@ using SneakyLink.Collision;
 using SneakyLink.Commands;
 using SneakyLink.Enemies;
 using SneakyLink.Inventory;
+using SneakyLink.Items;
 using SneakyLink.Player;
 using SneakyLink.Scene;
 using System.Collections.Generic;
@@ -31,7 +32,6 @@ public class Game1 : Game
     private IController<MouseButton> menuMouseController;
 
     public Player.Link link;
-    public List<ISprite> itemList;
 
     //title scene info
     private TitleScene titleScene;
@@ -41,11 +41,13 @@ public class Game1 : Game
 
     //dungeon scene info
     public Room room;
+    public Room oldRoom;
     //the collision box of elements in the room
     public List<IBlock> blocks = new List<IBlock>();
     public List<Doors> doors = new List<Doors>();
     public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
 
+    public List<IItem> itemList = new List<IItem>();
     public List<IEnemy> enemies = new List<IEnemy>();
 
     //public int sceneCount;
@@ -142,6 +144,10 @@ public class Game1 : Game
                 {
                     enemy.Update();
                 }
+                foreach(IItem item in itemList)
+                {
+                    item.Update();
+                }
                 //link (player) update
                 link.Update(gameTime);
                 //check collision
@@ -171,12 +177,18 @@ public class Game1 : Game
                 inventoryScene.Draw(_spriteBatch);
                 break;
             case GameState.RoomTransmission:
+                oldRoom = room;
+                RoomTransmission.roomTransmission(oldRoom, room, this, gameTime);
                 break;
             case GameState.GamePlay:
                 room.Draw(_spriteBatch);
                 foreach (IEnemy enemy in enemies)
                 {
                     enemy.Draw(_spriteBatch);
+                }
+                foreach (IItem item in itemList)
+                {
+                    item.Draw(_spriteBatch);
                 }
                 //Draw player link
                 link.Draw(_spriteBatch);
