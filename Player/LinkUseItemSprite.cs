@@ -29,31 +29,41 @@ namespace SneakyLink.Player
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
-            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            else if (currentFrame >= maxFrame / 5 && currentFrame < maxFrame / 2)
             {
                 sourceRectangle = new Rectangle(1, 11, 16, 16);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
+            else // Default frame if no other condition matches
+    {
+        sourceRectangle = new Rectangle(1, 47, 16, 16); // This could be any frame you prefer as default
+        destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+    }
+
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();
+        
         }
 
         public void Update()
         {
-            frameCounter++;
-            if (frameCounter >= frameDelay)
-            {
-                currentFrame++;
+         frameCounter++;
 
-                if (currentFrame == maxFrame)
-                {
-                    currentFrame = 0;
-                }
-                frameCounter = 0;
-            }
-        }
+    // Only increment the frame when frameCounter reaches the delay
+    if (frameCounter >= frameDelay)
+    {
+        currentFrame++;
+        frameCounter = 0; // Reset frameCounter after incrementing the frame
+    }
+
+    // Loop the animation back to the start after reaching the end
+    if (currentFrame >= maxFrame)
+    {
+        currentFrame = 0;
+    }
+    }
     }
 
     public class LinkUseItemRight : ISprite
@@ -83,9 +93,15 @@ namespace SneakyLink.Player
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
-            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            else if (currentFrame >= maxFrame / 5 && currentFrame < maxFrame / 2)
             {
                 sourceRectangle = new Rectangle(35, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+            }
+
+            else 
+            {
+                sourceRectangle = new Rectangle(124, 11, 16, 16);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
@@ -97,16 +113,20 @@ namespace SneakyLink.Player
         public void Update()
         {
             frameCounter++;
-            if (frameCounter >= frameDelay)
-            {
-                currentFrame++;
 
-                if (currentFrame == maxFrame)
-                {
-                    currentFrame = 0;
-                }
-                frameCounter = 0;
-            }
+    // Only increment the frame when frameCounter reaches the delay
+    if (frameCounter >= frameDelay)
+    {
+        currentFrame++;
+        frameCounter = 0; // Reset frameCounter after incrementing the frame
+    }
+
+    // Loop the animation back to the start after reaching the end
+    if (currentFrame >= maxFrame)
+    {
+        currentFrame = 0;
+    }
+            
         }
     }
 
@@ -136,9 +156,15 @@ namespace SneakyLink.Player
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
-            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            else if (currentFrame >= maxFrame / 5 && currentFrame < maxFrame / 2)
             {
                 sourceRectangle = new Rectangle(35, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+            }
+
+            else 
+            {
+                sourceRectangle = new Rectangle(124, 11, 16, 16);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
@@ -150,16 +176,19 @@ namespace SneakyLink.Player
         public void Update()
         {
             frameCounter++;
-            if (frameCounter >= frameDelay)
-            {
-                currentFrame++;
 
-                if (currentFrame == maxFrame)
-                {
-                    currentFrame = 0;
-                }
-                frameCounter = 0;
-            }
+    // Only increment the frame when frameCounter reaches the delay
+    if (frameCounter >= frameDelay)
+    {
+        currentFrame++;
+        frameCounter = 0; // Reset frameCounter after incrementing the frame
+    }
+
+    // Loop the animation back to the start after reaching the end
+    if (currentFrame >= maxFrame)
+    {
+        currentFrame = 0;
+    }
         }
     }
 
@@ -191,9 +220,15 @@ namespace SneakyLink.Player
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
-            else if (currentFrame >= maxFrame / 4 && currentFrame < maxFrame / 2)
+            else if (currentFrame >= maxFrame / 5 && currentFrame < maxFrame / 2)
             {
                 sourceRectangle = new Rectangle(69, 11, 16, 16);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
+            }
+
+            else 
+            {
+                sourceRectangle = new Rectangle(141, 11, 16, 16);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
             }
 
@@ -204,16 +239,19 @@ namespace SneakyLink.Player
         public void Update()
         {
             frameCounter++;
-            if (frameCounter >= frameDelay)
-            {
-                currentFrame++;
 
-                if (currentFrame == maxFrame)
-                {
-                    currentFrame = 0;
-                }
-                frameCounter = 0;
-            }
+    // Only increment the frame when frameCounter reaches the delay
+    if (frameCounter >= frameDelay)
+    {
+        currentFrame++;
+        frameCounter = 0; // Reset frameCounter after incrementing the frame
+    }
+
+    // Loop the animation back to the start after reaching the end
+    if (currentFrame >= maxFrame)
+    {
+        currentFrame = 0;
+    }
         }
     }
 }

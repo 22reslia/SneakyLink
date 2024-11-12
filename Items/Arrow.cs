@@ -49,10 +49,10 @@ namespace SneakyLink.Projectiles
             arrowSprite.Update();
             //collisionBox.UpdatePosition((int)position.X, (int)position.Y); // Update collision box position
 
-            if (IsOutOfBounds()) // Check if it goes out of bounds
-            {
-                HasCollided = true;
-            }
+            // if (IsOutOfBounds()) // Check if it goes out of bounds
+            // {
+            //     HasCollided = true;
+            // }
         }
 
         // Draw method to render the arrow sprite at the current position

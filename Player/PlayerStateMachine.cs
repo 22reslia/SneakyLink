@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -107,8 +108,6 @@ public class PlayerStateMachine
 
     public void Attack(Vector2 linkPosition)
 {
-    if (!isAttacking && currentItem != PlayerItem.None)
-    {
         Vector2 projectilePosition = linkPosition;
         Vector2 projectileVelocity = Vector2.Zero;
 
@@ -117,9 +116,14 @@ public class PlayerStateMachine
         {
             case PlayerItem.Bow:
                 currentProjectile = new LinkArrow((int)projectilePosition.X, (int)projectilePosition.Y);
+                Console.WriteLine("current projectile" + currentProjectile);
                 break;
             case PlayerItem.Fireball:
                 currentProjectile = new LinkFire((int)projectilePosition.X, (int)projectilePosition.Y);
+                break;
+
+            default:
+                currentProjectile = new LinkBomb((int)projectilePosition.X, (int)projectilePosition.Y);
                 break;
             
         }
@@ -152,12 +156,11 @@ public class PlayerStateMachine
         // Display the "use item" sprite
         currentSprite = GetCurrentUseItemSprite();
         isAttacking = true;
-    }
+    
 
     // Update the projectile's movement and check for its end state
     if (currentProjectile != null)
     {
-        currentProjectile.Update();
         //if (currentProjectile.HasCollided || currentProjectile.IsOutOfBounds())
         if (currentProjectile.HasCollided)
         {
@@ -270,6 +273,10 @@ private void ResetToIdleOrMovingSprite()
     //draws the sprite
     public void Draw(SpriteBatch spriteBatch, ISprite playerSprite, int x, int y)
         {
+            if (currentProjectile != null)
+            {
+                currentProjectile.Draw(spriteBatch);
+            }
             playerSprite.Draw(spriteBatch, x, y);
         }
 
@@ -278,6 +285,10 @@ private void ResetToIdleOrMovingSprite()
         // float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         // float timer = 0f;
         // float stopTime = 5f;
+        if (currentProjectile != null)
+        {
+            currentProjectile.Update();
+        }
         
          if (PlayerSpriteStateChange() || PlayerSpriteDirectionChange())
         {
