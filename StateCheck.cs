@@ -1,5 +1,6 @@
 ﻿using SneakyLink.Collision;
 using SneakyLink.Enemies;
+using SneakyLink.Items;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,7 +21,7 @@ namespace SneakyLink
                 if (enemy.cHealth <= 0)
                 {
                     enemyDie.Add(enemy);
-                    game.link.coinNum++;
+                    game.itemList.Add(new RupeeObject(enemy.X, enemy.Y));
                 }
             }
             foreach(IEnemy enemy in enemyDie)
