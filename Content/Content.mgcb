@@ -49,6 +49,18 @@
 /processorParam:TextureFormat=Color
 /build:DungeonEnemies.png
 
+#begin EnemyDeath.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=116,116,116,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:EnemyDeath.png
+
 #begin InventoryBasicInfo.png
 /importer:TextureImporter
 /processor:TextureProcessor

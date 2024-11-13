@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Collision;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -67,7 +68,6 @@ namespace SneakyLink.Enemies
             if (cHealth <= 0)
             {
                 isAlive = false;
-
             }
             if (collisionBox.side == CollisionType.None)
             {

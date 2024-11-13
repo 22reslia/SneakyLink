@@ -1,4 +1,5 @@
 ﻿using SneakyLink.Player;
+using System.Runtime.CompilerServices;
 
 namespace SneakyLink.Collision
 {
@@ -6,6 +7,9 @@ namespace SneakyLink.Collision
     {
         public static void HandleCollision(Link link, CollisionType side)
         {
+            int knockbackDistance = 20;
+            bool nearWall = link.isBlockedLeft || link.isBlockedRight || link.isBlockedTop || link.isBlockedBottom;
+
             switch (side)
             {   
                 case CollisionType.None:
@@ -15,7 +19,7 @@ namespace SneakyLink.Collision
                     link.isBlockedBottom = false;
                     break;
                 case CollisionType.Left:
-                    link.playerPosition.X += 40;
+                    if (!nearWall) link.playerPosition.X += knockbackDistance;
                     link.isBlockedLeft = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
@@ -26,7 +30,7 @@ namespace SneakyLink.Collision
                     }
                     break;
                 case CollisionType.Right:
-                    link.playerPosition.X -= 40;
+                    if (!nearWall) link.playerPosition.X -= knockbackDistance;
                     link.isBlockedRight = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
@@ -37,7 +41,7 @@ namespace SneakyLink.Collision
                     }
                     break;
                 case CollisionType.Top:
-                    link.playerPosition.Y += 40;
+                    if (!nearWall) link.playerPosition.Y += knockbackDistance;
                     link.isBlockedTop = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
@@ -48,7 +52,7 @@ namespace SneakyLink.Collision
                     }
                     break;
                 case CollisionType.Bottom:
-                    link.playerPosition.Y -= 40;
+                    if (!nearWall) link.playerPosition.Y -= knockbackDistance;
                     link.isBlockedBottom = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
