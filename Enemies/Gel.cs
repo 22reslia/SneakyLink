@@ -16,8 +16,7 @@ namespace SneakyLink.Enemies
         private GelStateMachine stateMachine;
         public CollisionBox collisionBox;
         private ISprite GelSprite;
-        private int x;
-        private int y;
+        private int x, y;
         private int maxHealth;
         private int currentHealth;
         private bool isAlive;

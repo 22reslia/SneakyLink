@@ -14,8 +14,7 @@ namespace SneakyLink.Enemies
         private StalfosStateMachine stateMachine;
         public CollisionBox collisionBox;
         private ISprite stalfosSprite;
-        private int x;
-        private int y;
+        private int x, y;
         private int maxHealth;
         private int currentHealth;
         private bool isAlive;

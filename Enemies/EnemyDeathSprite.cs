@@ -10,16 +10,21 @@ namespace SneakyLink.Enemies
         private Texture2D texture;
         private int currentFrame;
         private int counter;
+        private bool isFinished;
 
         public EnemyDeathSprite(Texture2D texture)
         {
             this.texture = texture;
             currentFrame = 0;
             counter = 0;
+            isFinished = false;
         }
 
         public void Draw(SpriteBatch spriteBatch, int x, int y)
         {
+            if (isFinished)
+                return;
+
             if (currentFrame == 0)
             {
                 sourceRectangular = new Rectangle(0, 0, 16, 16);
@@ -43,12 +48,19 @@ namespace SneakyLink.Enemies
 
         public void Update()
         {
-            if (counter < 15)
+            if (isFinished)
+                return;
+
+            if (counter < 20)
             {
                 counter++;
             }
             else
             {
+                if (currentFrame > 3)
+                {
+                    isFinished = true;
+                }
                 currentFrame++;
             }
         }

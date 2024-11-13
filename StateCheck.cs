@@ -27,6 +27,7 @@ namespace SneakyLink
             foreach(IEnemy enemy in enemyDie)
             {
                 game.enemies.Remove(enemy);
+                game.itemList.Add(new EnemyDeath(enemy.X, enemy.Y));
             }
 
             //check if player is dead, if so game over

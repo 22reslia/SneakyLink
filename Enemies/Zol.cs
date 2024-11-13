@@ -14,8 +14,7 @@ namespace SneakyLink.Enemies
         private ZolStateMachine stateMachine;
         public CollisionBox collisionBox;
         private ISprite ZolSprite;
-        private int x;
-        private int y;
+        private int x, y;
         private int maxHealth;
         private int currentHealth;
         private bool isAlive;
