@@ -57,7 +57,7 @@ public class Game1 : Game
     public List<IItem> itemList = new List<IItem>();
     public List<IEnemy> enemies = new List<IEnemy>();
 
-    //public int sceneCount;
+    public int sceneCount;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -112,6 +112,11 @@ public class Game1 : Game
         //Initilizing game win and over related Commands to specific keys
         gameOverKeyboardController.RegisterCommand(Keys.Q, new GameExit(this), true);
         gameOverKeyboardController.RegisterCommand(Keys.R, new ResetCommand(this), true);
+
+        //debug change room
+        menuMouseController.RegisterCommand(MouseButton.Left, new PreviousSceneCommand(this), true);
+        menuMouseController.RegisterCommand(MouseButton.Right, new NextSceneCommand(this), true);
+        sceneCount = 0;
         base.Initialize();
     }
 
@@ -163,6 +168,7 @@ public class Game1 : Game
                 playerKeyboardController.Update();
                 playerMouseController.Update();
                 menuKeyboardController.Update();
+                menuMouseController.Update();
                 foreach (IEnemy enemy in enemies)
                 {
                     enemy.Update();
