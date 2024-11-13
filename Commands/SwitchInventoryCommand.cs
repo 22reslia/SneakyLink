@@ -15,8 +15,15 @@ namespace SneakyLink.Commands
         }
         public void Execute()
         {
-            game.isDungeonScene = !game.isDungeonScene;
-            game.isInventoryScene = !game.isInventoryScene;
+            switch (game.gameState)
+            {
+                case GameState.GamePlay:
+                    game.gameState = GameState.Inventory;
+                    break;
+                case GameState.Inventory:
+                    game.gameState = GameState.GamePlay;
+                    break;
+            }
         }
     }
 }

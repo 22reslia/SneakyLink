@@ -1,5 +1,6 @@
 ﻿using SneakyLink.Blocks;
 using SneakyLink.Enemies;
+using SneakyLink.Items;
 using SneakyLink.Player;
 using SneakyLink.Scene;
 using System;
@@ -15,6 +16,7 @@ namespace SneakyLink.Collision
     {
         public static void collisionCheck(Game1 game)
         {
+            //collision check for enemy
             foreach (IEnemy enemy in game.enemies)
             {
                 CollisionType side1 = CollisionDetector.CheckCollision(game.link.collisionBox, enemy.CollisionBox);
@@ -25,6 +27,21 @@ namespace SneakyLink.Collision
                     EnemyPlayerHandler.HandleCollision(enemy, side2);
                 }
                 PlayerEnemyHandler.HandleCollision(game.link, side1);
+            }
+
+            //collision check for room item
+            List<IItem> itemPicked = new List<IItem>();
+            foreach (IItem item in game.itemList)
+            {
+                CollisionType side = CollisionDetector.CheckCollision(game.link.collisionBox, item.CollisionBox);
+                if (side != CollisionType.None)
+                {
+                    itemPicked.Add(item);
+                }
+            }
+            foreach (IItem item in itemPicked)
+            {
+                PlayerItemHandler.HandleCollision(game.link, item, game);
             }
 
             //collision detect check for room element

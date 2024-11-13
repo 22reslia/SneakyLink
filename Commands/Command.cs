@@ -154,8 +154,12 @@ public class UseItem : ICommand
     }
 
     public void Execute () 
-    {   
-        link.stateMachine.currentState = PlayerState.playerUseItem;
+    {
+        if (link.bombNum > 0)
+        {
+            link.bombNum--;
+            link.stateMachine.currentState = PlayerState.playerUseItem;
+        }
         
     }
     

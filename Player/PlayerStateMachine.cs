@@ -1,9 +1,11 @@
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SneakyLink.Projectiles;
 
 namespace SneakyLink.Player;
 
@@ -17,6 +19,11 @@ public class PlayerStateMachine
     public Sword sword;
     private Link link;
     private bool isMoving = false;
+    private IProjectile currentProjectile;
+
+    public PlayerItem currentItem = PlayerItem.None;
+
+    private bool isAttacking = false;
 
     //Constructor to initialize previousState
     public PlayerStateMachine(Vector2 initialPosition, Link link)
@@ -98,6 +105,85 @@ public class PlayerStateMachine
         }
         return currentSprite;
     }
+
+    public void Attack(Vector2 linkPosition)
+{
+        Vector2 projectilePosition = linkPosition;
+        Vector2 projectileVelocity = Vector2.Zero;
+
+        // Select projectile type based on current item
+        switch (currentItem)
+        {
+            case PlayerItem.Bow:
+                currentProjectile = new LinkArrow((int)projectilePosition.X, (int)projectilePosition.Y);
+                Console.WriteLine("current projectile" + currentProjectile);
+                break;
+            case PlayerItem.Fireball:
+                currentProjectile = new LinkFire((int)projectilePosition.X, (int)projectilePosition.Y);
+                break;
+
+            default:
+                currentProjectile = new LinkBomb((int)projectilePosition.X, (int)projectilePosition.Y);
+                break;
+            
+        }
+
+        // Set position and velocity based on Link's direction
+        switch (currentDirection)
+        {
+            case PlayerDirection.playerLeft:
+                projectilePosition += new Vector2(-20, 0);
+                projectileVelocity = new Vector2(-5, 0);
+                break;
+            case PlayerDirection.playerRight:
+                projectilePosition += new Vector2(20, 0);
+                projectileVelocity = new Vector2(5, 0);
+                break;
+            case PlayerDirection.playerUp:
+                projectilePosition += new Vector2(0, -20);
+                projectileVelocity = new Vector2(0, -5);
+                break;
+            case PlayerDirection.playerDown:
+                projectilePosition += new Vector2(0, 20);
+                projectileVelocity = new Vector2(0, 5);
+                break;
+        }
+
+        // Set position and shoot the projectile
+        currentProjectile.Position = projectilePosition;
+        currentProjectile.Shoot(projectileVelocity.X, projectileVelocity.Y);
+        
+        // Display the "use item" sprite
+        currentSprite = GetCurrentUseItemSprite();
+        isAttacking = true;
+    
+
+    // Update the projectile's movement and check for its end state
+    if (currentProjectile != null)
+    {
+        //if (currentProjectile.HasCollided || currentProjectile.IsOutOfBounds())
+        if (currentProjectile.HasCollided)
+        {
+            currentProjectile = null; // Remove projectile if it hits something or goes out of bounds
+            isAttacking = false;
+            ResetToIdleOrMovingSprite(); // Reset Link's sprite after attack is done
+        }
+    }
+}
+
+// Helper method to reset Link's sprite to idle or moving after using an item
+private void ResetToIdleOrMovingSprite()
+{
+    switch (currentState)
+    {
+        case PlayerState.playerIdle:
+            currentSprite = GetCurrentIdleSprite();
+            break;
+        case PlayerState.playerMoving:
+            currentSprite = GetCurrentMovingSprite();
+            break;
+    }
+}
 
     public ISprite GetCurrentDamagedSprite()
     {   
@@ -187,6 +273,10 @@ public class PlayerStateMachine
     //draws the sprite
     public void Draw(SpriteBatch spriteBatch, ISprite playerSprite, int x, int y)
         {
+            if (currentProjectile != null)
+            {
+                currentProjectile.Draw(spriteBatch);
+            }
             playerSprite.Draw(spriteBatch, x, y);
         }
 
@@ -195,6 +285,10 @@ public class PlayerStateMachine
         // float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         // float timer = 0f;
         // float stopTime = 5f;
+        if (currentProjectile != null)
+        {
+            currentProjectile.Update();
+        }
         
          if (PlayerSpriteStateChange() || PlayerSpriteDirectionChange())
         {
@@ -214,6 +308,7 @@ public class PlayerStateMachine
                     break;
                 case PlayerState.playerUseItem:
                     currentSprite = GetCurrentUseItemSprite();
+                    Attack(link.playerPosition);
                     break;
             }
         }

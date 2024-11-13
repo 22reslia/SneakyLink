@@ -1,4 +1,5 @@
 
+using SneakyLink.Items;
 using SneakyLink.Player;
 
 
@@ -6,14 +7,19 @@ namespace SneakyLink.Collision
 {
     public class PlayerItemHandler
     {
-        public static void HandleCollision(CollisionType isCollision)
+        public static void HandleCollision(Link link, IItem item, Game1 game)
         {
-            switch (isCollision)
+            game.itemList.Remove(item);
+            switch (item)
             {
-                case CollisionType.None:
-                    break;
-                case CollisionType.Item:
+                case MapObject:
                     
+                    break;
+                case BombObject:
+                    link.bombNum++;
+                    break;
+                case RupeeObject:
+                    link.coinNum++;
                     break;
             }
         }

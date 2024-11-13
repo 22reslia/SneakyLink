@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,9 @@ namespace SneakyLink
             game.link.playerPosition.Y = 200;
             game.link.stateMachine.currentDirection = Player.PlayerDirection.playerDown;
             game.link.stateMachine.currentState = Player.PlayerState.playerIdle;
+            game.link.coinNum = 0;
+            game.link.bombNum = 1;
+            game.link.currentHealth = game.link.maxHealth;
         }
     }
 }

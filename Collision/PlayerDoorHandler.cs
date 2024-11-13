@@ -44,6 +44,8 @@ namespace SneakyLink.Collision
             game.blocks.Clear();
             game.doors.Clear();
             game.enemies.Clear();
+            game.itemList.Clear();
+            game.gameState = GameState.RoomTransmission;
             game.room = new Room(game, nextDoorFilePath);
             game.link.playerPosition = nextLinkPosition;
         }

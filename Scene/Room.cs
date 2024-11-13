@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using SneakyLink.Collision;
+using SneakyLink.Items;
 
 namespace SneakyLink.Scene
 {
@@ -19,6 +20,7 @@ namespace SneakyLink.Scene
         public List<IBlock> blockList;
         public List<Doors> doorList;
         public List<IEnemy> enemyList;
+        public List<IItem> itemList;
 
         public Room(Game1 game, string filePath)
         {
@@ -27,6 +29,7 @@ namespace SneakyLink.Scene
             blockList = game.blocks;
             doorList = game.doors;
             enemyList = game.enemies;
+            itemList = game.itemList;
             LoadLevelTextures(game.Content);
             //set collision box for the background
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 20));
@@ -130,6 +133,15 @@ namespace SneakyLink.Scene
                             break;
                         case "stalfos":
                             enemyList.Add(new Stalfos(positionX, positionY));
+                            break;
+                        case "map":
+                            itemList.Add(new MapObject(positionX + 10, positionY + 10));
+                            break;
+                        case "rupee":
+                            itemList.Add(new RupeeObject(positionX + 10, positionY + 10));
+                            break;
+                        case "bomb":
+                            itemList.Add(new BombObject(positionX + 10, positionY + 10));
                             break;
                         case "empty":
                             break;

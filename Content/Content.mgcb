@@ -49,6 +49,7 @@
 /processorParam:TextureFormat=Color
 /build:DungeonEnemies.png
 
+<<<<<<< HEAD
 #begin EnemyDeath.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -60,6 +61,14 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:EnemyDeath.png
+=======
+#begin GameOverFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:GameOverFont.spritefont
+>>>>>>> 4adf28726e84e564c96308a269958a39897199e0
 
 #begin InventoryBasicInfo.png
 /importer:TextureImporter

@@ -7,6 +7,7 @@ using SneakyLink.Collision;
 using SneakyLink.Commands;
 using SneakyLink.Enemies;
 using SneakyLink.Inventory;
+using SneakyLink.Items;
 using SneakyLink.Player;
 using SneakyLink.Scene;
 using System.Collections.Generic;
@@ -19,13 +20,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    //bool to choose which scene is showing
-    public bool isTitleScene;
-    public bool isDungeonScene;
-    public bool isInventoryScene;
-    //bool of game state
-    public bool isGameOver;
-    public bool isGameWin;
+    //the game state
+    public GameState gameState;
 
     //Controllers for input
     private IController<Keys> titleKeyboardController;
@@ -36,7 +32,6 @@ public class Game1 : Game
     private IController<MouseButton> menuMouseController;
 
     public Player.Link link;
-    public List<ISprite> itemList;
 
     //title scene info
     private TitleScene titleScene;
@@ -44,13 +39,18 @@ public class Game1 : Game
     //inventory scene info
     private InventoryScene inventoryScene;
 
+    //game over scene info
+    private GameOverScene gameOverScene;
+
     //dungeon scene info
     public Room room;
+    public Room oldRoom;
     //the collision box of elements in the room
     public List<IBlock> blocks = new List<IBlock>();
     public List<Doors> doors = new List<Doors>();
     public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
 
+    public List<IItem> itemList = new List<IItem>();
     public List<IEnemy> enemies = new List<IEnemy>();
 
     //public int sceneCount;
@@ -76,12 +76,7 @@ public class Game1 : Game
         gameOverKeyboardController = new KeyboardController();
 
         //the first showing scene should be title
-        isTitleScene = true;
-        isDungeonScene = false;
-        isInventoryScene = false;
-
-        isGameWin = false;
-        isGameOver = false;
+        gameState = GameState.Title;
 
         //initializes Link contructor
         link = new Link();
@@ -108,10 +103,11 @@ public class Game1 : Game
         titleKeyboardController.RegisterCommand(Keys.Enter, new StartGameCommand(this), true);
         menuKeyboardController.RegisterCommand(Keys.Tab, new SwitchInventoryCommand(this), true);
         menuKeyboardController.RegisterCommand(Keys.Q, new GameExit(this), true);
+        menuKeyboardController.RegisterCommand(Keys.R, new ResetCommand(this), true);
 
         //Initilizing game win and over related Commands to specific keys
         gameOverKeyboardController.RegisterCommand(Keys.Q, new GameExit(this), true);
-
+        gameOverKeyboardController.RegisterCommand(Keys.R, new ResetCommand(this), true);
         base.Initialize();
     }
 
@@ -127,51 +123,49 @@ public class Game1 : Game
         link.SetSprite();
         titleScene = new TitleScene(this);
         inventoryScene = new InventoryScene(this);
+        gameOverScene = new GameOverScene(this);
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (isGameWin)
+        switch (gameState)
         {
-
-        }else if (isGameOver)
-        {
-            gameOverKeyboardController.Update();
-        }
-        else
-        {
-            //input update
-            if (!isTitleScene)
-            {
-                menuKeyboardController.Update();
-            }
-            else
-            {
+            case GameState.Title:
                 titleKeyboardController.Update();
-            }
-            menuMouseController.Update();
-            if (isDungeonScene)
-            {
+                break;
+            case GameState.Inventory:
+                menuKeyboardController.Update();
+                inventoryScene.Update();
+                break;
+            case GameState.RoomTransmission:
+
+                break;
+            case GameState.GamePlay:
                 playerKeyboardController.Update();
                 playerMouseController.Update();
+                menuKeyboardController.Update();
                 foreach (IEnemy enemy in enemies)
                 {
                     enemy.Update();
                 }
-
+                foreach(IItem item in itemList)
+                {
+                    item.Update();
+                }
                 //link (player) update
                 link.Update(gameTime);
-
                 //check collision
                 CollisionsCheck.collisionCheck(this);
-            }
-
-            inventoryScene.Update();
-
-            //Check player, enemy and item state
-            StateCheck.stateCheck(this);
-
+                inventoryScene.Update();
+                StateCheck.stateCheck(this);
+                break;
+            case GameState.GameOver:
+                gameOverKeyboardController.Update();
+                break;
+            case GameState.GameWin:
+                gameOverKeyboardController.Update();
+                break;
         }
         base.Update(gameTime);
     }
@@ -180,41 +174,38 @@ public class Game1 : Game
     {
 
         GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
-
-        //check if game is win or over
-        if (isGameWin)
+        switch (gameState)
         {
-            //draw game win page
-        }
-        else if (isGameOver)
-        {
-            //draw game over page
-        }
-        else
-        {
-            //check which scene is it
-            if (isTitleScene)
-            {
+            case GameState.Title:
                 titleScene.Draw(_spriteBatch);
-            }
-            if (isDungeonScene)
-            {
+                break;
+            case GameState.Inventory:
+                inventoryScene.Draw(_spriteBatch);
+                break;
+            case GameState.RoomTransmission:
+                oldRoom = room;
+                RoomTransmission.roomTransmission(oldRoom, room, this, gameTime);
+                break;
+            case GameState.GamePlay:
                 room.Draw(_spriteBatch);
                 foreach (IEnemy enemy in enemies)
                 {
                     enemy.Draw(_spriteBatch);
                 }
+                foreach (IItem item in itemList)
+                {
+                    item.Draw(_spriteBatch);
+                }
                 //Draw player link
                 link.Draw(_spriteBatch);
-            }
-            if (isInventoryScene)
-            {
-                inventoryScene.Draw(_spriteBatch);
-            }
-            else if (!isInventoryScene && !isTitleScene)
-            {
                 inventoryScene.DrawOnScene(_spriteBatch);
-            }
+                break;
+            case GameState.GameOver:
+                gameOverScene.Draw(_spriteBatch, false);
+                break;
+            case GameState.GameWin:
+                gameOverScene.Draw(_spriteBatch, true);
+                break;
         }
         base.Draw(gameTime);
     }
