@@ -42,6 +42,10 @@ public class Game1 : Game
     //game over scene info
     private GameOverScene gameOverScene;
 
+    //roomtransmission info
+    private RoomTransmission roomTransmission;
+    public string nextRoomFilePath;
+
     //dungeon scene info
     public Room room;
     public Room oldRoom;
@@ -124,6 +128,7 @@ public class Game1 : Game
         titleScene = new TitleScene(this);
         inventoryScene = new InventoryScene(this);
         gameOverScene = new GameOverScene(this);
+        roomTransmission = new RoomTransmission(GraphicsDevice);
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
     }
 
@@ -139,7 +144,20 @@ public class Game1 : Game
                 inventoryScene.Update();
                 break;
             case GameState.RoomTransmission:
-
+                roomTransmission.Update(gameTime);
+                if (!roomTransmission.isTransitioningIn)
+                {
+                    blocks.Clear();
+                    doors.Clear();
+                    enemies.Clear();
+                    itemList.Clear();
+                    room = new Room(this, nextRoomFilePath);
+                }
+                if (roomTransmission.isTransmissionComplete)
+                {
+                    gameState = GameState.GamePlay;
+                    roomTransmission.reset();
+                }
                 break;
             case GameState.GamePlay:
                 playerKeyboardController.Update();
@@ -183,8 +201,7 @@ public class Game1 : Game
                 inventoryScene.Draw(_spriteBatch);
                 break;
             case GameState.RoomTransmission:
-                oldRoom = room;
-                RoomTransmission.roomTransmission(oldRoom, room, this, gameTime);
+                roomTransmission.Draw(_spriteBatch, oldRoom, room);
                 break;
             case GameState.GamePlay:
                 room.Draw(_spriteBatch);

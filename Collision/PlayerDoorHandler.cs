@@ -41,12 +41,10 @@ namespace SneakyLink.Collision
                     break;
             }
             //clear the old objects
-            game.blocks.Clear();
-            game.doors.Clear();
-            game.enemies.Clear();
-            game.itemList.Clear();
             game.gameState = GameState.RoomTransmission;
-            game.room = new Room(game, nextDoorFilePath);
+            game.oldRoom = game.room;
+
+            game.nextRoomFilePath = nextDoorFilePath;
             game.link.playerPosition = nextLinkPosition;
         }
     }
