@@ -5,7 +5,7 @@ namespace SneakyLink.Collision
 {
     public class PlayerEnemyHandler
     {
-        public static void HandleCollision(Link link, CollisionType side)
+        public static void HandleCollision(Link link, CollisionType side, PlayerSounds sound)
         {
             int knockbackDistance = 20;
             bool nearWall = link.isBlockedLeft || link.isBlockedRight || link.isBlockedTop || link.isBlockedBottom;
@@ -25,6 +25,7 @@ namespace SneakyLink.Collision
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;
                     }
@@ -36,6 +37,7 @@ namespace SneakyLink.Collision
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;
                     }
@@ -47,6 +49,7 @@ namespace SneakyLink.Collision
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;
                     }
@@ -58,6 +61,7 @@ namespace SneakyLink.Collision
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;
                     }
