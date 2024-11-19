@@ -122,6 +122,12 @@
 /processorParam:Quality=Best
 /build:LOZ_Get_Rupee.wav
 
+#begin LOZ_Link_Hurt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Link_Hurt.wav
+
 #begin LOZ_Sword_Slash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

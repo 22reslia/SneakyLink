@@ -35,7 +35,7 @@ public class Game1 : Game
     public Player.Link link;
 
     //player sound effects
-    private PlayerSounds playerSounds;
+    public PlayerSounds playerSounds;
 
     //item sound effefcts
     public ItemSounds itemSounds;

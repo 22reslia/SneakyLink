@@ -16,7 +16,8 @@ namespace SneakyLink.Collision
     public class CollisionsCheck
     {
         public static void collisionCheck(Game1 game)
-        {
+        {   
+            PlayerSounds playerSounds = game.playerSounds;
             //collision check for enemy
             foreach (IEnemy enemy in game.enemies)
             {
@@ -27,9 +28,9 @@ namespace SneakyLink.Collision
                     CollisionType side2 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.link.stateMachine.sword.collisionBox);
                     EnemyPlayerHandler.HandleCollision(enemy, side2);
                 }
-                PlayerEnemyHandler.HandleCollision(game.link, side1);
+                PlayerEnemyHandler.HandleCollision(game.link, side1, playerSounds);
             }
-            ItemSounds sounds = game.itemSounds;
+            ItemSounds itemSounds = game.itemSounds;
             
             //collision check for room item
             List<IItem> itemPicked = new List<IItem>();
@@ -43,7 +44,7 @@ namespace SneakyLink.Collision
             }
             foreach (IItem item in itemPicked)
             {
-                PlayerItemHandler.HandleCollision(game.link, item, game, sounds);
+                PlayerItemHandler.HandleCollision(game.link, item, game, itemSounds);
             }
 
             
