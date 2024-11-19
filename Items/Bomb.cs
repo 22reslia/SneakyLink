@@ -1,62 +1,79 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SneakyLink.Collision;
 using SneakyLink.Items;
 
 namespace SneakyLink.Projectiles
 {
     public class LinkBomb : IProjectile
     {
-        private Vector2 position;  // Using Vector2 for position
-        private Vector2 velocity;  // Using Vector2 for velocity
+        private Vector2 position;
+        private Vector2 velocity;
         private ISprite bombSprite;
 
-        // Implementing the Position property
+        // Use the existing CollisionBox
+        public CollisionBox CollisionBox { get; private set; }
+
+        public bool HasCollided { get; private set; }
+
         public Vector2 Position
         {
             get => position;
-            set => position = value;
-        }
-
-        // Implementing HasCollided as a boolean to indicate collision state
-        public bool HasCollided { get; private set; }
-
-        public LinkBomb(int x, int y)
-        {
-            position = new Vector2(x, y); // Initialize position
-            bombSprite = new BombSprite();
-            velocity = Vector2.Zero; // Initialize velocity to zero
-            HasCollided = false;     // Initialize collision state
-        }
-
-        // Implementing Shoot method to set velocity
-        public void Shoot(float velocityX, float velocityY)
-        {
-            velocity = new Vector2(velocityX, velocityY); // Set velocity using Vector2
-        }
-
-        // Update the position of the bomb and check for boundaries
-        public void Update()
-        {
-            position += velocity; // Move the bomb
-            bombSprite.Update();
-
-            if (IsOutOfBounds()) // Check if it goes out of bounds
+            set
             {
-                HasCollided = true;
+                position = value;
+                // Update the collision box whenever position changes
+                UpdateCollisionBox();
             }
         }
 
-        // Draw method to render the bomb sprite at the current position
+        public LinkBomb(int x, int y)
+        {
+            position = new Vector2(x, y);
+            bombSprite = new BombSprite();
+            velocity = Vector2.Zero;
+            HasCollided = false;
+
+            // Initialize the collision box with dimensions and type
+            CollisionBox = new CollisionBox(CollisionObjectType.Projectile, 16, 16, (int)position.X, (int)position.Y);
+        }
+
+        public void Shoot(float velocityX, float velocityY)
+        {
+            velocity = new Vector2(velocityX, velocityY);
+            velocity = Vector2.Zero;
+        }
+
+        public void Update()
+        {
+            //position += velocity; // Update position
+            bombSprite.Update();
+
+            // Update the collision box to follow the bomb's position
+            UpdateCollisionBox();
+
+            // Check if the bomb is out of bounds
+            // if (IsOutOfBounds())
+            // {
+            //     HasCollided = true;
+            // }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             bombSprite.Draw(spriteBatch, (int)position.X, (int)position.Y);
         }
 
-        // Implementing IsOutOfBounds to check if bomb is outside game boundaries
-        public bool IsOutOfBounds()
+        private void UpdateCollisionBox()
         {
-            // Example boundary conditions; replace with actual game boundaries
-            return position.X < 0 || position.X > 800 || position.Y < 0 || position.Y > 600;
+            CollisionBox.x = (int)position.X;
+            CollisionBox.y = (int)position.Y;
         }
+
+        // public bool IsOutOfBounds()
+        // {
+        //     // Example boundary conditions; replace with actual game boundaries
+        //     return position.X < 0 || position.X > 800 || position.Y < 0 || position.Y > 600;
+        // }
     }
 }
