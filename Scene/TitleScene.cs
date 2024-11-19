@@ -24,7 +24,7 @@ namespace SneakyLink.Scene
 
             background = new TitleBackgroundSprite(scene);
             menuSound = titleMusic.CreateInstance();
-            menuSound.Volume = 0.5f;
+            menuSound.Volume = 0.25f;
             menuSound.IsLooped = true;
             menuSound.Play();
         }
