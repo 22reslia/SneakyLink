@@ -36,6 +36,9 @@ public class Game1 : Game
     //player sound effects
     private PlayerSounds playerSounds;
 
+    //item sound effefcts
+    public ItemSounds itemSounds;
+
     //title scene info
     private TitleScene titleScene;
 
@@ -92,6 +95,9 @@ public class Game1 : Game
         playerSounds = new PlayerSounds();
         playerSounds.LoadPlayerSoundEffects(this);
 
+        //Initialize ItemSounds
+        itemSounds = new ItemSounds();
+
         //initializes all object
         InitializeObject.initializeObject(this);
 
@@ -142,6 +148,9 @@ public class Game1 : Game
         gameOverScene = new GameOverScene(this);
         roomTransmission = new RoomTransmission(GraphicsDevice);
         room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
+        
+        //load itemSounds
+        itemSounds.LoadItemSoundEffects(this);
     }
 
     protected override void Update(GameTime gameTime)

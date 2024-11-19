@@ -28,7 +28,8 @@ namespace SneakyLink.Collision
                 }
                 PlayerEnemyHandler.HandleCollision(game.link, side1);
             }
-
+            ItemSounds sounds = game.itemSounds;
+            
             //collision check for room item
             List<IItem> itemPicked = new List<IItem>();
             foreach (IItem item in game.itemList)
@@ -41,7 +42,7 @@ namespace SneakyLink.Collision
             }
             foreach (IItem item in itemPicked)
             {
-                PlayerItemHandler.HandleCollision(game.link, item, game);
+                PlayerItemHandler.HandleCollision(game.link, item, game, sounds);
             }
 
             //collision detect check for room element

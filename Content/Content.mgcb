@@ -116,6 +116,12 @@
 /processorParam:TextureFormat=Color
 /build:Link Sprite Sheet.png
 
+#begin LOZ_Get_Rupee.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:LOZ_Get_Rupee.wav
+
 #begin LOZ_Sword_Slash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
