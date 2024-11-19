@@ -9,6 +9,7 @@ using SneakyLink.Enemies;
 using SneakyLink.Inventory;
 using SneakyLink.Items;
 using SneakyLink.Player;
+using SneakyLink.Projectiles;
 using SneakyLink.Scene;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -62,6 +63,7 @@ public class Game1 : Game
 
     public List<IItem> itemList = new List<IItem>();
     public List<IEnemy> enemies = new List<IEnemy>();
+    public List<IProjectile> projectileList = new List<IProjectile>();
 
     public int sceneCount;
     public Game1()
@@ -89,7 +91,7 @@ public class Game1 : Game
         gameState = GameState.Title;
 
         //initializes Link contructor
-        link = new Link();
+        link = new Link(this);
 
         // Initialize and load sound effects
         playerSounds = new PlayerSounds();

@@ -2,6 +2,7 @@
 using SneakyLink.Enemies;
 using SneakyLink.Items;
 using SneakyLink.Player;
+using SneakyLink.Projectiles;
 using SneakyLink.Scene;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,44 @@ namespace SneakyLink.Collision
             foreach (IItem item in itemPicked)
             {
                 PlayerItemHandler.HandleCollision(game.link, item, game, sounds);
+            }
+
+            
+               // Collision check for bombs (projectiles)
+            foreach (var bomb in game.projectileList.OfType<LinkBomb>())
+            {
+                // Check collision with blocks
+                foreach (var block in game.blocks)
+                {
+                    if (block.CollisionBox != null)
+                    {
+                        CollisionType bombBlockSide = CollisionDetector.CheckCollision(bomb.CollisionBox, block.CollisionBox);
+                        if (bombBlockSide != CollisionType.None)
+                        {
+                            BombCollisionHandler.HandleCollision(bomb, block, game);
+                        }
+                    }
+                }
+
+                // Check collision with enemies
+                foreach (var enemy in game.enemies)
+                {
+                    CollisionType bombEnemySide = CollisionDetector.CheckCollision(bomb.CollisionBox, enemy.CollisionBox);
+                    if (bombEnemySide != CollisionType.None)
+                    {
+                        BombCollisionHandler.HandleCollision(bomb, enemy, game);
+                    }
+                }
+
+                // Check collision with boundaries
+                foreach (var boundary in game.boundaryCollisionBox)
+                {
+                    CollisionType bombBoundarySide = CollisionDetector.CheckCollision(bomb.CollisionBox, boundary);
+                    if (bombBoundarySide != CollisionType.None)
+                    {
+                        BombCollisionHandler.HandleCollision(bomb, boundary, game);
+                    }
+                }
             }
 
             //collision detect check for room element
