@@ -14,29 +14,33 @@ namespace SneakyLink.Collision
 {
     public class EnemyBlockHandler
     {
-        public static void HandleCollision(IEnemy enemy, CollisionType side)
+        public static void HandleCollision(IEnemy enemy, CollisionType side, CollisionBox targetBlock)
         {
             //Debug.Print(side.ToString());
-            switch (side)
+            //enemy will not be effect by sand
+            if (targetBlock.type != CollisionObjectType.Sand)
             {
-                case CollisionType.None:
-                    enemy.isBlockedL = false;
-                    enemy.isBlockedR = false;
-                    enemy.isBlockedT = false;
-                    enemy.isBlockedB = false;
-                    break;
-                case CollisionType.Left:
-                    enemy.isBlockedL = true;
-                    break;
-                case CollisionType.Right:
-                    enemy.isBlockedR = true;
-                    break;
-                case CollisionType.Top:
-                    enemy.isBlockedT = true;
-                    break;
-                case CollisionType.Bottom:
-                    enemy.isBlockedB = true;
-                    break;
+                switch (side)
+                {
+                    case CollisionType.None:
+                        enemy.isBlockedL = false;
+                        enemy.isBlockedR = false;
+                        enemy.isBlockedT = false;
+                        enemy.isBlockedB = false;
+                        break;
+                    case CollisionType.Left:
+                        enemy.isBlockedL = true;
+                        break;
+                    case CollisionType.Right:
+                        enemy.isBlockedR = true;
+                        break;
+                    case CollisionType.Top:
+                        enemy.isBlockedT = true;
+                        break;
+                    case CollisionType.Bottom:
+                        enemy.isBlockedB = true;
+                        break;
+                }
             }
         }
     }

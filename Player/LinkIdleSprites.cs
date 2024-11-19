@@ -1,4 +1,3 @@
-
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
@@ -13,7 +12,7 @@ namespace SneakyLink.Player
         {
             linkSprite = texture;
         }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
         {
             position.X = xPosition;
             position.Y = yPosition;
@@ -44,7 +43,7 @@ namespace SneakyLink.Player
         {
             linkSprite = texture;
         }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
         {
             position.X = xPosition;
             position.Y = yPosition;
@@ -75,7 +74,7 @@ namespace SneakyLink.Player
         {
             linkSprite = texture;
         }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
         {
             position.X = xPosition;
             position.Y = yPosition;
@@ -85,7 +84,7 @@ namespace SneakyLink.Player
 
             Rectangle sourceRectangle = new Rectangle(35, 11, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 38, 38);
-    
+
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(linkSprite, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f);
@@ -107,7 +106,7 @@ namespace SneakyLink.Player
         {
             linkSprite = texture;
         }
-        public void Draw(SpriteBatch spriteBatch, int xPosition , int yPosition)
+        public void Draw(SpriteBatch spriteBatch, int xPosition, int yPosition)
         {
             position.X = xPosition;
             position.Y = yPosition;

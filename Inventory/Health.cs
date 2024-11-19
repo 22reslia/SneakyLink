@@ -35,10 +35,10 @@ namespace SneakyLink.Inventory
             int heartSize = 24;
             int heartPerRow = 8;
             int x = 282;
-            int y = 99;
+            int y = 96;
             if (!isInInventory)
             {
-                y += 400;
+                y += 460;
             }
             for (int i = 0; i < maxHealth; i ++)
             {

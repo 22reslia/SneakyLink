@@ -1,4 +1,4 @@
-door00,door10,door21,door30
+door00,,door10,,door21,..\\..\\..\\Scene\\RoomSeventeen.csv,door30,
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 ground,ground,ground,ground,ground,ground,block,ground,ground,ground,ground,ground
 ground,ground,ground,ground,ground,block,ground,block,ground,ground,ground,ground
@@ -6,3 +6,10 @@ ground,ground,ground,ground,block,ground,stair,ground,block,ground,ground,ground
 ground,ground,ground,ground,ground,block,ground,block,ground,ground,ground,ground
 ground,ground,ground,ground,ground,ground,block,ground,ground,ground,ground,ground
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty

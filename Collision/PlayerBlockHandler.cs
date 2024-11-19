@@ -14,29 +14,42 @@ namespace SneakyLink.Collision
 {
     public class PlayerBlockHandler
     {
-        public static void HandleCollision(Link link, CollisionType side)
+        public static void HandleCollision(Link link, CollisionType side, CollisionBox targetBlock)
         {
             //Debug.Print(side.ToString());
-            switch (side)
+            //sand will not prevent moving but slow down player
+            if (targetBlock.type == CollisionObjectType.Sand)
             {
-                case CollisionType.None:
-                    link.isBlockedLeft = false;
-                    link.isBlockedRight = false;
-                    link.isBlockedTop = false;
-                    link.isBlockedBottom = false;
-                    break;
-                case CollisionType.Left:
-                    link.isBlockedLeft = true;
-                    break;
-                case CollisionType.Right:
-                    link.isBlockedRight = true;
-                    break;
-                case CollisionType.Top:
-                    link.isBlockedTop = true;
-                    break;
-                case CollisionType.Bottom:
-                    link.isBlockedBottom = true;
-                    break;
+                link.velocity = 1;
+                if (!link.isV)
+                {
+                    link.currentHealth--;
+                    link.isV = true;
+                }
+            }
+            else
+            {
+                switch (side)
+                {
+                    case CollisionType.None:
+                        link.isBlockedLeft = false;
+                        link.isBlockedRight = false;
+                        link.isBlockedTop = false;
+                        link.isBlockedBottom = false;
+                        break;
+                    case CollisionType.Left:
+                        link.isBlockedLeft = true;
+                        break;
+                    case CollisionType.Right:
+                        link.isBlockedRight = true;
+                        break;
+                    case CollisionType.Top:
+                        link.isBlockedTop = true;
+                        break;
+                    case CollisionType.Bottom:
+                        link.isBlockedBottom = true;
+                        break;
+                }
             }
         }
     }

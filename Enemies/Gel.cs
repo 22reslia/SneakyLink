@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Collision;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -15,10 +16,10 @@ namespace SneakyLink.Enemies
         private GelStateMachine stateMachine;
         public CollisionBox collisionBox;
         private ISprite GelSprite;
-        private int x;
-        private int y;
+        private int x, y;
         private int maxHealth;
         private int currentHealth;
+        private bool isAlive;
         public bool isBlockedTop;
         public bool isBlockedBottom;
         public bool isBlockedLeft;
@@ -37,6 +38,7 @@ namespace SneakyLink.Enemies
         public Gel(int x, int y) {
             this.x = x;
             this.y = y;
+            isAlive = true;
             maxHealth = 3;
             currentHealth = maxHealth;
             stateMachine = new GelStateMachine();
@@ -62,7 +64,11 @@ namespace SneakyLink.Enemies
         {
             GelSprite.Update();
             stateMachine.Update(this);
-            if (this.collisionBox.side == CollisionType.None)
+            if (cHealth <= 0)
+            {
+                isAlive = false;
+            }
+            if (collisionBox.side == CollisionType.None)
             {
                 isBlockedTop = false;
                 isBlockedBottom = false;

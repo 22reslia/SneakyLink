@@ -24,7 +24,7 @@ namespace SneakyLink.Scene
         {
             sourceRectangle = new Rectangle(0, 0, 798, 480);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(image, new Rectangle(0, 0, 800, 480), sourceRectangle, Color.White);
+            spriteBatch.Draw(image, new Rectangle(x, y, 1120, 800), sourceRectangle, Color.White);
             spriteBatch.End();
         }
     }

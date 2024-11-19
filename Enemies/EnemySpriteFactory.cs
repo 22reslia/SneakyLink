@@ -7,6 +7,7 @@ namespace SneakyLink.Enemies
     {
         private Texture2D dungeonEnemySpriteSheet;
         private Texture2D bossesSpriteSheet;
+        private Texture2D deathSpriteSheet;
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
@@ -26,6 +27,12 @@ namespace SneakyLink.Enemies
         {
             dungeonEnemySpriteSheet = content.Load<Texture2D>("DungeonEnemies");
             bossesSpriteSheet = content.Load<Texture2D>("Bosses");
+            deathSpriteSheet = content.Load<Texture2D>("EnemyDeath");
+        }
+
+        public ISprite CreateEnemyDeathSprite()
+        {
+            return new EnemyDeathSprite(deathSpriteSheet);
         }
 
         public ISprite CreateKeeseEnemySprite()

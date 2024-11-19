@@ -14,10 +14,10 @@ namespace SneakyLink.Enemies
         private ZolStateMachine stateMachine;
         public CollisionBox collisionBox;
         private ISprite ZolSprite;
-        private int x;
-        private int y;
+        private int x, y;
         private int maxHealth;
         private int currentHealth;
+        private bool isAlive;
         public bool isBlockedTop;
         public bool isBlockedBottom;
         public bool isBlockedLeft;
@@ -37,6 +37,7 @@ namespace SneakyLink.Enemies
         {
             this.x = x;
             this.y = y;
+            isAlive = true;
             maxHealth = 3;
             currentHealth = maxHealth;
             stateMachine = new ZolStateMachine();
@@ -62,7 +63,11 @@ namespace SneakyLink.Enemies
         {
             ZolSprite.Update();
             stateMachine.Update(this);
-            if (this.collisionBox.side == CollisionType.None)
+            if (cHealth <= 0)
+            {
+                isAlive = false;
+            }
+            if (collisionBox.side == CollisionType.None)
             {
                 isBlockedTop = false;
                 isBlockedBottom = false;
