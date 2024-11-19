@@ -118,15 +118,18 @@ public class MoveDown : ICommand
 public class WoodenAttack : ICommand
 {
     private Link link;
-
-    public WoodenAttack(Link player)
+    private PlayerSounds playerSounds;
+    public WoodenAttack(Link player, PlayerSounds sounds)
     {
         link = player;
+        playerSounds = sounds;
     }
 
     public void Execute () 
     {   
         link.stateMachine.currentState = PlayerState.playerAttacking;
+
+        playerSounds.PlayLinkSwordSlash();
     }
 }
 

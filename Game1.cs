@@ -33,6 +33,9 @@ public class Game1 : Game
 
     public Player.Link link;
 
+    //player sound effects
+    private PlayerSounds playerSounds;
+
     //title scene info
     private TitleScene titleScene;
 
@@ -85,6 +88,10 @@ public class Game1 : Game
         //initializes Link contructor
         link = new Link();
 
+        // Initialize and load sound effects
+        playerSounds = new PlayerSounds();
+        playerSounds.LoadPlayerSoundEffects(this);
+
         //initializes all object
         InitializeObject.initializeObject(this);
 
@@ -97,8 +104,8 @@ public class Game1 : Game
         playerKeyboardController.RegisterCommand(Keys.W, new MoveUp(link), false);
         playerKeyboardController.RegisterCommand(Keys.Down, new MoveDown(link), false);
         playerKeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
-        playerKeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link), false);
-        playerKeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link), false);
+        playerKeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link, playerSounds), false);
+        playerKeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link, playerSounds), false);
         playerKeyboardController.RegisterCommand(Keys.D1, new UseItem(link), false);
         playerKeyboardController.RegisterCommand(Keys.D2, new UseItem(link), false);
         playerKeyboardController.RegisterCommand(Keys.D3, new UseItem(link), false);
