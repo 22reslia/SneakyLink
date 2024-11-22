@@ -49,41 +49,48 @@ namespace SneakyLink.Collision
 
             
                // Collision check for bombs (projectiles)
-            foreach (var bomb in game.projectileList.OfType<LinkBomb>())
-            {
-                // Check collision with blocks
-                foreach (var block in game.blocks)
+                foreach (var bomb in game.projectileList.OfType<LinkBomb>().ToList()) // Use ToList to avoid modifying the collection during iteration
                 {
-                    if (block.CollisionBox != null)
+                    if (bomb.HasCollided) // Skip bombs that have already exploded
                     {
-                        CollisionType bombBlockSide = CollisionDetector.CheckCollision(bomb.CollisionBox, block.CollisionBox);
-                        if (bombBlockSide != CollisionType.None)
+                        //CHECK THIS, MAKE SURE THIS WORKS
+                        game.projectileList.Remove(bomb); // Remove bomb from the list
+                        continue;
+                    }
+
+                    // Check collision with blocks
+                    foreach (var block in game.blocks)
+                    {
+                        if (block.CollisionBox != null)
                         {
-                            BombCollisionHandler.HandleCollision(bomb, block, game);
+                            CollisionType bombBlockSide = CollisionDetector.CheckCollision(bomb.CollisionBox, block.CollisionBox);
+                            if (bombBlockSide != CollisionType.None)
+                            {
+                                BombCollisionHandler.HandleCollision(bomb, block, game);
+                            }
+                        }
+                    }
+
+                    // Check collision with enemies
+                    foreach (var enemy in game.enemies)
+                    {
+                        CollisionType bombEnemySide = CollisionDetector.CheckCollision(bomb.CollisionBox, enemy.CollisionBox);
+                        if (bombEnemySide != CollisionType.None)
+                        {
+                            BombCollisionHandler.HandleCollision(bomb, enemy, game);
+                        }
+                    }
+
+                    // Check collision with boundaries
+                    foreach (var boundary in game.boundaryCollisionBox)
+                    {
+                        CollisionType bombBoundarySide = CollisionDetector.CheckCollision(bomb.CollisionBox, boundary);
+                        if (bombBoundarySide != CollisionType.None)
+                        {
+                            BombCollisionHandler.HandleCollision(bomb, boundary, game);
                         }
                     }
                 }
-
-                // Check collision with enemies
-                foreach (var enemy in game.enemies)
-                {
-                    CollisionType bombEnemySide = CollisionDetector.CheckCollision(bomb.CollisionBox, enemy.CollisionBox);
-                    if (bombEnemySide != CollisionType.None)
-                    {
-                        BombCollisionHandler.HandleCollision(bomb, enemy, game);
-                    }
-                }
-
-                // Check collision with boundaries
-                foreach (var boundary in game.boundaryCollisionBox)
-                {
-                    CollisionType bombBoundarySide = CollisionDetector.CheckCollision(bomb.CollisionBox, boundary);
-                    if (bombBoundarySide != CollisionType.None)
-                    {
-                        BombCollisionHandler.HandleCollision(bomb, boundary, game);
-                    }
-                }
-            }
 
             //collision detect check for room element
             for (int x = 0; x < game.room.blockList.Count; x++)

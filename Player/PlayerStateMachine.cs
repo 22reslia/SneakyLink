@@ -126,8 +126,7 @@ public class PlayerStateMachine
 
             default:
                 currentProjectile = new LinkBomb((int)projectilePosition.X, (int)projectilePosition.Y);
-                game.projectileList.Add(currentProjectile);
-                
+                game.projectileList.Add(currentProjectile); //have to move this
                 break;
             
         }

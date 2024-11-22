@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Collision;
@@ -8,13 +9,16 @@ namespace SneakyLink.Projectiles
     public class LinkBomb : IProjectile
     {
         private Vector2 position;
-        private Vector2 velocity;
         private ISprite bombSprite;
+        private ExplosionSprite explosionSprite;
 
-        // Use the existing CollisionBox
+        private bool isExploding = false; // State flag for explosion
+        public bool HasCollided { get; private set; } // Indicates if the bomb is done
+
+        private int frameCounter = 0;
+        private const int detonationFrames = 180; // Number of frames before explosion (e.g., 3 seconds at 60 FPS)
+
         public CollisionBox CollisionBox { get; private set; }
-
-        public bool HasCollided { get; private set; }
 
         public Vector2 Position
         {
@@ -22,7 +26,6 @@ namespace SneakyLink.Projectiles
             set
             {
                 position = value;
-                // Update the collision box whenever position changes
                 UpdateCollisionBox();
             }
         }
@@ -31,49 +34,74 @@ namespace SneakyLink.Projectiles
         {
             position = new Vector2(x, y);
             bombSprite = new BombSprite();
-            velocity = Vector2.Zero;
+            explosionSprite = new ExplosionSprite();
             HasCollided = false;
 
-            // Initialize the collision box with dimensions and type
+            // Initialize collision box with bomb's size
             CollisionBox = new CollisionBox(CollisionObjectType.Projectile, 16, 16, (int)position.X, (int)position.Y);
         }
 
-        public void Shoot(float velocityX, float velocityY)
-        {
-            velocity = new Vector2(velocityX, velocityY);
-            velocity = Vector2.Zero;
+        public void Shoot(float x, float y) {
+
         }
 
         public void Update()
         {
-            //position += velocity; // Update position
-            bombSprite.Update();
+            if (!isExploding)
+            {
+                // Increment frame counter for detonation
+                frameCounter++;
 
-            // Update the collision box to follow the bomb's position
+                if (frameCounter >= detonationFrames)
+                {
+                    isExploding = true; // Trigger the explosion
+                    frameCounter = 0;  // Reset for explosion animation duration
+                }
+
+                bombSprite.Update(); // Update the bomb sprite
+            }
+            else
+            {
+                // Update the explosion animation
+                explosionSprite.Update();
+
+                // Check if the explosion animation is complete
+                if (explosionSprite.isExploded())
+                {
+                    HasCollided = true; // Mark the bomb as inactive
+                }
+            }
+
             UpdateCollisionBox();
-
-            // Check if the bomb is out of bounds
-            // if (IsOutOfBounds())
-            // {
-            //     HasCollided = true;
-            // }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            bombSprite.Draw(spriteBatch, (int)position.X, (int)position.Y);
+            if (!isExploding)
+            {
+                // Draw the bomb sprite
+                bombSprite.Draw(spriteBatch, (int)position.X, (int)position.Y);
+            }
+            else
+            {
+                //Debug.WriteLine($"Explosion position: {position.X}, {position.Y}");
+                // Draw the explosion sprite
+                explosionSprite.Draw(spriteBatch, (int)position.X - 16, (int)position.Y - 16); // Adjust for centering
+            }
         }
 
         private void UpdateCollisionBox()
         {
+            // Update the collision box's position to match the bomb
             CollisionBox.x = (int)position.X;
             CollisionBox.y = (int)position.Y;
-        }
 
-        // public bool IsOutOfBounds()
-        // {
-        //     // Example boundary conditions; replace with actual game boundaries
-        //     return position.X < 0 || position.X > 800 || position.Y < 0 || position.Y > 600;
-        // }
+            if (isExploding)
+            {
+                // Expand collision box for the explosion if necessary
+                CollisionBox.width = 16;
+                CollisionBox.height = 16;
+            }
+        }
     }
 }

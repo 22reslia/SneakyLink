@@ -12,7 +12,6 @@ namespace SneakyLink.Collision
             {
                 case Block block:
                         //bomb.Explode();
-                    
                     break;
 
                 case IEnemy enemy:
@@ -22,10 +21,10 @@ namespace SneakyLink.Collision
             }
 
             // Remove the bomb if it has exploded
-            if (bomb.HasCollided)
-            {
-                game.projectileList.Remove(bomb); // Correctly remove the bomb
-            }
+            //  if (bomb.Explode() == true)
+            //  {
+            //      game.projectileList.Remove(bomb); // Correctly remove the bomb
+            //  }
         }
     }
 }
