@@ -11,6 +11,7 @@ using SneakyLink.Items;
 using SneakyLink.Player;
 using SneakyLink.Scene;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace SneakyLink;
@@ -47,11 +48,12 @@ public class Game1 : Game
     public string nextRoomFilePath;
 
     //dungeon scene info
+    public Dictionary<string, Room> roomList;
     public Room room;
     public Room oldRoom;
     //the collision box of elements in the room
-    public List<IBlock> blocks = new List<IBlock>();
-    public List<Doors> doors = new List<Doors>();
+    //public List<IBlock> blocks = new List<IBlock>();
+    //public List<Doors> doors = new List<Doors>();
     public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
 
     public List<IItem> itemList = new List<IItem>();
@@ -134,7 +136,30 @@ public class Game1 : Game
         inventoryScene = new InventoryScene(this);
         gameOverScene = new GameOverScene(this);
         roomTransmission = new RoomTransmission(GraphicsDevice);
-        room = new Room(this, "..\\..\\..\\Scene\\RoomOne.csv");
+
+        //load room
+        this.roomList = new Dictionary<string, Room>();
+        this.roomList.Add("Room0", new Room(this, "..\\..\\..\\Scene\\RoomZero.csv"));
+        this.roomList.Add("Room1", new Room(this, "..\\..\\..\\Scene\\RoomOne.csv"));
+        this.roomList.Add("Room2", new Room(this, "..\\..\\..\\Scene\\RoomTwo.csv"));
+        this.roomList.Add("Room3", new Room(this, "..\\..\\..\\Scene\\RoomThree.csv"));
+        this.roomList.Add("Room4", new Room(this, "..\\..\\..\\Scene\\RoomFour.csv"));
+        this.roomList.Add("Room5", new Room(this, "..\\..\\..\\Scene\\RoomFive.csv"));
+        this.roomList.Add("Room6", new Room(this, "..\\..\\..\\Scene\\RoomSix.csv"));
+        this.roomList.Add("Room7", new Room(this, "..\\..\\..\\Scene\\RoomSeven.csv"));
+        this.roomList.Add("Room8", new Room(this, "..\\..\\..\\Scene\\RoomEight.csv"));
+        this.roomList.Add("Room9", new Room(this, "..\\..\\..\\Scene\\RoomNine.csv"));
+        this.roomList.Add("Room10", new Room(this, "..\\..\\..\\Scene\\RoomTen.csv"));
+        this.roomList.Add("Room11", new Room(this, "..\\..\\..\\Scene\\RoomEleven.csv"));
+        this.roomList.Add("Room12", new Room(this, "..\\..\\..\\Scene\\RoomTwelve.csv"));
+        this.roomList.Add("Room13", new Room(this, "..\\..\\..\\Scene\\RoomThirteen.csv"));
+        this.roomList.Add("Room14", new Room(this, "..\\..\\..\\Scene\\RoomFourteen.csv"));
+        this.roomList.Add("Room15", new Room(this, "..\\..\\..\\Scene\\RoomFifteen.csv"));
+        this.roomList.Add("Room16", new Room(this, "..\\..\\..\\Scene\\RoomSixteen.csv"));
+        this.roomList.Add("Room17", new Room(this, "..\\..\\..\\Scene\\RoomSeventeen.csv"));
+        room = roomList["Room1"];
+        enemies = room.enemyList;
+        itemList = room.itemList;
     }
 
     protected override void Update(GameTime gameTime)
@@ -152,11 +177,9 @@ public class Game1 : Game
                 roomTransmission.Update(gameTime);
                 if (!roomTransmission.isTransitioningIn)
                 {
-                    blocks.Clear();
-                    doors.Clear();
-                    enemies.Clear();
-                    itemList.Clear();
-                    room = new Room(this, nextRoomFilePath);
+                    room = roomList[nextRoomFilePath];
+                    enemies = room.enemyList;
+                    itemList = room.itemList;
                 }
                 if (roomTransmission.isTransmissionComplete)
                 {

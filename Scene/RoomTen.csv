@@ -1,4 +1,4 @@
-door01,..\\..\\..\\Scene\\RoomThirteen.csv,door11,..\\..\\..\\Scene\\RoomNine.csv,door21,..\\..\\..\\Scene\\RoomEleven.csv,door34,..\\..\\..\\Scene\\RoomSix.csv
+door01,Room13,door11,Room9,door21,Room11,door34,Room6
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 ground,block,block,ground,ground,ground,ground,ground,ground,block,block,ground
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground

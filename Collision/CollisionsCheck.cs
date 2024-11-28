@@ -47,19 +47,19 @@ namespace SneakyLink.Collision
             //collision detect check for room element
             for (int x = 0; x < game.room.blockList.Count; x++)
             {
-                if (game.blocks[x].CollisionBox != null)
+                if (game.room.blockList[x].CollisionBox != null)
                 {
-                    CollisionType side3 = CollisionDetector.CheckCollision(game.link.collisionBox, game.blocks[x].CollisionBox);
+                    CollisionType side3 = CollisionDetector.CheckCollision(game.link.collisionBox, game.room.blockList[x].CollisionBox);
                     if (side3 != CollisionType.None)
                     {
-                        PlayerBlockHandler.HandleCollision(game.link, side3, game.blocks[x].CollisionBox);
+                        PlayerBlockHandler.HandleCollision(game.link, side3, game.room.blockList[x].CollisionBox);
                     }
                     foreach (IEnemy enemy in game.enemies)
                     {
-                        CollisionType side4 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.blocks[x].CollisionBox);
+                        CollisionType side4 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.room.blockList[x].CollisionBox);
                         if (side4 != CollisionType.None)
                         {
-                            EnemyBlockHandler.HandleCollision(enemy, side4, game.blocks[x].CollisionBox);
+                            EnemyBlockHandler.HandleCollision(enemy, side4, game.room.blockList[x].CollisionBox);
                         }
                     }
                 }
@@ -80,28 +80,28 @@ namespace SneakyLink.Collision
                     }
                 }
             }
-            for (int x = 0; x < game.doors.Count; x++)
+            for (int x = 0; x < game.room.doorList.Count; x++)
             {
-                game.link.collisionBox.side = CollisionDetector.CheckCollision(game.link.collisionBox, game.doors[x].CollisionBox);
+                game.link.collisionBox.side = CollisionDetector.CheckCollision(game.link.collisionBox, game.room.doorList[x].CollisionBox);
                 if (game.link.collisionBox.side != CollisionType.None)
                 {
-                    if (game.doors[x].NextRoomFilePath != "")
+                    if (game.room.doorList[x].NextRoomFilePath != "")
                     {
                         //Debug.Print(game.link.playerPosition.ToString());
-                        PlayerDoorHandler.HandleCollision(game.link, game.link.collisionBox.side, game.doors[x].NextRoomFilePath, game.doors[x].NextLinkPosition, game);
+                        PlayerDoorHandler.HandleCollision(game.link, game.link.collisionBox.side, game.room.doorList[x].NextRoomFilePath, game.room.doorList[x].NextLinkPosition, game);
                     }
                     else
                     {
                         //Debug.Print(game.link.playerPosition.ToString());
-                        PlayerBlockHandler.HandleCollision(game.link, game.link.collisionBox.side, game.doors[x].CollisionBox);
+                        PlayerBlockHandler.HandleCollision(game.link, game.link.collisionBox.side, game.room.doorList[x].CollisionBox);
                     }
                 }
                 foreach (IEnemy enemy in game.enemies)
                 {
-                    enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.doors[x].CollisionBox);
+                    enemy.CollisionBox.side = CollisionDetector.CheckCollision(enemy.CollisionBox, game.room.doorList[x].CollisionBox);
                     if (enemy.CollisionBox.side != CollisionType.None)
                     {
-                        EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side, game.doors[x].CollisionBox);
+                        EnemyBlockHandler.HandleCollision(enemy, enemy.CollisionBox.side, game.room.doorList[x].CollisionBox);
                     }
                 }
             }

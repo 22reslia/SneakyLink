@@ -1,4 +1,4 @@
-door01,..\\..\\..\\Scene\\RoomSeventeen.csv,door10,,door20,,door31,..\\..\\..\\Scene\\RoomTen.csv
+door01,Room17,door10,,door20,,door31,Room10
 blueGap,blueGap,blueGap,blueGap,blueGap,ground,ground,blueGap,blueGap,blueGap,blueGap,blueGap
 blueGap,ground,ground,ground,blueGap,ground,ground,ground,ground,blueGap,ground,blueGap
 blueGap,ground,blueGap,ground,blueGap,ground,blueGap,blueGap,ground,blueGap,ground,blueGap

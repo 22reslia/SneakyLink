@@ -26,10 +26,10 @@ namespace SneakyLink.Scene
         {
             this.filePath = filePath;
             sceneManage = new SceneManage(filePath, scene);
-            blockList = game.blocks;
-            doorList = game.doors;
-            enemyList = game.enemies;
-            itemList = game.itemList;
+            blockList = new List<IBlock>();
+            doorList = new List<Doors>();
+            enemyList = new List<IEnemy>();
+            itemList = new List<IItem>();
             LoadLevelTextures(game.Content);
             //set collision box for the background
             game.boundaryCollisionBox.Add(new CollisionBox(CollisionObjectType.Block, 205, 80, 160, 20));

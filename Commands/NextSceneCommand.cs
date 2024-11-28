@@ -6,23 +6,24 @@ namespace SneakyLink
     {
         private Game1 game;
         private string[] sceneList = [
-            "..\\..\\..\\Scene\\RoomOne.csv",
-            "..\\..\\..\\Scene\\RoomTwo.csv",
-            "..\\..\\..\\Scene\\RoomThree.csv",
-            "..\\..\\..\\Scene\\RoomFour.csv",
-            "..\\..\\..\\Scene\\RoomFive.csv",
-            "..\\..\\..\\Scene\\RoomSix.csv",
-            "..\\..\\..\\Scene\\RoomSeven.csv",
-            "..\\..\\..\\Scene\\RoomEight.csv",
-            "..\\..\\..\\Scene\\RoomNine.csv",
-            "..\\..\\..\\Scene\\RoomTen.csv",
-            "..\\..\\..\\Scene\\RoomEleven.csv",
-            "..\\..\\..\\Scene\\RoomTwelve.csv",
-            "..\\..\\..\\Scene\\RoomThirteen.csv",
-            "..\\..\\..\\Scene\\RoomFourteen.csv",
-            "..\\..\\..\\Scene\\RoomFifteen.csv",
-            "..\\..\\..\\Scene\\RoomSixteen.csv",
-            "..\\..\\..\\Scene\\RoomSeventeen.csv"];
+            "Room1",
+            "Room2",
+            "Room3",
+            "Room4",
+            "Room5",
+            "Room6",
+            "Room7",
+            "Room8",
+            "Room9",
+            "Room10",
+            "Room11",
+            "Room12",
+            "Room13",
+            "Room14",
+            "Room15",
+            "Room16",
+            "Room17",
+            "Room0"];
 
         public NextSceneCommand(Game1 game)
         {
@@ -33,11 +34,9 @@ namespace SneakyLink
             if (game.sceneCount < sceneList.Length)
             {
                 //clear the old collision box
-                game.blocks.Clear();
-                game.doors.Clear();
-                game.enemies.Clear();
-                game.itemList.Clear();
-                game.room = new Room(game, sceneList[game.sceneCount]);
+                game.room =  game.roomList[sceneList[game.sceneCount]];
+                game.enemies = game.room.enemyList;
+                game.itemList = game.room.itemList;
                 game.sceneCount++;
             }
             else
