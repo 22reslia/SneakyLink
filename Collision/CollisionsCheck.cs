@@ -59,7 +59,7 @@ namespace SneakyLink.Collision
                     }
 
                     // Check collision with blocks
-                    foreach (var block in game.blocks)
+                    foreach (var block in game.room.blockList)
                     {
                         if (block.CollisionBox != null)
                         {

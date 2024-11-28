@@ -152,6 +152,9 @@ public class Game1 : Game
         gameOverScene = new GameOverScene(this);
         roomTransmission = new RoomTransmission(GraphicsDevice);
 
+        //load itemSounds
+        itemSounds.LoadItemSoundEffects(this);
+
         //load room
         this.roomList = new Dictionary<string, Room>();
         this.roomList.Add("Room0", new Room(this, "..\\..\\..\\Scene\\RoomZero.csv"));
