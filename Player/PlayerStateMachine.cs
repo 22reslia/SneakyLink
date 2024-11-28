@@ -20,13 +20,14 @@ public class PlayerStateMachine
     private Link link;
     private bool isMoving = false;
     private IProjectile currentProjectile;
+    private Game1 game;
 
     public PlayerItem currentItem = PlayerItem.None;
 
     private bool isAttacking = false;
 
     //Constructor to initialize previousState
-    public PlayerStateMachine(Vector2 initialPosition, Link link)
+    public PlayerStateMachine(Vector2 initialPosition, Link link, Game1 game)
     {
         previousState = currentState;
         previousDirection = currentDirection;
@@ -34,6 +35,7 @@ public class PlayerStateMachine
         //intializes the forward sprite as the default sprite
         currentSprite = PlayerSpriteFactory.Instance.CreateLinkIdleForwardSprite();
         this.link = link;
+        this.game = game;
     }
 
     //creates an ISprite object for each different enum
@@ -114,16 +116,17 @@ public class PlayerStateMachine
         // Select projectile type based on current item
         switch (currentItem)
         {
-            case PlayerItem.Bow:
-                currentProjectile = new LinkArrow((int)projectilePosition.X, (int)projectilePosition.Y);
-                Console.WriteLine("current projectile" + currentProjectile);
-                break;
-            case PlayerItem.Fireball:
-                currentProjectile = new LinkFire((int)projectilePosition.X, (int)projectilePosition.Y);
-                break;
+            // case PlayerItem.Bow:
+            //     currentProjectile = new LinkArrow((int)projectilePosition.X, (int)projectilePosition.Y);
+            //     Console.WriteLine("current projectile" + currentProjectile);
+            //     break;
+            // case PlayerItem.Fireball:
+            //     currentProjectile = new LinkFire((int)projectilePosition.X, (int)projectilePosition.Y);
+            //     break;
 
             default:
                 currentProjectile = new LinkBomb((int)projectilePosition.X, (int)projectilePosition.Y);
+                game.projectileList.Add(currentProjectile); //have to move this
                 break;
             
         }

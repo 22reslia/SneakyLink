@@ -39,7 +39,7 @@ public class Link
     public int bombNum;
 
     //creats a player with basic stats
-    public Link()
+    public Link(Game1 game)
     {
         maxHealth = 6;
         currentHealth = maxHealth;
@@ -58,7 +58,7 @@ public class Link
         vCounter = 0;
         mCounter = 0;
         //creates a state machine and gets the current sprite based on directional movement
-        stateMachine = new PlayerStateMachine(playerPosition, this);
+        stateMachine = new PlayerStateMachine(playerPosition, this, game);
         collisionBox = new CollisionBox(CollisionObjectType.Player, 38, 38, (int)playerPosition.X, (int)playerPosition.Y);
 
         coinNum = 0;

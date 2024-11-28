@@ -9,6 +9,7 @@ using SneakyLink.Enemies;
 using SneakyLink.Inventory;
 using SneakyLink.Items;
 using SneakyLink.Player;
+using SneakyLink.Projectiles;
 using SneakyLink.Scene;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,6 +35,12 @@ public class Game1 : Game
 
     public Player.Link link;
 
+    //player sound effects
+    public PlayerSounds playerSounds;
+
+    //item sound effefcts
+    public ItemSounds itemSounds;
+
     //title scene info
     private TitleScene titleScene;
 
@@ -58,6 +65,7 @@ public class Game1 : Game
 
     public List<IItem> itemList = new List<IItem>();
     public List<IEnemy> enemies = new List<IEnemy>();
+    public List<IProjectile> projectileList = new List<IProjectile>();
 
     public int sceneCount;
     public Game1()
@@ -85,7 +93,14 @@ public class Game1 : Game
         gameState = GameState.Title;
 
         //initializes Link contructor
-        link = new Link();
+        link = new Link(this);
+
+        // Initialize and load sound effects
+        playerSounds = new PlayerSounds();
+        playerSounds.LoadPlayerSoundEffects(this);
+
+        //Initialize ItemSounds
+        itemSounds = new ItemSounds();
 
         //initializes all object
         InitializeObject.initializeObject(this);
@@ -99,8 +114,8 @@ public class Game1 : Game
         playerKeyboardController.RegisterCommand(Keys.W, new MoveUp(link), false);
         playerKeyboardController.RegisterCommand(Keys.Down, new MoveDown(link), false);
         playerKeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
-        playerKeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link), false);
-        playerKeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link), false);
+        playerKeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link, playerSounds), false);
+        playerKeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link, playerSounds), false);
         playerKeyboardController.RegisterCommand(Keys.D1, new UseItem(link), false);
         playerKeyboardController.RegisterCommand(Keys.D2, new UseItem(link), false);
         playerKeyboardController.RegisterCommand(Keys.D3, new UseItem(link), false);

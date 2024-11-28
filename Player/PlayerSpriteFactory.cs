@@ -30,6 +30,11 @@ public class PlayerSpriteFactory
 
     }
 
+    public Texture2D GetLinkSpriteSheet()
+    {
+        return linkSpriteSheet;
+    }
+
     //moving sprites
     public ISprite CreateLinkRightSprite()
     {
