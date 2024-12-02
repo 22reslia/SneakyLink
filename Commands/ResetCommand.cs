@@ -39,6 +39,7 @@ namespace SneakyLink.Commands
             game.roomList.Add("Room15", new Room(game, "..\\..\\..\\Scene\\RoomFifteen.csv"));
             game.roomList.Add("Room16", new Room(game, "..\\..\\..\\Scene\\RoomSixteen.csv"));
             game.roomList.Add("Room17", new Room(game, "..\\..\\..\\Scene\\RoomSeventeen.csv"));
+            game.roomList.Add("BossRoom", new Room(game, "..\\..\\..\\Scene\\BossRoom.csv"));
             game.room = game.roomList["Room1"];
             game.enemies = game.room.enemyList;
             game.itemList = game.room.itemList;

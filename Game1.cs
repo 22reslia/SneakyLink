@@ -11,6 +11,7 @@ using SneakyLink.Items;
 using SneakyLink.Player;
 using SneakyLink.Projectiles;
 using SneakyLink.Scene;
+using SneakyLink.Boss;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -58,14 +59,12 @@ public class Game1 : Game
     public Dictionary<string, Room> roomList;
     public Room room;
     public Room oldRoom;
-    //the collision box of elements in the room
-    //public List<IBlock> blocks = new List<IBlock>();
-    //public List<Doors> doors = new List<Doors>();
     public List<CollisionBox> boundaryCollisionBox = new List<CollisionBox>();
 
     public List<IItem> itemList = new List<IItem>();
     public List<IEnemy> enemies = new List<IEnemy>();
     public List<IProjectile> projectileList = new List<IProjectile>();
+    public Providence boss;
 
     public int sceneCount;
     public Game1()
@@ -116,9 +115,7 @@ public class Game1 : Game
         playerKeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
         playerKeyboardController.RegisterCommand(Keys.Z, new WoodenAttack(link, playerSounds), false);
         playerKeyboardController.RegisterCommand(Keys.N, new WoodenAttack(link, playerSounds), false);
-        playerKeyboardController.RegisterCommand(Keys.D1, new UseItem(link), false);
-        playerKeyboardController.RegisterCommand(Keys.D2, new UseItem(link), false);
-        playerKeyboardController.RegisterCommand(Keys.D3, new UseItem(link), false);
+        playerKeyboardController.RegisterCommand(Keys.D1, new UseItem(link), true);
 
         //Initilizing menu related Commands to specific keys
         titleKeyboardController.RegisterCommand(Keys.Enter, new StartGameCommand(this), true);
@@ -152,29 +149,33 @@ public class Game1 : Game
         gameOverScene = new GameOverScene(this);
         roomTransmission = new RoomTransmission(GraphicsDevice);
 
+        //load boss
+        boss = new Providence(290 , 0);
+
         //load itemSounds
         itemSounds.LoadItemSoundEffects(this);
 
         //load room
-        this.roomList = new Dictionary<string, Room>();
-        this.roomList.Add("Room0", new Room(this, "..\\..\\..\\Scene\\RoomZero.csv"));
-        this.roomList.Add("Room1", new Room(this, "..\\..\\..\\Scene\\RoomOne.csv"));
-        this.roomList.Add("Room2", new Room(this, "..\\..\\..\\Scene\\RoomTwo.csv"));
-        this.roomList.Add("Room3", new Room(this, "..\\..\\..\\Scene\\RoomThree.csv"));
-        this.roomList.Add("Room4", new Room(this, "..\\..\\..\\Scene\\RoomFour.csv"));
-        this.roomList.Add("Room5", new Room(this, "..\\..\\..\\Scene\\RoomFive.csv"));
-        this.roomList.Add("Room6", new Room(this, "..\\..\\..\\Scene\\RoomSix.csv"));
-        this.roomList.Add("Room7", new Room(this, "..\\..\\..\\Scene\\RoomSeven.csv"));
-        this.roomList.Add("Room8", new Room(this, "..\\..\\..\\Scene\\RoomEight.csv"));
-        this.roomList.Add("Room9", new Room(this, "..\\..\\..\\Scene\\RoomNine.csv"));
-        this.roomList.Add("Room10", new Room(this, "..\\..\\..\\Scene\\RoomTen.csv"));
-        this.roomList.Add("Room11", new Room(this, "..\\..\\..\\Scene\\RoomEleven.csv"));
-        this.roomList.Add("Room12", new Room(this, "..\\..\\..\\Scene\\RoomTwelve.csv"));
-        this.roomList.Add("Room13", new Room(this, "..\\..\\..\\Scene\\RoomThirteen.csv"));
-        this.roomList.Add("Room14", new Room(this, "..\\..\\..\\Scene\\RoomFourteen.csv"));
-        this.roomList.Add("Room15", new Room(this, "..\\..\\..\\Scene\\RoomFifteen.csv"));
-        this.roomList.Add("Room16", new Room(this, "..\\..\\..\\Scene\\RoomSixteen.csv"));
-        this.roomList.Add("Room17", new Room(this, "..\\..\\..\\Scene\\RoomSeventeen.csv"));
+        roomList = new Dictionary<string, Room>();
+        roomList.Add("Room0", new Room(this, "..\\..\\..\\Scene\\RoomZero.csv"));
+        roomList.Add("Room1", new Room(this, "..\\..\\..\\Scene\\RoomOne.csv"));
+        roomList.Add("Room2", new Room(this, "..\\..\\..\\Scene\\RoomTwo.csv"));
+        roomList.Add("Room3", new Room(this, "..\\..\\..\\Scene\\RoomThree.csv"));
+        roomList.Add("Room4", new Room(this, "..\\..\\..\\Scene\\RoomFour.csv"));
+        roomList.Add("Room5", new Room(this, "..\\..\\..\\Scene\\RoomFive.csv"));
+        roomList.Add("Room6", new Room(this, "..\\..\\..\\Scene\\RoomSix.csv"));
+        roomList.Add("Room7", new Room(this, "..\\..\\..\\Scene\\RoomSeven.csv"));
+        roomList.Add("Room8", new Room(this, "..\\..\\..\\Scene\\RoomEight.csv"));
+        roomList.Add("Room9", new Room(this, "..\\..\\..\\Scene\\RoomNine.csv"));
+        roomList.Add("Room10", new Room(this, "..\\..\\..\\Scene\\RoomTen.csv"));
+        roomList.Add("Room11", new Room(this, "..\\..\\..\\Scene\\RoomEleven.csv"));
+        roomList.Add("Room12", new Room(this, "..\\..\\..\\Scene\\RoomTwelve.csv"));
+        roomList.Add("Room13", new Room(this, "..\\..\\..\\Scene\\RoomThirteen.csv"));
+        roomList.Add("Room14", new Room(this, "..\\..\\..\\Scene\\RoomFourteen.csv"));
+        roomList.Add("Room15", new Room(this, "..\\..\\..\\Scene\\RoomFifteen.csv"));
+        roomList.Add("Room16", new Room(this, "..\\..\\..\\Scene\\RoomSixteen.csv"));
+        roomList.Add("Room17", new Room(this, "..\\..\\..\\Scene\\RoomSeventeen.csv"));
+        roomList.Add("BossRoom", new Room(this, "..\\..\\..\\Scene\\BossRoom.csv"));
         room = roomList["Room1"];
         enemies = room.enemyList;
         itemList = room.itemList;
@@ -198,6 +199,7 @@ public class Game1 : Game
                     room = roomList[nextRoomFilePath];
                     enemies = room.enemyList;
                     itemList = room.itemList;
+                    projectileList.Clear();
                 }
                 if (roomTransmission.isTransmissionComplete)
                 {
@@ -217,6 +219,11 @@ public class Game1 : Game
                 foreach(IItem item in itemList)
                 {
                     item.Update();
+                }
+                if (room == roomList["BossRoom"])
+                {
+                    boss.Update();
+                    BossCollisionCheck.collisionCheck(this);
                 }
                 //link (player) update
                 link.Update(gameTime);
@@ -259,6 +266,10 @@ public class Game1 : Game
                 foreach (IItem item in itemList)
                 {
                     item.Draw(_spriteBatch);
+                }
+                if (room == roomList["BossRoom"])
+                {
+                    boss.Draw(_spriteBatch);
                 }
                 //Draw player link
                 link.Draw(_spriteBatch);

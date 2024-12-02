@@ -7,6 +7,7 @@ using System.IO;
 using System;
 using SneakyLink.Collision;
 using SneakyLink.Items;
+using SneakyLink.Projectiles;
 
 namespace SneakyLink.Scene
 {

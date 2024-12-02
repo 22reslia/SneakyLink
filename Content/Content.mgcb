@@ -134,6 +134,18 @@
 /processorParam:Quality=Best
 /build:LOZ_Sword_Slash.wav
 
+#begin ProvidenceAlt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ProvidenceAlt.png
+
 #begin RoomMusic.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
