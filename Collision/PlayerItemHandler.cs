@@ -13,7 +13,7 @@ namespace SneakyLink.Collision
             switch (item)
             {
                 case MapObject:
-                    
+                    game.mapPicked = true;
                     break;
                 case BombObject:
                     link.bombNum++;

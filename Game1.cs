@@ -67,6 +67,7 @@ public class Game1 : Game
     public Providence boss;
 
     public int sceneCount;
+    public bool mapPicked;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -143,18 +144,6 @@ public class Game1 : Game
         Blocks.BlockSpriteFactory.Instance.LoadAllTextrues(Content);
         Items.ItemSpriteFactory.Instance.LoadAllTextrues(Content);
 
-        link.SetSprite();
-        titleScene = new TitleScene(this);
-        inventoryScene = new InventoryScene(this);
-        gameOverScene = new GameOverScene(this);
-        roomTransmission = new RoomTransmission(GraphicsDevice);
-
-        //load itemSounds
-        itemSounds.LoadItemSoundEffects(this);
-
-        //load boss
-        boss = new Providence(290, 0, link);
-
         //load room
         roomList = new Dictionary<string, Room>();
         roomList.Add("Room0", new Room(this, "..\\..\\..\\Scene\\RoomZero.csv"));
@@ -179,6 +168,18 @@ public class Game1 : Game
         room = roomList["BossRoom"];
         enemies = room.enemyList;
         itemList = room.itemList;
+
+        link.SetSprite();
+        titleScene = new TitleScene(this);
+        inventoryScene = new InventoryScene(this);
+        gameOverScene = new GameOverScene(this);
+        roomTransmission = new RoomTransmission(GraphicsDevice);
+
+        //load itemSounds
+        itemSounds.LoadItemSoundEffects(this);
+
+        //load boss
+        boss = new Providence(290, 0, link);
     }
 
     protected override void Update(GameTime gameTime)

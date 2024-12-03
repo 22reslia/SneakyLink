@@ -19,6 +19,7 @@ namespace SneakyLink
             game.link.coinNum = 0;
             game.link.bombNum = 1;
             game.link.currentHealth = game.link.maxHealth;
+            game.mapPicked = false;
         }
     }
 }
