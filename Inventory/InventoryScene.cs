@@ -17,6 +17,8 @@ namespace SneakyLink.Inventory
         private Health health;
         private CollectionNum CollectionNum;
         private ItemShown itemShown;
+        private MapShown mapShown;
+        private int roomNumber;
         public InventoryScene(Game1 game)
         {
             this.game = game;
@@ -25,12 +27,20 @@ namespace SneakyLink.Inventory
             health = new Health(game.link, infoText);
             CollectionNum = new CollectionNum(game.link, infoText);
             itemShown = new ItemShown(game.link, infoText);
+            mapShown = new MapShown(infoText);
         }
         public void Update()
         {
             health.Update();
             CollectionNum.Update();
             itemShown.Update();
+            for (int i = 0; i < 18; i++)
+            {
+                if (game.room == game.roomList["Room" + i])
+                {
+                    roomNumber = i;
+                }
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -38,6 +48,10 @@ namespace SneakyLink.Inventory
             health.Draw(spriteBatch, true);
             CollectionNum.Draw(spriteBatch, true);
             itemShown.Draw(spriteBatch, true);
+            if (game.mapPicked)
+            {
+                mapShown.Draw(spriteBatch, true, roomNumber);
+            }
         }
         public void DrawOnScene(SpriteBatch spriteBatch)
         {
@@ -45,6 +59,10 @@ namespace SneakyLink.Inventory
             health.Draw(spriteBatch, false);
             CollectionNum.Draw(spriteBatch, false);
             itemShown.Draw(spriteBatch, false);
+            if (game.mapPicked)
+            {
+                mapShown.Draw(spriteBatch, false, roomNumber);
+            }
         }
     }
 }
