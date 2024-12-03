@@ -13,7 +13,7 @@ namespace SneakyLink.Enemies
 {
     public class BossStateMachine
     {
-        private enum BossState { Attack, Idle, Up, Left, Down, Right, Rush, Cycyle};
+        private enum BossState { Attack, Idle, Up, Left, Down, Right, Rush};
         private BossState currentState = BossState.Idle;
         private Random randomAction;
         private int moveCount = 0;
@@ -21,7 +21,7 @@ namespace SneakyLink.Enemies
         private int projectileNum;
         private bool isMoving = false;
 
-        private float speed = 6f;
+        private float speed = 4f;
         private float targetX, targetY;
         private float currentX, currentY;
 

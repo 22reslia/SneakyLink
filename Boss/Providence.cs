@@ -29,7 +29,10 @@ namespace SneakyLink.Enemies
         public List<BossProjectile> projectile;
         public List<BossProjectile> projectileRemove;
         public Link link; 
+
+        //invincible related variable
         public bool isV;
+        private int vCounter;
 
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
@@ -50,6 +53,9 @@ namespace SneakyLink.Enemies
             projectile = new List<BossProjectile>();
             projectileRemove = new List<BossProjectile>();
             stateMachine = new BossStateMachine();
+
+            isV = false;
+            vCounter = 0;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -67,6 +73,17 @@ namespace SneakyLink.Enemies
                 if (!fireBall.isActive)
                 {
                     projectileRemove.Add(fireBall);
+                }
+            }
+
+            //update if boss is invincible
+            if (isV)
+            {
+                vCounter++;
+                if (vCounter == 30)
+                {
+                    isV = false;
+                    vCounter = 0;
                 }
             }
 

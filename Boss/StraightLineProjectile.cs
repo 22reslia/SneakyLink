@@ -17,7 +17,7 @@ namespace SneakyLink.Boss
         private float y;
         private float velocityX;
         private float velocityY;
-        private float speed = 6f;
+        private float speed = 3f;
         private ISprite projectileSprite;
         public CollisionBox collisionBox;
         public float X { get => x; set => x = value; }

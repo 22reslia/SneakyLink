@@ -30,6 +30,9 @@ public class Link
     public int maxHealth;
     public int currentHealth;
 
+    //damage of sward
+    public int damage;
+
     private int vCounter;
     private int mCounter;
 
@@ -41,7 +44,7 @@ public class Link
     //creats a player with basic stats
     public Link(Game1 game)
     {
-        maxHealth = 30;
+        maxHealth = 10;
         currentHealth = maxHealth;
         isV = false;
         isMovable = true;
@@ -64,6 +67,7 @@ public class Link
         coinNum = 0;
         keyNum = 0;
         bombNum = 1;
+        damage = 1;
     }
 
     public void SetSprite()
@@ -106,7 +110,7 @@ public class Link
             isBlockedRight = false;
         }
 
-        //update isV
+        //update if player is invincible
         if (isV)
         {
             vCounter++;

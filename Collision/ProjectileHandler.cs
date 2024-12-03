@@ -18,6 +18,9 @@ namespace SneakyLink.Collision
                         //bomb.Explode();
                         enemy.cHealth --;;
                     break;
+                case Providence boss:
+                    boss.cHealth -= 10;
+                    break;
             }
 
             // Remove the bomb if it has exploded

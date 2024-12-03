@@ -25,7 +25,7 @@ namespace SneakyLink.Collision
             if (game.link.stateMachine.currentState == PlayerState.playerAttacking)
             {
                 CollisionType side2 = CollisionDetector.CheckCollision(game.boss.CollisionBox, game.link.stateMachine.sword.collisionBox);
-                
+                BossPlayerHandler.HandleCollision(game.boss, side2, game.link.damage);
             }
             PlayerEnemyHandler.HandleCollision(game.link, side1, playerSounds);
 
@@ -34,6 +34,16 @@ namespace SneakyLink.Collision
             {
                 CollisionType sideProjectile = CollisionDetector.CheckCollision(game.link.collisionBox, fireBall.CollisionBox);
                 PlayerEnemyHandler.HandleCollision(game.link, sideProjectile, playerSounds);
+            }
+
+            // Collision check for bombs and boss
+            foreach (var bomb in game.projectileList.OfType<LinkBomb>().ToList()) // Use ToList to avoid modifying the collection during iteration
+            {
+                    CollisionType bombBossSide = CollisionDetector.CheckCollision(bomb.CollisionBox, game.boss.CollisionBox);
+                    if (bombBossSide != CollisionType.None)
+                    {
+                        BombCollisionHandler.HandleCollision(bomb, game.boss, game);
+                    }
             }
         }
     }
