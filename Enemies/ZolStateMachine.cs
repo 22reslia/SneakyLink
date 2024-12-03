@@ -62,20 +62,48 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case ZolState.LeftNormal:
-                    zol.X -= 1;
-                    moveCount++;
+                    if (!zol.isBlockedLeft)
+                    {
+                        zol.X -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case ZolState.RightNormal:
-                    zol.X += 1;
-                    moveCount++;
+                    if (!zol.isBlockedRight)
+                    {
+                        zol.X += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case ZolState.UpNormal:
-                    zol.Y -= 1;
-                    moveCount++;
+                    if (!zol.isBlockedTop)
+                    {
+                        zol.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case ZolState.DownNormal:
-                    zol.Y += 1;
-                    moveCount++;
+                    if (!zol.isBlockedBottom)
+                    {
+                        zol.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
             }
         }

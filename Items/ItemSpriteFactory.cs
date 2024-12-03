@@ -32,6 +32,18 @@ namespace SneakyLink.Items
             itemSpriteSheet = content.Load<Texture2D>("Items");
         }
 
+      /*  public ISprite CreateArrowSprite()
+    {
+        
+        return new ArrowSprite(itemSpriteSheet);
+    }
+
+    public ISprite CreateFireSprite()
+    {
+        
+        return new FireSprite(itemSpriteSheet);
+    } */
+
         public Texture2D GetSheet()
         {
             return itemSpriteSheet;

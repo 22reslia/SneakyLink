@@ -33,7 +33,7 @@ namespace SneakyLink.Enemies
                 sourceRectangular = new Rectangle(94, 11, 16, 16);
             }
             sb.Begin(samplerState: SamplerState.PointClamp);
-            sb.Draw(texture, new Rectangle(x, y, 64, 64), sourceRectangular, Color.White);
+            sb.Draw(texture, new Rectangle(x, y, 48, 48), sourceRectangular, Color.White);
             sb.End();
         }
 

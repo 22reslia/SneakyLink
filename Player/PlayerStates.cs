@@ -1,9 +1,9 @@
 namespace SneakyLink.Player;
-public enum PlayerState {
+public enum PlayerState
+{
     playerMoving,
     playerIdle,
     playerAttacking,
     playerDamaged,
     playerUseItem
-
-    }
+}

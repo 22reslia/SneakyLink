@@ -9,7 +9,7 @@ namespace SneakyLink
 {
     public interface IController<T>
     {
-        void RegisterCommand(T input, ICommand command);
+        void RegisterCommand(T input, ICommand command, bool isSingleTriggered);
         void Update();
     }
 }

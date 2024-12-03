@@ -1,5 +1,6 @@
 using SneakyLink;
 using SneakyLink.Player;
+using System.Diagnostics;
 
 public class GameExit : ICommand {
 
@@ -30,8 +31,14 @@ public class MoveRight : ICommand
     public void Execute () 
     {
         link.stateMachine.currentDirection = PlayerDirection.playerRight;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.X += link.velocity;
+        if (link.isMovable)
+        {
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedRight)
+            {
+                link.playerPosition.X += link.velocity;
+            }
+        }
     }
 }
 
@@ -48,8 +55,14 @@ public class MoveLeft : ICommand
     public void Execute () 
     {
         link.stateMachine.currentDirection = PlayerDirection.playerLeft;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.X -= link.velocity;
+        if (link.isMovable)
+        {
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedLeft)
+            {
+                link.playerPosition.X -= link.velocity;
+            }
+        }
     }
 }
 
@@ -66,8 +79,14 @@ public class MoveUp : ICommand
     public void Execute ()
     {   
         link.stateMachine.currentDirection = PlayerDirection.playerUp;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.Y -= link.velocity;
+        if (link.isMovable)
+        {
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedTop)
+            {
+                link.playerPosition.Y -= link.velocity;
+            }
+        }
     }
 }
 
@@ -84,8 +103,14 @@ public class MoveDown : ICommand
     public void Execute () 
     {   
         link.stateMachine.currentDirection = PlayerDirection.playerDown;
-        link.stateMachine.currentState = PlayerState.playerMoving;
-        link.playerPosition.Y += link.velocity;
+        if (link.isMovable)
+        {
+            link.stateMachine.currentState = PlayerState.playerMoving;
+            if (!link.isBlockedBottom)
+            {
+                link.playerPosition.Y += link.velocity;
+            }
+        }
     }
 }
 
@@ -93,15 +118,18 @@ public class MoveDown : ICommand
 public class WoodenAttack : ICommand
 {
     private Link link;
-
-    public WoodenAttack(Link player)
+    private PlayerSounds playerSounds;
+    public WoodenAttack(Link player, PlayerSounds sounds)
     {
         link = player;
+        playerSounds = sounds;
     }
 
     public void Execute () 
     {   
         link.stateMachine.currentState = PlayerState.playerAttacking;
+
+        playerSounds.PlayLinkSwordSlash();
     }
 }
 
@@ -129,8 +157,13 @@ public class UseItem : ICommand
     }
 
     public void Execute () 
-    {   
-        link.stateMachine.currentState = PlayerState.playerUseItem;
+    {
+        if (link.bombNum > 0)
+        {
+            link.bombNum--;
+            link.stateMachine.currentState = PlayerState.playerUseItem;
+        }
+        
     }
     
 }

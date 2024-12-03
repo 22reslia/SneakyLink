@@ -50,20 +50,48 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case StalfosState.LeftNormal:
-                    stalfos.X -= 1;
-                    moveCount++;
+                    if (!stalfos.isBlockedLeft)
+                    {
+                        stalfos.X -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case StalfosState.RightNormal:
-                    stalfos.X += 1;
-                    moveCount++;
+                    if (!stalfos.isBlockedRight)
+                    {
+                        stalfos.X += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case StalfosState.DownNormal:
-                    stalfos.Y += 1;
-                    moveCount++;
+                    if (!stalfos.isBlockedBottom)
+                    {
+                        stalfos.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case StalfosState.UpNormal:
-                    stalfos.Y -= 1;
-                    moveCount++;
+                    if (!stalfos.isBlockedTop)
+                    {
+                        stalfos.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 40;
+                    }
                     break;
                 case StalfosState.Idle:
                     moveCount++;

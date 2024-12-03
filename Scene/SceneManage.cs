@@ -2,6 +2,7 @@
 using SneakyLink.Blocks;
 using System.IO;
 using System;
+using System.Diagnostics;
 
 namespace SneakyLink.Scene
 {
@@ -25,7 +26,7 @@ namespace SneakyLink.Scene
             {
                 levelData[0, x] = doorValues[x];
             }
-            //load blocks
+            //load blocks and enemies and items
             for (int y = 1; y < rows; y++)
             {
                 string[] values = lines[y].Split(',');

@@ -48,7 +48,7 @@ namespace SneakyLink.Enemies
             if (currentState == GelState.Idle)
             {
                 counter++;
-                if (counter >= 30)
+                if (counter >= 40)
                 {
                     counter = 0;
                     this.ChangeDirection();
@@ -64,20 +64,47 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case GelState.LeftNormal:
-                    gel.X -= 1;
-                    moveCount++;
+                    if (!gel.isBlockedLeft)
+                    {
+                        gel.X -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case GelState.RightNormal:
-                    gel.X += 1;
-                    moveCount++;
+                    if (!gel.isBlockedRight)
+                    {
+                        gel.X += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case GelState.UpNormal:
-                    gel.Y -= 1;
-                    moveCount++;
+                    if (!gel.isBlockedTop) {
+                        gel.Y -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case GelState.DownNormal:
-                    gel.Y += 1;
-                    moveCount++;
+                    if (!gel.isBlockedBottom)
+                    {
+                        gel.Y += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
             }
         }
