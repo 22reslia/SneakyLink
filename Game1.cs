@@ -149,11 +149,11 @@ public class Game1 : Game
         gameOverScene = new GameOverScene(this);
         roomTransmission = new RoomTransmission(GraphicsDevice);
 
-        //load boss
-        boss = new Providence(290 , 0);
-
         //load itemSounds
         itemSounds.LoadItemSoundEffects(this);
+
+        //load boss
+        boss = new Providence(290, 0, link);
 
         //load room
         roomList = new Dictionary<string, Room>();
@@ -176,7 +176,7 @@ public class Game1 : Game
         roomList.Add("Room16", new Room(this, "..\\..\\..\\Scene\\RoomSixteen.csv"));
         roomList.Add("Room17", new Room(this, "..\\..\\..\\Scene\\RoomSeventeen.csv"));
         roomList.Add("BossRoom", new Room(this, "..\\..\\..\\Scene\\BossRoom.csv"));
-        room = roomList["Room1"];
+        room = roomList["BossRoom"];
         enemies = room.enemyList;
         itemList = room.itemList;
     }
@@ -220,14 +220,14 @@ public class Game1 : Game
                 {
                     item.Update();
                 }
+                //link (player) update
+                link.Update(gameTime);
+                //check collision
                 if (room == roomList["BossRoom"])
                 {
                     boss.Update();
                     BossCollisionCheck.collisionCheck(this);
                 }
-                //link (player) update
-                link.Update(gameTime);
-                //check collision
                 CollisionsCheck.collisionCheck(this);
                 inventoryScene.Update();
                 StateCheck.stateCheck(this);

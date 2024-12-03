@@ -19,48 +19,48 @@ namespace SneakyLink.Collision
                     link.isBlockedBottom = false;
                     break;
                 case CollisionType.Left:
-                    if (!nearWall) link.playerPosition.X += knockbackDistance;
                     link.isBlockedLeft = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        if (!nearWall) link.playerPosition.X += knockbackDistance;
                         sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;
                     }
                     break;
                 case CollisionType.Right:
-                    if (!nearWall) link.playerPosition.X -= knockbackDistance;
                     link.isBlockedRight = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        if (!nearWall) link.playerPosition.X -= knockbackDistance;
                         sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;
                     }
                     break;
                 case CollisionType.Top:
-                    if (!nearWall) link.playerPosition.Y += knockbackDistance;
                     link.isBlockedTop = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        if (!nearWall) link.playerPosition.Y += knockbackDistance;
                         sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;
                     }
                     break;
                 case CollisionType.Bottom:
-                    if (!nearWall) link.playerPosition.Y -= knockbackDistance;
                     link.isBlockedBottom = true;
                     link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
+                        if (!nearWall) link.playerPosition.Y -= knockbackDistance;
                         sound.PlayLinkHurt();
                         link.currentHealth--;
                         link.isV = true;

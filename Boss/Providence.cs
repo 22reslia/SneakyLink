@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SneakyLink.Boss;
 using SneakyLink.Collision;
+using SneakyLink.Player;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -23,6 +26,10 @@ namespace SneakyLink.Enemies
         public bool isBlockedBottom;
         public bool isBlockedLeft;
         public bool isBlockedRight;
+        public List<BossProjectile> projectile;
+        public List<BossProjectile> projectileRemove;
+        public Link link; 
+        public bool isV;
 
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
@@ -31,22 +38,42 @@ namespace SneakyLink.Enemies
         public ISprite BossSprite { get => bossSprite; set => bossSprite = value; }
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
 
-        public Providence(int x, int y)
+        public Providence(int x, int y, Link player)
         {
             this.x = x;
             this.y = y;
+            link = player;
             maxHealth = 50;
             currentHealth = maxHealth;
             collisionBox = new CollisionBox(CollisionObjectType.Enemy, 210, 150, x, y);
             bossSprite = EnemySpriteFactory.Instance.ProvidenceIdleSprite();
+            projectile = new List<BossProjectile>();
+            projectileRemove = new List<BossProjectile>();
             stateMachine = new BossStateMachine();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            foreach (BossProjectile fireBall in projectile)
+            {
+                fireBall.Draw(spriteBatch);
+            }
             stateMachine.Draw(spriteBatch, bossSprite, x, y);
         }
         public void Update()
         {
+            foreach (BossProjectile fireBall in projectile)
+            {
+                fireBall.Update();
+                if (!fireBall.isActive)
+                {
+                    projectileRemove.Add(fireBall);
+                }
+            }
+
+            foreach (BossProjectile fireBall in projectileRemove)
+            {
+                projectile.Remove(fireBall);
+            }
             bossSprite.Update();
             stateMachine.Update(this);
             collisionBox.x = x; collisionBox.y = y;

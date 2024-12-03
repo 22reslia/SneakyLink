@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using SneakyLink.Boss;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
@@ -11,16 +13,19 @@ namespace SneakyLink.Enemies
 {
     public class BossStateMachine
     {
-        private enum BossState { Attack, Idle, Up, Left, Down, Right};
+        private enum BossState { Attack, Idle, Up, Left, Down, Right, Rush, Cycyle};
         private BossState currentState = BossState.Idle;
         private Random randomAction;
         private int moveCount = 0;
         private bool isAttacking = false;
+        private int projectileNum;
         private bool isMoving = false;
 
         private float speed = 6f;
         private float targetX, targetY;
         private float currentX, currentY;
+
+        public bool isSecondStage;
 
         public BossStateMachine()
         {
@@ -28,10 +33,12 @@ namespace SneakyLink.Enemies
             currentY = 0;
             targetX = currentX;
             targetY = currentY;
+            projectileNum = 5;
+            isSecondStage = false;
         }
         public void changeState(Providence providence)
         {
-            if (providence.cHealth >= providence.mHealth/2)
+            if (!isSecondStage)
             {
                 if(!isMoving && moveCount >= 10)
                 {
@@ -42,11 +49,11 @@ namespace SneakyLink.Enemies
                         currentState = BossState.Attack;
                         isAttacking = true;
                     }
-                    else if (nextAction >= 1 && nextAction <= 6)
+                    else if (nextAction >= 1 && nextAction <= 8)
                     {
                         currentState = BossState.Idle;
                     }
-                    else if (nextAction >= 7 && nextAction <= 10)
+                    else if (nextAction >= 9 && nextAction <= 10)
                     {
                         if (currentState >= BossState.Up && currentState < BossState.Right)
                         {
@@ -136,6 +143,14 @@ namespace SneakyLink.Enemies
         public void Attack(Providence providence)
         {
             isAttacking = true;
+            int offset = 0;
+            for (int i = 0; i < projectileNum; i++)
+            {
+                offset += 50;
+                BossProjectile projectile = new StraightLineProjectile(providence.X + 105 + offset, providence.Y + 75 + offset, providence.link.playerPosition.X, providence.link.playerPosition.Y);
+                providence.projectile.Add(projectile);
+            }
+            isAttacking = false;
         }
         public void Draw(SpriteBatch spriteBatch, ISprite bossSprite, int x, int y)
         {
@@ -144,6 +159,10 @@ namespace SneakyLink.Enemies
         }
         public void Update(Providence providence)
         {
+            if (providence.cHealth <= providence.mHealth / 2)
+            {
+                isSecondStage = true;
+            }
             if (!isMoving)
             {
                 moveCount++;
