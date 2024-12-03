@@ -165,7 +165,7 @@ public class Game1 : Game
         roomList.Add("Room16", new Room(this, "..\\..\\..\\Scene\\RoomSixteen.csv"));
         roomList.Add("Room17", new Room(this, "..\\..\\..\\Scene\\RoomSeventeen.csv"));
         roomList.Add("BossRoom", new Room(this, "..\\..\\..\\Scene\\BossRoom.csv"));
-        room = roomList["BossRoom"];
+        room = roomList["Room1"];
         enemies = room.enemyList;
         itemList = room.itemList;
 
