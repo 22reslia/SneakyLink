@@ -19,7 +19,7 @@ public class PlayerSounds
         if (linkSwordSlashSound == null)
         {
         linkSwordSlashSound = linkSwordSlashMusic.CreateInstance();
-        linkSwordSlashSound.Volume = 0.5f;
+        linkSwordSlashSound.Volume = 1f;
         linkSwordSlashSound.IsLooped = false;
         }
 
@@ -34,7 +34,7 @@ public class PlayerSounds
     {
         // Create a new instance every time the method is called
         var linkHurtInstance = linkHurtMusic.CreateInstance();
-        linkHurtInstance.Volume = 0.5f; // Set volume as desired
+        linkHurtInstance.Volume = 1f; // Set volume as desired
         linkHurtInstance.IsLooped = false;
         linkHurtInstance.Play();
     }

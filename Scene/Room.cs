@@ -136,13 +136,17 @@ namespace SneakyLink.Scene
                             enemyList.Add(new Stalfos(positionX, positionY));
                             break;
                         case "map":
-                            itemList.Add(new MapObject(positionX + 10, positionY + 10));
+                            itemList.Add(new MapObject(positionX + 12, positionY + 5));
                             break;
                         case "rupee":
-                            itemList.Add(new RupeeObject(positionX + 10, positionY + 10));
+                            itemList.Add(new RupeeObject(positionX + 12, positionY + 5));
                             break;
                         case "bomb":
-                            itemList.Add(new BombObject(positionX + 10, positionY + 10));
+                            itemList.Add(new BombObject(positionX + 12, positionY + 5));
+                            break;
+                        case "pushableBlock":
+                            itemList.Add(new KeyObject(positionX + 12, positionY + 5));
+                            itemList.Add(new PushableBlock(positionX, positionY));
                             break;
                         case "empty":
                             break;
