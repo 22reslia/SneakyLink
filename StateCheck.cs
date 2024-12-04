@@ -36,7 +36,7 @@ namespace SneakyLink
                 game.gameState = GameState.GameOver;
             }
 
-            if (game.link.coinNum == 10)
+            if (game.boss.cHealth <= 0)
             {
                 game.gameState = GameState.GameWin;
             }

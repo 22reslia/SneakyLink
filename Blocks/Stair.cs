@@ -21,7 +21,7 @@ namespace SneakyLink.Blocks
             stairSprite = new StairSprite();
             x = positionX;
             y = positionY;
-            collisionBox = new CollisionBox(CollisionObjectType.Block, 40, 40, x, y);
+            collisionBox = new CollisionBox(CollisionObjectType.Stair, 40, 40, x, y);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -14,40 +14,47 @@ namespace SneakyLink.Collision
 {
     public class PlayerBlockHandler
     {
-        public static void HandleCollision(Link link, CollisionType side, CollisionBox targetBlock)
+        public static void HandleCollision(Game1 game, CollisionType side, CollisionBox targetBlock)
         {
-            //Debug.Print(side.ToString());
             //sand will not prevent moving but slow down player
             if (targetBlock.type == CollisionObjectType.Sand)
             {
-                link.velocity = 1;
-                if (!link.isV)
+                game.link.velocity = 1;
+                if (!game.link.isV)
                 {
-                    link.currentHealth--;
-                    link.isV = true;
+                    game.link.currentHealth--;
+                    game.link.isV = true;
                 }
+            }
+            else if (targetBlock.type == CollisionObjectType.Stair)
+            {
+                //clear the old objects
+                game.gameState = GameState.RoomTransmission;
+                game.oldRoom = game.room;
+
+                game.nextRoomFilePath = "BossRoom";
             }
             else
             {
                 switch (side)
                 {
                     case CollisionType.None:
-                        link.isBlockedLeft = false;
-                        link.isBlockedRight = false;
-                        link.isBlockedTop = false;
-                        link.isBlockedBottom = false;
+                        game.link.isBlockedLeft = false;
+                        game.link.isBlockedRight = false;
+                        game.link.isBlockedTop = false;
+                        game.link.isBlockedBottom = false;
                         break;
                     case CollisionType.Left:
-                        link.isBlockedLeft = true;
+                        game.link.isBlockedLeft = true;
                         break;
                     case CollisionType.Right:
-                        link.isBlockedRight = true;
+                        game.link.isBlockedRight = true;
                         break;
                     case CollisionType.Top:
-                        link.isBlockedTop = true;
+                        game.link.isBlockedTop = true;
                         break;
                     case CollisionType.Bottom:
-                        link.isBlockedBottom = true;
+                        game.link.isBlockedBottom = true;
                         break;
                 }
             }
