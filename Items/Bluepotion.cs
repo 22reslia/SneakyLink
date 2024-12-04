@@ -18,7 +18,7 @@ namespace SneakyLink.Items
             y = positionY;
 
             // Adjust collision box dimensions as needed
-            collisionBox = new CollisionBox(CollisionObjectType.roomItem, 24, 48, x, y);
+            collisionBox = new CollisionBox(CollisionObjectType.roomItem, 24, 24, x, y);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -150,7 +150,7 @@ namespace SneakyLink.Scene
                         case "redpotion":
                             itemList.Add(new RedPotion(positionX + 12, positionY + 5));
                             break;
-                        case "HeartContainer":
+                        case "heartcontainer":
                             itemList.Add(new HeartContainer(positionX + 12, positionY + 5));
                             break;
                         case "pushableBlock":
