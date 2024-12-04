@@ -17,6 +17,7 @@ namespace SneakyLink
             game.link.stateMachine.currentDirection = Player.PlayerDirection.playerDown;
             game.link.stateMachine.currentState = Player.PlayerState.playerIdle;
             game.link.coinNum = 0;
+            game.link.keyNum = 0;   
             game.link.bombNum = 1;
             game.link.currentHealth = game.link.maxHealth;
             game.mapPicked = false;

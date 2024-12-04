@@ -12,14 +12,12 @@ namespace SneakyLink.Items
         private CollisionBox collisionBox;
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
         public bool isPushedRight, isPushedLeft, isPushedUp, isPushedDown;
-        private Vector2 position;
 
         public PushableBlock(int positionX, int positionY)
         {
             squareBlockSprite = new SquareBlockSprite();
             x = positionX;
             y = positionY;
-            position = new Vector2(x, y);
             collisionBox = new CollisionBox(CollisionObjectType.Block, 40, 40, x, y);
             isPushedRight = false;
             isPushedLeft = false;
@@ -31,26 +29,26 @@ namespace SneakyLink.Items
         {
             if (isPushedRight)
             {
-                position.X += direction.X / 10;               
+                x += (int)direction.X / 10;
             }
             else if (isPushedLeft)
             {
-                position.X -= direction.X / 10;
+                x -= (int)direction.X / 10;
             }
             else if (isPushedUp)
             {
-                position.Y += direction.Y / 10;
+                y += (int)direction.Y / 10;
             }
             else if (isPushedDown)
             {
-                position.Y -= direction.Y / 10;
+                x -= (int)direction.Y / 10;
             }
-            CollisionBox = new CollisionBox(CollisionObjectType.Block, 40, 40, (int)position.X, (int)position.Y);
+            CollisionBox = new CollisionBox(CollisionObjectType.Block, 40, 40, x, y);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            squareBlockSprite.Draw(spriteBatch, (int)position.X, (int)position.Y);
+            squareBlockSprite.Draw(spriteBatch, x, y);
         }
 
         public void Update()
