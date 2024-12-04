@@ -35,7 +35,6 @@ namespace SneakyLink.Blocks
             collisionBox = new CollisionBox(CollisionObjectType.Block, 80, 80, positionX, positionY);
 
             //set the room transmission info
-            Debug.Print(doorID + nextRoomFilePath);
             this.nextRoomFilePath = nextRoomFilePath;
             switch (col)
             {

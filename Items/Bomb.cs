@@ -84,7 +84,6 @@ namespace SneakyLink.Projectiles
             }
             else
             {
-                //Debug.WriteLine($"Explosion position: {position.X}, {position.Y}");
                 // Draw the explosion sprite
                 explosionSprite.Draw(spriteBatch, (int)position.X - 16, (int)position.Y - 16); // Adjust for centering
             }

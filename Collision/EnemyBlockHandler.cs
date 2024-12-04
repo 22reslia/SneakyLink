@@ -16,7 +16,6 @@ namespace SneakyLink.Collision
     {
         public static void HandleCollision(IEnemy enemy, CollisionType side, CollisionBox targetBlock)
         {
-            //Debug.Print(side.ToString());
             //enemy will not be effect by sand
             if (targetBlock.type != CollisionObjectType.Sand)
             {

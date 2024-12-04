@@ -18,7 +18,6 @@ namespace SneakyLink.Collision
     {
         public static void HandleCollision(Link link, CollisionType side, String nextDoorFilePath, Vector2 nextLinkPosition, Game1 game)
         {
-            //Debug.Print(side.ToString());
             switch (side)
             {
                 case CollisionType.None:

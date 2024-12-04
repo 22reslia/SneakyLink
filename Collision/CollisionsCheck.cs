@@ -22,7 +22,6 @@ namespace SneakyLink.Collision
             foreach (IEnemy enemy in game.enemies)
             {
                 CollisionType side1 = CollisionDetector.CheckCollision(game.link.collisionBox, enemy.CollisionBox);
-                //Debug.Print(game.link.stateMachine.currentState.ToString());
                 if (game.link.stateMachine.currentState == PlayerState.playerAttacking)
                 {
                     CollisionType side2 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.link.stateMachine.sword.collisionBox);
@@ -136,12 +135,10 @@ namespace SneakyLink.Collision
                 {
                     if (game.room.doorList[x].NextRoomFilePath != "")
                     {
-                        //Debug.Print(game.link.playerPosition.ToString());
                         PlayerDoorHandler.HandleCollision(game.link, game.link.collisionBox.side, game.room.doorList[x].NextRoomFilePath, game.room.doorList[x].NextLinkPosition, game);
                     }
                     else
                     {
-                        //Debug.Print(game.link.playerPosition.ToString());
                         PlayerBlockHandler.HandleCollision(game, game.link.collisionBox.side, game.room.doorList[x].CollisionBox);
                     }
                 }
