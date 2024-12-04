@@ -18,9 +18,12 @@ namespace SneakyLink
             game.link.stateMachine.currentState = Player.PlayerState.playerIdle;
             game.link.coinNum = 0;
             game.link.keyNum = 0;   
-            game.link.bombNum = 1;
+            game.link.bombNum = 0;
+            game.link.maxHealth = 10;
             game.link.currentHealth = game.link.maxHealth;
             game.mapPicked = false;
+            game.link.hasRedpotion = false;
+            game.link.hasBluepotion = false;
         }
     }
 }

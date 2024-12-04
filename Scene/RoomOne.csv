@@ -5,11 +5,11 @@ ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,gro
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
-ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,stair
+ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,map,empty,rupee,empty,empty
-empty,empty,empty,empty,empty,empty,empty,empty,redpotion,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
-empty,empty,empty,empty,empty,pushableBlock,empty,bluepotion,empty,heartcontainer,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,pushableBlock,empty,redpotion,empty,bomb,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
 empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty

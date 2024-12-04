@@ -75,7 +75,7 @@ public class Link
 
         coinNum = 0;
         keyNum = 0;
-        bombNum = 1;
+        bombNum = 0;
         hasBluepotion = false;
         hasRedpotion = false;
         isDrinkingRedpotion = false;

@@ -1,4 +1,5 @@
-﻿using SneakyLink.Scene;
+﻿using SneakyLink.Enemies;
+using SneakyLink.Scene;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -43,6 +44,10 @@ namespace SneakyLink.Commands
             game.room = game.roomList["Room1"];
             game.enemies = game.room.enemyList;
             game.itemList = game.room.itemList;
+
+            //boss related
+            game.boss = new Providence(290, 0, game);
+
             InitializeObject.initializeObject(game);
         }
     }
