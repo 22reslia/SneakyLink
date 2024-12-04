@@ -34,6 +34,8 @@ public class Game1 : Game
     private IController<MouseButton> playerMouseController;
     private IController<MouseButton> menuMouseController;
 
+    public IController<Keys> PlayerKeyboardController { get => playerKeyboardController; set => playerKeyboardController = value; }
+
     public Player.Link link;
 
     //player sound effects
@@ -226,7 +228,7 @@ public class Game1 : Game
                 //check collision
                 if (room == roomList["BossRoom"])
                 {
-                    boss.Update();
+                    boss.Update(gameTime);
                     BossCollisionCheck.collisionCheck(this);
                 }
                 CollisionsCheck.collisionCheck(this);

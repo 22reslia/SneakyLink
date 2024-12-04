@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Collision;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace SneakyLink.Boss
         float Y { get;}
         bool isActive { get; }
         CollisionBox CollisionBox { get; set; }
-        void Update();
+        void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
     }
 }

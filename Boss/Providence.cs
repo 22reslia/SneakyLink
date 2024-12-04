@@ -30,7 +30,7 @@ namespace SneakyLink.Enemies
         public bool isBlockedRight;
         public List<BossProjectile> projectile;
         public List<BossProjectile> projectileRemove;
-        public Link link; 
+        public Link link;
 
         //invincible related variable
         public bool isV;
@@ -50,7 +50,7 @@ namespace SneakyLink.Enemies
             link = game.link;
             maxHealth = 50;
             currentHealth = maxHealth;
-            collisionBox = new CollisionBox(CollisionObjectType.Enemy, 210, 150, x, y);
+            collisionBox = new CollisionBox(CollisionObjectType.Enemy, 150, 150, x + 30, y);
             bossSprite = EnemySpriteFactory.Instance.ProvidenceIdleSprite();
             projectile = new List<BossProjectile>();
             projectileRemove = new List<BossProjectile>();
@@ -83,11 +83,11 @@ namespace SneakyLink.Enemies
             spriteBatch.Draw(healthBarFill, new Rectangle(0, 0, (int)(healthPercentage * width), height), Color.Red);
             spriteBatch.End();
         }
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             foreach (BossProjectile fireBall in projectile)
             {
-                fireBall.Update();
+                fireBall.Update(gameTime);
                 if (!fireBall.isActive)
                 {
                     projectileRemove.Add(fireBall);
@@ -110,8 +110,8 @@ namespace SneakyLink.Enemies
                 projectile.Remove(fireBall);
             }
             bossSprite.Update();
-            stateMachine.Update(this);
-            collisionBox.x = x; collisionBox.y = y;
+            stateMachine.Update(this, gameTime);
+            collisionBox.x = x+30; collisionBox.y = y;
         }
     }
 }
