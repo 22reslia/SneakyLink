@@ -22,6 +22,8 @@ namespace SneakyLink.Enemies
         private int y;
         private int maxHealth;
         private int currentHealth;
+        private Texture2D healthBarBackground;
+        private Texture2D healthBarFill;
         public bool isBlockedTop;
         public bool isBlockedBottom;
         public bool isBlockedLeft;
@@ -41,11 +43,11 @@ namespace SneakyLink.Enemies
         public ISprite BossSprite { get => bossSprite; set => bossSprite = value; }
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
 
-        public Providence(int x, int y, Link player)
+        public Providence(int x, int y, Game1 game)
         {
             this.x = x;
             this.y = y;
-            link = player;
+            link = game.link;
             maxHealth = 50;
             currentHealth = maxHealth;
             collisionBox = new CollisionBox(CollisionObjectType.Enemy, 210, 150, x, y);
@@ -56,6 +58,12 @@ namespace SneakyLink.Enemies
 
             isV = false;
             vCounter = 0;
+
+            //create health bar
+            healthBarBackground = new Texture2D(game.GraphicsDevice, 1, 1);
+            healthBarBackground.SetData([Color.Gray]);
+            healthBarFill = new Texture2D(game.GraphicsDevice, 1, 1);
+            healthBarFill.SetData([Color.Red]);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -64,6 +72,16 @@ namespace SneakyLink.Enemies
                 fireBall.Draw(spriteBatch);
             }
             stateMachine.Draw(spriteBatch, bossSprite, x, y);
+
+            //draw the health bar
+            int width = 800;
+            int height = 20;
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(healthBarBackground, new Rectangle(0, 0, width, height), Color.Gray);
+            float healthPercentage = (float)currentHealth / (float)maxHealth;
+            spriteBatch.Draw(healthBarFill, new Rectangle(0, 0, (int)(healthPercentage * width), height), Color.Red);
+            spriteBatch.End();
         }
         public void Update()
         {

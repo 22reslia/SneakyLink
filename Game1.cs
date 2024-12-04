@@ -114,7 +114,7 @@ public class Game1 : Game
         playerKeyboardController.RegisterCommand(Keys.W, new MoveUp(link), false);
         playerKeyboardController.RegisterCommand(Keys.Down, new MoveDown(link), false);
         playerKeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
-        playerKeyboardController.RegisterCommand(Keys.J, new WoodenAttack(link, playerSounds), true);
+        playerKeyboardController.RegisterCommand(Keys.J, new WoodenAttack(link, playerSounds), false);
         playerKeyboardController.RegisterCommand(Keys.K, new UseItem(link), true);
         playerKeyboardController.RegisterCommand(Keys.H, new DrinkRedpotion(link), true);
 
@@ -179,7 +179,7 @@ public class Game1 : Game
         itemSounds.LoadItemSoundEffects(this);
 
         //load boss
-        boss = new Providence(290, 0, link);
+        boss = new Providence(290, 0, this);
     }
 
     protected override void Update(GameTime gameTime)
