@@ -33,6 +33,15 @@ namespace SneakyLink.Collision
                         sounds.PlayGetRupee();
                         link.keyNum++;
                         break;
+                    case HeartContainer:
+                        link.maxHealth++;
+                        break;
+                    case RedPotion: 
+                        link.currentHealth++;
+                        break;
+                    case BluePotion:
+                        break;
+
                 }
             }
         }
