@@ -144,6 +144,15 @@ namespace SneakyLink.Scene
                         case "bomb":
                             itemList.Add(new BombObject(positionX + 12, positionY + 5));
                             break;
+                        case "bluepotion":
+                            itemList.Add(new BluePotion(positionX + 12, positionY + 5));
+                            break;
+                        case "redpotion":
+                            itemList.Add(new RedPotion(positionX + 12, positionY + 5));
+                            break;
+                        case "HeartContainer":
+                            itemList.Add(new HeartContainer(positionX + 12, positionY + 5));
+                            break;
                         case "pushableBlock":
                             itemList.Add(new KeyObject(positionX + 12, positionY + 5));
                             itemList.Add(new PushableBlock(positionX, positionY));
