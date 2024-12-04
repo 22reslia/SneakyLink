@@ -44,7 +44,8 @@ namespace SneakyLink.Collision
             }
             foreach (IItem item in itemPicked)
             {
-                PlayerItemHandler.HandleCollision(game.link, item, game, itemSounds);
+                CollisionType side = CollisionDetector.CheckCollision(game.link.collisionBox, item.CollisionBox);
+                PlayerItemHandler.HandleCollision(game.link, item, side, game, itemSounds);
             }
 
             
