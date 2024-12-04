@@ -40,6 +40,15 @@ public class Link
     public int coinNum;
     public int keyNum;
     public int bombNum;
+    public bool hasBluepotion;
+    public bool hasRedpotion;
+    public bool isDrinkingRedpotion;
+
+    //variable for drink and healing
+    private double drinkCounter;
+    private double drinkDuration = 2.0;
+    private double healCounter = 0.0;
+    private double healTime = 1.0;
 
     //creats a player with basic stats
     public Link(Game1 game)
@@ -67,6 +76,9 @@ public class Link
         coinNum = 0;
         keyNum = 0;
         bombNum = 1;
+        hasBluepotion = false;
+        hasRedpotion = false;
+        isDrinkingRedpotion = false;
         damage = 1;
     }
 
@@ -132,8 +144,40 @@ public class Link
             }
         }
 
+        //check if link is drinking Redpotion
+        if (isDrinkingRedpotion)
+        {
+            if (drinkCounter == 0)
+            {
+                drinkCounter = drinkDuration;
+            }
+            drinkCounter -= gameTime.ElapsedGameTime.TotalSeconds;
+            healCounter += gameTime.ElapsedGameTime.TotalSeconds;
+            if (healCounter >= healTime)
+            {
+                if (currentHealth < maxHealth)
+                {
+                    currentHealth++;
+                }
+                healCounter -= healTime;
+            }
+            if (drinkCounter <= 0)
+            {
+                isDrinkingRedpotion = false;
+                drinkCounter = 0;
+                healCounter = 0;
+            }
+        }
+
         //update link's speed
-        velocity = 3;
+        if (isDrinkingRedpotion)
+        {
+            velocity = 1;
+        }
+        else
+        {
+            velocity = 3;
+        }
 
         //calls the ISprite update for given sprite
         playerSprite.Update();

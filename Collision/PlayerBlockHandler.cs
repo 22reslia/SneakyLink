@@ -20,7 +20,7 @@ namespace SneakyLink.Collision
             if (targetBlock.type == CollisionObjectType.Sand)
             {
                 game.link.velocity = 1;
-                if (!game.link.isV)
+                if (!game.link.isV && !game.link.hasBluepotion)
                 {
                     game.link.currentHealth--;
                     game.link.isV = true;

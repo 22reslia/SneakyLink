@@ -41,6 +41,7 @@ namespace SneakyLink.Collision
                 switch (item)
                 {
                     case MapObject:
+                        game.mapPicked = true;
                         break;
                     case BombObject:
                         link.bombNum++;
@@ -57,9 +58,10 @@ namespace SneakyLink.Collision
                         link.maxHealth++;
                         break;
                     case RedPotion: 
-                        link.currentHealth++;
+                        link.hasRedpotion = true;
                         break;
                     case BluePotion:
+                        link.hasBluepotion = true;
                         break;
 
                 }

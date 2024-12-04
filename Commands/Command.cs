@@ -167,3 +167,23 @@ public class UseItem : ICommand
     }
     
 }
+public class DrinkRedpotion : ICommand
+{
+    private Link link;
+
+    public DrinkRedpotion(Link player)
+    {
+        link = player;
+    }
+
+    public void Execute()
+    {
+        if (link.hasRedpotion && link.coinNum >= 1)
+        {
+            link.coinNum--;
+            link.isDrinkingRedpotion = true;
+        }
+
+    }
+
+}
