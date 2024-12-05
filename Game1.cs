@@ -45,7 +45,7 @@ public class Game1 : Game
     public ItemSounds itemSounds;
 
     //title scene info
-    private TitleScene titleScene;
+    public TitleScene titleScene;
 
     //inventory scene info
     private InventoryScene inventoryScene;
@@ -67,6 +67,8 @@ public class Game1 : Game
     public List<IEnemy> enemies = new List<IEnemy>();
     public List<IProjectile> projectileList = new List<IProjectile>();
     public Providence boss;
+    public bool isMuted = false; // Tracks the mute state
+
 
     public int sceneCount;
     public bool mapPicked;
@@ -134,6 +136,9 @@ public class Game1 : Game
         menuMouseController.RegisterCommand(MouseButton.Left, new PreviousSceneCommand(this), true);
         menuMouseController.RegisterCommand(MouseButton.Right, new NextSceneCommand(this), true);
         sceneCount = 0;
+
+        playerKeyboardController.RegisterCommand(Keys.M, new MuteCommand(this), true);
+
         base.Initialize();
     }
 

@@ -32,6 +32,15 @@ namespace SneakyLink.Scene
             menuSound.IsLooped = true;
             menuSound.Play();
         }
+
+        public void MuteTitleMusic(bool isMuted)
+        {
+            if (menuSound != null)
+            {
+                menuSound.Volume = isMuted ? 0f : 0.2f;
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             background.Draw(spriteBatch, -160, -160);

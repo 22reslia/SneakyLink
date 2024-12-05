@@ -187,3 +187,40 @@ public class DrinkRedpotion : ICommand
     }
 
 }
+
+    public class MuteCommand : ICommand
+    {
+        private Game1 _game;
+
+        public MuteCommand(Game1 game)
+        {
+            _game = game;
+        }
+
+        public void Execute()
+        {
+            _game.isMuted = !_game.isMuted;
+
+            // Mute player sounds
+            if (_game.playerSounds != null)
+            {
+                _game.playerSounds.SetMute(_game.isMuted);
+            }
+
+            // Mute item sounds
+            if (_game.itemSounds != null)
+            {
+                _game.itemSounds.SetMute(_game.isMuted);
+            }
+
+            // Mute title music
+            if (_game.titleScene != null)
+            {
+                _game.titleScene.MuteTitleMusic(_game.isMuted);
+            }
+
+            Debug.WriteLine($"Game mute toggled: {(_game.isMuted ? "Muted" : "Unmuted")}");
+        }
+    }
+
+
