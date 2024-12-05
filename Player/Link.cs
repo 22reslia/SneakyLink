@@ -53,7 +53,7 @@ public class Link
     //creats a player with basic stats
     public Link(Game1 game)
     {
-        maxHealth = 10;
+        maxHealth = 5;
         currentHealth = maxHealth;
         isV = false;
         isMovable = true;

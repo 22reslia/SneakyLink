@@ -20,7 +20,7 @@ namespace SneakyLink.Collision
                     break;
                 case CollisionType.Left:
                     link.isBlockedLeft = true;
-                    link.isMovable = false;
+                    //link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
@@ -32,7 +32,7 @@ namespace SneakyLink.Collision
                     break;
                 case CollisionType.Right:
                     link.isBlockedRight = true;
-                    link.isMovable = false;
+                    //link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
@@ -44,7 +44,7 @@ namespace SneakyLink.Collision
                     break;
                 case CollisionType.Top:
                     link.isBlockedTop = true;
-                    link.isMovable = false;
+                    //link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
@@ -56,7 +56,7 @@ namespace SneakyLink.Collision
                     break;
                 case CollisionType.Bottom:
                     link.isBlockedBottom = true;
-                    link.isMovable = false;
+                    //link.isMovable = false;
                     link.stateMachine.currentState = PlayerState.playerDamaged;
                     if (!link.isV)
                     {
