@@ -222,5 +222,40 @@ public class DrinkRedpotion : ICommand
             Debug.WriteLine($"Game mute toggled: {(_game.isMuted ? "Muted" : "Unmuted")}");
         }
     }
+    public class GoToBossRoomCommand : ICommand
+    {
+        private Game1 _game;
 
+        public GoToBossRoomCommand(Game1 game)
+        {
+            _game = game;
+        }
+
+        public void Execute()
+        {
+            // Check if the boss room exists
+            if (_game.roomList.ContainsKey("BossRoom"))
+            {
+                // Transition to the boss room
+                _game.oldRoom = _game.room;
+                _game.room = _game.roomList["BossRoom"];
+                _game.enemies = _game.room.enemyList;
+                _game.itemList = _game.room.itemList;
+                _game.projectileList.Clear();
+
+                // Update player position (adjust coordinates as needed)
+                _game.link.playerPosition = new Microsoft.Xna.Framework.Vector2(200, 200);
+
+                // Set the game state to gameplay if needed
+                _game.gameState = GameState.GamePlay;
+
+                // Log for debugging
+                System.Diagnostics.Debug.WriteLine("Transitioned to the Boss Room");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Boss Room not found in roomList!");
+            }
+        }
+    }
 

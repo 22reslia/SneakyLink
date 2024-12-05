@@ -137,6 +137,9 @@ public class Game1 : Game
 
         playerKeyboardController.RegisterCommand(Keys.M, new MuteCommand(this), true);
 
+        playerKeyboardController.RegisterCommand(Keys.B, new GoToBossRoomCommand(this), true);
+
+
         base.Initialize();
     }
 
