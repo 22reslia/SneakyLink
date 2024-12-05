@@ -90,7 +90,7 @@ namespace SneakyLink.Player
             // Initialize XP and level
             level = 1;
             experience = 0;
-            xpToNextLevel = 60; // Initial XP needed to level up
+            xpToNextLevel = 200; // Initial XP needed to level up
 
             //create Xp bar
             xpBarBackground = new Texture2D(game.GraphicsDevice, 1, 1);

@@ -20,6 +20,7 @@ namespace SneakyLink
             game.link.keyNum = 0;   
             game.link.bombNum = 0;
             game.link.maxHealth = 5;
+            game.link.damage = 1;
             game.link.currentHealth = game.link.maxHealth;
             game.mapPicked = false;
             game.link.hasRedpotion = false;
