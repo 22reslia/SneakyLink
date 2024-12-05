@@ -52,7 +52,7 @@ namespace SneakyLink.Enemies
                 case StalfosState.LeftNormal:
                     if (!stalfos.isBlockedLeft)
                     {
-                        stalfos.X -= 5;
+                        stalfos.X -= 3;
                         moveCount++;
                     }
                     else
@@ -63,7 +63,7 @@ namespace SneakyLink.Enemies
                 case StalfosState.RightNormal:
                     if (!stalfos.isBlockedRight)
                     {
-                        stalfos.X += 5;
+                        stalfos.X += 3;
                         moveCount++;
                     }
                     else
@@ -74,7 +74,7 @@ namespace SneakyLink.Enemies
                 case StalfosState.DownNormal:
                     if (!stalfos.isBlockedBottom)
                     {
-                        stalfos.Y += 5;
+                        stalfos.Y += 3;
                         moveCount++;
                     }
                     else
@@ -85,7 +85,7 @@ namespace SneakyLink.Enemies
                 case StalfosState.UpNormal:
                     if (!stalfos.isBlockedTop)
                     {
-                        stalfos.Y -= 5;
+                        stalfos.Y -= 3;
                         moveCount++;
                     }
                     else
