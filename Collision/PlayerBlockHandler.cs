@@ -59,7 +59,7 @@ namespace SneakyLink.Collision
                 if (game.link.keyNum > 0)
                 {
                     game.link.keyNum--;
-                    game.link.maxHealth += 10;
+                    game.link.maxHealth += 5;
                 }
             }
             else
