@@ -87,7 +87,7 @@ namespace SneakyLink.Inventory
                     playerPoint.Draw(spriteBatch, x + squareLength * 3, y + squareLength);
                     break;
                 case 12:
-                    playerPoint.Draw(spriteBatch, x, y + squareLength);
+                    playerPoint.Draw(spriteBatch, x + squareLength * 4, y + squareLength);
                     break;
                 case 13:
                     playerPoint.Draw(spriteBatch, x + squareLength * 2, y + 12);

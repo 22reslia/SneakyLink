@@ -25,7 +25,7 @@ namespace SneakyLink.Collision
                 if (game.link.stateMachine.currentState == PlayerState.playerAttacking)
                 {
                     CollisionType side2 = CollisionDetector.CheckCollision(enemy.CollisionBox, game.link.stateMachine.sword.collisionBox);
-                    EnemyPlayerHandler.HandleCollision(enemy, side2);
+                    EnemyPlayerHandler.HandleCollision(enemy, side2, game.link.damage);
                 }
                 PlayerEnemyHandler.HandleCollision(game.link, side1, playerSounds);
             }
