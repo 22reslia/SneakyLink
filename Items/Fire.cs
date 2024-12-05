@@ -31,7 +31,7 @@ namespace SneakyLink.Projectiles
         {
             position = new Vector2(x, y); // Initialize position
             fireSprite = new FireSprite();
-            collisionBox = new CollisionBox(CollisionObjectType.Interactive, 40, 40, x, y);
+            collisionBox = new CollisionBox(CollisionObjectType.Projectile, 40, 40, x, y);
             velocity = Vector2.Zero; // Initialize velocity
             HasCollided = false;
         }
