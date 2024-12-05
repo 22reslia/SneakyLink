@@ -16,12 +16,22 @@ namespace SneakyLink
         {
             //check if enemy is dead, if so remove it from enemy list
             List<IEnemy> enemyDie = new List<IEnemy>();
+            Random random = new Random();
             foreach(IEnemy enemy in game.enemies)
             {
                 if (enemy.cHealth <= 0)
                 {
                     enemyDie.Add(enemy);
                     game.itemList.Add(new RupeeObject(enemy.X, enemy.Y));
+                    int drop = random.Next(0,100);
+                    if (drop <= 25)
+                    {
+                        game.itemList.Add(new HeartContainer(enemy.X + 20, enemy.Y + 20));
+                    }
+                    else if (drop <= 50)
+                    {
+                        game.itemList.Add(new BombObject(enemy.X - 20, enemy.Y - 20));
+                    }
                 }
             }
             foreach(IEnemy enemy in enemyDie)
