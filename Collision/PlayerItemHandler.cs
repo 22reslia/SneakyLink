@@ -36,6 +36,7 @@ namespace SneakyLink.Collision
                         break;
                     case HeartContainer:
                         link.maxHealth++;
+                        link.currentHealth++;
                         break;
                     case RedPotion: 
                         link.hasRedpotion = true;
