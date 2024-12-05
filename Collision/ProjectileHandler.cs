@@ -1,6 +1,7 @@
 using SneakyLink.Blocks;
 using SneakyLink.Enemies;
 using SneakyLink.Projectiles;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SneakyLink.Collision
 {
@@ -15,11 +16,19 @@ namespace SneakyLink.Collision
                     break;
 
                 case IEnemy enemy:
-                        //bomb.Explode();
-                        enemy.cHealth --;;
+                    //bomb.Explode();
+                    if (!enemy.IsV)
+                    {
+                        enemy.cHealth -= 5; 
+                        enemy.IsV = true;
+                    }
                     break;
                 case Providence boss:
-                    boss.cHealth -= 10;
+                    if (!boss.isV)
+                    {
+                        boss.cHealth -= 5;
+                        boss.isV = true;
+                    }
                     break;
             }
 

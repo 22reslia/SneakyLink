@@ -48,7 +48,7 @@ namespace SneakyLink.Enemies
             this.x = x;
             this.y = y;
             link = game.link;
-            maxHealth = 50;
+            maxHealth = 120;
             currentHealth = maxHealth;
             collisionBox = new CollisionBox(CollisionObjectType.Enemy, 150, 150, x + 30, y);
             bossSprite = EnemySpriteFactory.Instance.ProvidenceIdleSprite();

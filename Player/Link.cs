@@ -53,7 +53,8 @@ namespace SneakyLink.Player
         public int experience;
         public int level;
         public int xpToNextLevel;
-
+        private Texture2D xpBarBackground;
+        private Texture2D xpBarFill;
         public Link(Game1 game)
         {
             maxHealth = 5;
@@ -90,6 +91,12 @@ namespace SneakyLink.Player
             level = 1;
             experience = 0;
             xpToNextLevel = 60; // Initial XP needed to level up
+
+            //create Xp bar
+            xpBarBackground = new Texture2D(game.GraphicsDevice, 1, 1);
+            xpBarBackground.SetData([Color.Gray]);
+            xpBarFill = new Texture2D(game.GraphicsDevice, 1, 1);
+            xpBarFill.SetData([Color.Green]);
         }
 
         public void SetSprite()
@@ -103,6 +110,16 @@ namespace SneakyLink.Player
             {
                 stateMachine.Draw(spriteBatch, playerSprite, (int)playerPosition.X, (int)playerPosition.Y);
             }
+
+            //draw the Xp bar
+            int width = 800;
+            int height = 20;
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(xpBarBackground, new Rectangle(0, 620, width, height), Color.Gray);
+            float xpPercentage = (float)experience / (float)xpToNextLevel;
+            spriteBatch.Draw(xpBarFill, new Rectangle(0, 620, (int)(xpPercentage * width), height), Color.Green);
+            spriteBatch.End();
         }
 
         public void Update(GameTime gameTime)
