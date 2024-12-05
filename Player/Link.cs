@@ -199,6 +199,11 @@ namespace SneakyLink.Player
                     velocity = originalVelocity;  // Restore the original velocity after the potion effect ends
                 }
             }
+            else
+            {
+                velocity = originalVelocity;
+            }
+           
 
             playerSprite.Update();
         }
