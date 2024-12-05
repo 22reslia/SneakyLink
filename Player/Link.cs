@@ -13,6 +13,7 @@ namespace SneakyLink.Player
         public CollisionBox collisionBox;
         public ISprite playerSprite;
         public int velocity;
+        private int originalVelocity; // Store the original velocity
         float timer = 0f;
         float stopTime = 1f;
 
@@ -60,7 +61,8 @@ namespace SneakyLink.Player
             isV = false;
             isMovable = true;
 
-            velocity = 3;
+            velocity = 3;  // Set initial velocity
+            originalVelocity = velocity;  // Store the original velocity
             playerPosition.X = 100;
             playerPosition.Y = 100;
 
@@ -82,7 +84,7 @@ namespace SneakyLink.Player
             hasBluepotion = false;
             hasRedpotion = false;
             isDrinkingRedpotion = false;
-            damage = 1;
+            damage = 1;  // Default damage
 
             // Initialize XP and level
             level = 1;
@@ -157,7 +159,10 @@ namespace SneakyLink.Player
                 if (drinkCounter == 0)
                 {
                     drinkCounter = drinkDuration;
+                    originalVelocity = velocity;  // Store original velocity before slowing down
+                    velocity -= 2;  // Slow down velocity by 2
                 }
+
                 drinkCounter -= gameTime.ElapsedGameTime.TotalSeconds;
                 healCounter += gameTime.ElapsedGameTime.TotalSeconds;
                 if (healCounter >= healTime)
@@ -168,16 +173,15 @@ namespace SneakyLink.Player
                     }
                     healCounter -= healTime;
                 }
+
                 if (drinkCounter <= 0)
                 {
                     isDrinkingRedpotion = false;
                     drinkCounter = 0;
                     healCounter = 0;
+                    velocity = originalVelocity;  // Restore the original velocity after the potion effect ends
                 }
             }
-
-            // Dynamically adjust velocity based on potion and level
-            velocity = isDrinkingRedpotion ? Math.Max(1, (3 + (level - 1) * 2) - 2) : (3 + (level - 1) * 2);
 
             playerSprite.Update();
         }
@@ -195,7 +199,9 @@ namespace SneakyLink.Player
         {
             experience -= xpToNextLevel;
             level++;
-            velocity ++; // Base speed increases
+
+            damage += 1;
+
             xpToNextLevel = (int)(xpToNextLevel * 1.5); // XP curve
         }
     }
