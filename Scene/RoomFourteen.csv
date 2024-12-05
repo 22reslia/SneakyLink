@@ -1,4 +1,4 @@
-door00,door10,door21,door31
+door00,,door10,,door21,Room15,door31,Room12
 ground,ground,ground,ground,ground,ground,ground,block,block,block,block,block
 ground,ground,ground,ground,ground,ground,ground,ground,ground,block,block,block
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,block,block
@@ -6,3 +6,10 @@ ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,gro
 ground,ground,ground,ground,ground,ground,ground,ground,ground,ground,block,block
 ground,ground,ground,ground,ground,ground,ground,ground,ground,block,block,block
 ground,ground,ground,ground,ground,ground,ground,block,block,block,block,block
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,stalfos,empty,empty,empty,stalfos,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty
+empty,empty,empty,stalfos,empty,empty,empty,empty,stalfos,empty,empty,empty
+empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty,empty

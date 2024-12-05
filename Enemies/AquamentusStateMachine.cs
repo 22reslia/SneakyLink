@@ -61,12 +61,26 @@ namespace SneakyLink.Enemies
             switch (currentState)
             {
                 case AquamentusState.LeftNormal:
-                    aquamentus.X -= 1;
-                    moveCount++;
+                    if (!aquamentus.isBlockedLeft)
+                    {
+                        aquamentus.X -= 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case AquamentusState.RightNormal:
-                    aquamentus.X += 1;
-                    moveCount++;
+                    if (!aquamentus.isBlockedRight)
+                    {
+                        aquamentus.X += 1;
+                        moveCount++;
+                    }
+                    else
+                    {
+                        moveCount = 80;
+                    }
                     break;
                 case AquamentusState.LeftAttack:
                     moveCount++;

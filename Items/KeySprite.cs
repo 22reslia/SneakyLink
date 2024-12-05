@@ -26,7 +26,7 @@ namespace SneakyLink.Items
         public void Draw(SpriteBatch spriteBatch, int x, int y)
         {
             sourceRectangle = new Rectangle(240, 0, 8, 16);
-            Rectangle destinationRectangle = new Rectangle(500, 200, 3 * sourceRectangle.Width, 3 * sourceRectangle.Height);
+            Rectangle destinationRectangle = new Rectangle(x, y, 16, 32);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(image, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.End();

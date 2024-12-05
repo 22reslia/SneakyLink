@@ -7,6 +7,9 @@ namespace SneakyLink.Enemies
     {
         private Texture2D dungeonEnemySpriteSheet;
         private Texture2D bossesSpriteSheet;
+        private Texture2D deathSpriteSheet;
+        private Texture2D ProvidenceIdleSheet;
+        private Texture2D ProvidenceProjectileSheet;
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
@@ -26,6 +29,14 @@ namespace SneakyLink.Enemies
         {
             dungeonEnemySpriteSheet = content.Load<Texture2D>("DungeonEnemies");
             bossesSpriteSheet = content.Load<Texture2D>("Bosses");
+            deathSpriteSheet = content.Load<Texture2D>("EnemyDeath");
+            ProvidenceIdleSheet = content.Load<Texture2D>("ProvidenceAlt");
+            ProvidenceProjectileSheet = content.Load<Texture2D>("ProvidenceProjectile");
+        }
+
+        public ISprite CreateEnemyDeathSprite()
+        {
+            return new EnemyDeathSprite(deathSpriteSheet);
         }
 
         public ISprite CreateKeeseEnemySprite()
@@ -101,6 +112,16 @@ namespace SneakyLink.Enemies
         public ISprite CreateGoriyaLeftAttackSprite()
         {
             return new GoriyaLeftAttackSprite(dungeonEnemySpriteSheet);
+        }
+
+        public ISprite ProvidenceIdleSprite()
+        {
+            return new BossIdleSprite(ProvidenceIdleSheet);
+        }
+
+        public ISprite ProvidenceProjectileSprite()
+        {
+            return new ProjectileSprite(ProvidenceProjectileSheet);
         }
     }
 }
