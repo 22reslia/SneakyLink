@@ -18,6 +18,7 @@ namespace SneakyLink.Enemies
         private int y;
         private int maxHealth;
         private int currentHealth;
+        private bool isV;
         public bool isBlockedTop;
         public bool isBlockedBottom;
         public bool isBlockedLeft;
@@ -33,6 +34,7 @@ namespace SneakyLink.Enemies
         public bool isBlockedT { get => isBlockedTop; set => isBlockedTop = value; }
         public bool isBlockedB { get => isBlockedBottom; set => isBlockedBottom = value; }
         public CollisionBox CollisionBox { get => collisionBox; set => collisionBox = value; }
+        public bool IsV { get => isV; set => isV = value; }
 
         public Aquamentus(int x, int y)
         {

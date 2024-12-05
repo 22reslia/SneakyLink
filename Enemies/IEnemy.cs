@@ -13,7 +13,7 @@ namespace SneakyLink.Enemies
         public bool isBlockedR { get; set; }
         public bool isBlockedT { get; set; }
         public bool isBlockedB { get; set; }
-
+        public bool IsV { get; set; }
         public CollisionBox CollisionBox { get; set; }
 
         public void Draw(SpriteBatch spriteBatch);
