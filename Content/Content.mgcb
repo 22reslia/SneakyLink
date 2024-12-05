@@ -37,6 +37,12 @@
 /processorParam:TextureFormat=Color
 /build:Bosses.png
 
+#begin BossMusic.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:BossMusic.mp3
+
 #begin DungeonEnemies.png
 /importer:TextureImporter
 /processor:TextureProcessor

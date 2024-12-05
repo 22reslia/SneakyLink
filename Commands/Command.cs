@@ -216,7 +216,7 @@ public class DrinkRedpotion : ICommand
             // Mute title music
             if (_game.titleScene != null)
             {
-                _game.titleScene.MuteTitleMusic(_game.isMuted);
+                _game.MuteTitleMusic(_game.isMuted);
             }
 
             Debug.WriteLine($"Game mute toggled: {(_game.isMuted ? "Muted" : "Unmuted")}");

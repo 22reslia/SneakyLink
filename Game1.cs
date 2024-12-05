@@ -15,6 +15,7 @@ using SneakyLink.Boss;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Xna.Framework.Audio;
 
 namespace SneakyLink;
 
@@ -50,6 +51,12 @@ public class Game1 : Game
 
     //game over scene info
     private GameOverScene gameOverScene;
+
+    //background music
+    public SoundEffect titleMusic;
+    public SoundEffect bossMusic;
+    public SoundEffectInstance backgroundMusic;
+    public bool isBossMusic;
 
     //roomtransmission info
     private RoomTransmission roomTransmission;
@@ -100,6 +107,7 @@ public class Game1 : Game
         // Initialize and load sound effects
         playerSounds = new PlayerSounds();
         playerSounds.LoadPlayerSoundEffects(this);
+        isBossMusic = false;
 
         //Initialize ItemSounds
         itemSounds = new ItemSounds();
@@ -136,7 +144,7 @@ public class Game1 : Game
         sceneCount = 0;
 
         playerKeyboardController.RegisterCommand(Keys.M, new MuteCommand(this), true);
-
+        titleKeyboardController.RegisterCommand(Keys.M, new MuteCommand(this), true);
         playerKeyboardController.RegisterCommand(Keys.B, new GoToBossRoomCommand(this), true);
 
 
@@ -151,6 +159,10 @@ public class Game1 : Game
         Player.PlayerSpriteFactory.Instance.LoadAllTextures(Content);
         Blocks.BlockSpriteFactory.Instance.LoadAllTextrues(Content);
         Items.ItemSpriteFactory.Instance.LoadAllTextrues(Content);
+
+        //load Music
+        titleMusic = Content.Load<SoundEffect>("RoomMusic");
+        bossMusic = Content.Load<SoundEffect>("BossMusic");
 
         //load room
         roomList = new Dictionary<string, Room>();
@@ -186,8 +198,30 @@ public class Game1 : Game
         //load itemSounds
         itemSounds.LoadItemSoundEffects(this);
 
+        //play the backgroundMusic
+        backgroundMusic = titleMusic.CreateInstance();
+        backgroundMusic.Volume = 0.2f;
+        backgroundMusic.IsLooped = true;
+        backgroundMusic.Play();
+
         //load boss
         boss = new Providence(290, 0, this);
+    }
+
+    public void changeMusic(SoundEffect music)
+    {
+        backgroundMusic.Stop();
+        backgroundMusic = music.CreateInstance();
+        backgroundMusic.Volume = 0.2f;
+        backgroundMusic.Play();
+    }
+
+    public void MuteTitleMusic(bool isMuted)
+    {
+        if (backgroundMusic != null)
+        {
+            backgroundMusic.Volume = isMuted ? 0f : 0.2f;
+        }
     }
 
     protected override void Update(GameTime gameTime)
@@ -225,7 +259,7 @@ public class Game1 : Game
                 {
                     enemy.Update();
                 }
-                foreach(IItem item in itemList)
+                foreach (IItem item in itemList)
                 {
                     item.Update();
                 }
@@ -247,6 +281,18 @@ public class Game1 : Game
             case GameState.GameWin:
                 gameOverKeyboardController.Update();
                 break;
+        }
+
+        //check if play boss music
+        if (room == roomList["BossRoom"] && !isBossMusic)
+        {
+            changeMusic(bossMusic);
+            isBossMusic = true;
+        }
+        else if(room != roomList["BossRoom"] && isBossMusic)
+        {
+            changeMusic(titleMusic);
+            isBossMusic = false;
         }
         base.Update(gameTime);
     }
