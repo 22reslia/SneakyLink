@@ -31,8 +31,36 @@ namespace SneakyLink.Collision
                 //clear the old objects
                 game.gameState = GameState.RoomTransmission;
                 game.oldRoom = game.room;
-
                 game.nextRoomFilePath = "BossRoom";
+            }
+            else if (targetBlock.type == CollisionObjectType.Box)
+            {
+                switch (side)
+                {
+                    case CollisionType.None:
+                        game.link.isBlockedLeft = false;
+                        game.link.isBlockedRight = false;
+                        game.link.isBlockedTop = false;
+                        game.link.isBlockedBottom = false;
+                        break;
+                    case CollisionType.Left:
+                        game.link.isBlockedLeft = true;
+                        break;
+                    case CollisionType.Right:
+                        game.link.isBlockedRight = true;
+                        break;
+                    case CollisionType.Top:
+                        game.link.isBlockedTop = true;
+                        break;
+                    case CollisionType.Bottom:
+                        game.link.isBlockedBottom = true;
+                        break;
+                }
+                if (game.link.keyNum > 0)
+                {
+                    game.link.keyNum--;
+                    game.link.maxHealth += 10;
+                }
             }
             else
             {

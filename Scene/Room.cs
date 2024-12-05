@@ -107,6 +107,9 @@ namespace SneakyLink.Scene
                         case "stair":
                             blockList.Add(new Stair(positionX, positionY));
                             break;
+                        case "treasureBox":
+                            blockList.Add(new TreasureBox(positionX, positionY - 6));
+                            break;
                     }
                 }
             }
