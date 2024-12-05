@@ -34,8 +34,6 @@ public class Game1 : Game
     private IController<MouseButton> playerMouseController;
     private IController<MouseButton> menuMouseController;
 
-    public IController<Keys> PlayerKeyboardController { get => playerKeyboardController; set => playerKeyboardController = value; }
-
     public Player.Link link;
 
     //player sound effects
