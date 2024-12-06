@@ -1,5 +1,5 @@
 ﻿using SneakyLink.Player;
-using System.Runtime.CompilerServices;
+using Microsoft.Xna.Framework;
 
 namespace SneakyLink.Collision
 {
@@ -8,62 +8,82 @@ namespace SneakyLink.Collision
         public static void HandleCollision(Link link, CollisionType side, PlayerSounds sound)
         {
             int knockbackDistance = 20;
-            bool nearWall = link.isBlockedLeft || link.isBlockedRight || link.isBlockedTop || link.isBlockedBottom;
+            bool nearWall = link.IsBlockedLeft || link.IsBlockedRight || link.IsBlockedTop || link.IsBlockedBottom;
 
             switch (side)
-            {   
+            {
                 case CollisionType.None:
-                    link.isBlockedLeft = false;
-                    link.isBlockedRight = false;
-                    link.isBlockedTop = false;
-                    link.isBlockedBottom = false;
+                    link.IsBlockedLeft = false;
+                    link.IsBlockedRight = false;
+                    link.IsBlockedTop = false;
+                    link.IsBlockedBottom = false;
                     break;
+
                 case CollisionType.Left:
-                    link.isBlockedLeft = true;
-                    //link.isMovable = false;
-                    link.stateMachine.currentState = PlayerState.playerDamaged;
-                    if (!link.isV)
+                    link.IsBlockedLeft = true;
+                    link.StateMachine.currentState = PlayerState.playerDamaged;
+                    if (!link.IsV)
                     {
-                        if (!nearWall) link.playerPosition.X += knockbackDistance;
+                        if (!nearWall)
+                        {
+                            Vector2 position = link.PlayerPosition;
+                            position.X += knockbackDistance;
+                            link.PlayerPosition = position;
+                        }
                         sound.PlayLinkHurt();
-                        link.currentHealth--;
-                        link.isV = true;
+                        link.CurrentHealth--;
+                        link.IsV = true;
                     }
                     break;
+
                 case CollisionType.Right:
-                    link.isBlockedRight = true;
-                    //link.isMovable = false;
-                    link.stateMachine.currentState = PlayerState.playerDamaged;
-                    if (!link.isV)
+                    link.IsBlockedRight = true;
+                    link.StateMachine.currentState = PlayerState.playerDamaged;
+                    if (!link.IsV)
                     {
-                        if (!nearWall) link.playerPosition.X -= knockbackDistance;
+                        if (!nearWall)
+                        {
+                            Vector2 position = link.PlayerPosition;
+                            position.X -= knockbackDistance;
+                            link.PlayerPosition = position;
+                        }
                         sound.PlayLinkHurt();
-                        link.currentHealth--;
-                        link.isV = true;
+                        link.CurrentHealth--;
+                        link.IsV = true;
                     }
                     break;
+
                 case CollisionType.Top:
-                    link.isBlockedTop = true;
-                    //link.isMovable = false;
-                    link.stateMachine.currentState = PlayerState.playerDamaged;
-                    if (!link.isV)
+                    link.IsBlockedTop = true;
+                    link.StateMachine.currentState = PlayerState.playerDamaged;
+                    if (!link.IsV)
                     {
-                        if (!nearWall) link.playerPosition.Y += knockbackDistance;
+                        if (!nearWall)
+                        {
+                            Vector2 position = link.PlayerPosition;
+                            position.Y += knockbackDistance;
+                            link.PlayerPosition = position;
+                        }
                         sound.PlayLinkHurt();
-                        link.currentHealth--;
-                        link.isV = true;
+                        link.CurrentHealth--;
+                        link.IsV = true;
                     }
                     break;
+
                 case CollisionType.Bottom:
-                    link.isBlockedBottom = true;
-                    //link.isMovable = false;
-                    link.stateMachine.currentState = PlayerState.playerDamaged;
-                    if (!link.isV)
+                    link.IsBlockedBottom = true;
+                    link.StateMachine.currentState = PlayerState.playerDamaged;
+                    if (!link.IsV)
                     {
-                        if (!nearWall) link.playerPosition.Y -= knockbackDistance;
+                        if (!nearWall)
+                        {
+                            Vector2 position = link.PlayerPosition;
+                            position.Y -= knockbackDistance;
+                            link.PlayerPosition = position;
+                        }
                         sound.PlayLinkHurt();
-                        link.currentHealth--;
-                        link.isV = true;
+                        link.CurrentHealth--;
+                        link.IsV = true;
                     }
                     break;
             }

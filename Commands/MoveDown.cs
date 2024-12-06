@@ -1,4 +1,5 @@
 using SneakyLink;
+using Microsoft.Xna.Framework;
 using SneakyLink.Player;
 
 namespace SneakyLink.Commands
@@ -14,13 +15,16 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            link.stateMachine.currentDirection = PlayerDirection.playerDown;
-            if (link.isMovable)
+            link.StateMachine.currentDirection = PlayerDirection.playerDown;
+            if (link.IsMovable)
             {
-                link.stateMachine.currentState = PlayerState.playerMoving;
-                if (!link.isBlockedBottom)
+                link.StateMachine.currentState = PlayerState.playerMoving;
+                if (!link.IsBlockedBottom)
                 {
-                    link.playerPosition.Y += link.velocity;
+                    // Create a temporary variable for PlayerPosition
+                    Vector2 position = link.PlayerPosition;
+                    position.Y += link.Velocity; // Modify the Y component
+                    link.PlayerPosition = position; // Reassign the updated value
                 }
             }
         }

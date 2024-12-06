@@ -17,7 +17,7 @@ namespace SneakyLink.Commands
             {
                 _game.oldRoom = _game.room;
                 _game.room = _game.roomList["BossRoom"];
-                _game.link.playerPosition = new Microsoft.Xna.Framework.Vector2(200, 200);
+                _game.link.PlayerPosition = new Microsoft.Xna.Framework.Vector2(200, 200);
             }
         }
     }

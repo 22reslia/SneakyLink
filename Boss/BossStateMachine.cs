@@ -150,7 +150,7 @@ namespace SneakyLink.Enemies
                 for (int i = 0; i < projectileNum; i++)
                 {
                     offset += 50;
-                    BossProjectile projectile = new StraightLineProjectile(providence.X + 105 + offset, providence.Y + 75 + offset, providence.link.playerPosition.X, providence.link.playerPosition.Y, 3f);
+                    BossProjectile projectile = new StraightLineProjectile(providence.X + 105 + offset, providence.Y + 75 + offset, providence.link.PlayerPosition.X, providence.link.PlayerPosition.Y, 3f);
                     providence.projectile.Add(projectile);
                 }
             }
@@ -159,7 +159,7 @@ namespace SneakyLink.Enemies
                 for (int i = 0; i < projectileNum; i++)
                 {
                     offset += 50;
-                    BossProjectile projectile1 = new StraightLineProjectile(providence.X + 105 + offset, providence.Y + 75 + offset, providence.link.playerPosition.X, providence.link.playerPosition.Y, 3f);
+                    BossProjectile projectile1 = new StraightLineProjectile(providence.X + 105 + offset, providence.Y + 75 + offset, providence.link.PlayerPosition.X, providence.link.PlayerPosition.Y, 3f);
                     BossProjectile projectile2 = new TrackProjectile(providence.X + 105 + offset, providence.Y + 75 + offset, providence.link, 2f);
                     providence.projectile.Add(projectile1);
                     providence.projectile.Add(projectile2);
@@ -195,8 +195,8 @@ namespace SneakyLink.Enemies
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.H))
             {
-                targetX = providence.link.playerPosition.X;
-                targetY = providence.link.playerPosition.Y;
+                targetX = providence.link.PlayerPosition.X;
+                targetY = providence.link.PlayerPosition.Y;
             }
 
             if (!isMoving)

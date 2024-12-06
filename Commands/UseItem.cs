@@ -14,10 +14,10 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            if (link.bombNum > 0)
+            if (link.BombNum > 0)
             {
-                link.bombNum--;
-                link.stateMachine.currentState = PlayerState.playerUseItem;
+                link.BombNum--;
+                link.StateMachine.currentState = PlayerState.playerUseItem;
             }
         }
     }

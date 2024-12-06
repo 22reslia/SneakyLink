@@ -2,216 +2,235 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SneakyLink.Collision;
-using System;
 
 namespace SneakyLink.Player
 {
     public class Link
     {
-        public Vector2 playerPosition;
-        public PlayerStateMachine stateMachine;
-        public CollisionBox collisionBox;
-        public ISprite playerSprite;
-        public int velocity;
-        private int originalVelocity; // Store the original velocity
-        float timer = 0f;
-        float stopTime = 1f;
+        public Vector2 PlayerPosition { get; set; }
+        public PlayerStateMachine StateMachine { get; private set; }
+        public CollisionBox CollisionBox { get; private set; }
+        public ISprite PlayerSprite { get; private set; }
 
-        // Collision states
-        public bool isBlockedTop;
-        public bool isBlockedBottom;
-        public bool isBlockedLeft;
-        public bool isBlockedRight;
+        public int Velocity { get; set; }
+        private int _originalVelocity;
 
-        // HP
-        public bool isV;
-        public bool isMovable;
-        public int maxHealth;
-        public int currentHealth;
+        public bool IsBlockedTop { get; set; }
+        public bool IsBlockedBottom { get; set; }
+        public bool IsBlockedLeft { get; set; }
+        public bool IsBlockedRight { get; set; }
 
-        // Sword damage
-        public int damage;
+        public bool IsV { get; set; }
+        public bool IsMovable { get; set; }
 
-        private int vCounter;
-        private int mCounter;
+        private int _maxHealth;
+        public int MaxHealth
+        {
+            get => _maxHealth;
+            set => _maxHealth = value > 0 ? value : 1;
+        }
 
-        // Inventory
-        public int coinNum;
-        public int keyNum;
-        public int bombNum;
-        public bool hasBluepotion;
-        public bool hasRedpotion;
-        public bool isDrinkingRedpotion;
+        private int _currentHealth;
+        public int CurrentHealth
+        {
+            get => _currentHealth;
+            set => _currentHealth = value >= 0 ? value : 0;
+        }
 
-        // Potion timers
-        private double drinkCounter;
-        private double drinkDuration = 2.0;
-        private double healCounter = 0.0;
-        private double healTime = 1.0;
+        public int Damage { get; set; }
+        public int CoinNum { get; set; }
+        public int KeyNum { get; set; }
+        public int BombNum { get; set; }
+        public bool HasBluePotion { get; set; }
+        public bool HasRedPotion { get; set; }
 
-        // XP and Level
-        public int experience;
-        public int level;
-        public int xpToNextLevel;
-        private Texture2D xpBarBackground;
-        private Texture2D xpBarFill;
+        private bool _isDrinkingRedPotion;
+        public bool IsDrinkingRedPotion
+        {
+            get => _isDrinkingRedPotion;
+            set
+            {
+                if (value)
+                {
+                    _originalVelocity = Velocity;
+                    Velocity -= 2;
+                }
+                else
+                {
+                    Velocity = _originalVelocity;
+                }
+                _isDrinkingRedPotion = value;
+            }
+        }
+
+        private double _drinkCounter;
+        private double _drinkDuration = 2.0;
+        private double _healCounter;
+        private double _healTime = 1.0;
+
+        public int Experience { get; private set; }
+        public int Level { get; private set; }
+        public int XpToNextLevel { get; private set; }
+
+        private Texture2D _xpBarBackground;
+        private Texture2D _xpBarFill;
+
+        private float _timer;
+        private float _stopTime = 1f;
+
+        private int _vCounter;
+        private int _mCounter;
+
         public Link(Game1 game)
         {
-            maxHealth = 5;
-            currentHealth = maxHealth;
-            isV = false;
-            isMovable = true;
+            MaxHealth = 5;
+            CurrentHealth = MaxHealth;
+            IsV = false;
+            IsMovable = true;
 
-            velocity = 3;  // Set initial velocity
-            originalVelocity = velocity;  // Store the original velocity
-            playerPosition.X = 100;
-            playerPosition.Y = 100;
+            Velocity = 3;
+            _originalVelocity = Velocity;
 
-            isBlockedTop = false;
-            isBlockedBottom = false;
-            isBlockedLeft = false;
-            isBlockedRight = false;
+            PlayerPosition = new Vector2(100, 100);
 
-            vCounter = 0;
-            mCounter = 0;
+            IsBlockedTop = false;
+            IsBlockedBottom = false;
+            IsBlockedLeft = false;
+            IsBlockedRight = false;
 
-            // State machine
-            stateMachine = new PlayerStateMachine(playerPosition, this, game);
-            collisionBox = new CollisionBox(CollisionObjectType.Player, 38, 38, (int)playerPosition.X, (int)playerPosition.Y);
+            StateMachine = new PlayerStateMachine(PlayerPosition, this, game);
+            CollisionBox = new CollisionBox(CollisionObjectType.Player, 38, 38, (int)PlayerPosition.X, (int)PlayerPosition.Y);
 
-            coinNum = 0;
-            keyNum = 0;
-            bombNum = 0;
-            hasBluepotion = false;
-            hasRedpotion = false;
-            isDrinkingRedpotion = false;
-            damage = 1;  // Default damage
+            CoinNum = 0;
+            KeyNum = 0;
+            BombNum = 0;
+            HasBluePotion = false;
+            HasRedPotion = false;
+            IsDrinkingRedPotion = false;
 
-            // Initialize XP and level
-            level = 1;
-            experience = 0;
-            xpToNextLevel = 200; // Initial XP needed to level up
+            Damage = 1;
+            Level = 1;
+            Experience = 0;
+            XpToNextLevel = 200;
 
-            //create Xp bar
-            xpBarBackground = new Texture2D(game.GraphicsDevice, 1, 1);
-            xpBarBackground.SetData([Color.Gray]);
-            xpBarFill = new Texture2D(game.GraphicsDevice, 1, 1);
-            xpBarFill.SetData([Color.Green]);
+            _xpBarBackground = new Texture2D(game.GraphicsDevice, 1, 1);
+            _xpBarBackground.SetData(new[] { Color.Gray });
+            _xpBarFill = new Texture2D(game.GraphicsDevice, 1, 1);
+            _xpBarFill.SetData(new[] { Color.Green });
         }
 
         public void SetSprite()
         {
-            playerSprite = stateMachine.GetCurrentIdleSprite();
+            PlayerSprite = StateMachine.GetCurrentIdleSprite();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (playerSprite != null)
+            if (PlayerSprite != null)
             {
-                stateMachine.Draw(spriteBatch, playerSprite, (int)playerPosition.X, (int)playerPosition.Y);
+                StateMachine.Draw(spriteBatch, PlayerSprite, (int)PlayerPosition.X, (int)PlayerPosition.Y);
             }
 
-            //draw the Xp bar
+            // Draw the XP bar
             int width = 800;
             int height = 20;
 
             spriteBatch.Begin();
-            spriteBatch.Draw(xpBarBackground, new Rectangle(0, 620, width, height), Color.Gray);
-            float xpPercentage = (float)experience / (float)xpToNextLevel;
-            spriteBatch.Draw(xpBarFill, new Rectangle(0, 620, (int)(xpPercentage * width), height), Color.Green);
+            spriteBatch.Draw(_xpBarBackground, new Rectangle(0, 620, width, height), Color.Gray);
+            float xpPercentage = (float)Experience / XpToNextLevel;
+            spriteBatch.Draw(_xpBarFill, new Rectangle(0, 620, (int)(xpPercentage * width), height), Color.Green);
             spriteBatch.End();
         }
 
         public void Update(GameTime gameTime)
         {
-            playerSprite = stateMachine.Update(gameTime);
+            PlayerSprite = StateMachine.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (timer >= stopTime)
+            if (_timer >= _stopTime)
             {
-                stateMachine.currentState = PlayerState.playerIdle;
-                timer = 0f;
+                StateMachine.currentState = PlayerState.playerIdle;
+                _timer = 0f;
             }
             else
             {
-                timer += deltaTime;
+                _timer += deltaTime;
             }
 
-            collisionBox.x = (int)playerPosition.X;
-            collisionBox.y = (int)playerPosition.Y;
+            CollisionBox.x = (int)PlayerPosition.X;
+            CollisionBox.y = (int)PlayerPosition.Y;
 
-            if (collisionBox.side == CollisionType.None)
+            if (CollisionBox.side == CollisionType.None)
             {
-                isBlockedTop = false;
-                isBlockedBottom = false;
-                isBlockedLeft = false;
-                isBlockedRight = false;
+                IsBlockedTop = false;
+                IsBlockedBottom = false;
+                IsBlockedLeft = false;
+                IsBlockedRight = false;
             }
 
             // Update invincibility
-            if (isV)
+            if (IsV)
             {
-                vCounter++;
-                if (vCounter == 60)
+                _vCounter++;
+                if (_vCounter == 60)
                 {
-                    isV = false;
-                    vCounter = 0;
+                    IsV = false;
+                    _vCounter = 0;
                 }
             }
 
             // Update movement state
-            if (collisionBox.side == CollisionType.None)
+            if (CollisionBox.side == CollisionType.None)
             {
-                mCounter++;
-                if (mCounter == 50)
+                _mCounter++;
+                if (_mCounter == 50)
                 {
-                    isMovable = true;
-                    mCounter = 0;
+                    IsMovable = true;
+                    _mCounter = 0;
                 }
             }
 
             // Check potion consumption
-            if (isDrinkingRedpotion)
+            if (IsDrinkingRedPotion)
             {
-                if (drinkCounter == 0)
+                if (_drinkCounter == 0)
                 {
-                    drinkCounter = drinkDuration;
-                    originalVelocity = velocity;  // Store original velocity before slowing down
-                    velocity -= 2;  // Slow down velocity by 2
+                    _drinkCounter = _drinkDuration;
+                    _originalVelocity = Velocity;
+                    Velocity -= 2;
                 }
 
-                drinkCounter -= gameTime.ElapsedGameTime.TotalSeconds;
-                healCounter += gameTime.ElapsedGameTime.TotalSeconds;
-                if (healCounter >= healTime)
+                _drinkCounter -= gameTime.ElapsedGameTime.TotalSeconds;
+                _healCounter += gameTime.ElapsedGameTime.TotalSeconds;
+                if (_healCounter >= _healTime)
                 {
-                    if (currentHealth < maxHealth)
+                    if (CurrentHealth < MaxHealth)
                     {
-                        currentHealth++;
+                        CurrentHealth++;
                     }
-                    healCounter -= healTime;
+                    _healCounter -= _healTime;
                 }
 
-                if (drinkCounter <= 0)
+                if (_drinkCounter <= 0)
                 {
-                    isDrinkingRedpotion = false;
-                    drinkCounter = 0;
-                    healCounter = 0;
-                    velocity = originalVelocity;  // Restore the original velocity after the potion effect ends
+                    IsDrinkingRedPotion = false;
+                    _drinkCounter = 0;
+                    _healCounter = 0;
+                    Velocity = _originalVelocity;
                 }
             }
             else
             {
-                velocity = originalVelocity;
+                Velocity = _originalVelocity;
             }
-           
 
-            playerSprite.Update();
+            PlayerSprite.Update();
         }
 
         public void GainExperience(int xp)
         {
-            experience += xp;
-            if (experience >= xpToNextLevel)
+            Experience += xp;
+            if (Experience >= XpToNextLevel)
             {
                 LevelUp();
             }
@@ -219,12 +238,10 @@ namespace SneakyLink.Player
 
         private void LevelUp()
         {
-            experience -= xpToNextLevel;
-            level++;
-
-            damage += 1;
-
-            xpToNextLevel = (int)(xpToNextLevel * 1.5); // XP curve
+            Experience -= XpToNextLevel;
+            Level++;
+            Damage += 1;
+            XpToNextLevel = (int)(XpToNextLevel * 1.5); // XP curve
         }
     }
 }

@@ -21,18 +21,18 @@ namespace SneakyLink.Collision
         {
             PlayerSounds playerSounds = game.playerSounds;
             //boss and player collision check
-            CollisionType side1 = CollisionDetector.CheckCollision(game.link.collisionBox, game.boss.collisionBox);
-            if (game.link.stateMachine.currentState == PlayerState.playerAttacking)
+            CollisionType side1 = CollisionDetector.CheckCollision(game.link.CollisionBox, game.boss.collisionBox);
+            if (game.link.StateMachine.currentState == PlayerState.playerAttacking)
             {
-                CollisionType side2 = CollisionDetector.CheckCollision(game.boss.CollisionBox, game.link.stateMachine.sword.collisionBox);
-                BossPlayerHandler.HandleCollision(game.boss, side2, game.link.damage);
+                CollisionType side2 = CollisionDetector.CheckCollision(game.boss.CollisionBox, game.link.StateMachine.sword.collisionBox);
+                BossPlayerHandler.HandleCollision(game.boss, side2, game.link.Damage);
             }
             PlayerEnemyHandler.HandleCollision(game.link, side1, playerSounds);
 
             //boss projectile collision check
             foreach (BossProjectile fireBall in game.boss.projectile)
             {
-                CollisionType sideProjectile = CollisionDetector.CheckCollision(game.link.collisionBox, fireBall.CollisionBox);
+                CollisionType sideProjectile = CollisionDetector.CheckCollision(game.link.CollisionBox, fireBall.CollisionBox);
                 PlayerEnemyHandler.HandleCollision(game.link, sideProjectile, playerSounds);
             }
 

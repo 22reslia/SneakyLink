@@ -16,7 +16,7 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            link.stateMachine.currentState = PlayerState.playerAttacking;
+            link.StateMachine.currentState = PlayerState.playerAttacking;
             playerSounds.PlayLinkSwordSlash();
         }
     }

@@ -14,7 +14,7 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            link.stateMachine.currentState = PlayerState.playerDamaged;
+            link.StateMachine.currentState = PlayerState.playerDamaged;
         }
     }
 }

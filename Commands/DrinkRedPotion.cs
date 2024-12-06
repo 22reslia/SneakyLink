@@ -14,10 +14,10 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            if (link.hasRedpotion && link.coinNum >= 1)
+            if (link.HasRedPotion && link.CoinNum >= 1)
             {
-                link.coinNum--;
-                link.isDrinkingRedpotion = true;
+                link.CoinNum--;
+                link.IsDrinkingRedPotion = true;
             }
         }
     }

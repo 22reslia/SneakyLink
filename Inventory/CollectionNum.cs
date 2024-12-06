@@ -20,16 +20,16 @@ namespace SneakyLink.Inventory
 
         public CollectionNum(Link link, Texture2D numberText)
         {
-            coinNum = link.coinNum;
-            keyNum = link.keyNum;
-            bombNum = link.bombNum;
+            coinNum = link.CoinNum;
+            keyNum = link.KeyNum;
+            bombNum = link.BombNum;
             this.link = link;
             numSprite = new CollectionNumSprite(numberText, coinNum, keyNum, bombNum);
         }
 
         public void Update()
         {
-            numSprite.UpdateNum(link.coinNum, link.keyNum, link.bombNum);
+            numSprite.UpdateNum(link.CoinNum, link.KeyNum, link.BombNum);
         }
         public void Draw(SpriteBatch spriteBatch, bool isInInventory)
         {

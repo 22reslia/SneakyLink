@@ -1,5 +1,6 @@
 using SneakyLink;
 using SneakyLink.Player;
+using Microsoft.Xna.Framework;
 
 namespace SneakyLink.Commands
 {
@@ -14,13 +15,15 @@ namespace SneakyLink.Commands
 
         public void Execute()
         {
-            link.stateMachine.currentDirection = PlayerDirection.playerRight;
-            if (link.isMovable)
+            link.StateMachine.currentDirection = PlayerDirection.playerRight;
+            if (link.IsMovable)
             {
-                link.stateMachine.currentState = PlayerState.playerMoving;
-                if (!link.isBlockedRight)
+                link.StateMachine.currentState = PlayerState.playerMoving;
+                if (!link.IsBlockedRight)
                 {
-                    link.playerPosition.X += link.velocity;
+                    Vector2 position = link.PlayerPosition;
+                    position.X += link.Velocity;
+                    link.PlayerPosition = position;
                 }
             }
         }
