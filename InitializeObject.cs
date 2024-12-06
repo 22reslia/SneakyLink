@@ -12,19 +12,29 @@ namespace SneakyLink
     {
         public static void initializeObject(Game1 game)
         {   
-            game.link.playerPosition.X = 200;
-            game.link.playerPosition.Y = 200;
-            game.link.stateMachine.currentDirection = Player.PlayerDirection.playerDown;
-            game.link.stateMachine.currentState = Player.PlayerState.playerIdle;
-            game.link.coinNum = 0;
-            game.link.keyNum = 0;   
-            game.link.bombNum = 0;
-            game.link.maxHealth = 5;
-            game.link.damage = 1;
-            game.link.currentHealth = game.link.maxHealth;
+            // Update PlayerPosition using a temporary Vector2
+            var position = game.link.PlayerPosition;
+            position.X = 200;
+            position.Y = 200;
+            game.link.PlayerPosition = position;
+
+            // Update StateMachine properties
+            game.link.StateMachine.currentDirection = Player.PlayerDirection.playerDown;
+            game.link.StateMachine.currentState = Player.PlayerState.playerIdle;
+
+            // Initialize other fields
+            game.link.CoinNum = 0;
+            game.link.KeyNum = 0;   
+            game.link.BombNum = 0;
+            game.link.MaxHealth = 5;
+            game.link.Damage = 1;
+            game.link.CurrentHealth = game.link.MaxHealth;
+
             game.mapPicked = false;
-            game.link.hasRedpotion = false;
-            game.link.hasBluepotion = false;
+
+            // Initialize potion-related fields
+            game.link.HasRedPotion = false;
+            game.link.HasBluePotion = false;
         }
     }
 }

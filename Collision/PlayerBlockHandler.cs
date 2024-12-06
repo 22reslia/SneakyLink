@@ -19,11 +19,11 @@ namespace SneakyLink.Collision
             //sand will not prevent moving but slow down player
             if (targetBlock.type == CollisionObjectType.Sand)
             {
-                game.link.velocity = 1;
-                if (!game.link.isV && !game.link.hasBluepotion)
+                game.link.Velocity = 1;
+                if (!game.link.IsV && !game.link.HasBluePotion)
                 {
-                    game.link.currentHealth--;
-                    game.link.isV = true;
+                    game.link.CurrentHealth--;
+                    game.link.IsV = true;
                 }
             }
             else if (targetBlock.type == CollisionObjectType.Stair)
@@ -38,28 +38,28 @@ namespace SneakyLink.Collision
                 switch (side)
                 {
                     case CollisionType.None:
-                        game.link.isBlockedLeft = false;
-                        game.link.isBlockedRight = false;
-                        game.link.isBlockedTop = false;
-                        game.link.isBlockedBottom = false;
+                        game.link.IsBlockedLeft = false;
+                        game.link.IsBlockedRight = false;
+                        game.link.IsBlockedTop = false;
+                        game.link.IsBlockedBottom = false;
                         break;
                     case CollisionType.Left:
-                        game.link.isBlockedLeft = true;
+                        game.link.IsBlockedLeft = true;
                         break;
                     case CollisionType.Right:
-                        game.link.isBlockedRight = true;
+                        game.link.IsBlockedRight = true;
                         break;
                     case CollisionType.Top:
-                        game.link.isBlockedTop = true;
+                        game.link.IsBlockedTop = true;
                         break;
                     case CollisionType.Bottom:
-                        game.link.isBlockedBottom = true;
+                        game.link.IsBlockedBottom = true;
                         break;
                 }
-                if (game.link.keyNum > 0)
+                if (game.link.KeyNum > 0)
                 {
-                    game.link.keyNum--;
-                    game.link.maxHealth += 5;
+                    game.link.KeyNum--;
+                    game.link.MaxHealth += 5;
                 }
             }
             else
@@ -67,22 +67,22 @@ namespace SneakyLink.Collision
                 switch (side)
                 {
                     case CollisionType.None:
-                        game.link.isBlockedLeft = false;
-                        game.link.isBlockedRight = false;
-                        game.link.isBlockedTop = false;
-                        game.link.isBlockedBottom = false;
+                        game.link.IsBlockedLeft = false;
+                        game.link.IsBlockedRight = false;
+                        game.link.IsBlockedTop = false;
+                        game.link.IsBlockedBottom = false;
                         break;
                     case CollisionType.Left:
-                        game.link.isBlockedLeft = true;
+                        game.link.IsBlockedLeft = true;
                         break;
                     case CollisionType.Right:
-                        game.link.isBlockedRight = true;
+                        game.link.IsBlockedRight = true;
                         break;
                     case CollisionType.Top:
-                        game.link.isBlockedTop = true;
+                        game.link.IsBlockedTop = true;
                         break;
                     case CollisionType.Bottom:
-                        game.link.isBlockedBottom = true;
+                        game.link.IsBlockedBottom = true;
                         break;
                 }
             }

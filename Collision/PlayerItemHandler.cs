@@ -12,7 +12,7 @@ namespace SneakyLink.Collision
         {
             if (item is PushableBlock pushableBlock)
             {
-                pushableBlock.CheckPush(link.collisionBox);
+                pushableBlock.CheckPush(link.CollisionBox);
                 pushableBlock.Push();
             }
             else
@@ -24,25 +24,25 @@ namespace SneakyLink.Collision
                         game.mapPicked = true;
                         break;
                     case BombObject:
-                        link.bombNum++;
+                        link.BombNum++;
                         break;
                     case RupeeObject:
                         sounds.PlayGetRupee();
-                        link.coinNum++;
+                        link.CoinNum++;
                         break;
                     case KeyObject:
                         sounds.PlayGetRupee();
-                        link.keyNum++;
+                        link.KeyNum++;
                         break;
                     case HeartContainer:
-                        link.maxHealth++;
-                        link.currentHealth++;
+                        link.MaxHealth++;
+                        link.CurrentHealth++;
                         break;
                     case RedPotion: 
-                        link.hasRedpotion = true;
+                        link.HasRedPotion = true;
                         break;
                     case BluePotion:
-                        link.hasBluepotion = true;
+                        link.HasBluePotion = true;
                         break;
 
                 }

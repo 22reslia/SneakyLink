@@ -41,7 +41,7 @@ namespace SneakyLink
                 game.itemList.Add(new EnemyDeath(enemy.X, enemy.Y));
             }
 
-            if (game.link.currentHealth <= 0)
+            if (game.link.CurrentHealth <= 0)
             {
                 game.gameState = GameState.GameOver;
             }

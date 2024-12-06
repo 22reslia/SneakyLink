@@ -21,22 +21,22 @@ namespace SneakyLink.Collision
             switch (side)
             {
                 case CollisionType.None:
-                    link.isBlockedLeft = false;
-                    link.isBlockedRight = false;
-                    link.isBlockedTop = false;
-                    link.isBlockedBottom = false;
+                    link.IsBlockedLeft = false;
+                    link.IsBlockedRight = false;
+                    link.IsBlockedTop = false;
+                    link.IsBlockedBottom = false;
                     break;
                 case CollisionType.Left:
-                    link.isBlockedLeft = true;
+                    link.IsBlockedLeft = true;
                     break;
                 case CollisionType.Right:
-                    link.isBlockedRight = true;
+                    link.IsBlockedRight = true;
                     break;
                 case CollisionType.Top:
-                    link.isBlockedTop = true;
+                    link.IsBlockedTop = true;
                     break;
                 case CollisionType.Bottom:
-                    link.isBlockedBottom = true;
+                    link.IsBlockedBottom = true;
                     break;
             }
             //clear the old objects
@@ -44,7 +44,7 @@ namespace SneakyLink.Collision
             game.oldRoom = game.room;
 
             game.nextRoomFilePath = nextDoorFilePath;
-            game.link.playerPosition = nextLinkPosition;
+            game.link.PlayerPosition = nextLinkPosition;
         }
     }
 }

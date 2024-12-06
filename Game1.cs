@@ -126,7 +126,7 @@ public class Game1 : Game
         playerKeyboardController.RegisterCommand(Keys.S, new MoveDown(link), false);
         playerKeyboardController.RegisterCommand(Keys.J, new WoodenAttack(link, playerSounds), false);
         playerKeyboardController.RegisterCommand(Keys.K, new UseItem(link), true);
-        playerKeyboardController.RegisterCommand(Keys.H, new DrinkRedpotion(link), true);
+        playerKeyboardController.RegisterCommand(Keys.H, new DrinkRedPotion(link), true);
 
         //Initilizing menu related Commands to specific keys
         titleKeyboardController.RegisterCommand(Keys.Enter, new StartGameCommand(this), true);

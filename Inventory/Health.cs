@@ -18,8 +18,8 @@ namespace SneakyLink.Inventory
         private HeartSprite emptyHeart;
         public Health(Link link, Texture2D heartText)
         {
-            maxHealth = link.maxHealth;
-            health = link.currentHealth;
+            maxHealth = link.MaxHealth;
+            health = link.CurrentHealth;
             this.link = link;
 
             fullHeart = new HeartSprite(heartText, false);
@@ -27,8 +27,8 @@ namespace SneakyLink.Inventory
         }
         public void Update()
         {
-            maxHealth = link.maxHealth;
-            health = link.currentHealth;
+            maxHealth = link.MaxHealth;
+            health = link.CurrentHealth;
         }
         public void Draw(SpriteBatch spriteBatch, bool isInInventory)
         {

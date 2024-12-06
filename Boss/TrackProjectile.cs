@@ -57,10 +57,10 @@ namespace SneakyLink.Boss
         {
             projectileSprite.Update();
             
-            Vector2 playerPosition = new Vector2(link.playerPosition.X, link.playerPosition.Y);
+            Vector2 PlayerPosition = new Vector2(link.PlayerPosition.X, link.PlayerPosition.Y);
             Vector2 currentPosition = new Vector2(X, Y);
 
-            Vector2 direction = playerPosition - currentPosition;
+            Vector2 direction = PlayerPosition - currentPosition;
             direction.Normalize();
 
             velocityX = direction.X * speed;
