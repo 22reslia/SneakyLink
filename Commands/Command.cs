@@ -2,6 +2,7 @@ using SneakyLink;
 using SneakyLink.Player;
 using System.Diagnostics;
 
+/*
 public class GameExit : ICommand {
 
     private Game1 _game; //Reference to Game1
@@ -259,3 +260,4 @@ public class DrinkRedpotion : ICommand
         }
     }
 
+*/
